@@ -1,26 +1,112 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="IropkeBatangM.otf">
+            <string>IropkeBatangOTFM</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2t-Np-Wcb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i7M-Qg-30Y">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="K8t-LB-zAR"/>
+                                        </constraints>
+                                    </imageView>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dE1-Ir-yHH">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="438"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="L3w-A3-jgv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="438"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <blurEffect style="regular"/>
+                                    </visualEffectView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잠시후면" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-zN-ZFO">
+                                        <rect key="frame" x="157.5" y="150" width="61.5" height="22.5"/>
+                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="베로니카 A 쇼프스톨" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcb-6d-t8D">
+                                        <rect key="frame" x="211" y="272.5" width="144" height="22.5"/>
+                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본문" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80S-0q-WBQ">
+                                        <rect key="frame" x="20" y="345" width="335" height="22.5"/>
+                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="80S-0q-WBQ" secondAttribute="bottom" constant="70.5" id="4V1-ev-gst"/>
+                                    <constraint firstAttribute="bottom" secondItem="dE1-Ir-yHH" secondAttribute="bottom" id="7EH-VZ-8Dp"/>
+                                    <constraint firstItem="i7M-Qg-30Y" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" id="Eda-Yi-YTY"/>
+                                    <constraint firstItem="dE1-Ir-yHH" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" id="SQj-LY-5MO"/>
+                                    <constraint firstItem="oV6-zN-ZFO" firstAttribute="centerX" secondItem="W2t-Np-Wcb" secondAttribute="centerX" id="TQ4-6f-gYE"/>
+                                    <constraint firstAttribute="trailing" secondItem="vcb-6d-t8D" secondAttribute="trailing" constant="20" id="W9h-2O-a73"/>
+                                    <constraint firstItem="80S-0q-WBQ" firstAttribute="leading" secondItem="W2t-Np-Wcb" secondAttribute="leading" constant="20" id="Xhg-8F-q37"/>
+                                    <constraint firstItem="oV6-zN-ZFO" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" constant="150" id="c45-kD-GNP"/>
+                                    <constraint firstItem="i7M-Qg-30Y" firstAttribute="leading" secondItem="W2t-Np-Wcb" secondAttribute="leading" id="fw5-0G-28L"/>
+                                    <constraint firstAttribute="trailing" secondItem="dE1-Ir-yHH" secondAttribute="trailing" id="ght-EV-61h"/>
+                                    <constraint firstAttribute="trailing" secondItem="i7M-Qg-30Y" secondAttribute="trailing" id="iBt-H5-TRx"/>
+                                    <constraint firstItem="i7M-Qg-30Y" firstAttribute="centerX" secondItem="W2t-Np-Wcb" secondAttribute="centerX" id="nAL-ve-lfG"/>
+                                    <constraint firstItem="dE1-Ir-yHH" firstAttribute="leading" secondItem="W2t-Np-Wcb" secondAttribute="leading" id="obN-rF-40s"/>
+                                    <constraint firstItem="vcb-6d-t8D" firstAttribute="top" secondItem="oV6-zN-ZFO" secondAttribute="bottom" constant="100" id="tHG-3L-FeW"/>
+                                    <constraint firstItem="80S-0q-WBQ" firstAttribute="top" secondItem="vcb-6d-t8D" secondAttribute="bottom" constant="50" id="v0D-Aj-bV1"/>
+                                    <constraint firstAttribute="trailing" secondItem="80S-0q-WBQ" secondAttribute="trailing" constant="20" id="zYU-Az-JAB"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99607843137254903" green="1" blue="0.97541683912277222" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ExV-aW-r4S"/>
+                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dvg-yq-7Pu"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="bottom" id="kkZ-I2-pQC"/>
+                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="n2a-fB-mjo"/>
+                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yFq-o8-oJT"/>
+                            <constraint firstAttribute="trailing" secondItem="W2t-Np-Wcb" secondAttribute="trailing" id="yIh-KQ-5d5"/>
+                        </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="1000"/>
+                    <connections>
+                        <outlet property="bgImage" destination="i7M-Qg-30Y" id="DUH-7L-FbI"/>
+                        <outlet property="bgView" destination="8bC-Xf-vdC" id="eXa-e4-7vN"/>
+                        <outlet property="lbBody" destination="80S-0q-WBQ" id="U3a-o5-nx3"/>
+                        <outlet property="lbPoet" destination="vcb-6d-t8D" id="Shg-yd-Eyk"/>
+                        <outlet property="lbTitle" destination="oV6-zN-ZFO" id="qge-NN-civ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="24.800000000000001" y="34.182908545727138"/>
         </scene>
     </scenes>
 </document>
