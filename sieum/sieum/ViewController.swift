@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
+        setContent()
         setGUI()
     }
 
@@ -33,26 +33,30 @@ class ViewController: UIViewController {
     }
     
     
-
-    func setGUI(){
-
-        bgImage.image = UIImage(named: "image_example5.jpg")
-        setColor() // 서버에서 받아온 후에 동작해야 함
-
-        
+    func setContent(){
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 20
-        let attrString = NSMutableAttributedString(string: "잠시 후면 너는\n손을 잡는 것과 영혼을 묶는 것의 차이를 배울 것이다.\n사랑이 기대는 것이 아니고\n함께 있는 것이 안전을 보장하기 위함이 아니라는 걸 너는 배울 것이다.\n잠시후면 너는\n입맞춤이 계약이 아니고, 선물이 약속이 아님을\n배우기 시작할 것이다.\n그리고 잠시 후면 너는 어린아이의 슬픔이 아니라\n어른의 기품을 갖고서\n얼굴을 똑바로 들고\n눈을 크게 뜬 채로\n인생의 실패를 받아들이기 시작할 것이다.\n그리고 너는 내일의 토대 위에 집을 짓기엔\n너무도 불확실하기 때문에\n오늘 이 순간 속에 너의 길을 닦아 나갈것이다.\n잠시 후면 너는 햇빛조차도 너무 많이 쪼이면\n화상을 입는다는 사실을 배울 것이다.\n따라서 너는 이제 자신의 정원을 심고\n자신의 영혼을 가꾸리라.\n누구나 너에게 꽃을 가져다 주기를 기다리기 전에.\n그러면 너는 정말로 인내할 수 있을 것이고\n진정으로 강해질 것이고\n진정한 가치를 네 안에 지니게 되리라.\n인생의 실수와 더불어\n너는 많은 것을 배우게 되리라.\n")
+        paragraphStyle.lineSpacing = 5
+        paragraphStyle.alignment = .center
+
+        let attrString = NSMutableAttributedString(string: "계절이 지나가는 하늘에는\n가을로 가득 차 있습니다.\n\n나는 아무 걱정도 없이\n가을 속의 별들을 다 헤일 듯합니다.\n\n가슴 속에 하나 둘 새겨지는 별을\n이제 다 못 헤는 것은\n쉬이 아침이 오는 까닭이요,\n내일 밤이 남은 까닭이요,\n아직 나의 청춘이 다하지 않은 까닭입니다.\n\n별 하나에 추억과\n별 하나에 사랑과\n별 하나에 쓸쓸함과\n별 하나에 동경과\n별 하나에 시와\n별 하나에 어머니, 어머니,\n\n어머님, 나는 별 하나에 아름다운 말 한마디씩 불러봅니다. 소학교때 책상을 같이 했던 아이들의 이름과, 패, 경, 옥 이런 이국소녀들의 이름과 벌써 애기 어머니 된 계집애들의 이름과, 가난한 이웃사람들의 이름과, 비둘기, 강아지, 토끼, 노새, 노루, '프랑시스 잠', '라이너 마리아 릴케' 이런 시인의 이름을 \n불러봅니다.\n\n이네들은 너무나 멀리 있습니다.\n별이 아슬히 멀 듯이,\n\n어머님,\n그리고 당신은 멀리 북간도에 계십니다.\n\n나는 무엇인지 그리워\n이 많은 별빛이 나린 언덕 위에\n내 이름자를 써보고,\n흙으로 덮어 버리었습니다.\n\n딴은 밤을 새워 우는 벌레는\n부끄러운 이름을 슬퍼하는 까닭입니다.\n\n그러나 겨울이 지나고 나의 별에도 봄이 오면\n무덤 위에 파란 잔디가 피어나듯이\n내 이름자 묻힌 언덕 위에도\n자랑처럼 풀이 무성할 게외다.\n")
         attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
         lbBody.attributedText = attrString
         
     }
     
+    
+    func setGUI(){
+
+        bgImage.image = UIImage(named: "image_example6.jpg")
+        
+        setColor() // 서버에서 받아온 후에 동작해야 함
+    }
+    
+    
+    
     func setColor(){
         
         if bgImage.image == nil{
-            
-            
             
         }else{
             let colorPicker = DBImageColorPicker.init(from: bgImage.image, with: .default)
@@ -60,35 +64,15 @@ class ViewController: UIViewController {
             bgView.backgroundColor = colorPicker?.backgroundColor
             lbTitle.textColor = colorPicker?.primaryTextColor
             lbPoet.textColor = colorPicker?.primaryTextColor
-            lbBody.textColor = colorPicker?.primaryTextColor
+            
+            if ColorUtil().isLight(targetColor: (bgView.backgroundColor?.cgColor)!) {
+                lbBody.textColor = UIColor.black
+            }else{
+                lbBody.textColor = UIColor.white
+            }
         }
     }
     
-//    잠시 후면 너는
-//    손을 잡는 것과 영혼을 묶는 것의 차이를 배울 것이다.
-//    사랑이 기대는 것이 아니고
-//    함께 있는 것이 안전을 보장하기 위함이 아니라는 걸
-//    너는 배울 것이다.
-//    잠시후면 너는
-//    입맞춤이 계약이 아니고, 선물이 약속이 아님을
-//    배우기 시작할 것이다.
-//    그리고 잠시 후면 너는 어린아이의 슬픔이 아니라
-//    어른의 기품을 갖고서
-//    얼굴을 똑바로 들고
-//    눈을 크게 뜬 채로
-//    인생의 실패를 받아들이기 시작할 것이다.
-//    그리고 너는 내일의 토대 위에 집을 짓기엔
-//    너무도 불확실하기 때문에
-//    오늘 이 순간 속에 너의 길을 닦아 나갈것이다.
-//    잠시 후면 너는 햇빛조차도 너무 많이 쪼이면
-//    화상을 입는다는 사실을 배울 것이다.
-//    따라서 너는 이제 자신의 정원을 심고
-//    자신의 영혼을 가꾸리라.
-//    누구나 너에게 꽃을 가져다 주기를 기다리기 전에.
-//    그러면 너는 정말로 인내할 수 있을 것이고
-//    진정으로 강해질 것이고
-//    진정한 가치를 네 안에 지니게 되리라.
-//    인생의 실수와 더불어
-//    너는 많은 것을 배우게 되리라.
+
 }
 

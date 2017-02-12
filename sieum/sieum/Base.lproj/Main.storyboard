@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -26,70 +27,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2t-Np-Wcb">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i7M-Qg-30Y">
+                                <rect key="frame" x="0.0" y="20" width="375" height="980"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2t-Np-Wcb">
+                                <rect key="frame" x="0.0" y="60" width="375" height="880"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i7M-Qg-30Y">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="K8t-LB-zAR"/>
-                                        </constraints>
-                                    </imageView>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dE1-Ir-yHH">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="438"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="L3w-A3-jgv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="438"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <blurEffect style="regular"/>
-                                    </visualEffectView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잠시후면" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-zN-ZFO">
-                                        <rect key="frame" x="157.5" y="150" width="61.5" height="22.5"/>
-                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="베로니카 A 쇼프스톨" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcb-6d-t8D">
-                                        <rect key="frame" x="211" y="272.5" width="144" height="22.5"/>
-                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="별 헤는 밤" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-zN-ZFO">
+                                        <rect key="frame" x="76" y="60" width="223" height="17"/>
+                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본문" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80S-0q-WBQ">
-                                        <rect key="frame" x="20" y="345" width="335" height="22.5"/>
-                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="71" y="137" width="233" height="17"/>
+                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
+                                        <color key="textColor" red="0.36074161529541016" green="0.3608088493347168" blue="0.3607373833656311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="윤동주" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcb-6d-t8D">
+                                        <rect key="frame" x="76" y="215" width="223" height="17"/>
+                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
+                                        <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y56-sK-P3m">
+                                        <rect key="frame" x="180" y="194" width="15" height="1"/>
+                                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="ChH-mQ-8AZ"/>
+                                            <constraint firstAttribute="width" constant="15" id="c7P-eH-OiU"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="80S-0q-WBQ" secondAttribute="bottom" constant="70.5" id="4V1-ev-gst"/>
-                                    <constraint firstAttribute="bottom" secondItem="dE1-Ir-yHH" secondAttribute="bottom" id="7EH-VZ-8Dp"/>
-                                    <constraint firstItem="i7M-Qg-30Y" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" id="Eda-Yi-YTY"/>
-                                    <constraint firstItem="dE1-Ir-yHH" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" id="SQj-LY-5MO"/>
+                                    <constraint firstItem="vcb-6d-t8D" firstAttribute="top" secondItem="y56-sK-P3m" secondAttribute="bottom" constant="20" id="7wA-mm-C8c"/>
                                     <constraint firstItem="oV6-zN-ZFO" firstAttribute="centerX" secondItem="W2t-Np-Wcb" secondAttribute="centerX" id="TQ4-6f-gYE"/>
-                                    <constraint firstAttribute="trailing" secondItem="vcb-6d-t8D" secondAttribute="trailing" constant="20" id="W9h-2O-a73"/>
-                                    <constraint firstItem="80S-0q-WBQ" firstAttribute="leading" secondItem="W2t-Np-Wcb" secondAttribute="leading" constant="20" id="Xhg-8F-q37"/>
-                                    <constraint firstItem="oV6-zN-ZFO" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" constant="150" id="c45-kD-GNP"/>
-                                    <constraint firstItem="i7M-Qg-30Y" firstAttribute="leading" secondItem="W2t-Np-Wcb" secondAttribute="leading" id="fw5-0G-28L"/>
-                                    <constraint firstAttribute="trailing" secondItem="dE1-Ir-yHH" secondAttribute="trailing" id="ght-EV-61h"/>
-                                    <constraint firstAttribute="trailing" secondItem="i7M-Qg-30Y" secondAttribute="trailing" id="iBt-H5-TRx"/>
-                                    <constraint firstItem="i7M-Qg-30Y" firstAttribute="centerX" secondItem="W2t-Np-Wcb" secondAttribute="centerX" id="nAL-ve-lfG"/>
-                                    <constraint firstItem="dE1-Ir-yHH" firstAttribute="leading" secondItem="W2t-Np-Wcb" secondAttribute="leading" id="obN-rF-40s"/>
-                                    <constraint firstItem="vcb-6d-t8D" firstAttribute="top" secondItem="oV6-zN-ZFO" secondAttribute="bottom" constant="100" id="tHG-3L-FeW"/>
-                                    <constraint firstItem="80S-0q-WBQ" firstAttribute="top" secondItem="vcb-6d-t8D" secondAttribute="bottom" constant="50" id="v0D-Aj-bV1"/>
-                                    <constraint firstAttribute="trailing" secondItem="80S-0q-WBQ" secondAttribute="trailing" constant="20" id="zYU-Az-JAB"/>
+                                    <constraint firstItem="oV6-zN-ZFO" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" constant="60" id="c45-kD-GNP"/>
+                                    <constraint firstAttribute="bottom" secondItem="vcb-6d-t8D" secondAttribute="bottom" constant="100" id="iR4-gS-1a9"/>
+                                    <constraint firstAttribute="trailing" secondItem="oV6-zN-ZFO" secondAttribute="trailing" constant="60" id="qrF-Wy-AWo"/>
+                                    <constraint firstItem="80S-0q-WBQ" firstAttribute="top" secondItem="oV6-zN-ZFO" secondAttribute="bottom" constant="60" id="t4q-q1-bJO"/>
+                                    <constraint firstItem="y56-sK-P3m" firstAttribute="top" secondItem="80S-0q-WBQ" secondAttribute="bottom" constant="40" id="w1h-nr-aJw"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OyN-si-50O">
+                                <rect key="frame" x="305" y="958" width="22" height="22"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BxZ-zN-pCl">
+                                <rect key="frame" x="337" y="958" width="22" height="22"/>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.99607843137254903" green="1" blue="0.97541683912277222" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96868795156478882" blue="0.96851199865341187" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ExV-aW-r4S"/>
-                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dvg-yq-7Pu"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="bottom" id="kkZ-I2-pQC"/>
-                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="n2a-fB-mjo"/>
+                            <constraint firstItem="y56-sK-P3m" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="04m-PA-TMk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="80S-0q-WBQ" secondAttribute="trailing" constant="55" id="4Tz-rc-dx9"/>
+                            <constraint firstItem="80S-0q-WBQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="55" id="7gQ-Ir-OKr"/>
+                            <constraint firstAttribute="trailing" secondItem="i7M-Qg-30Y" secondAttribute="trailing" id="95W-wc-xrh"/>
+                            <constraint firstItem="oV6-zN-ZFO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="60" id="BaU-8m-0kR"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="BxZ-zN-pCl" secondAttribute="bottom" constant="20" id="Eez-3s-8ZC"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OyN-si-50O" secondAttribute="bottom" constant="20" id="HIX-bX-0Ry"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oV6-zN-ZFO" secondAttribute="trailing" constant="60" id="LX4-M8-1vx"/>
+                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="OvA-la-3dO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i7M-Qg-30Y" secondAttribute="bottom" id="Yzc-Rw-aL4"/>
+                            <constraint firstItem="vcb-6d-t8D" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="60" id="fVn-oX-mWy"/>
+                            <constraint firstItem="i7M-Qg-30Y" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="im2-Ri-Qcs"/>
+                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="60" id="kEh-EY-SdC"/>
+                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" constant="-60" id="lbk-YH-did"/>
+                            <constraint firstItem="i7M-Qg-30Y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mNs-ya-mBZ"/>
+                            <constraint firstItem="BxZ-zN-pCl" firstAttribute="leading" secondItem="OyN-si-50O" secondAttribute="trailing" constant="10" id="mrV-4Z-I0Z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vcb-6d-t8D" secondAttribute="trailing" constant="60" id="oq5-go-E23"/>
+                            <constraint firstItem="BxZ-zN-pCl" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="uyd-la-mHN"/>
                             <constraint firstItem="W2t-Np-Wcb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yFq-o8-oJT"/>
                             <constraint firstAttribute="trailing" secondItem="W2t-Np-Wcb" secondAttribute="trailing" id="yIh-KQ-5d5"/>
                         </constraints>

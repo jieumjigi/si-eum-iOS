@@ -10,6 +10,9 @@
 		37D36C928A8128AE2C4A453B /* Pods_sieumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B57E4D41CDAEE9F1EC198D7 /* Pods_sieumTests.framework */; };
 		4A18B9366A519982809F87F9 /* Pods_sieum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F09FAE3434EBD7F50C6438B /* Pods_sieum.framework */; };
 		660977B85D079883A76A9CA1 /* Pods_sieumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ECE973D68BBCBC74CA4452B /* Pods_sieumUITests.framework */; };
+		C152D8271E506BA900719583 /* image_example6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C152D8261E506BA900719583 /* image_example6.jpg */; };
+		C152D82C1E508B2B00719583 /* image_example7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C152D82B1E508B2B00719583 /* image_example7.jpg */; };
+		C152D82E1E50976800719583 /* ColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152D82D1E50976800719583 /* ColorUtil.swift */; };
 		C194AD9E1E48D512003CF617 /* image_example4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C194AD9D1E48D512003CF617 /* image_example4.jpg */; };
 		C194ADA01E48D784003CF617 /* image_example5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C194AD9F1E48D784003CF617 /* image_example5.jpg */; };
 		C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769751E48998100B5E216 /* AppDelegate.swift */; };
@@ -51,6 +54,9 @@
 		713883869EA0B7CF9E02CD28 /* Pods-sieumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieumUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sieumUITests/Pods-sieumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7ECE973D68BBCBC74CA4452B /* Pods_sieumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B57E4D41CDAEE9F1EC198D7 /* Pods_sieumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C152D8261E506BA900719583 /* image_example6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_example6.jpg; sourceTree = "<group>"; };
+		C152D82B1E508B2B00719583 /* image_example7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_example7.jpg; sourceTree = "<group>"; };
+		C152D82D1E50976800719583 /* ColorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtil.swift; sourceTree = "<group>"; };
 		C194AD9D1E48D512003CF617 /* image_example4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_example4.jpg; sourceTree = "<group>"; };
 		C194AD9F1E48D784003CF617 /* image_example5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_example5.jpg; sourceTree = "<group>"; };
 		C1A769721E48998100B5E216 /* sieum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sieum.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +117,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C152D8281E506D6200719583 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C152D82D1E50976800719583 /* ColorUtil.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		C1A769691E48998100B5E216 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +151,7 @@
 		C1A769741E48998100B5E216 /* sieum */ = {
 			isa = PBXGroup;
 			children = (
+				C152D8281E506D6200719583 /* Util */,
 				C1A769751E48998100B5E216 /* AppDelegate.swift */,
 				C1A769771E48998100B5E216 /* ViewController.swift */,
 				C1A769791E48998100B5E216 /* Main.storyboard */,
@@ -168,6 +183,8 @@
 		C1A769A31E48A88500B5E216 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				C152D82B1E508B2B00719583 /* image_example7.jpg */,
+				C152D8261E506BA900719583 /* image_example6.jpg */,
 				C1A769A41E48A88E00B5E216 /* image_example.jpg */,
 				C1A769AA1E48D2F900B5E216 /* image_example2.jpg */,
 				C1A769AC1E48D3C100B5E216 /* image_example3.jpg */,
@@ -330,11 +347,13 @@
 			files = (
 				C194AD9E1E48D512003CF617 /* image_example4.jpg in Resources */,
 				C1A769A91E48C45400B5E216 /* IropkeBatangM.otf in Resources */,
+				C152D8271E506BA900719583 /* image_example6.jpg in Resources */,
 				C1A769801E48998100B5E216 /* LaunchScreen.storyboard in Resources */,
 				C194ADA01E48D784003CF617 /* image_example5.jpg in Resources */,
 				C1A7697D1E48998100B5E216 /* Assets.xcassets in Resources */,
 				C1A7697B1E48998100B5E216 /* Main.storyboard in Resources */,
 				C1A769AD1E48D3C100B5E216 /* image_example3.jpg in Resources */,
+				C152D82C1E508B2B00719583 /* image_example7.jpg in Resources */,
 				C1A769AB1E48D2F900B5E216 /* image_example2.jpg in Resources */,
 				C1A769A51E48A88E00B5E216 /* image_example.jpg in Resources */,
 			);
@@ -499,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C152D82E1E50976800719583 /* ColorUtil.swift in Sources */,
 				C1A769781E48998100B5E216 /* ViewController.swift in Sources */,
 				C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */,
 			);
