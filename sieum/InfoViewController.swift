@@ -1,24 +1,36 @@
 //
-//  AboutViewController.swift
+//  InfoViewController.swift
 //  sieum
 //
-//  Created by 홍성호 on 2017. 2. 22..
+//  Created by 홍성호 on 2017. 2. 23..
 //  Copyright © 2017년 홍성호. All rights reserved.
 //
 
 import UIKit
 
-class AboutViewController: UIViewController {
+class InfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setNavi()
 
-        // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setNavi(){
+        
+        self.title = "hello"
+
+    }
+    
+    func onDoneItem(){
+        self.dismiss(animated: true, completion: nil)
     }
     
 

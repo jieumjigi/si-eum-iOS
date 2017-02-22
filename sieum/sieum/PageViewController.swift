@@ -8,12 +8,14 @@
 
 import UIKit
 
-class MainPageViewController: UIPageViewController, UIPageViewControllerDataSource{
+class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.setColor()
+        
         self.dataSource = self
         
         if let firstViewController = orderedViewControllers.first {
@@ -30,10 +32,17 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDataSour
     }
     
     
+    // MARK: - UI
+    
+    func setColor(){
+        self.view.backgroundColor = UIColor(red: (247/255.0), green: (247/255.0), blue: (247/255.0), alpha: 1.0)
+    }
+    
+    // MARK: UIPageViewControllerDataSource
     
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.newViewController(name: "PoemViewController") ,
-                self.newViewController(name: "AboutViewController") ]
+                self.newViewController(name: "PoetViewController") ]
     }()
     
     private func newViewController(name: String) -> UIViewController {
@@ -41,7 +50,6 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDataSour
             instantiateViewController(withIdentifier: "\(name)")
     }
     
-    // MARK: UIPageViewControllerDataSource
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
