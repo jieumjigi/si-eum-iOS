@@ -53,7 +53,7 @@
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y56-sK-P3m">
                                         <rect key="frame" x="180" y="134" width="15" height="1"/>
-                                        <color key="backgroundColor" red="0.81960784313725488" green="0.59999999999999998" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.81960784313725488" green="0.50196078431372548" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="ChH-mQ-8AZ"/>
                                             <constraint firstAttribute="width" constant="15" id="c7P-eH-OiU"/>
@@ -176,10 +176,10 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoCell" id="ULt-z5-duM">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ULt-z5-duM" id="PFO-FV-Weh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -263,19 +263,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시인 소개" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyt-zj-9gm">
-                                <rect key="frame" x="16" y="107" width="343" height="17"/>
+                                <rect key="frame" x="16" y="147" width="343" height="17"/>
                                 <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                 <color key="textColor" red="0.36078431372549019" green="0.3608088493347168" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책 소개" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sH-AT-rU9">
-                                <rect key="frame" x="16" y="324" width="343" height="17"/>
+                                <rect key="frame" x="16" y="364" width="343" height="17"/>
                                 <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                 <color key="textColor" red="0.36078431372549019" green="0.3608088493347168" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="윤동주" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-wP-86E">
-                                <rect key="frame" x="169.5" y="40" width="35.5" height="17"/>
+                                <rect key="frame" x="169.5" y="80" width="35.5" height="17"/>
                                 <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                 <color key="textColor" red="0.84013515710830688" green="0.61075717210769653" blue="0.60428714752197266" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -283,7 +283,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="pOV-wP-86E" firstAttribute="top" secondItem="EaO-iq-jjg" secondAttribute="bottom" constant="20" id="KAc-19-hxi"/>
+                            <constraint firstItem="pOV-wP-86E" firstAttribute="top" secondItem="EaO-iq-jjg" secondAttribute="bottom" constant="60" id="KAc-19-hxi"/>
                             <constraint firstItem="Zyt-zj-9gm" firstAttribute="top" secondItem="pOV-wP-86E" secondAttribute="bottom" constant="50" id="LVo-3l-158"/>
                             <constraint firstItem="pOV-wP-86E" firstAttribute="centerX" secondItem="U7z-wr-98U" secondAttribute="centerX" id="Nka-6q-mtF"/>
                             <constraint firstItem="9sH-AT-rU9" firstAttribute="top" secondItem="Zyt-zj-9gm" secondAttribute="bottom" constant="200" id="PEg-aS-WXh"/>
