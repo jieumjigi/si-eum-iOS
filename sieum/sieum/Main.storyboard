@@ -48,12 +48,12 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="윤동주" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcb-6d-t8D">
                                         <rect key="frame" x="76" y="155" width="223" height="17"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
-                                        <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.82036119699478149" green="0.59896218776702881" blue="0.59676283597946167" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y56-sK-P3m">
                                         <rect key="frame" x="180" y="134" width="15" height="1"/>
-                                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.81960784313725488" green="0.59999999999999998" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="ChH-mQ-8AZ"/>
                                             <constraint firstAttribute="width" constant="15" id="c7P-eH-OiU"/>
@@ -101,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="24.800000000000001" y="34.182908545727138"/>
+            <point key="canvasLocation" x="150" y="492"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="eiB-Th-OrP">
@@ -167,22 +167,32 @@
             <point key="canvasLocation" x="-681" y="492"/>
         </scene>
         <!--Info View Controller-->
-        <scene sceneID="oMq-Eg-3MK">
+        <scene sceneID="ksx-0F-bk7">
             <objects>
-                <viewController storyboardIdentifier="InfoViewController" id="LgQ-Kq-1hd" customClass="InfoViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="93V-Vx-D99"/>
-                        <viewControllerLayoutGuide type="bottom" id="G3P-KA-ynf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9eU-vB-omL">
+                <tableViewController storyboardIdentifier="InfoViewController" id="Wlu-fG-1he" customClass="InfoViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="kAa-oW-bBY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kjs-6k-Z87" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoCell" id="ULt-z5-duM">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ULt-z5-duM" id="PFO-FV-Weh">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Wlu-fG-1he" id="TRu-Ga-3Ns"/>
+                            <outlet property="delegate" destination="Wlu-fG-1he" id="mcs-pi-v1o"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LBp-Jl-KAg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-682" y="1729"/>
+            <point key="canvasLocation" x="-682" y="1686"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="1yZ-iN-Cgf">
@@ -238,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQX-rn-uRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1566.4000000000001" y="1054.2728635682161"/>
+            <point key="canvasLocation" x="-1565" y="1144"/>
         </scene>
         <!--Poet View Controller-->
         <scene sceneID="OEz-OJ-0mA">
@@ -252,20 +262,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hello" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyt-zj-9gm">
-                                <rect key="frame" x="166" y="323" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시인 소개" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyt-zj-9gm">
+                                <rect key="frame" x="16" y="107" width="343" height="17"/>
                                 <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                 <color key="textColor" red="0.36078431372549019" green="0.3608088493347168" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책 소개" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sH-AT-rU9">
+                                <rect key="frame" x="16" y="324" width="343" height="17"/>
+                                <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
+                                <color key="textColor" red="0.36078431372549019" green="0.3608088493347168" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="윤동주" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-wP-86E">
+                                <rect key="frame" x="169.5" y="40" width="35.5" height="17"/>
+                                <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
+                                <color key="textColor" red="0.84013515710830688" green="0.61075717210769653" blue="0.60428714752197266" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="pOV-wP-86E" firstAttribute="top" secondItem="EaO-iq-jjg" secondAttribute="bottom" constant="20" id="KAc-19-hxi"/>
+                            <constraint firstItem="Zyt-zj-9gm" firstAttribute="top" secondItem="pOV-wP-86E" secondAttribute="bottom" constant="50" id="LVo-3l-158"/>
+                            <constraint firstItem="pOV-wP-86E" firstAttribute="centerX" secondItem="U7z-wr-98U" secondAttribute="centerX" id="Nka-6q-mtF"/>
+                            <constraint firstItem="9sH-AT-rU9" firstAttribute="top" secondItem="Zyt-zj-9gm" secondAttribute="bottom" constant="200" id="PEg-aS-WXh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zyt-zj-9gm" secondAttribute="trailing" id="YZ0-Hc-7TR"/>
+                            <constraint firstItem="9sH-AT-rU9" firstAttribute="leading" secondItem="U7z-wr-98U" secondAttribute="leadingMargin" id="lUy-uL-ddh"/>
+                            <constraint firstItem="Zyt-zj-9gm" firstAttribute="leading" secondItem="U7z-wr-98U" secondAttribute="leadingMargin" id="oLa-tX-icw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9sH-AT-rU9" secondAttribute="trailing" id="wLa-kx-Tza"/>
+                            <constraint firstItem="9sH-AT-rU9" firstAttribute="centerX" secondItem="U7z-wr-98U" secondAttribute="centerX" id="yn3-Xn-OJT"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6nJ-kS-DzL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="25" y="818"/>
+            <point key="canvasLocation" x="956" y="491.60419790104953"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="IVC-aM-l4q">

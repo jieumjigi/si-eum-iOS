@@ -23,13 +23,6 @@ class MenuViewController: UIViewController {
     
     @IBAction func onInfoButton(_ sender: Any) {
 
-        
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//        
-//        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "InfoViewController") as! InfoViewController
-////        self.present(nextViewController, animated:true, completion:nil)
-//        self.show(nextViewController, sender: self)
-        
         let infoViewController = self.storyboard!.instantiateViewController(withIdentifier: "InfoViewController") as! InfoViewController
         let navController = UINavigationController(rootViewController: infoViewController) // Creating a navigation controller with VC1 at the root of the navigation stack.
         self.present(navController, animated:true, completion: nil)

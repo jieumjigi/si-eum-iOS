@@ -11,7 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
 
     let MENU_HEIGHT = CGFloat.init(350)
-    let MENU_HEAD_HEIGHT = CGFloat.init(30)
+    let MENU_HEAD_HEIGHT = CGFloat.init(40)
 
     
     @IBOutlet weak var menuView: UIView!
