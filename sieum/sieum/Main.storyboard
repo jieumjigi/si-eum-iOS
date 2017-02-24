@@ -161,7 +161,7 @@
         <!--Page View Controller-->
         <scene sceneID="eBq-1t-dhL">
             <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="AWS-Vy-su5" customClass="PageViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="max" id="AWS-Vy-su5" customClass="PageViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K84-n0-LrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-681" y="492"/>
@@ -212,9 +212,15 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYv-6E-lT4">
                                 <rect key="frame" x="24" y="60" width="22" height="22"/>
+                                <connections>
+                                    <action selector="onShareButton:" destination="jvo-dj-hC6" eventType="touchUpInside" id="4fI-e8-yXO"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsx-LK-sxw">
                                 <rect key="frame" x="24" y="132" width="22" height="22"/>
+                                <connections>
+                                    <action selector="onDownButton:" destination="jvo-dj-hC6" eventType="touchUpInside" id="mdI-mG-DK7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Nv-Op-C1v">
                                 <rect key="frame" x="24" y="204" width="22" height="22"/>
@@ -275,7 +281,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="윤동주" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-wP-86E">
-                                <rect key="frame" x="169.5" y="80" width="35.5" height="17"/>
+                                <rect key="frame" x="170" y="80" width="35.5" height="17"/>
                                 <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                 <color key="textColor" red="0.84013515710830688" green="0.61075717210769653" blue="0.60428714752197266" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>

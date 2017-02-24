@@ -9,13 +9,17 @@
 import UIKit
 
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
+    
+    // The custom UIPageControl
+    @IBOutlet weak var pageControl: UIPageControl!
 
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setColor()
-        
+        self.setupPageControl()
+
         self.dataSource = self
         
         if let firstViewController = orderedViewControllers.first {
@@ -24,6 +28,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
                                animated: true,
                                completion: nil)
         }
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,7 +44,18 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
         self.view.backgroundColor = UIColor(red: (247/255.0), green: (247/255.0), blue: (247/255.0), alpha: 1.0)
     }
     
+    
+    private func setupPageControl() {
+        
+        let appearance = UIPageControl.appearance()
+        appearance.pageIndicatorTintColor = UIColor.gray
+        appearance.currentPageIndicatorTintColor = UIColor.white
+        appearance.backgroundColor = UIColor.darkGray
+    }
+    
+    
     // MARK: UIPageViewControllerDataSource
+    
     
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.newViewController(name: "PoemViewController") ,
@@ -46,6 +63,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
     }()
     
     private func newViewController(name: String) -> UIViewController {
+        
         return UIStoryboard(name: "Main", bundle: nil) .
             instantiateViewController(withIdentifier: "\(name)")
     }
@@ -88,7 +106,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
             return nil
         }
         
-        return orderedViewControllers[nextIndex]    }
+        return orderedViewControllers[nextIndex]
+    }
     
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {

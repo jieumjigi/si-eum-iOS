@@ -21,8 +21,10 @@ class MainViewController: UIViewController {
     var screenHeight = CGFloat.init()
     var screenWidth = CGFloat.init()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.setLayout()
         // Do any additional setup after loading the view.
     }
@@ -31,32 +33,25 @@ class MainViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
     
     @IBAction func panMenuView(_ sender: UIPanGestureRecognizer) {
         
         let translation = sender.translation(in: self.view)
-        
         var menuPositionY = sender.view!.center.y + translation.y
         
         if(menuPositionY < screenHeight - MENU_HEIGHT + MENU_HEIGHT/2){
-            
             menuPositionY = screenHeight - MENU_HEIGHT + MENU_HEIGHT/2
         }
         
         if(menuPositionY > screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2 ){
-            
             menuPositionY = screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2
         }
         
-        
         let movePoint = CGPoint(x: sender.view!.center.x, y: menuPositionY)
         
-        
         sender.view!.center = movePoint
-        
         sender.setTranslation(CGPoint.zero, in: self.view)
-        
-
     }
     
     
@@ -66,8 +61,8 @@ class MainViewController: UIViewController {
         self.screenSize = UIScreen.main.bounds
         self.screenHeight = screenSize.height
         self.screenWidth = screenSize.width
-        
         self.menuTopMargin.constant = self.screenHeight - MENU_HEAD_HEIGHT
+
     }
     
     
