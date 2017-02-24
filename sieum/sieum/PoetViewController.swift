@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Alamofire
 
 class PoetViewController: UIViewController {
 
+    @IBOutlet weak var lbPoet: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.getContent()
         // Do any additional setup after loading the view.
     }
 
@@ -21,6 +25,48 @@ class PoetViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func getContent(){
+        let todayPoemUrl = Constants.url.base.appending("page=1&num=1")
+        
+        
+        Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                
+                log.info(response)
+                
+                //to get status code
+                if let status = response.response?.statusCode {
+                    
+                    switch(status){
+                    case 200 :
+                        log.info("success")
+                    default:
+                        log.error("error with response status: \(status)")
+                        
+                    }
+                    
+                    //to get JSON return value
+                    if let result = response.result.value {
+                        let json = result as! NSDictionary
+                        log.info(json)
+                        
+                        if let items = json["items"] as? NSArray {
+                            if let items = items[0] as? NSDictionary {
+                                
+                                let author = items["author"] as? String
+                                log.info("author\(author)")
+                                self.lbPoet.text = author
+
+                            }
+                        }
+                        
+                    }
+                    
+                }
+        }
+
+    }
 
     /*
     // MARK: - Navigation

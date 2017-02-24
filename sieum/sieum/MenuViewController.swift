@@ -27,7 +27,7 @@ class MenuViewController: UIViewController {
     @IBAction func onDownButton(_ sender: Any) {
         
         log.verbose("")
-        NotificationCenter.default.post(name: Constants.Observer.REQUEST_DOWNLOAD, object: nil)
+        NotificationCenter.default.post(name: Constants.observer.requestDownload, object: nil)
     }
     
     @IBAction func onInfoButton(_ sender: Any) {

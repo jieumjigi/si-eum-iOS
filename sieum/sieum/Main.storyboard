@@ -31,28 +31,28 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2t-Np-Wcb">
-                                <rect key="frame" x="0.0" y="60" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="별 헤는 밤" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-zN-ZFO">
-                                        <rect key="frame" x="76" y="0.0" width="223" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-zN-ZFO">
+                                        <rect key="frame" x="76" y="80" width="223" height="0.0"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본문" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80S-0q-WBQ">
-                                        <rect key="frame" x="71" y="77" width="233" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시를 기다리는 중" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80S-0q-WBQ">
+                                        <rect key="frame" x="71" y="140" width="233" height="17"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                         <color key="textColor" red="0.36074161529541016" green="0.3608088493347168" blue="0.3607373833656311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="윤동주" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcb-6d-t8D">
-                                        <rect key="frame" x="76" y="155" width="223" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcb-6d-t8D">
+                                        <rect key="frame" x="76" y="218" width="223" height="0.0"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                         <color key="textColor" red="0.82036119699478149" green="0.59896218776702881" blue="0.59676283597946167" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y56-sK-P3m">
-                                        <rect key="frame" x="180" y="134" width="15" height="1"/>
+                                        <rect key="frame" x="180" y="197" width="15" height="1"/>
                                         <color key="backgroundColor" red="0.81960784313725488" green="0.50196078431372548" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="ChH-mQ-8AZ"/>
@@ -63,7 +63,7 @@
                                 <constraints>
                                     <constraint firstItem="vcb-6d-t8D" firstAttribute="top" secondItem="y56-sK-P3m" secondAttribute="bottom" constant="20" id="7wA-mm-C8c"/>
                                     <constraint firstItem="oV6-zN-ZFO" firstAttribute="centerX" secondItem="W2t-Np-Wcb" secondAttribute="centerX" id="TQ4-6f-gYE"/>
-                                    <constraint firstItem="oV6-zN-ZFO" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" id="c45-kD-GNP"/>
+                                    <constraint firstItem="oV6-zN-ZFO" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" constant="80" id="c45-kD-GNP"/>
                                     <constraint firstAttribute="bottom" secondItem="vcb-6d-t8D" secondAttribute="bottom" id="iR4-gS-1a9"/>
                                     <constraint firstAttribute="trailing" secondItem="oV6-zN-ZFO" secondAttribute="trailing" constant="60" id="qrF-Wy-AWo"/>
                                     <constraint firstItem="80S-0q-WBQ" firstAttribute="top" secondItem="oV6-zN-ZFO" secondAttribute="bottom" constant="60" id="t4q-q1-bJO"/>
@@ -81,10 +81,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="oV6-zN-ZFO" secondAttribute="trailing" constant="60" id="LX4-M8-1vx"/>
                             <constraint firstItem="W2t-Np-Wcb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="OvA-la-3dO"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i7M-Qg-30Y" secondAttribute="bottom" id="Yzc-Rw-aL4"/>
+                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="bmX-mI-kwT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="bottom" id="eLG-Rw-VoV"/>
                             <constraint firstItem="vcb-6d-t8D" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="60" id="fVn-oX-mWy"/>
                             <constraint firstItem="i7M-Qg-30Y" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="im2-Ri-Qcs"/>
-                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="60" id="kEh-EY-SdC"/>
-                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" constant="-60" id="lbk-YH-did"/>
                             <constraint firstItem="i7M-Qg-30Y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mNs-ya-mBZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vcb-6d-t8D" secondAttribute="trailing" constant="60" id="oq5-go-E23"/>
                             <constraint firstItem="W2t-Np-Wcb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yFq-o8-oJT"/>
@@ -92,6 +92,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="barView" destination="y56-sK-P3m" id="Kvr-Oy-cPA"/>
                         <outlet property="bgImage" destination="i7M-Qg-30Y" id="DUH-7L-FbI"/>
                         <outlet property="bgView" destination="8bC-Xf-vdC" id="eXa-e4-7vN"/>
                         <outlet property="lbBody" destination="80S-0q-WBQ" id="U3a-o5-nx3"/>
@@ -101,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="150" y="492"/>
+            <point key="canvasLocation" x="149.59999999999999" y="491.60419790104953"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="eiB-Th-OrP">
@@ -268,20 +269,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시인 소개" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyt-zj-9gm">
-                                <rect key="frame" x="16" y="147" width="343" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시인을 기다리는 중" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyt-zj-9gm">
+                                <rect key="frame" x="16" y="167" width="343" height="17"/>
                                 <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                 <color key="textColor" red="0.36078431372549019" green="0.3608088493347168" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책 소개" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sH-AT-rU9">
-                                <rect key="frame" x="16" y="364" width="343" height="17"/>
+                                <rect key="frame" x="16" y="384" width="343" height="17"/>
                                 <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                 <color key="textColor" red="0.36078431372549019" green="0.3608088493347168" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="윤동주" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-wP-86E">
-                                <rect key="frame" x="170" y="80" width="35.5" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시인" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-wP-86E">
+                                <rect key="frame" x="176.5" y="100" width="23.5" height="17"/>
                                 <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                 <color key="textColor" red="0.84013515710830688" green="0.61075717210769653" blue="0.60428714752197266" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -289,7 +290,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="pOV-wP-86E" firstAttribute="top" secondItem="EaO-iq-jjg" secondAttribute="bottom" constant="60" id="KAc-19-hxi"/>
+                            <constraint firstItem="pOV-wP-86E" firstAttribute="top" secondItem="EaO-iq-jjg" secondAttribute="bottom" constant="80" id="KAc-19-hxi"/>
                             <constraint firstItem="Zyt-zj-9gm" firstAttribute="top" secondItem="pOV-wP-86E" secondAttribute="bottom" constant="50" id="LVo-3l-158"/>
                             <constraint firstItem="pOV-wP-86E" firstAttribute="centerX" secondItem="U7z-wr-98U" secondAttribute="centerX" id="Nka-6q-mtF"/>
                             <constraint firstItem="9sH-AT-rU9" firstAttribute="top" secondItem="Zyt-zj-9gm" secondAttribute="bottom" constant="200" id="PEg-aS-WXh"/>
@@ -300,6 +301,9 @@
                             <constraint firstItem="9sH-AT-rU9" firstAttribute="centerX" secondItem="U7z-wr-98U" secondAttribute="centerX" id="yn3-Xn-OJT"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="lbPoet" destination="pOV-wP-86E" id="aoc-Lq-dvP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6nJ-kS-DzL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
