@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKCoreKit
 
 class MenuViewController: UIViewController {
 
@@ -21,18 +22,35 @@ class MenuViewController: UIViewController {
     }
 
     @IBAction func onShareButton(_ sender: Any) {
-        
+        let eventName = "onShareButton"
+        FBSDKAppEvents.logEvent(eventName)
+        log.verbose(eventName)
+
+        NotificationCenter.default.post(name: Constants.observer.requestShare, object: nil)
     }
     
-    @IBAction func onDownButton(_ sender: Any) {
+    @IBAction func onSaveButton(_ sender: Any) {
+        let eventName = "onSaveButton"
+        FBSDKAppEvents.logEvent(eventName)
+        log.verbose(eventName)
         
-        log.verbose("")
-        NotificationCenter.default.post(name: Constants.observer.requestDownload, object: nil)
+        NotificationCenter.default.post(name: Constants.observer.requestSave, object: nil)
+    }
+    
+    @IBAction func onTimerButton(_ sender: Any) {
+        let eventName = "onTimerButton"
+        FBSDKAppEvents.logEvent(eventName)
+        log.verbose(eventName)
+        
+        NotificationCenter.default.post(name: Constants.observer.requestTimer, object: nil)
+
     }
     
     @IBAction func onInfoButton(_ sender: Any) {
-        
-        log.verbose("")
+        let eventName = "onInfoButton"
+        FBSDKAppEvents.logEvent(eventName)
+        log.verbose(eventName)
+
         
         let infoViewController = self.storyboard!.instantiateViewController(withIdentifier: "InfoViewController") as! InfoViewController
         let navController = UINavigationController(rootViewController: infoViewController) // Creating a navigation controller with VC1 at the root of the navigation stack.

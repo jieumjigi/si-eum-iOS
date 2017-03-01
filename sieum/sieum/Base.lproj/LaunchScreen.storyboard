@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchScreen" id="01J-lp-oVM" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
@@ -22,27 +22,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.jpg" highlightedImage="logo.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="DQ0-Ig-1fp">
-                                <rect key="frame" x="-1" y="146" width="376" height="375"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="nN2-fz-USF">
+                                <rect key="frame" x="0.0" y="145.5" width="375" height="375"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="DQ0-Ig-1fp" secondAttribute="height" multiplier="375:375" id="pLp-xq-XVn"/>
+                                    <constraint firstAttribute="width" secondItem="nN2-fz-USF" secondAttribute="height" multiplier="1:1" id="fP5-qH-ryJ"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.99592584371566772" green="1" blue="0.97950416803359985" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.99215686274509807" green="1" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="DQ0-Ig-1fp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ksV-qu-1Dt"/>
-                            <constraint firstItem="DQ0-Ig-1fp" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="rMY-Hd-Hlu"/>
-                            <constraint firstItem="DQ0-Ig-1fp" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="xTc-d2-5XX"/>
+                            <constraint firstItem="nN2-fz-USF" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="AI4-lw-sjE"/>
+                            <constraint firstItem="nN2-fz-USF" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="MQf-Ff-WQC"/>
+                            <constraint firstItem="nN2-fz-USF" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="RNI-sR-Moh"/>
+                            <constraint firstAttribute="trailing" secondItem="nN2-fz-USF" secondAttribute="trailing" id="kdD-1y-wZg"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
-        <image name="logo.jpg" width="2362" height="2362"/>
+        <image name="launchImage.jpg" width="2362" height="2362"/>
     </resources>
 </document>

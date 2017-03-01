@@ -10,7 +10,7 @@ import UIKit
 
 class InfoViewController: UITableViewController {
 
-    var menu = ["지음지기 소개", "문의하기", "오픈소스 라이센스"]
+    var menu = ["지음지기 블로그", "문의하기", "오픈소스 라이센스"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +30,8 @@ class InfoViewController: UITableViewController {
     }
     
     func setBackground(){
-        self.view.backgroundColor = UIColor(red: (247/255.0), green: (247/255.0), blue: (247/255.0), alpha: 1.0)
-        self.tableView.backgroundColor = UIColor(red: (247/255.0), green: (247/255.0), blue: (247/255.0), alpha: 1.0)
+        self.view.backgroundColor = UIColor.defaultBackground()
+        self.tableView.backgroundColor = UIColor.defaultBackground()
     }
     
     
@@ -76,8 +76,53 @@ class InfoViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if(indexPath.row == 0){
+            
+            self.presentBlog()
+        }
+    }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return self.getSectionView()
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.init(self.getSectionView().frame.height)
+    }
+    
+    func getSectionView() -> UIView{
+        
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
 
+        let sectionView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: screenWidth, height: screenWidth))
+
+        UIGraphicsBeginImageContext(sectionView.frame.size)
+        
+        UIImage(named: "logo.jpg")?.draw(in: sectionView.bounds)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        UIGraphicsEndImageContext()
+        
+        sectionView.backgroundColor = UIColor(patternImage: image)
+        
+        return sectionView
+    }
+    
+    // MARK : - Blog
+    
+    func presentBlog(){
+
+        let webView = UIWebView.init(frame: self.view.bounds)
+        webView.loadRequest(URLRequest.init(url: URL.init(string: Constants.url.blog)!))
+        self.view.addSubview(webView)
+        
+    }
+    
+    
     /*
     // MARK: - Navigation
 

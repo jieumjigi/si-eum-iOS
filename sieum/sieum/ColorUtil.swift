@@ -8,6 +8,14 @@
 
 import UIKit
 
+extension UIColor{
+    class func defaultBackground () -> UIColor{
+        
+        return UIColor(red: (253/255.0), green: (255/255.0), blue: (251/255.0), alpha: 1.0)
+
+    }
+}
+
 class ColorUtil: UIColor {
     
     /**

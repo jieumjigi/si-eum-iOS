@@ -12,10 +12,14 @@ struct Constants {
     
     struct url {
         static let base = "https://si-eum-petercha90.c9users.io/poem/getPoem?"
-
+        static let blog = "https://jieumjigi.github.io"
+        static let webSite = "https://jieumjigi.github.io/si-eum-web/"
     }
     
     struct observer {
-        static let requestDownload = NSNotification.Name(rawValue: "REQUEST_DOWNLOAD")
+        static let requestSave = NSNotification.Name(rawValue: "REQUEST_SAVE")
+        static let requestShare = NSNotification.Name(rawValue: "REQUEST_SHARE")
+        static let requestTimer = NSNotification.Name(rawValue: "REQUEST_TIMER")
+        static let requestInfo = NSNotification.Name(rawValue: "REQUEST_INFO")
     }
 }

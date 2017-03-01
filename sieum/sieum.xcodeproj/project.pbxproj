@@ -10,9 +10,20 @@
 		37D36C928A8128AE2C4A453B /* Pods_sieumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B57E4D41CDAEE9F1EC198D7 /* Pods_sieumTests.framework */; };
 		4A18B9366A519982809F87F9 /* Pods_sieum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F09FAE3434EBD7F50C6438B /* Pods_sieum.framework */; };
 		660977B85D079883A76A9CA1 /* Pods_sieumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ECE973D68BBCBC74CA4452B /* Pods_sieumUITests.framework */; };
-		C152D8271E506BA900719583 /* image_example6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C152D8261E506BA900719583 /* image_example6.jpg */; };
-		C152D82C1E508B2B00719583 /* image_example7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C152D82B1E508B2B00719583 /* image_example7.jpg */; };
+		C127B5D01E67019000275D21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C127B5CE1E67019000275D21 /* LaunchScreen.storyboard */; };
+		C14B055F1E67032900EE2A58 /* launchImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14B055E1E67032900EE2A58 /* launchImage.jpg */; };
+		C14B05611E6703F400EE2A58 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C14B05601E6703F400EE2A58 /* Images.xcassets */; };
 		C152D82E1E50976800719583 /* ColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152D82D1E50976800719583 /* ColorUtil.swift */; };
+		C15EDAE41E66AB640024C5C5 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = C15EDADF1E66AB640024C5C5 /* info.png */; };
+		C15EDAE51E66AB640024C5C5 /* timer.png in Resources */ = {isa = PBXBuildFile; fileRef = C15EDAE01E66AB640024C5C5 /* timer.png */; };
+		C15EDAE61E66AB640024C5C5 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = C15EDAE11E66AB640024C5C5 /* save.png */; };
+		C15EDAE71E66AB640024C5C5 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = C15EDAE21E66AB640024C5C5 /* share.png */; };
+		C15EDAE81E66AB640024C5C5 /* menubar.png in Resources */ = {isa = PBXBuildFile; fileRef = C15EDAE31E66AB640024C5C5 /* menubar.png */; };
+		C15EDAED1E66E35E0024C5C5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15EDAE91E66E35E0024C5C5 /* Bolts.framework */; };
+		C15EDAEE1E66E35E0024C5C5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15EDAEA1E66E35E0024C5C5 /* FBSDKCoreKit.framework */; };
+		C15EDAEF1E66E35E0024C5C5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15EDAEB1E66E35E0024C5C5 /* FBSDKLoginKit.framework */; };
+		C15EDAF01E66E35E0024C5C5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15EDAEC1E66E35E0024C5C5 /* FBSDKShareKit.framework */; };
+		C15EDAF21E66FE830024C5C5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C15EDAF11E66FE830024C5C5 /* icon.png */; };
 		C17F52291E5DA79E006AD57A /* PoetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F52281E5DA79E006AD57A /* PoetViewController.swift */; };
 		C17F522C1E5DA80D006AD57A /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F522B1E5DA80D006AD57A /* PageViewController.swift */; };
 		C17F52331E5DB941006AD57A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F52321E5DB941006AD57A /* BaseViewController.swift */; };
@@ -20,19 +31,12 @@
 		C17F523A1E5DC2EB006AD57A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F52391E5DC2EB006AD57A /* MainViewController.swift */; };
 		C17F523C1E5DE0B0006AD57A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F523B1E5DE0B0006AD57A /* InfoViewController.swift */; };
 		C17F523E1E5DE4EF006AD57A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C17F523D1E5DE4EF006AD57A /* Main.storyboard */; };
-		C194AD9E1E48D512003CF617 /* image_example4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C194AD9D1E48D512003CF617 /* image_example4.jpg */; };
-		C194ADA01E48D784003CF617 /* image_example5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C194AD9F1E48D784003CF617 /* image_example5.jpg */; };
 		C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769751E48998100B5E216 /* AppDelegate.swift */; };
 		C1A769781E48998100B5E216 /* PoemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769771E48998100B5E216 /* PoemViewController.swift */; };
 		C1A7697D1E48998100B5E216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1A7697C1E48998100B5E216 /* Assets.xcassets */; };
-		C1A769801E48998100B5E216 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A7697E1E48998100B5E216 /* LaunchScreen.storyboard */; };
 		C1A7698B1E48998100B5E216 /* sieumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A7698A1E48998100B5E216 /* sieumTests.swift */; };
 		C1A769961E48998100B5E216 /* sieumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769951E48998100B5E216 /* sieumUITests.swift */; };
-		C1A769A51E48A88E00B5E216 /* image_example.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1A769A41E48A88E00B5E216 /* image_example.jpg */; };
 		C1A769A91E48C45400B5E216 /* IropkeBatangM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */; };
-		C1A769AB1E48D2F900B5E216 /* image_example2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1A769AA1E48D2F900B5E216 /* image_example2.jpg */; };
-		C1A769AD1E48D3C100B5E216 /* image_example3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1A769AC1E48D3C100B5E216 /* image_example3.jpg */; };
-		C1C2091F1E605D31000C76B7 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1C2091E1E605D31000C76B7 /* logo.jpg */; };
 		C1C209231E606A0B000C76B7 /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C209221E606A0B000C76B7 /* ImageUtil.swift */; };
 		C1C209251E607234000C76B7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C209241E607234000C76B7 /* Constants.swift */; };
 /* End PBXBuildFile section */
@@ -63,9 +67,20 @@
 		713883869EA0B7CF9E02CD28 /* Pods-sieumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieumUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sieumUITests/Pods-sieumUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7ECE973D68BBCBC74CA4452B /* Pods_sieumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B57E4D41CDAEE9F1EC198D7 /* Pods_sieumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C152D8261E506BA900719583 /* image_example6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_example6.jpg; sourceTree = "<group>"; };
-		C152D82B1E508B2B00719583 /* image_example7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_example7.jpg; sourceTree = "<group>"; };
+		C127B5CF1E67019000275D21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C14B055E1E67032900EE2A58 /* launchImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage.jpg; sourceTree = "<group>"; };
+		C14B05601E6703F400EE2A58 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C152D82D1E50976800719583 /* ColorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtil.swift; sourceTree = "<group>"; };
+		C15EDADF1E66AB640024C5C5 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		C15EDAE01E66AB640024C5C5 /* timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timer.png; sourceTree = "<group>"; };
+		C15EDAE11E66AB640024C5C5 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
+		C15EDAE21E66AB640024C5C5 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		C15EDAE31E66AB640024C5C5 /* menubar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menubar.png; sourceTree = "<group>"; };
+		C15EDAE91E66E35E0024C5C5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
+		C15EDAEA1E66E35E0024C5C5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		C15EDAEB1E66E35E0024C5C5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		C15EDAEC1E66E35E0024C5C5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		C15EDAF11E66FE830024C5C5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		C17F52281E5DA79E006AD57A /* PoetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoetViewController.swift; sourceTree = "<group>"; };
 		C17F522B1E5DA80D006AD57A /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		C17F522F1E5DAD2B006AD57A /* sieum-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sieum-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -74,13 +89,10 @@
 		C17F52391E5DC2EB006AD57A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C17F523B1E5DE0B0006AD57A /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = ../InfoViewController.swift; sourceTree = "<group>"; };
 		C17F523D1E5DE4EF006AD57A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		C194AD9D1E48D512003CF617 /* image_example4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_example4.jpg; sourceTree = "<group>"; };
-		C194AD9F1E48D784003CF617 /* image_example5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_example5.jpg; sourceTree = "<group>"; };
 		C1A769721E48998100B5E216 /* sieum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sieum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A769751E48998100B5E216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1A769771E48998100B5E216 /* PoemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemViewController.swift; sourceTree = "<group>"; };
 		C1A7697C1E48998100B5E216 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C1A7697F1E48998100B5E216 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1A769811E48998100B5E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1A769861E48998100B5E216 /* sieumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sieumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A7698A1E48998100B5E216 /* sieumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sieumTests.swift; sourceTree = "<group>"; };
@@ -88,11 +100,7 @@
 		C1A769911E48998100B5E216 /* sieumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sieumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A769951E48998100B5E216 /* sieumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sieumUITests.swift; sourceTree = "<group>"; };
 		C1A769971E48998100B5E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C1A769A41E48A88E00B5E216 /* image_example.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_example.jpg; sourceTree = "<group>"; };
 		C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IropkeBatangM.otf; sourceTree = "<group>"; };
-		C1A769AA1E48D2F900B5E216 /* image_example2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image_example2.jpg; path = ../image_example2.jpg; sourceTree = "<group>"; };
-		C1A769AC1E48D3C100B5E216 /* image_example3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_example3.jpg; sourceTree = "<group>"; };
-		C1C2091E1E605D31000C76B7 /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
 		C1C209221E606A0B000C76B7 /* ImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		C1C209241E607234000C76B7 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C99F21B4C27AC4E20538F3F5 /* Pods-sieumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sieumTests/Pods-sieumTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -104,6 +112,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A18B9366A519982809F87F9 /* Pods_sieum.framework in Frameworks */,
+				C15EDAEE1E66E35E0024C5C5 /* FBSDKCoreKit.framework in Frameworks */,
+				C15EDAF01E66E35E0024C5C5 /* FBSDKShareKit.framework in Frameworks */,
+				C15EDAEF1E66E35E0024C5C5 /* FBSDKLoginKit.framework in Frameworks */,
+				C15EDAED1E66E35E0024C5C5 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +141,10 @@
 		595D7FCF53CC1D13D9C4D316 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C15EDAE91E66E35E0024C5C5 /* Bolts.framework */,
+				C15EDAEA1E66E35E0024C5C5 /* FBSDKCoreKit.framework */,
+				C15EDAEB1E66E35E0024C5C5 /* FBSDKLoginKit.framework */,
+				C15EDAEC1E66E35E0024C5C5 /* FBSDKShareKit.framework */,
 				1F09FAE3434EBD7F50C6438B /* Pods_sieum.framework */,
 				8B57E4D41CDAEE9F1EC198D7 /* Pods_sieumTests.framework */,
 				7ECE973D68BBCBC74CA4452B /* Pods_sieumUITests.framework */,
@@ -144,6 +160,18 @@
 				C1C209221E606A0B000C76B7 /* ImageUtil.swift */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		C15EDADE1E66AB4B0024C5C5 /* menu */ = {
+			isa = PBXGroup;
+			children = (
+				C15EDADF1E66AB640024C5C5 /* info.png */,
+				C15EDAE01E66AB640024C5C5 /* timer.png */,
+				C15EDAE11E66AB640024C5C5 /* save.png */,
+				C15EDAE21E66AB640024C5C5 /* share.png */,
+				C15EDAE31E66AB640024C5C5 /* menubar.png */,
+			);
+			name = menu;
 			sourceTree = "<group>";
 		};
 		C17F52341E5DBA23006AD57A /* Font */ = {
@@ -190,9 +218,10 @@
 				C17F52281E5DA79E006AD57A /* PoetViewController.swift */,
 				C17F52321E5DB941006AD57A /* BaseViewController.swift */,
 				C17F523B1E5DE0B0006AD57A /* InfoViewController.swift */,
+				C14B05601E6703F400EE2A58 /* Images.xcassets */,
 				C1A7697C1E48998100B5E216 /* Assets.xcassets */,
 				C17F523D1E5DE4EF006AD57A /* Main.storyboard */,
-				C1A7697E1E48998100B5E216 /* LaunchScreen.storyboard */,
+				C127B5CE1E67019000275D21 /* LaunchScreen.storyboard */,
 				C1A769811E48998100B5E216 /* Info.plist */,
 			);
 			path = sieum;
@@ -219,14 +248,9 @@
 		C1A769A31E48A88500B5E216 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				C1C2091E1E605D31000C76B7 /* logo.jpg */,
-				C152D82B1E508B2B00719583 /* image_example7.jpg */,
-				C152D8261E506BA900719583 /* image_example6.jpg */,
-				C1A769A41E48A88E00B5E216 /* image_example.jpg */,
-				C1A769AA1E48D2F900B5E216 /* image_example2.jpg */,
-				C1A769AC1E48D3C100B5E216 /* image_example3.jpg */,
-				C194AD9D1E48D512003CF617 /* image_example4.jpg */,
-				C194AD9F1E48D784003CF617 /* image_example5.jpg */,
+				C14B055E1E67032900EE2A58 /* launchImage.jpg */,
+				C15EDADE1E66AB4B0024C5C5 /* menu */,
+				C15EDAF11E66FE830024C5C5 /* icon.png */,
 			);
 			name = image;
 			path = sieum;
@@ -340,7 +364,7 @@
 				TargetAttributes = {
 					C1A769711E48998100B5E216 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = E53J4346HQ;
+						DevelopmentTeam = T5T6697UB7;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -383,18 +407,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C194AD9E1E48D512003CF617 /* image_example4.jpg in Resources */,
+				C14B055F1E67032900EE2A58 /* launchImage.jpg in Resources */,
+				C15EDAE71E66AB640024C5C5 /* share.png in Resources */,
 				C1A769A91E48C45400B5E216 /* IropkeBatangM.otf in Resources */,
-				C152D8271E506BA900719583 /* image_example6.jpg in Resources */,
 				C17F523E1E5DE4EF006AD57A /* Main.storyboard in Resources */,
-				C1A769801E48998100B5E216 /* LaunchScreen.storyboard in Resources */,
-				C194ADA01E48D784003CF617 /* image_example5.jpg in Resources */,
 				C1A7697D1E48998100B5E216 /* Assets.xcassets in Resources */,
-				C1A769AD1E48D3C100B5E216 /* image_example3.jpg in Resources */,
-				C152D82C1E508B2B00719583 /* image_example7.jpg in Resources */,
-				C1A769AB1E48D2F900B5E216 /* image_example2.jpg in Resources */,
-				C1C2091F1E605D31000C76B7 /* logo.jpg in Resources */,
-				C1A769A51E48A88E00B5E216 /* image_example.jpg in Resources */,
+				C15EDAF21E66FE830024C5C5 /* icon.png in Resources */,
+				C15EDAE61E66AB640024C5C5 /* save.png in Resources */,
+				C15EDAE81E66AB640024C5C5 /* menubar.png in Resources */,
+				C15EDAE41E66AB640024C5C5 /* info.png in Resources */,
+				C14B05611E6703F400EE2A58 /* Images.xcassets in Resources */,
+				C127B5D01E67019000275D21 /* LaunchScreen.storyboard in Resources */,
+				C15EDAE51E66AB640024C5C5 /* timer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,10 +627,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C1A7697E1E48998100B5E216 /* LaunchScreen.storyboard */ = {
+		C127B5CE1E67019000275D21 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C1A7697F1E48998100B5E216 /* Base */,
+				C127B5CF1E67019000275D21 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -713,10 +737,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = E53J4346HQ;
+				DEVELOPMENT_TEAM = T5T6697UB7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DBImageColorPicker\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyBeaver\"",
+					/Users/seongho/Documents/FacebookSDK,
+				);
 				INFOPLIST_FILE = sieum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "sieum/sieum-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -730,10 +761,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = E53J4346HQ;
+				DEVELOPMENT_TEAM = T5T6697UB7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DBImageColorPicker\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyBeaver\"",
+					/Users/seongho/Documents/FacebookSDK,
+				);
 				INFOPLIST_FILE = sieum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "sieum/sieum-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

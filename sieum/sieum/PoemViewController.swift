@@ -9,6 +9,7 @@
 import UIKit
 import DBImageColorPicker
 import Alamofire
+import FBSDKShareKit
 
 //protocol PoemViewControllerDelegate: class {
 //    func didRequestDownload()
@@ -35,7 +36,6 @@ class PoemViewController: UIViewController {
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbPoet: UILabel!
     @IBOutlet weak var lbBody: UILabel!
-    @IBOutlet weak var barView: UIView!
     
 
     
@@ -116,23 +116,29 @@ class PoemViewController: UIViewController {
                                 self.lbTitle.alpha = 0.0
                                 self.lbPoet.alpha = 0.0
                                 self.lbBody.alpha = 0.0
-                                self.barView.alpha = 0.0
                                 
                             }, completion: {
                                 (finished: Bool) -> Void in
                                 
                                 //Once the label is completely invisible, set the text and fade it back in
 //                                self.birdTypeLabel.text = "Bird Type: Swift"
-                                self.lbTitle.text = title
-                                self.lbPoet.text = author
-                                self.lbBody.text = contents
+//                                self.lbTitle.text = title
+                                self.lbPoet.text = title?.appending(" / ").appending(author!)
+//                                self.lbBody.text = contents
+                                
+                                let paragraphStyle = NSMutableParagraphStyle()
+                                paragraphStyle.lineSpacing = 7
+                                paragraphStyle.alignment = .left
+                        
+                                let attrString = NSMutableAttributedString(string: contents!)
+                                attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+                                self.lbBody.attributedText = attrString
                                 
                                 // Fade in
                                 UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                                     self.lbTitle.alpha = 1.0
                                     self.lbPoet.alpha = 1.0
                                     self.lbBody.alpha = 1.0
-                                    self.barView.alpha = 1.0
 
                                 }, completion: nil)
                             })
@@ -190,26 +196,45 @@ class PoemViewController: UIViewController {
         
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(self.didRequestDownload),
-            name: Constants.observer.requestDownload ,
+            selector: #selector(self.didRequestSave),
+            name: Constants.observer.requestSave ,
+            object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.didRequestShare),
+            name: Constants.observer.requestShare ,
             object: nil)
         
     }
     
     //MARK: - Share
     
-    func didRequestDownload(){
-
-//        UIImageWriteToSavedPhotosAlbum(UIImage.init(view: self.view),
-//                                       self,
-//                                       #selector(self.didSaveImage),
-//                                       nil);
+    func didRequestShare(){
         
-    }
+        let image = UIImage.init(view: self.view)
+        
+        let photo = FBSDKSharePhoto.init()
+        photo.image = image
+        photo.isUserGenerated = true
 
-    func didSaveImage(){
+        let content = FBSDKSharePhotoContent.init()
+        content.photos = [photo]
+        
+        let dialog = FBSDKShareDialog.init()
+        dialog.fromViewController = self
+        dialog.shareContent = content
+        dialog.mode = FBSDKShareDialogMode.shareSheet
+        dialog.show()
         
     }
     
+    func didRequestSave(){
+
+        
+        
+    }
+
+
 }
 
