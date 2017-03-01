@@ -102,7 +102,7 @@ class InfoViewController: UITableViewController {
 
         UIGraphicsBeginImageContext(sectionView.frame.size)
         
-        UIImage(named: "logo.jpg")?.draw(in: sectionView.bounds)
+        UIImage(named: "launchImage.jpg")?.draw(in: sectionView.bounds)
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         
         UIGraphicsEndImageContext()

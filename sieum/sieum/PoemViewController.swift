@@ -10,6 +10,7 @@ import UIKit
 import DBImageColorPicker
 import Alamofire
 import FBSDKShareKit
+import PopupDialog
 
 //protocol PoemViewControllerDelegate: class {
 //    func didRequestDownload()
@@ -231,8 +232,84 @@ class PoemViewController: UIViewController {
     
     func didRequestSave(){
 
+        let image = UIImage.init(view: self.view)
+        
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+
+    }
+    
+    /// 이미지 저장 완료
+    
+    func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        if error != nil {
+
+            self.showSavedAlert(title: "저장실패", message: nil, buttonTitle: "확인")
+
+        } else {
+
+            self.showSavedAlert(title: "저장됨", message: nil, buttonTitle: "확인")
+        }
+    }
+    
+    func showSavedAlert(title:String, message : String?, buttonTitle : String ){
+        
+
+        // Customize dialog appearance
+        let pv = PopupDialogDefaultView.appearance()
+        pv.titleFont    = UIFont(name: "IropkeBatangOTFM", size: 16)!
+        pv.titleColor   = UIColor.white
+        pv.messageFont  = UIFont(name: "IropkeBatangOTFM", size: 14)!
+        pv.messageColor = UIColor(white: 0.8, alpha: 1)
+        
+        // Customize the container view appearance
+        let pcv = PopupDialogContainerView.appearance()
+        pcv.backgroundColor = UIColor.alertBackground()
+        pcv.cornerRadius    = 2
+        pcv.shadowEnabled   = true
+        pcv.shadowColor     = UIColor.black
+        
+        // Customize overlay appearance
+        let ov = PopupDialogOverlayView.appearance()
+        ov.blurEnabled = true
+        ov.blurRadius  = 30
+        ov.liveBlur    = true
+        ov.opacity     = 0.7
+        ov.color       = UIColor.black
+        
+        // Customize default button appearance
+        let db = DefaultButton.appearance()
+        db.titleFont      = UIFont(name: "IropkeBatangOTFM", size: 14)!
+        db.titleColor     = UIColor.white
+        db.buttonColor    = UIColor.alertBackground()
+        db.separatorColor = UIColor.defaultBackground()
+        
+        // Customize cancel button appearance
+        let cb = CancelButton.appearance()
+        cb.titleFont      = UIFont(name: "IropkeBatangOTFM", size: 14)!
+        cb.titleColor     = UIColor(white: 0.6, alpha: 1)
+        cb.buttonColor    = UIColor.alertBackground()
+        cb.separatorColor = UIColor.defaultBackground()
         
         
+        // Prepare the popup assets
+//        let title = "저장됨"
+//        let image = UIImage(named: "save.png")
+        
+        
+        // Create the dialog
+        let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
+            
+        }
+        
+        // Create buttons
+        let doneButton = CancelButton(title: buttonTitle) {
+            log.verbose(buttonTitle)
+        }
+
+        popup.addButton(doneButton)
+        
+        // Present dialog
+        self.present(popup, animated: true, completion: nil)
     }
 
 

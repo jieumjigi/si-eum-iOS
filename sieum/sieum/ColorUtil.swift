@@ -14,6 +14,12 @@ extension UIColor{
         return UIColor(red: (253/255.0), green: (255/255.0), blue: (251/255.0), alpha: 1.0)
 
     }
+    
+    class func alertBackground () -> UIColor{
+        
+        return UIColor(red: (78/255.0), green: (78/255.0), blue: (78/255.0), alpha: 1.0)
+        
+    }
 }
 
 class ColorUtil: UIColor {

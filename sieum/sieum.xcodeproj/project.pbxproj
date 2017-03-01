@@ -209,8 +209,8 @@
 			children = (
 				C17F522F1E5DAD2B006AD57A /* sieum-Bridging-Header.h */,
 				C1C209241E607234000C76B7 /* Constants.swift */,
-				C152D8281E506D6200719583 /* Util */,
 				C1A769751E48998100B5E216 /* AppDelegate.swift */,
+				C152D8281E506D6200719583 /* Util */,
 				C17F52391E5DC2EB006AD57A /* MainViewController.swift */,
 				C17F52371E5DBED4006AD57A /* MenuViewController.swift */,
 				C17F522B1E5DA80D006AD57A /* PageViewController.swift */,

@@ -43,7 +43,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>시를 공유하기 위해서 권한이 필요합니다</string>
+	<string>시를 앨범에 저장합니다</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>IropkeBatangM.otf</string>
