@@ -87,13 +87,13 @@ class MenuViewController: UIViewController {
             print("You canceled the car dialog.")
         }
         
-        let buttonTwo = DefaultButton(title: "ADMIRE CAR") {
-            print("What a beauty!")
-        }
-        
-        let buttonThree = DefaultButton(title: "BUY CAR", height: 60) {
-            print("Ah, maybe next time :)")
-        }
+//        let buttonTwo = DefaultButton(title: "ADMIRE CAR") {
+//            print("What a beauty!")
+//        }
+//        
+//        let buttonThree = DefaultButton(title: "BUY CAR", height: 60) {
+//            print("Ah, maybe next time :)")
+//        }
         
         
         // Add buttons to dialog

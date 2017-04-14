@@ -12,6 +12,7 @@ import Alamofire
 class PoetViewController: UIViewController {
 
     @IBOutlet weak var lbPoet: UILabel!
+    @IBOutlet weak var lbIntroPoet: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,6 @@ class PoetViewController: UIViewController {
                         log.info("success")
                     default:
                         log.error("error with response status: \(status)")
-                        
                     }
                     
                     //to get JSON return value
@@ -54,10 +54,34 @@ class PoetViewController: UIViewController {
                         if let items = json["items"] as? NSArray {
                             if let items = items[0] as? NSDictionary {
                                 
-                                let author = items["author"] as? String
-                                log.info("author\(author)")
-                                self.lbPoet.text = author
+                                
+                                
+                                let poetName = items["poetName"] as? String
+                                let introPoet = items["poetName"] as? String
 
+                                log.info("poetName\(String(describing: poetName))")
+                                
+                                
+                                UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                                    self.lbPoet.alpha = 0.0
+                                    self.lbIntroPoet.alpha = 0.0
+                                    
+                                }, completion: {
+                                    (finished: Bool) -> Void in
+                                    
+                                    
+                                    // Fade in
+                                    UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                                        
+                                        self.lbPoet.text = poetName
+                                        self.lbIntroPoet.text = introPoet
+                                        
+                                        self.lbPoet.alpha = 1.0
+                                        self.lbIntroPoet.alpha = 1.0
+                                        
+                                    }, completion: nil)
+                                })
+                                
                             }
                         }
                         

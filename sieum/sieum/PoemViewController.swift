@@ -99,13 +99,13 @@ class PoemViewController: UIViewController {
                         if let items = items[0] as? NSDictionary {
                             
                             let title = items["title"] as? String
-                            let author = items["author"] as? String
+                            let poetName = items["poetName"] as? String
                             var contents = items["contents"] as? String
                             contents = contents?.replacingOccurrences(of: "\\               ", with: "\n")
                             
-                            log.info("title\(title)")
-                            log.info("author\(author)")
-                            log.info("contents\(contents)")
+                            log.info("title\(String(describing: title))")
+                            log.info("poetName\(String(describing: poetName))")
+                            log.info("contents\(String(describing: contents))")
                             
                             
 //                            self.lbTitle.text = title
@@ -124,7 +124,7 @@ class PoemViewController: UIViewController {
                                 //Once the label is completely invisible, set the text and fade it back in
 //                                self.birdTypeLabel.text = "Bird Type: Swift"
 //                                self.lbTitle.text = title
-                                self.lbPoet.text = title?.appending(" / ").appending(author!)
+                                self.lbPoet.text = title?.appending(" / ").appending(poetName!)
 //                                self.lbBody.text = contents
                                 
                                 let paragraphStyle = NSMutableParagraphStyle()
@@ -253,6 +253,8 @@ class PoemViewController: UIViewController {
     
     func showSavedAlert(title:String, message : String?, buttonTitle : String ){
         
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
 
         // Customize dialog appearance
         let pv = PopupDialogDefaultView.appearance()
@@ -260,21 +262,23 @@ class PoemViewController: UIViewController {
         pv.titleColor   = UIColor.white
         pv.messageFont  = UIFont(name: "IropkeBatangOTFM", size: 14)!
         pv.messageColor = UIColor(white: 0.8, alpha: 1)
+        pv.sizeThatFits(CGSize.init(width: screenWidth/2, height: pv.bounds.height))
+        
         
         // Customize the container view appearance
         let pcv = PopupDialogContainerView.appearance()
         pcv.backgroundColor = UIColor.alertBackground()
         pcv.cornerRadius    = 2
         pcv.shadowEnabled   = true
-        pcv.shadowColor     = UIColor.black
+        //pcv.shadowColor     = UIColor.black
         
         // Customize overlay appearance
         let ov = PopupDialogOverlayView.appearance()
-        ov.blurEnabled = true
+        ov.blurEnabled = false
         ov.blurRadius  = 30
-        ov.liveBlur    = true
-        ov.opacity     = 0.7
-        ov.color       = UIColor.black
+        ov.liveBlur    = false
+        ov.opacity     = 0.0
+        ov.color       = UIColor.clear
         
         // Customize default button appearance
         let db = DefaultButton.appearance()

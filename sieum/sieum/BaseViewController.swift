@@ -22,7 +22,6 @@ class BaseViewController: UIPageViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
     func setBackground(){
         self.view.backgroundColor = UIColor.defaultBackground()
     }

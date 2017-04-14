@@ -11,7 +11,7 @@ import Foundation
 struct Constants {
     
     struct url {
-        static let base = "https://si-eum-petercha90.c9users.io/poem/getPoem?"
+        static let base = "https://si-eum.appspot.com/poem/getPoem?"
         static let blog = "https://jieumjigi.github.io"
         static let webSite = "https://jieumjigi.github.io/si-eum-web/"
     }
