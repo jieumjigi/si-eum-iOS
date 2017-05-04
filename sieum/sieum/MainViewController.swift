@@ -11,7 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
 
     let MENU_HEIGHT = CGFloat.init(350)
-    let MENU_HEAD_HEIGHT = CGFloat.init(40)
+    let MENU_HEAD_HEIGHT = CGFloat.init(60)
 
     
     @IBOutlet weak var menuView: UIView!
@@ -55,13 +55,13 @@ class MainViewController: UIViewController {
     }
     
     
-    
     func setLayout(){
         
         self.screenSize = UIScreen.main.bounds
         self.screenHeight = screenSize.height
         self.screenWidth = screenSize.width
-        self.menuTopMargin.constant = self.screenHeight - MENU_HEAD_HEIGHT
+        self.menuTopMargin.constant = self.screenHeight - MENU_HEAD_HEIGHT - 16
+
 
     }
     

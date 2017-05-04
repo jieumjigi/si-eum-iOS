@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0eB-3h-M3T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0eB-3h-M3T">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,19 +34,19 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-zN-ZFO">
-                                        <rect key="frame" x="76" y="80" width="223" height="0.0"/>
+                                        <rect key="frame" x="76" y="60" width="223" height="0.0"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시를 기다리는 중" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80S-0q-WBQ">
-                                        <rect key="frame" x="61" y="140" width="253" height="18.5"/>
+                                        <rect key="frame" x="61" y="120" width="253" height="18.5"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
-                                        <color key="textColor" red="0.66666666666666663" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcb-6d-t8D">
-                                        <rect key="frame" x="76" y="218.5" width="223" height="0.0"/>
+                                        <rect key="frame" x="76" y="198.5" width="223" height="0.0"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
                                         <color key="textColor" red="0.82036119699478149" green="0.59896218776702881" blue="0.59676283597946167" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="oV6-zN-ZFO" firstAttribute="centerX" secondItem="W2t-Np-Wcb" secondAttribute="centerX" id="TQ4-6f-gYE"/>
-                                    <constraint firstItem="oV6-zN-ZFO" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" constant="80" id="c45-kD-GNP"/>
+                                    <constraint firstItem="oV6-zN-ZFO" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" constant="60" id="c45-kD-GNP"/>
                                     <constraint firstAttribute="bottom" secondItem="vcb-6d-t8D" secondAttribute="bottom" id="iR4-gS-1a9"/>
                                     <constraint firstAttribute="trailing" secondItem="oV6-zN-ZFO" secondAttribute="trailing" constant="60" id="qrF-Wy-AWo"/>
                                     <constraint firstItem="80S-0q-WBQ" firstAttribute="top" secondItem="oV6-zN-ZFO" secondAttribute="bottom" constant="60" id="t4q-q1-bJO"/>
@@ -280,39 +280,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시인을 기다리는 중" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyt-zj-9gm">
-                                <rect key="frame" x="16" y="150" width="343" height="18.5"/>
-                                <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
-                                <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책 소개" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sH-AT-rU9">
-                                <rect key="frame" x="16" y="368.5" width="343" height="18.5"/>
-                                <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
-                                <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-wP-86E">
-                                <rect key="frame" x="187.5" y="100" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
-                                <color key="textColor" red="0.84013515710830688" green="0.61075717210769653" blue="0.60428714752197266" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hn-CO-1Q0">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-wP-86E">
+                                        <rect key="frame" x="21" y="60" width="343" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
+                                        <color key="textColor" red="0.83921568627450982" green="0.61176470588235299" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시인을 기다리는 중" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyt-zj-9gm">
+                                        <rect key="frame" x="21" y="75" width="333" height="18.5"/>
+                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
+                                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1EB-lY-MiL">
+                                        <rect key="frame" x="125" y="109" width="125" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="eK2-1b-0xd"/>
+                                            <constraint firstAttribute="width" constant="125" id="g2r-Jv-ze2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
+                                        <state key="normal" title="시집 구매하기 &gt;">
+                                            <color key="titleColor" red="0.83921568627450982" green="0.61176470588235299" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Zyt-zj-9gm" firstAttribute="leading" secondItem="7hn-CO-1Q0" secondAttribute="leading" constant="21" id="9TD-Ds-sXb"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zyt-zj-9gm" secondAttribute="trailing" constant="21" id="V6G-6c-V1s"/>
+                                    <constraint firstItem="pOV-wP-86E" firstAttribute="top" secondItem="7hn-CO-1Q0" secondAttribute="top" constant="60" id="nzy-hk-4Y6"/>
+                                    <constraint firstAttribute="bottom" secondItem="1EB-lY-MiL" secondAttribute="bottom" id="oyH-kJ-TAR"/>
+                                    <constraint firstItem="1EB-lY-MiL" firstAttribute="top" secondItem="Zyt-zj-9gm" secondAttribute="bottom" constant="15" id="rto-bJ-PrH"/>
+                                    <constraint firstItem="Zyt-zj-9gm" firstAttribute="top" secondItem="pOV-wP-86E" secondAttribute="bottom" constant="15" id="xih-lV-8XM"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="pOV-wP-86E" firstAttribute="top" secondItem="EaO-iq-jjg" secondAttribute="bottom" constant="80" id="KAc-19-hxi"/>
-                            <constraint firstItem="Zyt-zj-9gm" firstAttribute="top" secondItem="pOV-wP-86E" secondAttribute="bottom" constant="50" id="LVo-3l-158"/>
-                            <constraint firstItem="pOV-wP-86E" firstAttribute="centerX" secondItem="U7z-wr-98U" secondAttribute="centerX" id="Nka-6q-mtF"/>
-                            <constraint firstItem="9sH-AT-rU9" firstAttribute="top" secondItem="Zyt-zj-9gm" secondAttribute="bottom" constant="200" id="PEg-aS-WXh"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zyt-zj-9gm" secondAttribute="trailing" id="YZ0-Hc-7TR"/>
-                            <constraint firstItem="9sH-AT-rU9" firstAttribute="leading" secondItem="U7z-wr-98U" secondAttribute="leadingMargin" id="lUy-uL-ddh"/>
-                            <constraint firstItem="Zyt-zj-9gm" firstAttribute="leading" secondItem="U7z-wr-98U" secondAttribute="leadingMargin" id="oLa-tX-icw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9sH-AT-rU9" secondAttribute="trailing" id="wLa-kx-Tza"/>
-                            <constraint firstItem="9sH-AT-rU9" firstAttribute="centerX" secondItem="U7z-wr-98U" secondAttribute="centerX" id="yn3-Xn-OJT"/>
+                            <constraint firstItem="7hn-CO-1Q0" firstAttribute="top" secondItem="EaO-iq-jjg" secondAttribute="bottom" id="09J-ds-vhz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zyt-zj-9gm" secondAttribute="trailing" constant="5" id="Efg-R0-WFm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pOV-wP-86E" secondAttribute="trailing" constant="-5" id="Ldf-4m-4If"/>
+                            <constraint firstItem="1EB-lY-MiL" firstAttribute="centerX" secondItem="U7z-wr-98U" secondAttribute="centerX" id="MaS-Yr-ixz"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Zyt-zj-9gm" secondAttribute="leading" constant="-5" id="RND-dq-eJa"/>
+                            <constraint firstAttribute="trailing" secondItem="7hn-CO-1Q0" secondAttribute="trailing" id="SKG-yT-0wb"/>
+                            <constraint firstItem="pOV-wP-86E" firstAttribute="leading" secondItem="U7z-wr-98U" secondAttribute="leadingMargin" constant="5" id="ZVI-c4-38W"/>
+                            <constraint firstItem="3bC-xw-12o" firstAttribute="top" secondItem="7hn-CO-1Q0" secondAttribute="bottom" id="kzk-AD-aJQ"/>
+                            <constraint firstItem="7hn-CO-1Q0" firstAttribute="leading" secondItem="U7z-wr-98U" secondAttribute="leading" id="pEo-1F-4ok"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buyBookButton" destination="1EB-lY-MiL" id="L1a-98-JFJ"/>
                         <outlet property="lbIntroPoet" destination="Zyt-zj-9gm" id="OGf-jX-HUg"/>
                         <outlet property="lbPoet" destination="pOV-wP-86E" id="aoc-Lq-dvP"/>
                     </connections>

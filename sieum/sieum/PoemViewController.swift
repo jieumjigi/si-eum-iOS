@@ -71,7 +71,8 @@ class PoemViewController: UIViewController {
 
     func getContent(){
         
-        let todayPoemUrl = Constants.url.base.appending("page=1&num=1")
+        let todayPoemUrl = Constants.url.base.appending("poem/poemOfToday/")
+//        let todayPoemUrl = Constants.url.base.appending("poem/getPoem?/")
 
         
         Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default)
@@ -95,7 +96,7 @@ class PoemViewController: UIViewController {
                     let json = result as! NSDictionary
                     log.info(json)
                     
-                    if let items = json["items"] as? NSArray {
+                    if let items = json["poem"] as? NSArray {
                         if let items = items[0] as? NSDictionary {
                             
                             let title = items["title"] as? String

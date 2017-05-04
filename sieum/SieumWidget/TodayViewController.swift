@@ -10,14 +10,17 @@ import UIKit
 import NotificationCenter
 import Alamofire
 
-class TodayViewController: UIViewController, NCWidgetProviding {
+class TodayViewController: UIViewController, NCWidgetProviding, UIGestureRecognizerDelegate {
         
     @IBOutlet weak var lbContents: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
+        
+        self.setTap()
         self.getContent()
+        
 
     }
     
@@ -32,6 +35,22 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func setTap(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+        tap.delegate = self
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    func handleTap(sender: UITapGestureRecognizer? = nil) {
+        // handling code
+//        NSURL *url = [NSURL URLWithString:@"floblog://"];
+//        [self.extensionContext openURL:url completionHandler:nil];
+        let url = URL.init(string: "com.jieum.sieum.ios://")
+        self.extensionContext?.open(url!, completionHandler: nil)
+    }
+    
+    
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         // Perform any setup necessary in order to update the view.
         
@@ -44,8 +63,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func getContent(){
         
-        let todayPoemUrl = "https://si-eum.appspot.com/poem/getPoem?".appending("page=1&num=1")
-        
+        let todayPoemUrl = Constants.url.base.appending("poem/poemOfToday/")
+//        let todayPoemUrl = Constants.url.base.appending("poem/getPoem?/")
         
         Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default)
             .responseJSON { response in
@@ -70,7 +89,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                         let json = result as! NSDictionary
                         print(json)
                         
-                        if let items = json["items"] as? NSArray {
+                        if let items = json["poem"] as? NSArray {
                             if let items = items[0] as? NSDictionary {
                                 
                                 let title = items["title"] as? String

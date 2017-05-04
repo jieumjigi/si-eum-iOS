@@ -13,10 +13,13 @@ class PoetViewController: UIViewController {
 
     @IBOutlet weak var lbPoet: UILabel!
     @IBOutlet weak var lbIntroPoet: UILabel!
+    @IBOutlet weak var buyBookButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.buyBookButton.isHidden = true
+        
         self.getContent()
         // Do any additional setup after loading the view.
     }
@@ -28,8 +31,9 @@ class PoetViewController: UIViewController {
     
     
     func getContent(){
-        let todayPoemUrl = Constants.url.base.appending("page=1&num=1")
         
+        let todayPoemUrl = Constants.url.base.appending("poem/poemOfToday/")
+//        let todayPoemUrl = Constants.url.base.appending("poem/getPoem?/")
         
         Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default)
             .responseJSON { response in
@@ -51,20 +55,19 @@ class PoetViewController: UIViewController {
                         let json = result as! NSDictionary
                         log.info(json)
                         
-                        if let items = json["items"] as? NSArray {
+                        if let items = json["poem"] as? NSArray {
                             if let items = items[0] as? NSDictionary {
                                 
-                                
-                                
                                 let poetName = items["poetName"] as? String
-                                let introPoet = items["poetName"] as? String
-
+                                let introPoet = items["introPoet"] as? String
                                 log.info("poetName\(String(describing: poetName))")
                                 
                                 
                                 UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                                    
                                     self.lbPoet.alpha = 0.0
                                     self.lbIntroPoet.alpha = 0.0
+                                    self.buyBookButton.alpha = 0.0
                                     
                                 }, completion: {
                                     (finished: Bool) -> Void in
@@ -75,10 +78,13 @@ class PoetViewController: UIViewController {
                                         
                                         self.lbPoet.text = poetName
                                         self.lbIntroPoet.text = introPoet
+                                        self.lbIntroPoet.textAlignment = .left
                                         
+                                        self.buyBookButton.isHidden = false
                                         self.lbPoet.alpha = 1.0
                                         self.lbIntroPoet.alpha = 1.0
-                                        
+                                        self.buyBookButton.alpha = 1.0
+
                                     }, completion: nil)
                                 })
                                 
