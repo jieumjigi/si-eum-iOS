@@ -14,6 +14,7 @@ class PoetViewController: UIViewController {
     @IBOutlet weak var lbPoet: UILabel!
     @IBOutlet weak var lbIntroPoet: UILabel!
     @IBOutlet weak var buyBookButton: UIButton!
+    var linkToBook = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,8 @@ class PoetViewController: UIViewController {
                                 
                                 let poetName = items["poetName"] as? String
                                 let introPoet = items["introPoet"] as? String
+                                self.linkToBook = (items["linkToBook"] as? String)!
+                                
                                 log.info("poetName\(String(describing: poetName))")
                                 
                                 
@@ -96,6 +99,16 @@ class PoetViewController: UIViewController {
                 }
         }
 
+    }
+    
+    
+    @IBAction func onLinkToBookButton(_ sender: Any) {
+        
+        if(self.linkToBook != ""){
+            UIApplication.shared.openURL(URL(string: self.linkToBook)!)
+        }
+        
+        
     }
 
     /*

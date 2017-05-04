@@ -61,6 +61,9 @@
                                     <constraint firstItem="vcb-6d-t8D" firstAttribute="top" secondItem="80S-0q-WBQ" secondAttribute="bottom" constant="60" id="yJb-5B-qtx"/>
                                 </constraints>
                             </scrollView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="22F-ZE-7LO">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96868795156478882" blue="0.96851199865341187" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -68,8 +71,10 @@
                             <constraint firstItem="80S-0q-WBQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="45" id="7gQ-Ir-OKr"/>
                             <constraint firstAttribute="trailing" secondItem="i7M-Qg-30Y" secondAttribute="trailing" id="95W-wc-xrh"/>
                             <constraint firstItem="oV6-zN-ZFO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="60" id="BaU-8m-0kR"/>
+                            <constraint firstItem="22F-ZE-7LO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="COT-Uy-PQa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oV6-zN-ZFO" secondAttribute="trailing" constant="60" id="LX4-M8-1vx"/>
                             <constraint firstItem="W2t-Np-Wcb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="OvA-la-3dO"/>
+                            <constraint firstItem="22F-ZE-7LO" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Wny-Ur-vDd"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i7M-Qg-30Y" secondAttribute="bottom" id="Yzc-Rw-aL4"/>
                             <constraint firstItem="W2t-Np-Wcb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="bmX-mI-kwT"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="bottom" id="eLG-Rw-VoV"/>
@@ -87,6 +92,7 @@
                         <outlet property="lbBody" destination="80S-0q-WBQ" id="U3a-o5-nx3"/>
                         <outlet property="lbPoet" destination="vcb-6d-t8D" id="Shg-yd-Eyk"/>
                         <outlet property="lbTitle" destination="oV6-zN-ZFO" id="qge-NN-civ"/>
+                        <outlet property="loadingIndicator" destination="22F-ZE-7LO" id="nrt-Zt-nNy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -305,6 +311,9 @@
                                         <state key="normal" title="시집 구매하기 &gt;">
                                             <color key="titleColor" red="0.83921568627450982" green="0.61176470588235299" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onLinkToBookButton:" destination="sCs-3h-fMS" eventType="touchUpInside" id="n0m-Ko-h4T"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

@@ -27,7 +27,7 @@ import PopupDialog
 //    }
 //}
 
-class PoemViewController: UIViewController {
+class PoemViewController: UIViewController, FBSDKSharingDelegate {
     
 //    weak var delegate:PoemViewControllerDelegate?
     
@@ -37,12 +37,14 @@ class PoemViewController: UIViewController {
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbPoet: UILabel!
     @IBOutlet weak var lbBody: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
         
         getContent()
         setAttribute()
@@ -102,6 +104,7 @@ class PoemViewController: UIViewController {
                             let title = items["title"] as? String
                             let poetName = items["poetName"] as? String
                             var contents = items["contents"] as? String
+                            
                             contents = contents?.replacingOccurrences(of: "\\               ", with: "\n")
                             
                             log.info("title\(String(describing: title))")
@@ -171,6 +174,9 @@ class PoemViewController: UIViewController {
     func setGUI(){
 
 //        bgImage.image = UIImage(named: "image_example7.jpg")
+        
+        self.loadingIndicator.stopAnimating()
+        
         setColor() // 서버에서 받아온 후에 동작해야 함
     }
     
@@ -213,7 +219,8 @@ class PoemViewController: UIViewController {
     //MARK: - Share
     
     func didRequestShare(){
-        
+
+
         let image = UIImage.init(view: self.view)
         
         let photo = FBSDKSharePhoto.init()
@@ -227,21 +234,68 @@ class PoemViewController: UIViewController {
         dialog.fromViewController = self
         dialog.shareContent = content
         dialog.mode = FBSDKShareDialogMode.shareSheet
+        dialog.delegate = self
+        
         dialog.show()
         
+        self.loadingIndicator.startAnimating()
+        
+
     }
+    
+    
+    // FB delegate
+    
+    
+    public func sharer(_ sharer: FBSDKSharing!, didCompleteWithResults results: [AnyHashable : Any]!){
+        
+        self.loadingIndicator.stopAnimating()
+
+    }
+    
+    
+    /**
+     Sent to the delegate when the sharer encounters an error.
+     - Parameter sharer: The FBSDKSharing that completed.
+     - Parameter error: The error.
+     */
+    public func sharer(_ sharer: FBSDKSharing!, didFailWithError error: Error!){
+        
+        self.loadingIndicator.stopAnimating()
+
+    }
+    
+    
+    /**
+     Sent to the delegate when the sharer is cancelled.
+     - Parameter sharer: The FBSDKSharing that completed.
+     */
+    public func sharerDidCancel(_ sharer: FBSDKSharing!){
+        
+        
+        self.loadingIndicator.stopAnimating()
+
+    }
+    
     
     func didRequestSave(){
 
-        let image = UIImage.init(view: self.view)
+        self.loadingIndicator.startAnimating()
         
+        let image = UIImage.init(view: self.view)
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
 
     }
     
+    
+    
+    
     /// 이미지 저장 완료
     
     func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        
+        self.loadingIndicator.stopAnimating()
+
         if error != nil {
 
             self.showSavedAlert(title: "저장실패", message: nil, buttonTitle: "확인")
@@ -254,8 +308,8 @@ class PoemViewController: UIViewController {
     
     func showSavedAlert(title:String, message : String?, buttonTitle : String ){
         
-        let screenSize = UIScreen.main.bounds
-        let screenWidth = screenSize.width
+//        let screenSize = UIScreen.main.bounds
+//        let screenWidth = screenSize.width
 
         // Customize dialog appearance
         let pv = PopupDialogDefaultView.appearance()
@@ -263,7 +317,7 @@ class PoemViewController: UIViewController {
         pv.titleColor   = UIColor.white
         pv.messageFont  = UIFont(name: "IropkeBatangOTFM", size: 14)!
         pv.messageColor = UIColor(white: 0.8, alpha: 1)
-        pv.sizeThatFits(CGSize.init(width: screenWidth/2, height: pv.bounds.height))
+//        pv.sizeThatFits(CGSize.init(width: screenWidth/2, height: pv.bounds.height))
         
         
         // Customize the container view appearance
