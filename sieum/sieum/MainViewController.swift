@@ -61,8 +61,7 @@ class MainViewController: UIViewController {
         self.screenHeight = screenSize.height
         self.screenWidth = screenSize.width
         self.menuTopMargin.constant = self.screenHeight - MENU_HEAD_HEIGHT - 16
-
-
+        
     }
     
     

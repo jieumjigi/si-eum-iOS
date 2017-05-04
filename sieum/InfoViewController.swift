@@ -81,6 +81,11 @@ class InfoViewController: UITableViewController {
         if(indexPath.row == 0){
             
             self.presentBlog()
+        
+        }else if(indexPath.row == 1){
+            
+            self.sendEmail()
+            
         }
     }
     
@@ -115,12 +120,50 @@ class InfoViewController: UITableViewController {
     // MARK : - Blog
     
     func presentBlog(){
-
-        let webView = UIWebView.init(frame: self.view.bounds)
+        
+        let webViewRect = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: self.view.frame.size.height - CGFloat(60))
+        let webView = UIWebView.init(frame: webViewRect)
         webView.loadRequest(URLRequest.init(url: URL.init(string: Constants.url.blog)!))
         self.view.addSubview(webView)
         
     }
+    
+    // MARK : - Email
+    
+    func sendEmail(){
+        
+        let mailUrl = URL.init(string: "mailto:hsh3592@gmail.com")
+        
+        if(UIApplication.shared.canOpenURL(mailUrl!)){
+            
+            UIApplication.shared.open(mailUrl!, options: [:], completionHandler: nil)
+            
+        }
+        
+        
+    }
+    
+//    - (void) sendEmail {
+//    
+//    UserModel * user = self.dataManager.userModel;
+//    NSString *toRecipents = SUPPORT_CONTACT_US_RECEPIENT;
+//    NSString *messageBody = NSLocalizedString(@"email_contact_us_message_body", @"email_contact_us_message_body");
+//    NSString *ccRecipients = @"";
+//    if(user!=nil && user.email!=nil){
+//    ccRecipients = user.email;
+//    }
+//    
+//    NSString *stringURL = [NSString stringWithFormat:@"mailto:%@?body=%@&cc=%@", toRecipents, messageBody, ccRecipients];
+//    NSURL *url = [NSURL URLWithString:stringURL];
+//    if([[UIApplication sharedApplication] canOpenURL:url] ){
+//    [[UIApplication sharedApplication] openURL:url];
+//    }else{
+//    [self recordWithCategory:@"ui_action" action:@"Contact Us menu clicked" label:@"show email error alert" value:nil];
+//    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+//    pasteboard.string = SUPPORT_CONTACT_US_RECEPIENT;
+//    [self showSimpleAlertWithTitle:NSLocalizedString(@"error_email_app_not_support", @"error_email_app_not_support") message:SUPPORT_CONTACT_US_RECEPIENT];
+//    }
+//    }
     
     
     /*
