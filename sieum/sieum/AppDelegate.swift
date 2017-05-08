@@ -18,7 +18,7 @@ let log = SwiftyBeaver.self
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let notificationDelegate = UYLNotificationDelegate()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -27,8 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.setLogger()
         self.setAlertView()
-//        self.setNotiAuth()
-        
+        self.setNotiDelegate()
         
         return true
     }
@@ -139,8 +138,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-//    
-//    // MARK :- Noti
+    
+    // MARK :- Noti
+    func setNotiDelegate(){
+        
+        let center = UNUserNotificationCenter.current()
+        center.delegate = notificationDelegate
+    }
+    
+    
+    
+    
+    
 //    func setNotiAuth(){
 //        
 //        let center = UNUserNotificationCenter.current()

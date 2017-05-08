@@ -114,6 +114,7 @@ class PoetViewController: UIViewController {
         
         if(self.linkToBook != ""){
             UIApplication.shared.openURL(URL(string: self.linkToBook)!)
+            
         }
         
         
