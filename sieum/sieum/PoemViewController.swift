@@ -183,6 +183,9 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
         
         self.loadingIndicator.stopAnimating()
         
+        self.lbPoet.numberOfLines = 0
+        
+        
         setColor() // 서버에서 받아온 후에 동작해야 함
     }
     
@@ -225,26 +228,63 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     //MARK: - Share
     
     func didRequestShare(){
+        
+        if( UIApplication.shared.canOpenURL(URL.init(string: "fb://")!) ){ // 페이스북 앱 존재
+            
+            let image = UIImage.init(view: self.view)
+            
+            let photo = FBSDKSharePhoto.init()
+            photo.image = image
+            photo.isUserGenerated = true
+            
+            let content = FBSDKSharePhotoContent.init()
+            content.photos = [photo]
+            
+            let dialog = FBSDKShareDialog.init()
+            dialog.fromViewController = self
+            dialog.shareContent = content
+            dialog.mode = FBSDKShareDialogMode.shareSheet
+            dialog.delegate = self
+            
+            dialog.show()
+            
+            self.loadingIndicator.startAnimating()
+        
+        }else{
+            
+            let title = "페이스북 앱이 없으면 공유할 수 없습니다"
+            let message = "페이스북 앱을 설치하겠습니까?"
 
+            
+            // Create the dialog
+            let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
+                
+            }
+            
+            // Create buttons
+            let confirmButton = DefaultButton(title: "확인") {
+                
+                UIApplication.shared.open(NSURL(string: "itms://itunes.com/apps/Facebook")! as URL, options: [:], completionHandler: { (completion) in
+                    
+                    
+                })
+            }
+            
+            
+            let cancelButton = CancelButton(title: "취소") {
+                
+            }
 
-        let image = UIImage.init(view: self.view)
+            popup.addButton(cancelButton)
+            popup.addButton(confirmButton)
+            
+            // Present dialog
+            self.present(popup, animated: true, completion: nil)
+            
+            
+        }
         
-        let photo = FBSDKSharePhoto.init()
-        photo.image = image
-        photo.isUserGenerated = true
 
-        let content = FBSDKSharePhotoContent.init()
-        content.photos = [photo]
-        
-        let dialog = FBSDKShareDialog.init()
-        dialog.fromViewController = self
-        dialog.shareContent = content
-        dialog.mode = FBSDKShareDialogMode.shareSheet
-        dialog.delegate = self
-        
-        dialog.show()
-        
-        self.loadingIndicator.startAnimating()
         
 
     }
