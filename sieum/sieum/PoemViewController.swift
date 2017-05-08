@@ -245,7 +245,6 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
             dialog.shareContent = content
             dialog.mode = FBSDKShareDialogMode.shareSheet
             dialog.delegate = self
-            
             dialog.show()
             
             self.loadingIndicator.startAnimating()
@@ -292,10 +291,18 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     
     // FB delegate
     
-    
     public func sharer(_ sharer: FBSDKSharing!, didCompleteWithResults results: [AnyHashable : Any]!){
         
+        
+        print("didCompleteWithResults")
+        
+        self.dismiss(animated: true, completion: nil)
+        
+        self.showSimpleAlert(title: "페이스북에 공유되었습니다", message: nil, buttonTitle: "확인")
+
+        
         self.loadingIndicator.stopAnimating()
+        
 
     }
     
@@ -307,8 +314,15 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
      */
     public func sharer(_ sharer: FBSDKSharing!, didFailWithError error: Error!){
         
-        self.loadingIndicator.stopAnimating()
+        print("didFailWithError")
 
+        self.dismiss(animated: true, completion: nil)
+        
+        self.showSimpleAlert(title: "문제가 발생하여 공유하지 못했습니다", message: nil, buttonTitle: "확인")
+
+        
+        self.loadingIndicator.stopAnimating()
+        
     }
     
     
@@ -318,8 +332,15 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
      */
     public func sharerDidCancel(_ sharer: FBSDKSharing!){
         
+        print("sharerDidCancel")
+
+        self.dismiss(animated: true, completion: nil)
+        
+        self.showSimpleAlert(title: "공유가 취소되었습니다", message: nil, buttonTitle: "확인")
         
         self.loadingIndicator.stopAnimating()
+        
+
 
     }
     
@@ -346,62 +367,15 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
 
         if error != nil {
 
-            self.showSavedAlert(title: "저장실패", message: nil, buttonTitle: "확인")
+            self.showSimpleAlert(title: "저장실패", message: nil, buttonTitle: "확인")
 
         } else {
 
-            self.showSavedAlert(title: "저장됨", message: nil, buttonTitle: "확인")
+            self.showSimpleAlert(title: "저장됨", message: nil, buttonTitle: "확인")
         }
     }
     
-    func showSavedAlert(title:String, message : String?, buttonTitle : String ){
-        
-//        let screenSize = UIScreen.main.bounds
-//        let screenWidth = screenSize.width
-
-//        // Customize dialog appearance
-//        let pv = PopupDialogDefaultView.appearance()
-//        pv.titleFont    = UIFont(name: "IropkeBatangOTFM", size: 16)!
-//        pv.titleColor   = UIColor.white
-//        pv.messageFont  = UIFont(name: "IropkeBatangOTFM", size: 14)!
-//        pv.messageColor = UIColor(white: 0.8, alpha: 1)
-////        pv.sizeThatFits(CGSize.init(width: screenWidth/2, height: pv.bounds.height))
-//        
-//        
-//        // Customize the container view appearance
-//        let pcv = PopupDialogContainerView.appearance()
-//        pcv.backgroundColor = UIColor.alertBackground()
-//        pcv.cornerRadius    = 2
-//        pcv.shadowEnabled   = true
-//        //pcv.shadowColor     = UIColor.black
-//        
-//        // Customize overlay appearance
-//        let ov = PopupDialogOverlayView.appearance()
-//        ov.blurEnabled = false
-//        ov.blurRadius  = 30
-//        ov.liveBlur    = false
-//        ov.opacity     = 0.0
-//        ov.color       = UIColor.clear
-//        
-//        // Customize default button appearance
-//        let db = DefaultButton.appearance()
-//        db.titleFont      = UIFont(name: "IropkeBatangOTFM", size: 14)!
-//        db.titleColor     = UIColor.white
-//        db.buttonColor    = UIColor.alertBackground()
-//        db.separatorColor = UIColor.defaultBackground()
-//        
-//        // Customize cancel button appearance
-//        let cb = CancelButton.appearance()
-//        cb.titleFont      = UIFont(name: "IropkeBatangOTFM", size: 14)!
-//        cb.titleColor     = UIColor(white: 0.6, alpha: 1)
-//        cb.buttonColor    = UIColor.alertBackground()
-//        cb.separatorColor = UIColor.defaultBackground()
-        
-        
-        // Prepare the popup assets
-//        let title = "저장됨"
-//        let image = UIImage(named: "save.png")
-        
+    func showSimpleAlert(title:String, message : String?, buttonTitle : String ){
         
         // Create the dialog
         let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
