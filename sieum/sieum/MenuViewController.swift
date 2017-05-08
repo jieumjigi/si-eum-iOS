@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKCoreKit
 import PopupDialog
+import UserNotifications
 
 class MenuViewController: UIViewController {
 
@@ -142,7 +143,18 @@ class MenuViewController: UIViewController {
         
         // Create buttons
         let confirmButton = DefaultButton(title: "확인") {
+            
+//            if(self.isNotiAllow() == true){
+//                self.presentTimerAlert()
+//            }else{
+//                print("노티가 허용되지 않음")
+//                self.setNotiAuth()
+//            }
+            
+            self.setNotiAuth()
+            
             self.presentTimerAlert()
+            
         }
         
         let cancelButton = CancelButton(title: "취소") {
@@ -172,7 +184,6 @@ class MenuViewController: UIViewController {
         log.verbose(eventName)
         
 //        NotificationCenter.default.post(name: Constants.observer.requestTimer, object: nil)
-
         self.presentTimerSwitchAlert()
         
     }
@@ -202,5 +213,53 @@ class MenuViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    // MARK :- Noti
+    func setNotiAuth(){
+        
+        let center = UNUserNotificationCenter.current()
+        
+        center.getNotificationSettings { (settings) in
+            
+            if settings.authorizationStatus != .authorized {
+                
+                // Notifications not allowed
+                
+                let options: UNAuthorizationOptions = [.alert, .sound]
+                center.requestAuthorization(options: options) { (granted, error) in
+                    
+                    if !granted {
+                        print("인증되지 않았습니다")
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+
+        
+    }
+    
+//
+//    func isNotiAllow() {
+//        
+//        
+//        let center = UNUserNotificationCenter.current()
+//        
+//        center.getNotificationSettings { (settings) in
+//            
+//            if settings.authorizationStatus != .authorized {
+//                // Notifications not allowed
+//                
+//                
+//            }
+//            
+//        }
+//        
+//    }
 
 }

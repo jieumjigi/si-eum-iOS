@@ -10,7 +10,7 @@ import UIKit
 import SwiftyBeaver
 import FBSDKCoreKit
 import PopupDialog
-
+import UserNotifications
 
 let log = SwiftyBeaver.self
 
@@ -21,10 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
-        self.setLogger()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        self.setLogger()
         self.setAlertView()
+//        self.setNotiAuth()
+        
         
         return true
     }
@@ -92,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     
-    // MARK :- Alert
+    // MARK :- Alert Appearance
     func setAlertView(){
         
         // Customize dialog appearance
@@ -133,8 +137,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         cb.buttonColor    = UIColor.alertBackground()
         cb.separatorColor = UIColor.defaultBackground()
         
-        
-        
     }
+    
+//    
+//    // MARK :- Noti
+//    func setNotiAuth(){
+//        
+//        let center = UNUserNotificationCenter.current()
+//        let options: UNAuthorizationOptions = [.alert, .sound]
+//        
+//        center.requestAuthorization(options: options) { (granted, error) in
+//            
+//            if !granted {
+//                print("Something went wrong")
+//            }
+//
+//        }
+//        
+//    }
+    
+
 }
 
