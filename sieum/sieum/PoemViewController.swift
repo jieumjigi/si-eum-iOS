@@ -33,6 +33,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     
     @IBOutlet var bgView: UIView!
     @IBOutlet weak var bgImage: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbPoet: UILabel!
@@ -285,9 +286,11 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     
     func didRequestSave(){
 
-        self.loadingIndicator.startAnimating()
         
         let image = UIImage.init(view: self.view)
+
+        self.loadingIndicator.startAnimating()
+
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
 
     }
@@ -375,6 +378,9 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
         // Present dialog
         self.present(popup, animated: true, completion: nil)
     }
+    
+
+
 
 
 }

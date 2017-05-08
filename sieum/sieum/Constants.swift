@@ -23,5 +23,6 @@ struct Constants {
         static let requestShare = NSNotification.Name(rawValue: "REQUEST_SHARE")
         static let requestTimer = NSNotification.Name(rawValue: "REQUEST_TIMER")
         static let requestInfo = NSNotification.Name(rawValue: "REQUEST_INFO")
+        static let requestMenuPop = NSNotification.Name(rawValue: "REQUEST_MENU_POP")
     }
 }

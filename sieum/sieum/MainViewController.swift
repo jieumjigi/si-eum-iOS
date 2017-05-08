@@ -25,7 +25,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.addObserver()
         self.setLayout()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -55,6 +57,8 @@ class MainViewController: UIViewController {
     }
     
     
+    
+    
     func setLayout(){
         
         self.screenSize = UIScreen.main.bounds
@@ -64,6 +68,69 @@ class MainViewController: UIViewController {
         
     }
     
+    func addObserver(){
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.didMenuPop),
+            name: Constants.observer.requestMenuPop ,
+            object: nil)
+        
+
+        
+    }
+
+    func didMenuPop(){
+        
+        print("didMenuPop")
+        
+        var menuPositionY = self.menuView.center.y
+        
+//        if( menuPositionY == screenHeight - MENU_HEIGHT + MENU_HEIGHT/2){
+//            
+//            menuPositionY = screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2
+//            
+//        }else if(menuPositionY > screenHeight - MENU_HEIGHT/2 + MENU_HEIGHT/2){
+//            
+//            menuPositionY = screenHeight - MENU_HEIGHT + MENU_HEIGHT/2
+//            
+//        }
+        
+        
+        if( menuPositionY == screenHeight - MENU_HEIGHT + MENU_HEIGHT/2){
+            
+            menuPositionY = screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2
+            
+        }else{
+            
+            menuPositionY = screenHeight - MENU_HEIGHT + MENU_HEIGHT/2
+            
+        }
+        
+//        if( menuPositionY < screenHeight - MENU_HEIGHT/2 + MENU_HEIGHT/2  ){
+//            
+//            menuPositionY = screenHeight - MENU_HEIGHT + MENU_HEIGHT/2
+//            
+//        }else if(menuPositionY == screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2){
+//
+//            menuPositionY = screenHeight - MENU_HEIGHT + MENU_HEIGHT/2
+//
+//        }else{
+//            
+//            menuPositionY = screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2
+//
+//        }
+
+        
+//        if(menuPositionY == screenHeight - MENU_HEIGHT + MENU_HEIGHT/2){
+//            menuPositionY = screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2
+//        }
+        
+        let movePoint = CGPoint(x: self.menuView.center.x, y: menuPositionY)
+        
+        self.menuView.center = movePoint
+        
+    }
     
     /*
     // MARK: - Navigation

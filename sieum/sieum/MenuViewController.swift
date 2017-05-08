@@ -13,6 +13,9 @@ import UserNotifications
 
 class MenuViewController: UIViewController {
 
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -284,6 +287,16 @@ class MenuViewController: UIViewController {
         let navController = UINavigationController(rootViewController: infoViewController) // Creating a navigation controller with VC1 at the root of the navigation stack.
         self.present(navController, animated:true, completion: nil)
         
+    }
+    
+    
+    @IBAction func onMenuPopButton(_ sender: Any) {
+        
+        let eventName = "onMenuPopButton"
+        FBSDKAppEvents.logEvent(eventName)
+        log.verbose(eventName)
+        NotificationCenter.default.post(name: Constants.observer.requestMenuPop, object: nil)
+
     }
     
     
