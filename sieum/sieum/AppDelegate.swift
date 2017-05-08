@@ -9,6 +9,8 @@
 import UIKit
 import SwiftyBeaver
 import FBSDKCoreKit
+import PopupDialog
+
 
 let log = SwiftyBeaver.self
 
@@ -22,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.setLogger()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        self.setAlertView()
         
         return true
     }
@@ -88,5 +91,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return handled
     }
 
+    
+    // MARK :- Alert
+    func setAlertView(){
+        
+        // Customize dialog appearance
+        let pv = PopupDialogDefaultView.appearance()
+        pv.titleFont    = UIFont(name: "IropkeBatangOTFM", size: 16)!
+        pv.titleColor   = UIColor.white
+        pv.messageFont  = UIFont(name: "IropkeBatangOTFM", size: 14)!
+        pv.messageColor = UIColor(white: 0.8, alpha: 1)
+        //        pv.sizeThatFits(CGSize.init(width: screenWidth/2, height: pv.bounds.height))
+        
+        
+        // Customize the container view appearance
+        let pcv = PopupDialogContainerView.appearance()
+        pcv.backgroundColor = UIColor.alertBackground()
+        pcv.cornerRadius    = 2
+        pcv.shadowEnabled   = true
+        //pcv.shadowColor     = UIColor.black
+        
+        // Customize overlay appearance
+        let ov = PopupDialogOverlayView.appearance()
+        ov.blurEnabled = false
+        ov.blurRadius  = 30
+        ov.liveBlur    = false
+        ov.opacity     = 0.0
+        ov.color       = UIColor.clear
+        
+        // Customize default button appearance
+        let db = DefaultButton.appearance()
+        db.titleFont      = UIFont(name: "IropkeBatangOTFM", size: 14)!
+        db.titleColor     = UIColor.white
+        db.buttonColor    = UIColor.alertBackground()
+        db.separatorColor = UIColor.defaultBackground()
+        
+        // Customize cancel button appearance
+        let cb = CancelButton.appearance()
+        cb.titleFont      = UIFont(name: "IropkeBatangOTFM", size: 14)!
+        cb.titleColor     = UIColor(white: 0.6, alpha: 1)
+        cb.buttonColor    = UIColor.alertBackground()
+        cb.separatorColor = UIColor.defaultBackground()
+        
+        
+        
+    }
 }
 

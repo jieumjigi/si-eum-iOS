@@ -13,6 +13,7 @@ struct Constants {
     struct url {
 //        static let base = "https://si-eum.appspot.com/poem/getPoem?"
         static let base = "https://si-eum-165814.appspot.com/"
+//        static let base = "https://si-eum-petercha90.c9users.io/"
         static let blog = "https://jieumjigi.github.io"
         static let webSite = "https://jieumjigi.github.io/si-eum-web/"
     }

@@ -99,6 +99,11 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
                     log.info(json)
                     
                     if let items = json["poem"] as? NSArray {
+                        
+                        if (items.count == 0){
+                            return
+                        }
+                        
                         if let items = items[0] as? NSDictionary {
                             
                             let title = items["title"] as? String
@@ -311,43 +316,43 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
 //        let screenSize = UIScreen.main.bounds
 //        let screenWidth = screenSize.width
 
-        // Customize dialog appearance
-        let pv = PopupDialogDefaultView.appearance()
-        pv.titleFont    = UIFont(name: "IropkeBatangOTFM", size: 16)!
-        pv.titleColor   = UIColor.white
-        pv.messageFont  = UIFont(name: "IropkeBatangOTFM", size: 14)!
-        pv.messageColor = UIColor(white: 0.8, alpha: 1)
-//        pv.sizeThatFits(CGSize.init(width: screenWidth/2, height: pv.bounds.height))
-        
-        
-        // Customize the container view appearance
-        let pcv = PopupDialogContainerView.appearance()
-        pcv.backgroundColor = UIColor.alertBackground()
-        pcv.cornerRadius    = 2
-        pcv.shadowEnabled   = true
-        //pcv.shadowColor     = UIColor.black
-        
-        // Customize overlay appearance
-        let ov = PopupDialogOverlayView.appearance()
-        ov.blurEnabled = false
-        ov.blurRadius  = 30
-        ov.liveBlur    = false
-        ov.opacity     = 0.0
-        ov.color       = UIColor.clear
-        
-        // Customize default button appearance
-        let db = DefaultButton.appearance()
-        db.titleFont      = UIFont(name: "IropkeBatangOTFM", size: 14)!
-        db.titleColor     = UIColor.white
-        db.buttonColor    = UIColor.alertBackground()
-        db.separatorColor = UIColor.defaultBackground()
-        
-        // Customize cancel button appearance
-        let cb = CancelButton.appearance()
-        cb.titleFont      = UIFont(name: "IropkeBatangOTFM", size: 14)!
-        cb.titleColor     = UIColor(white: 0.6, alpha: 1)
-        cb.buttonColor    = UIColor.alertBackground()
-        cb.separatorColor = UIColor.defaultBackground()
+//        // Customize dialog appearance
+//        let pv = PopupDialogDefaultView.appearance()
+//        pv.titleFont    = UIFont(name: "IropkeBatangOTFM", size: 16)!
+//        pv.titleColor   = UIColor.white
+//        pv.messageFont  = UIFont(name: "IropkeBatangOTFM", size: 14)!
+//        pv.messageColor = UIColor(white: 0.8, alpha: 1)
+////        pv.sizeThatFits(CGSize.init(width: screenWidth/2, height: pv.bounds.height))
+//        
+//        
+//        // Customize the container view appearance
+//        let pcv = PopupDialogContainerView.appearance()
+//        pcv.backgroundColor = UIColor.alertBackground()
+//        pcv.cornerRadius    = 2
+//        pcv.shadowEnabled   = true
+//        //pcv.shadowColor     = UIColor.black
+//        
+//        // Customize overlay appearance
+//        let ov = PopupDialogOverlayView.appearance()
+//        ov.blurEnabled = false
+//        ov.blurRadius  = 30
+//        ov.liveBlur    = false
+//        ov.opacity     = 0.0
+//        ov.color       = UIColor.clear
+//        
+//        // Customize default button appearance
+//        let db = DefaultButton.appearance()
+//        db.titleFont      = UIFont(name: "IropkeBatangOTFM", size: 14)!
+//        db.titleColor     = UIColor.white
+//        db.buttonColor    = UIColor.alertBackground()
+//        db.separatorColor = UIColor.defaultBackground()
+//        
+//        // Customize cancel button appearance
+//        let cb = CancelButton.appearance()
+//        cb.titleFont      = UIFont(name: "IropkeBatangOTFM", size: 14)!
+//        cb.titleColor     = UIColor(white: 0.6, alpha: 1)
+//        cb.buttonColor    = UIColor.alertBackground()
+//        cb.separatorColor = UIColor.defaultBackground()
         
         
         // Prepare the popup assets

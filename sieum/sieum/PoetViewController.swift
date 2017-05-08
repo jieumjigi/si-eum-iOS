@@ -57,6 +57,11 @@ class PoetViewController: UIViewController {
                         log.info(json)
                         
                         if let items = json["poem"] as? NSArray {
+                            
+                            if (items.count == 0){
+                                return
+                            }
+                            
                             if let items = items[0] as? NSDictionary {
                                 
                                 let poetName = items["poetName"] as? String
@@ -83,10 +88,13 @@ class PoetViewController: UIViewController {
                                         self.lbIntroPoet.text = introPoet
                                         self.lbIntroPoet.textAlignment = .left
                                         
-                                        self.buyBookButton.isHidden = false
                                         self.lbPoet.alpha = 1.0
                                         self.lbIntroPoet.alpha = 1.0
-                                        self.buyBookButton.alpha = 1.0
+                                        
+                                        if(self.linkToBook != ""){
+                                            self.buyBookButton.isHidden = false
+                                            self.buyBookButton.alpha = 1.0
+                                        }
 
                                     }, completion: nil)
                                 })

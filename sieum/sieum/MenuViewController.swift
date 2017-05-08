@@ -107,6 +107,57 @@ class MenuViewController: UIViewController {
         self.present(popup, animated: true, completion: nil)
     }
     
+    
+    func presentTimerAlert(){
+        
+        let myDatePicker: UIDatePicker = UIDatePicker()
+        
+        // setting properties of the datePicker
+        myDatePicker.datePickerMode = UIDatePickerMode.time
+        myDatePicker.timeZone = NSTimeZone.local
+        myDatePicker.frame = CGRect.init(x: 0, y: 15, width: 270, height: 150)
+        let alertController = UIAlertController(title: "" , message: "\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+
+        alertController.view.addSubview(myDatePicker)
+        alertController.view.tintColor = UIColor.alertBackground()
+        
+        let somethingAction = UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: nil)
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertActionStyle.default, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(somethingAction)
+        self.present(alertController, animated: true, completion:{})
+        
+    }
+    
+    func presentTimerSwitchAlert(){
+        
+        // Prepare the popup assets
+        let title = "알림을 설정하겠습니까?"
+        let message = "시간을 정해두고 매일 시를 만나보세요"
+        
+        // Create the dialog
+        let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
+            
+        }
+        
+        // Create buttons
+        let confirmButton = DefaultButton(title: "확인") {
+            self.presentTimerAlert()
+        }
+        
+        let cancelButton = CancelButton(title: "취소") {
+            
+        }
+        
+        popup.addButton(cancelButton)
+        popup.addButton(confirmButton)
+
+        // Present dialog
+        self.present(popup, animated: true, completion: nil)
+        
+    }
+    
+    
     @IBAction func onSaveButton(_ sender: Any) {
         let eventName = "onSaveButton"
         FBSDKAppEvents.logEvent(eventName)
@@ -120,20 +171,22 @@ class MenuViewController: UIViewController {
         FBSDKAppEvents.logEvent(eventName)
         log.verbose(eventName)
         
-        NotificationCenter.default.post(name: Constants.observer.requestTimer, object: nil)
+//        NotificationCenter.default.post(name: Constants.observer.requestTimer, object: nil)
 
+        self.presentTimerSwitchAlert()
+        
     }
     
     @IBAction func onInfoButton(_ sender: Any) {
+        
         let eventName = "onInfoButton"
         FBSDKAppEvents.logEvent(eventName)
         log.verbose(eventName)
-
         
         let infoViewController = self.storyboard!.instantiateViewController(withIdentifier: "InfoViewController") as! InfoViewController
         let navController = UINavigationController(rootViewController: infoViewController) // Creating a navigation controller with VC1 at the root of the navigation stack.
         self.present(navController, animated:true, completion: nil)
-    
+        
     }
     
     

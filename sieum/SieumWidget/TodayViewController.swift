@@ -90,6 +90,11 @@ class TodayViewController: UIViewController, NCWidgetProviding, UIGestureRecogni
                         print(json)
                         
                         if let items = json["poem"] as? NSArray {
+                            
+                            if (items.count == 0){
+                                return
+                            }
+                            
                             if let items = items[0] as? NSDictionary {
                                 
                                 let title = items["title"] as? String

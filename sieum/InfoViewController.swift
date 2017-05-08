@@ -10,7 +10,8 @@ import UIKit
 
 class InfoViewController: UITableViewController {
 
-    var menu = ["지음지기 블로그", "문의하기", "오픈소스 라이센스"]
+//    var menu = ["지음지기 블로그", "문의하기", "오픈소스 라이센스"]
+    var menu = ["지음지기 블로그", "문의하기"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,8 @@ class InfoViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        
         if(indexPath.row == 0){
             
             self.presentBlog()
@@ -104,14 +107,22 @@ class InfoViewController: UITableViewController {
         let screenWidth = screenSize.width
 
         let sectionView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: screenWidth, height: screenWidth))
-
-        UIGraphicsBeginImageContext(sectionView.frame.size)
+//        sectionView.isOpaque = false
+//        UIGraphicsBeginImageContext(sectionView.frame.size)
+//        UIImage(named: "launchImage.jpg")?.draw(in: sectionView.frame)
+//        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+//        UIGraphicsEndImageContext()
         
-        UIImage(named: "launchImage.jpg")?.draw(in: sectionView.bounds)
+//        UIGraphicsBeginImageContextWithOptions(sectionView.bounds.size, false, 0.0);
+//        sectionView.layer.render(in: UIGraphicsGetCurrentContext()!)
+//        let image = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+        
+        UIGraphicsBeginImageContextWithOptions(sectionView.bounds.size, false, 0)
+        UIImage(named: "launchImage.jpg")?.draw(in: sectionView.frame)
+        sectionView.drawHierarchy(in: sectionView.bounds, afterScreenUpdates: false)
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        
         UIGraphicsEndImageContext()
-        
         sectionView.backgroundColor = UIColor(patternImage: image)
         
         return sectionView
@@ -139,7 +150,6 @@ class InfoViewController: UITableViewController {
             UIApplication.shared.open(mailUrl!, options: [:], completionHandler: nil)
             
         }
-        
         
     }
     
