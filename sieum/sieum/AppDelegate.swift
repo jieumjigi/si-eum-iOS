@@ -22,12 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        Thread.sleep(forTimeInterval: 2.0)
+        
         // Override point for customization after application launch.
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         self.setLogger()
         self.setAlertView()
         self.setNotiDelegate()
+        
+        
         
         return true
     }
