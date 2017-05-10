@@ -20,6 +20,7 @@ class PoetViewController: UIViewController {
         super.viewDidLoad()
 
         self.buyBookButton.isHidden = true
+        self.lbPoet.numberOfLines = 0
         
         self.getContent()
         // Do any additional setup after loading the view.
@@ -113,8 +114,10 @@ class PoetViewController: UIViewController {
     @IBAction func onLinkToBookButton(_ sender: Any) {
         
         if(self.linkToBook != ""){
-            UIApplication.shared.openURL(URL(string: self.linkToBook)!)
             
+            UIApplication.shared.open(URL.init(string: self.linkToBook)!, options: [:], completionHandler: { (isSucess) in
+                
+            })
         }
         
         

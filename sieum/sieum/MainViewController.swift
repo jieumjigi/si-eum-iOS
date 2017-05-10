@@ -85,17 +85,7 @@ class MainViewController: UIViewController {
         print("didMenuPop")
         
         var menuPositionY = self.menuView.center.y
-        
-//        if( menuPositionY == screenHeight - MENU_HEIGHT + MENU_HEIGHT/2){
-//            
-//            menuPositionY = screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2
-//            
-//        }else if(menuPositionY > screenHeight - MENU_HEIGHT/2 + MENU_HEIGHT/2){
-//            
-//            menuPositionY = screenHeight - MENU_HEIGHT + MENU_HEIGHT/2
-//            
-//        }
-        
+
         
         if( menuPositionY == screenHeight - MENU_HEIGHT + MENU_HEIGHT/2){
             
@@ -106,29 +96,18 @@ class MainViewController: UIViewController {
             menuPositionY = screenHeight - MENU_HEIGHT + MENU_HEIGHT/2
             
         }
-        
-//        if( menuPositionY < screenHeight - MENU_HEIGHT/2 + MENU_HEIGHT/2  ){
-//            
-//            menuPositionY = screenHeight - MENU_HEIGHT + MENU_HEIGHT/2
-//            
-//        }else if(menuPositionY == screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2){
-//
-//            menuPositionY = screenHeight - MENU_HEIGHT + MENU_HEIGHT/2
-//
-//        }else{
-//            
-//            menuPositionY = screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2
-//
-//        }
 
-        
-//        if(menuPositionY == screenHeight - MENU_HEIGHT + MENU_HEIGHT/2){
-//            menuPositionY = screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2
-//        }
         
         let movePoint = CGPoint(x: self.menuView.center.x, y: menuPositionY)
         
-        self.menuView.center = movePoint
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+
+            self.menuView.center = movePoint
+            
+        }, completion: { finished in
+
+        })
+        
         
     }
     
