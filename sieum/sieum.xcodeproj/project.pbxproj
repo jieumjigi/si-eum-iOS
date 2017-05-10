@@ -49,6 +49,9 @@
 		C1A769A91E48C45400B5E216 /* IropkeBatangM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */; };
 		C1C209231E606A0B000C76B7 /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C209221E606A0B000C76B7 /* ImageUtil.swift */; };
 		C1C209251E607234000C76B7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C209241E607234000C76B7 /* Constants.swift */; };
+		C1FFE0991EC3599B00E5FFD0 /* launchImage2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */; };
+		C1FFE09B1EC3642100E5FFD0 /* peomCup.png in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE09A1EC3642100E5FFD0 /* peomCup.png */; };
+		C1FFE09D1EC3649800E5FFD0 /* HelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */; };
 		DB5F96F4ED2D5A9C4E45BECA /* Pods_sieum_SieumWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00E10EC84DF1B67253AFB91 /* Pods_sieum_SieumWidget.framework */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +149,9 @@
 		C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IropkeBatangM.otf; sourceTree = "<group>"; };
 		C1C209221E606A0B000C76B7 /* ImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		C1C209241E607234000C76B7 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage2.jpg; sourceTree = "<group>"; };
+		C1FFE09A1EC3642100E5FFD0 /* peomCup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peomCup.png; sourceTree = "<group>"; };
+		C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloViewController.swift; sourceTree = "<group>"; };
 		C99F21B4C27AC4E20538F3F5 /* Pods-sieumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sieumTests/Pods-sieumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D00E10EC84DF1B67253AFB91 /* Pods_sieum_SieumWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieum_SieumWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -287,6 +293,7 @@
 				C17F522B1E5DA80D006AD57A /* PageViewController.swift */,
 				C1A769771E48998100B5E216 /* PoemViewController.swift */,
 				C17F52281E5DA79E006AD57A /* PoetViewController.swift */,
+				C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */,
 				C17F52321E5DB941006AD57A /* BaseViewController.swift */,
 				C17F523B1E5DE0B0006AD57A /* InfoViewController.swift */,
 				C14B05601E6703F400EE2A58 /* Images.xcassets */,
@@ -319,6 +326,8 @@
 		C1A769A31E48A88500B5E216 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				C1FFE09A1EC3642100E5FFD0 /* peomCup.png */,
+				C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */,
 				C14B055E1E67032900EE2A58 /* launchImage.jpg */,
 				C15EDADE1E66AB4B0024C5C5 /* menu */,
 				C15EDAF11E66FE830024C5C5 /* icon.png */,
@@ -528,11 +537,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C14B055F1E67032900EE2A58 /* launchImage.jpg in Resources */,
+				C1FFE0991EC3599B00E5FFD0 /* launchImage2.jpg in Resources */,
 				C15EDAE71E66AB640024C5C5 /* share.png in Resources */,
 				C1A769A91E48C45400B5E216 /* IropkeBatangM.otf in Resources */,
 				C17F523E1E5DE4EF006AD57A /* Main.storyboard in Resources */,
 				C1A7697D1E48998100B5E216 /* Assets.xcassets in Resources */,
 				C15EDAF21E66FE830024C5C5 /* icon.png in Resources */,
+				C1FFE09B1EC3642100E5FFD0 /* peomCup.png in Resources */,
 				C15EDAE61E66AB640024C5C5 /* save.png in Resources */,
 				C15EDAE81E66AB640024C5C5 /* menubar.png in Resources */,
 				C15EDAE41E66AB640024C5C5 /* info.png in Resources */,
@@ -744,6 +755,7 @@
 			files = (
 				C17F522C1E5DA80D006AD57A /* PageViewController.swift in Sources */,
 				C152D82E1E50976800719583 /* ColorUtil.swift in Sources */,
+				C1FFE09D1EC3649800E5FFD0 /* HelloViewController.swift in Sources */,
 				C1A769781E48998100B5E216 /* PoemViewController.swift in Sources */,
 				C17F52291E5DA79E006AD57A /* PoetViewController.swift in Sources */,
 				C17F523C1E5DE0B0006AD57A /* InfoViewController.swift in Sources */,

@@ -115,9 +115,16 @@ class PoetViewController: UIViewController {
         
         if(self.linkToBook != ""){
             
-            UIApplication.shared.open(URL.init(string: self.linkToBook)!, options: [:], completionHandler: { (isSucess) in
-                
-            })
+            let bookUrl = URL.init(string: self.linkToBook)!
+            
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(bookUrl, options: [:], completionHandler: { (isSucess) in
+                    
+                })
+            } else {
+                // Fallback on earlier versions
+                UIApplication.shared.openURL(bookUrl)
+            }
         }
         
         

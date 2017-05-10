@@ -263,10 +263,18 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
             // Create buttons
             let confirmButton = DefaultButton(title: "확인") {
                 
-                UIApplication.shared.open(NSURL(string: "itms://itunes.com/apps/Facebook")! as URL, options: [:], completionHandler: { (completion) in
-                    
-                    
-                })
+                let facebookUrl = NSURL(string: "itms://itunes.com/apps/Facebook")! as URL
+                
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(facebookUrl, options: [:], completionHandler: { (completion) in
+                        
+                        
+                    })
+                } else {
+                    // Fallback on earlier versions
+                    UIApplication.shared.openURL(facebookUrl)
+
+                }
             }
             
             

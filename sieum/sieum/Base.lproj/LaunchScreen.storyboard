@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="nN2-fz-USF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="nN2-fz-USF">
                                 <rect key="frame" x="0.0" y="145.5" width="375" height="375"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="nN2-fz-USF" secondAttribute="height" multiplier="1:1" id="fP5-qH-ryJ"/>
@@ -44,6 +44,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchImage.jpg" width="2362" height="2362"/>
+        <image name="launchImage2.jpg" width="2362" height="2362"/>
     </resources>
 </document>

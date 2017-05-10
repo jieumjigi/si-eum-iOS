@@ -41,7 +41,9 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
     // MARK: - UI
     
     func setColor(){
-        self.view.backgroundColor = UIColor(red: (247/255.0), green: (247/255.0), blue: (247/255.0), alpha: 1.0)
+//        self.view.backgroundColor = UIColor(red: (247/255.0), green: (247/255.0), blue: (247/255.0), alpha: 1.0)
+        self.view.backgroundColor = UIColor(red: (254.0/255.0), green: (255.0/255.0), blue: (250.0/255.0), alpha: 1.0)
+
     }
     
     
@@ -59,7 +61,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
     
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.newViewController(name: "PoemViewController") ,
-                self.newViewController(name: "PoetViewController") ]
+                self.newViewController(name: "PoetViewController") ,
+                self.newViewController(name: "HelloViewController")]
     }()
     
     private func newViewController(name: String) -> UIViewController {
