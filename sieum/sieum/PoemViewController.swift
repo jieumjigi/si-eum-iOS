@@ -35,7 +35,6 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbPoet: UILabel!
     @IBOutlet weak var lbBody: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
@@ -111,6 +110,9 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
                             let poetName = items["poetName"] as? String
                             var contents = items["contents"] as? String
                             
+                            // test
+                            contents = "오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n"
+                            
                             contents = contents?.replacingOccurrences(of: "\\               ", with: "\n")
                             
                             log.info("title\(String(describing: title))")
@@ -124,7 +126,6 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
                             
                             
                             UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-                                self.lbTitle.alpha = 0.0
                                 self.lbPoet.alpha = 0.0
                                 self.lbBody.alpha = 0.0
                                 
@@ -147,7 +148,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
                                 
                                 // Fade in
                                 UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-                                    self.lbTitle.alpha = 1.0
+
                                     self.lbPoet.alpha = 1.0
                                     self.lbBody.alpha = 1.0
 
@@ -198,7 +199,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
             let colorPicker = DBImageColorPicker.init(from: bgImage.image, with: .default)
             
             bgView.backgroundColor = colorPicker?.backgroundColor
-            lbTitle.textColor = colorPicker?.primaryTextColor
+//            lbTitle.textColor = colorPicker?.primaryTextColor
             lbPoet.textColor = colorPicker?.primaryTextColor
             
             if ColorUtil().isLight(targetColor: (bgView.backgroundColor?.cgColor)!) {

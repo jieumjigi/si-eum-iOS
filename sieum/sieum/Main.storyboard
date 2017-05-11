@@ -31,34 +31,27 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2t-Np-Wcb">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="56" y="75" width="263" height="522"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-zN-ZFO">
-                                        <rect key="frame" x="76" y="0.0" width="223" height="0.0"/>
-                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시를 기다리는 중" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80S-0q-WBQ">
-                                        <rect key="frame" x="56" y="100" width="263" height="18.5"/>
+                                        <rect key="frame" x="0.0" y="30" width="263" height="18.5"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
                                         <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcb-6d-t8D">
-                                        <rect key="frame" x="16" y="178.5" width="343" height="0.0"/>
+                                        <rect key="frame" x="-40" y="78.5" width="343" height="0.0"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
                                         <color key="textColor" red="0.82036119699478149" green="0.59896218776702881" blue="0.59676283597946167" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="oV6-zN-ZFO" firstAttribute="centerX" secondItem="W2t-Np-Wcb" secondAttribute="centerX" id="TQ4-6f-gYE"/>
-                                    <constraint firstItem="oV6-zN-ZFO" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" id="c45-kD-GNP"/>
-                                    <constraint firstAttribute="bottom" secondItem="vcb-6d-t8D" secondAttribute="bottom" constant="100" id="iR4-gS-1a9"/>
-                                    <constraint firstAttribute="trailing" secondItem="oV6-zN-ZFO" secondAttribute="trailing" constant="60" id="qrF-Wy-AWo"/>
-                                    <constraint firstItem="80S-0q-WBQ" firstAttribute="top" secondItem="oV6-zN-ZFO" secondAttribute="bottom" constant="100" id="t4q-q1-bJO"/>
-                                    <constraint firstItem="vcb-6d-t8D" firstAttribute="top" secondItem="80S-0q-WBQ" secondAttribute="bottom" constant="60" id="yJb-5B-qtx"/>
+                                    <constraint firstItem="80S-0q-WBQ" firstAttribute="leading" secondItem="W2t-Np-Wcb" secondAttribute="leading" id="4lI-wz-aHH"/>
+                                    <constraint firstAttribute="bottom" secondItem="vcb-6d-t8D" secondAttribute="bottom" constant="30" id="iR4-gS-1a9"/>
+                                    <constraint firstItem="80S-0q-WBQ" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" constant="30" id="qW2-kd-HO2"/>
+                                    <constraint firstAttribute="trailing" secondItem="80S-0q-WBQ" secondAttribute="trailing" id="vF6-YB-o9y"/>
+                                    <constraint firstItem="vcb-6d-t8D" firstAttribute="top" secondItem="80S-0q-WBQ" secondAttribute="bottom" constant="30" id="yJb-5B-qtx"/>
                                 </constraints>
                             </scrollView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="22F-ZE-7LO">
@@ -70,20 +63,18 @@
                             <constraint firstAttribute="trailingMargin" secondItem="80S-0q-WBQ" secondAttribute="trailing" constant="40" id="4Tz-rc-dx9"/>
                             <constraint firstItem="80S-0q-WBQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="7gQ-Ir-OKr"/>
                             <constraint firstAttribute="trailing" secondItem="i7M-Qg-30Y" secondAttribute="trailing" id="95W-wc-xrh"/>
-                            <constraint firstItem="oV6-zN-ZFO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="60" id="BaU-8m-0kR"/>
                             <constraint firstItem="22F-ZE-7LO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="COT-Uy-PQa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="oV6-zN-ZFO" secondAttribute="trailing" constant="60" id="LX4-M8-1vx"/>
-                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="OvA-la-3dO"/>
                             <constraint firstItem="22F-ZE-7LO" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Wny-Ur-vDd"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i7M-Qg-30Y" secondAttribute="bottom" id="Yzc-Rw-aL4"/>
-                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="bmX-mI-kwT"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="bottom" id="eLG-Rw-VoV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="W2t-Np-Wcb" secondAttribute="trailing" constant="40" id="avs-RR-K6P"/>
+                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="55" id="bmX-mI-kwT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="bottom" constant="70" id="eLG-Rw-VoV"/>
                             <constraint firstItem="vcb-6d-t8D" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fVn-oX-mWy"/>
+                            <constraint firstItem="W2t-Np-Wcb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="ghv-Px-xRg"/>
                             <constraint firstItem="i7M-Qg-30Y" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="im2-Ri-Qcs"/>
                             <constraint firstItem="i7M-Qg-30Y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mNs-ya-mBZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vcb-6d-t8D" secondAttribute="trailing" id="oq5-go-E23"/>
                             <constraint firstItem="W2t-Np-Wcb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yFq-o8-oJT"/>
-                            <constraint firstAttribute="trailing" secondItem="W2t-Np-Wcb" secondAttribute="trailing" id="yIh-KQ-5d5"/>
                         </constraints>
                     </view>
                     <connections>
@@ -91,7 +82,6 @@
                         <outlet property="bgView" destination="8bC-Xf-vdC" id="eXa-e4-7vN"/>
                         <outlet property="lbBody" destination="80S-0q-WBQ" id="U3a-o5-nx3"/>
                         <outlet property="lbPoet" destination="vcb-6d-t8D" id="Shg-yd-Eyk"/>
-                        <outlet property="lbTitle" destination="oV6-zN-ZFO" id="qge-NN-civ"/>
                         <outlet property="loadingIndicator" destination="22F-ZE-7LO" id="nrt-Zt-nNy"/>
                         <outlet property="scrollView" destination="W2t-Np-Wcb" id="hQT-FT-Gbf"/>
                     </connections>
@@ -300,28 +290,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hn-CO-1Q0">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hn-CO-1Q0">
+                                <rect key="frame" x="56" y="75" width="263" height="522"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-wP-86E">
-                                        <rect key="frame" x="21" y="70" width="343" height="0.0"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-wP-86E">
+                                        <rect key="frame" x="0.0" y="0.0" width="263" height="0.0"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
                                         <color key="textColor" red="0.83921568627450982" green="0.61176470588235299" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시인을 기다리는 중" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyt-zj-9gm">
-                                        <rect key="frame" x="21" y="85" width="333" height="18.5"/>
-                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
-                                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1EB-lY-MiL">
-                                        <rect key="frame" x="229" y="119" width="125" height="30"/>
+                                        <rect key="frame" x="138" y="47" width="125" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="eK2-1b-0xd"/>
                                             <constraint firstAttribute="width" constant="125" id="g2r-Jv-ze2"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
                                         <state key="normal" title="시집 구매하기 &gt;">
                                             <color key="titleColor" red="0.83921568627450982" green="0.61176470588235299" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -329,12 +313,18 @@
                                             <action selector="onLinkToBookButton:" destination="sCs-3h-fMS" eventType="touchUpInside" id="n0m-Ko-h4T"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시인을 기다리는 중" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyt-zj-9gm">
+                                        <rect key="frame" x="0.0" y="15" width="263" height="17"/>
+                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
+                                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Zyt-zj-9gm" firstAttribute="leading" secondItem="7hn-CO-1Q0" secondAttribute="leading" constant="21" id="9TD-Ds-sXb"/>
-                                    <constraint firstAttribute="trailing" secondItem="Zyt-zj-9gm" secondAttribute="trailing" constant="21" id="V6G-6c-V1s"/>
-                                    <constraint firstItem="pOV-wP-86E" firstAttribute="top" secondItem="7hn-CO-1Q0" secondAttribute="top" constant="70" id="nzy-hk-4Y6"/>
-                                    <constraint firstAttribute="bottom" secondItem="1EB-lY-MiL" secondAttribute="bottom" constant="100" id="oyH-kJ-TAR"/>
+                                    <constraint firstItem="pOV-wP-86E" firstAttribute="top" secondItem="7hn-CO-1Q0" secondAttribute="top" id="nzy-hk-4Y6"/>
+                                    <constraint firstItem="Zyt-zj-9gm" firstAttribute="leading" secondItem="7hn-CO-1Q0" secondAttribute="leading" id="oFR-Y6-Tf5"/>
+                                    <constraint firstAttribute="bottom" secondItem="1EB-lY-MiL" secondAttribute="bottom" constant="30" id="oyH-kJ-TAR"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zyt-zj-9gm" secondAttribute="trailing" id="qGQ-7d-gTa"/>
                                     <constraint firstItem="1EB-lY-MiL" firstAttribute="top" secondItem="Zyt-zj-9gm" secondAttribute="bottom" constant="15" id="rto-bJ-PrH"/>
                                     <constraint firstItem="Zyt-zj-9gm" firstAttribute="top" secondItem="pOV-wP-86E" secondAttribute="bottom" constant="15" id="xih-lV-8XM"/>
                                 </constraints>
@@ -342,15 +332,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.99607843137254903" green="1" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="7hn-CO-1Q0" firstAttribute="top" secondItem="EaO-iq-jjg" secondAttribute="bottom" id="09J-ds-vhz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zyt-zj-9gm" secondAttribute="trailing" constant="5" id="Efg-R0-WFm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pOV-wP-86E" secondAttribute="trailing" constant="-5" id="Ldf-4m-4If"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Zyt-zj-9gm" secondAttribute="leading" constant="-5" id="RND-dq-eJa"/>
-                            <constraint firstAttribute="trailing" secondItem="7hn-CO-1Q0" secondAttribute="trailing" id="SKG-yT-0wb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="1EB-lY-MiL" secondAttribute="trailing" constant="5" id="TTR-Ph-PJJ"/>
-                            <constraint firstItem="pOV-wP-86E" firstAttribute="leading" secondItem="U7z-wr-98U" secondAttribute="leadingMargin" constant="5" id="ZVI-c4-38W"/>
-                            <constraint firstItem="3bC-xw-12o" firstAttribute="top" secondItem="7hn-CO-1Q0" secondAttribute="bottom" id="kzk-AD-aJQ"/>
-                            <constraint firstItem="7hn-CO-1Q0" firstAttribute="leading" secondItem="U7z-wr-98U" secondAttribute="leading" id="pEo-1F-4ok"/>
+                            <constraint firstItem="7hn-CO-1Q0" firstAttribute="top" secondItem="EaO-iq-jjg" secondAttribute="bottom" constant="55" id="09J-ds-vhz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zyt-zj-9gm" secondAttribute="trailing" constant="40" id="2pv-2a-kqq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pOV-wP-86E" secondAttribute="trailing" constant="40" id="Ldf-4m-4If"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1EB-lY-MiL" secondAttribute="trailing" constant="40" id="TTR-Ph-PJJ"/>
+                            <constraint firstItem="pOV-wP-86E" firstAttribute="leading" secondItem="U7z-wr-98U" secondAttribute="leadingMargin" constant="40" id="ZVI-c4-38W"/>
+                            <constraint firstItem="7hn-CO-1Q0" firstAttribute="leading" secondItem="U7z-wr-98U" secondAttribute="leadingMargin" constant="40" id="bPI-Qx-zaC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7hn-CO-1Q0" secondAttribute="trailing" constant="40" id="kGe-eS-AVP"/>
+                            <constraint firstItem="3bC-xw-12o" firstAttribute="top" secondItem="7hn-CO-1Q0" secondAttribute="bottom" constant="70" id="kzk-AD-aJQ"/>
+                            <constraint firstItem="Zyt-zj-9gm" firstAttribute="leading" secondItem="U7z-wr-98U" secondAttribute="leadingMargin" constant="40" id="uMp-5g-PJc"/>
                         </constraints>
                     </view>
                     <connections>
@@ -382,7 +372,7 @@
                                     <constraint firstAttribute="height" constant="30" id="YTi-bx-gnK"/>
                                 </constraints>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2X5-eq-wBK">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2X5-eq-wBK">
                                 <rect key="frame" x="16" y="150" width="343" height="517"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jD3-UV-cXS">

@@ -86,7 +86,16 @@ class PoetViewController: UIViewController {
                                     UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                                         
                                         self.lbPoet.text = poetName
-                                        self.lbIntroPoet.text = introPoet
+//                                        self.lbIntroPoet.text = introPoet
+                                        
+                                        let paragraphStyle = NSMutableParagraphStyle()
+                                        paragraphStyle.lineSpacing = 5
+                                        paragraphStyle.alignment = .left
+                                        
+                                        let attrString = NSMutableAttributedString(string: introPoet!)
+                                        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+                                        self.lbIntroPoet.attributedText = attrString
+                                        
                                         self.lbIntroPoet.textAlignment = .left
                                         
                                         self.lbPoet.alpha = 1.0
