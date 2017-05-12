@@ -16,19 +16,34 @@ class PoetViewController: UIViewController {
     @IBOutlet weak var buyBookButton: UIButton!
     var linkToBook = ""
     
+    var accessDate : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.buyBookButton.isHidden = true
         self.lbPoet.numberOfLines = 0
         
-        self.getContent()
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if(self.accessDate == nil || self.accessDate != DateUtil().getDate() ){
+            
+            self.accessDate = DateUtil().getDate()
+            
+            self.getContent()
+            
+        }
+        
     }
     
     

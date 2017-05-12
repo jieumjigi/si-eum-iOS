@@ -39,23 +39,36 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     @IBOutlet weak var lbBody: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
-
+    var accessDate : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
-        
-        getContent()
         setAttribute()
         setGUI()
         addObserver()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if(self.accessDate == nil || self.accessDate != DateUtil().getDate() ){
+            
+            self.accessDate = DateUtil().getDate()
+            
+            self.getContent()
+            
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     
     func convertToDictionary(text: String) -> [String: Any]? {
@@ -72,6 +85,8 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     
 
     func getContent(){
+        
+        
         
         let todayPoemUrl = Constants.url.base.appending("poem/poemOfToday/")
 //        let todayPoemUrl = Constants.url.base.appending("poem/getPoem?/")
@@ -232,7 +247,16 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
         
         if( UIApplication.shared.canOpenURL(URL.init(string: "fb://")!) ){ // 페이스북 앱 존재
             
+            let tempViewRect = self.view.frame
+            
+            let adjustedHeight = self.scrollView.contentSize.height + 140
+            
+            self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: adjustedHeight)
+            
             let image = UIImage.init(view: self.view)
+            
+            self.view.frame = tempViewRect
+            
             
             let photo = FBSDKSharePhoto.init()
             photo.image = image
@@ -356,8 +380,15 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     
     func didRequestSave(){
 
+        let tempViewRect = self.view.frame
+        
+        let adjustedHeight = self.scrollView.contentSize.height + 140
+        
+        self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: adjustedHeight)
         
         let image = UIImage.init(view: self.view)
+        
+        self.view.frame = tempViewRect
 
         self.loadingIndicator.startAnimating()
 
