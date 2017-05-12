@@ -35,6 +35,11 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var contentTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentBottomConstraint: NSLayoutConstraint!
+    
+    
+    
     @IBOutlet weak var lbPoet: UILabel!
     @IBOutlet weak var lbBody: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
@@ -125,10 +130,10 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
                             let poetName = items["poetName"] as? String
                             var contents = items["contents"] as? String
                             
-                            // test
-                            contents = "오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n"
+////                            // test
+//                            contents = "오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n"
                             
-                            contents = contents?.replacingOccurrences(of: "\\               ", with: "\n")
+//                            contents = contents?.replacingOccurrences(of: "\\               ", with: "\n")
                             
                             log.info("title\(String(describing: title))")
                             log.info("poetName\(String(describing: poetName))")
@@ -161,13 +166,56 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
                                 attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
                                 self.lbBody.attributedText = attrString
                                 
-                                // Fade in
-                                UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                                
 
+
+//                                
+//                                // Fade in
+//                                UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+//
+//                                    self.lbPoet.alpha = 1.0
+//                                    self.lbBody.alpha = 1.0
+//                                    
+//
+//                                }, completion: nil)
+                                
+                                
+                                UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { 
+                                    
                                     self.lbPoet.alpha = 1.0
                                     self.lbBody.alpha = 1.0
 
-                                }, completion: nil)
+                                    
+                                }, completion: { (success) in
+                                    
+                                    let emptySpacing = self.scrollView.frame.size.height - self.scrollView.contentSize.height
+                                    
+                                    log.verbose("frame height : \(self.scrollView.frame.size.height)")
+                                    log.verbose("content height : \(self.scrollView.contentSize.height)")
+                                    log.verbose("emptySpacing : \(emptySpacing)")
+                                    
+                                    
+                                    if(emptySpacing > 0){
+                                        
+                                        self.contentTopConstraint.constant = CGFloat(Int(emptySpacing)/2)
+//                                        
+//                                        UIView.animate(withDuration: 1.5) {
+//                                            
+//                                            self.view.layoutIfNeeded()
+//                                            
+//                                        }
+                                        
+                                        log.verbose("공간이 남음")
+
+                                        UIView.animate(withDuration: 1.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                                            
+                                            self.view.layoutIfNeeded()
+
+                                        }, completion: nil)
+                                        
+                                    }
+                                    
+                                })
                             })
 
                         }

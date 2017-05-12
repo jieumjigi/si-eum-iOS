@@ -41,6 +41,7 @@
 		C17F523A1E5DC2EB006AD57A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F52391E5DC2EB006AD57A /* MainViewController.swift */; };
 		C17F523C1E5DE0B0006AD57A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F523B1E5DE0B0006AD57A /* InfoViewController.swift */; };
 		C17F523E1E5DE4EF006AD57A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C17F523D1E5DE4EF006AD57A /* Main.storyboard */; };
+		C19AC43A1EC5DAA700068A21 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19AC4391EC5DAA700068A21 /* DateUtil.swift */; };
 		C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769751E48998100B5E216 /* AppDelegate.swift */; };
 		C1A769781E48998100B5E216 /* PoemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769771E48998100B5E216 /* PoemViewController.swift */; };
 		C1A7697D1E48998100B5E216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1A7697C1E48998100B5E216 /* Assets.xcassets */; };
@@ -135,6 +136,7 @@
 		C17F52391E5DC2EB006AD57A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C17F523B1E5DE0B0006AD57A /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = ../InfoViewController.swift; sourceTree = "<group>"; };
 		C17F523D1E5DE4EF006AD57A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C19AC4391EC5DAA700068A21 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		C1A769721E48998100B5E216 /* sieum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sieum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A769751E48998100B5E216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1A769771E48998100B5E216 /* PoemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemViewController.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				C17F52341E5DBA23006AD57A /* Font */,
 				C152D82D1E50976800719583 /* ColorUtil.swift */,
 				C1C209221E606A0B000C76B7 /* ImageUtil.swift */,
+				C19AC4391EC5DAA700068A21 /* DateUtil.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -766,6 +769,7 @@
 				C1C209251E607234000C76B7 /* Constants.swift in Sources */,
 				C17F523A1E5DC2EB006AD57A /* MainViewController.swift in Sources */,
 				C1C209231E606A0B000C76B7 /* ImageUtil.swift in Sources */,
+				C19AC43A1EC5DAA700068A21 /* DateUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

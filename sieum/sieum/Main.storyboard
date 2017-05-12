@@ -40,7 +40,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcb-6d-t8D">
-                                        <rect key="frame" x="-40" y="33.5" width="343" height="0.0"/>
+                                        <rect key="frame" x="-40" y="58.5" width="343" height="0.0"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
                                         <color key="textColor" red="0.82036119699478149" green="0.59896218776702881" blue="0.59676283597946167" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                                     <constraint firstAttribute="bottom" secondItem="vcb-6d-t8D" secondAttribute="bottom" id="iR4-gS-1a9"/>
                                     <constraint firstItem="80S-0q-WBQ" firstAttribute="top" secondItem="W2t-Np-Wcb" secondAttribute="top" id="qW2-kd-HO2"/>
                                     <constraint firstAttribute="trailing" secondItem="80S-0q-WBQ" secondAttribute="trailing" id="vF6-YB-o9y"/>
-                                    <constraint firstItem="vcb-6d-t8D" firstAttribute="top" secondItem="80S-0q-WBQ" secondAttribute="bottom" constant="15" id="yJb-5B-qtx"/>
+                                    <constraint firstItem="vcb-6d-t8D" firstAttribute="top" secondItem="80S-0q-WBQ" secondAttribute="bottom" constant="40" id="yJb-5B-qtx"/>
                                 </constraints>
                             </scrollView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="22F-ZE-7LO">
@@ -80,6 +80,8 @@
                     <connections>
                         <outlet property="bgImage" destination="i7M-Qg-30Y" id="DUH-7L-FbI"/>
                         <outlet property="bgView" destination="8bC-Xf-vdC" id="eXa-e4-7vN"/>
+                        <outlet property="contentBottomConstraint" destination="iR4-gS-1a9" id="Mfa-Ms-rIR"/>
+                        <outlet property="contentTopConstraint" destination="qW2-kd-HO2" id="OMI-Hd-L1Z"/>
                         <outlet property="lbBody" destination="80S-0q-WBQ" id="U3a-o5-nx3"/>
                         <outlet property="lbPoet" destination="vcb-6d-t8D" id="Shg-yd-Eyk"/>
                         <outlet property="loadingIndicator" destination="22F-ZE-7LO" id="nrt-Zt-nNy"/>
