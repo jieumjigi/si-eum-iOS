@@ -14,7 +14,7 @@ struct Constants {
 //        static let base = "https://si-eum.appspot.com/poem/getPoem?"
         static let base = "https://si-eum-165814.appspot.com/"
 //        static let base = "https://si-eum-petercha90.c9users.io/"
-        static let blog = "https://jieumjigi.github.io"
+        static let blog = "https://www.facebook.com/tasteapoem/"
         static let webSite = "https://jieumjigi.github.io/si-eum-web/"
     }
     
@@ -24,5 +24,9 @@ struct Constants {
         static let requestTimer = NSNotification.Name(rawValue: "REQUEST_TIMER")
         static let requestInfo = NSNotification.Name(rawValue: "REQUEST_INFO")
         static let requestMenuPop = NSNotification.Name(rawValue: "REQUEST_MENU_POP")
+        
+        static let didMenuOpen = NSNotification.Name(rawValue: "DID_MENU_OPEN")
+        static let didMenuClose = NSNotification.Name(rawValue: "DID_MENU_CLOSE")
+
     }
 }

@@ -13,11 +13,13 @@ import UserNotifications
 
 class MenuViewController: UIViewController {
 
-    
-    
+    @IBOutlet weak var openButton: UIButton!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.addObserver()
         
     }
 
@@ -25,6 +27,25 @@ class MenuViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func addObserver(){
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.handleMenuOpen),
+            name: Constants.observer.didMenuOpen ,
+            object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.handleMenuClose),
+            name: Constants.observer.didMenuClose ,
+            object: nil)
+
+        
+    }
+
+    
 
     @IBAction func onShareButton(_ sender: Any) {
         let eventName = "onShareButton"
@@ -296,11 +317,36 @@ class MenuViewController: UIViewController {
         FBSDKAppEvents.logEvent(eventName)
         log.verbose(eventName)
         NotificationCenter.default.post(name: Constants.observer.requestMenuPop, object: nil)
-
+        
     }
     
     
+    
+    
+    
+    
     // MARK: - Observer
+    
+    func handleMenuOpen(){
+        
+        UIView.animate(withDuration: 0.5) {
+            
+            self.openButton.alpha = 0.0
+            
+        }
+        
+    }
+    
+    func handleMenuClose(){
+        
+        UIView.animate(withDuration: 0.5) {
+            
+            self.openButton.alpha = 1.0
+
+            
+        }
+        
+    }
     
     
     /*

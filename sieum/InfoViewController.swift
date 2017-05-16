@@ -11,7 +11,7 @@ import UIKit
 class InfoViewController: UITableViewController {
 
 //    var menu = ["지음지기 블로그", "문의하기", "오픈소스 라이센스"]
-    var menu = ["지음지기 블로그", "문의하기"]
+    var menu = ["시음 페이스북", "문의하기"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,14 @@ class InfoViewController: UITableViewController {
     }
     
     func onDoneItem(){
-        self.navigationController?.dismiss(animated: true, completion: nil)
+        
+        self.navigationController?.dismiss(animated: true, completion: { 
+            
+            NotificationCenter.default.post(name: Constants.observer.didMenuClose, object: nil)
+            
+        })
+//        self.navigationController?.dismiss(animated: true, completion: nil)
+        
     }
     
     

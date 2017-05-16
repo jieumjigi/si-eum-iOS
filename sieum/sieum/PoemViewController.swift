@@ -126,12 +126,17 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
                         
                         if let items = items[0] as? NSDictionary {
                             
-                            let title = items["title"] as? String
-                            let poetName = items["poetName"] as? String
+                            var title = items["title"] as? String
+                            var poetName = items["poetName"] as? String
                             var contents = items["contents"] as? String
                             
 ////                            // test
 //                            contents = "오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n"
+                            
+                            contents = "서로 다른 언어를\n배우는 것은 어려운 일이다\n\n서로 다른 문화와\n생각의 방식\n하물며 농담까지도 다르다\n\n당신의 언어를 알고싶다\n\n어떤 생각을 하는지\n또 어떤 것을 좋아하는지\n아주 작은 것들 까지도 알고싶다\n\n아기가 옹알이를 하듯\n당신을 배우고 싶다\n\n언젠가 당신의 언어로\n당신에게 사랑한다 말할 수 있을 때까지."
+                            title = "당신의 언어"
+                            poetName = "위은총"
+                            
                             
 //                            contents = contents?.replacingOccurrences(of: "\\               ", with: "\n")
                             
@@ -139,13 +144,13 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
                             log.info("poetName\(String(describing: poetName))")
                             log.info("contents\(String(describing: contents))")
                             
-                            
 //                            self.lbTitle.text = title
 //                            self.lbPoet.text = author
 //                            self.lbBody.text = contents
                             
                             
                             UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                                
                                 self.lbPoet.alpha = 0.0
                                 self.lbBody.alpha = 0.0
                                 
@@ -159,7 +164,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
 //                                self.lbBody.text = contents
                                 
                                 let paragraphStyle = NSMutableParagraphStyle()
-                                paragraphStyle.lineSpacing = 7
+                                paragraphStyle.lineSpacing = 6
                                 paragraphStyle.alignment = .left
                         
                                 let attrString = NSMutableAttributedString(string: contents!)
@@ -184,36 +189,35 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
                                     
                                     self.lbPoet.alpha = 1.0
                                     self.lbBody.alpha = 1.0
+                                    
+                                    // 시가 짧을 때 가운데로 이동시키는 코드
+                                    
+//                                    let emptySpacing = self.scrollView.frame.size.height - self.scrollView.contentSize.height
+//                                    
+//                                    log.verbose("frame height : \(self.scrollView.frame.size.height)")
+//                                    log.verbose("content height : \(self.scrollView.contentSize.height)")
+//                                    log.verbose("emptySpacing : \(emptySpacing)")
+//                                    
+//                                    
+//                                    if(emptySpacing > 0){
+//                                        
+//                                        self.contentTopConstraint.constant = CGFloat(Int(emptySpacing)/2)
+//
+//                                        
+//                                        log.verbose("공간이 남음")
+//                                        
+//                                        UIView.animate(withDuration: 1.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+//                                            
+//                                            self.view.layoutIfNeeded()
+//                                            
+//                                        }, completion: nil)
+//                                        
+//                                    }
 
                                     
                                 }, completion: { (success) in
                                     
-                                    let emptySpacing = self.scrollView.frame.size.height - self.scrollView.contentSize.height
-                                    
-                                    log.verbose("frame height : \(self.scrollView.frame.size.height)")
-                                    log.verbose("content height : \(self.scrollView.contentSize.height)")
-                                    log.verbose("emptySpacing : \(emptySpacing)")
-                                    
-                                    
-                                    if(emptySpacing > 0){
-                                        
-                                        self.contentTopConstraint.constant = CGFloat(Int(emptySpacing)/2)
-//                                        
-//                                        UIView.animate(withDuration: 1.5) {
-//                                            
-//                                            self.view.layoutIfNeeded()
-//                                            
-//                                        }
-                                        
-                                        log.verbose("공간이 남음")
 
-                                        UIView.animate(withDuration: 1.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-                                            
-                                            self.view.layoutIfNeeded()
-
-                                        }, completion: nil)
-                                        
-                                    }
                                     
                                 })
                             })
@@ -297,7 +301,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
             
             let tempViewRect = self.view.frame
             
-            let adjustedHeight = self.scrollView.contentSize.height + 140
+            let adjustedHeight = self.scrollView.contentSize.height + 150
             
             self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: adjustedHeight)
             
@@ -430,7 +434,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
 
         let tempViewRect = self.view.frame
         
-        let adjustedHeight = self.scrollView.contentSize.height + 140
+        let adjustedHeight = self.scrollView.contentSize.height + 150
         
         self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: adjustedHeight)
         
