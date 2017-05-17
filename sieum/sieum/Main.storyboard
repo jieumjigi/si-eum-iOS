@@ -199,24 +199,32 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menubar.png" translatesAutoresizingMaskIntoConstraints="NO" id="nW0-03-V2T">
                                 <rect key="frame" x="0.0" y="0.0" width="64" height="330"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYv-6E-lT4">
-                                <rect key="frame" x="17" y="75" width="30" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dYv-6E-lT4">
+                                <rect key="frame" x="18" y="50" width="28" height="35"/>
                                 <accessibility key="accessibilityConfiguration" label="공유하기"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="0ok-fR-Vn2"/>
-                                    <constraint firstAttribute="width" constant="30" id="fLE-bz-UmL"/>
+                                    <constraint firstAttribute="height" constant="35" id="0ok-fR-Vn2"/>
+                                    <constraint firstAttribute="width" constant="28" id="fLE-bz-UmL"/>
                                 </constraints>
-                                <state key="normal" image="share.png"/>
+                                <state key="normal" image="share.png">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="공유하기">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="18"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="onShareButton:" destination="jvo-dj-hC6" eventType="touchUpInside" id="4fI-e8-yXO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsx-LK-sxw">
-                                <rect key="frame" x="17" y="135" width="30" height="38"/>
+                                <rect key="frame" x="15.5" y="123" width="33" height="30"/>
                                 <accessibility key="accessibilityConfiguration" label="저장하기"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="8ZR-Ac-Ep7"/>
-                                    <constraint firstAttribute="width" constant="30" id="yWQ-SU-9HO"/>
+                                    <constraint firstAttribute="height" constant="30" id="8ZR-Ac-Ep7"/>
+                                    <constraint firstAttribute="width" constant="33" id="yWQ-SU-9HO"/>
                                 </constraints>
                                 <state key="normal" image="save.png"/>
                                 <connections>
@@ -224,10 +232,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Nv-Op-C1v">
-                                <rect key="frame" x="15.5" y="193" width="33" height="45"/>
+                                <rect key="frame" x="15.5" y="191" width="33" height="33"/>
                                 <accessibility key="accessibilityConfiguration" label="알람 설정"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="Bxq-gW-b5t"/>
+                                    <constraint firstAttribute="height" constant="33" id="Bxq-gW-b5t"/>
                                     <constraint firstAttribute="width" constant="33" id="IAX-Iu-0O2"/>
                                 </constraints>
                                 <state key="normal" image="alarm.png"/>
@@ -235,11 +243,45 @@
                                     <action selector="onTimerButton:" destination="jvo-dj-hC6" eventType="touchUpInside" id="iid-TG-VQh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzf-Y3-ct6">
+                                <rect key="frame" x="0.0" y="0.0" width="64" height="30"/>
+                                <accessibility key="accessibilityConfiguration" label="메뉴 열기"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ah2-jP-Sy5"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="onMenuPopButton:" destination="jvo-dj-hC6" eventType="touchUpInside" id="oX8-Bm-rsU"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="공유하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddA-H4-rjw">
+                                <rect key="frame" x="14" y="90" width="36" height="13"/>
+                                <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="10"/>
+                                <color key="textColor" red="0.30583310127258301" green="0.3058302104473114" blue="0.3099229633808136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="저장하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sr-bj-0Ol">
+                                <rect key="frame" x="14" y="158" width="36" height="13"/>
+                                <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="10"/>
+                                <color key="textColor" red="0.30583310127258301" green="0.3058302104473114" blue="0.3099229633808136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알람설정" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uin-h6-WOy">
+                                <rect key="frame" x="14" y="229" width="36" height="13"/>
+                                <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="10"/>
+                                <color key="textColor" red="0.30583310127258301" green="0.3058302104473114" blue="0.3099229633808136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ski-NO-gKe">
+                                <rect key="frame" x="12" y="300" width="40.5" height="13"/>
+                                <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="10"/>
+                                <color key="textColor" red="0.30583310127258301" green="0.3058302104473114" blue="0.3099229633808136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHp-iJ-WFG">
-                                <rect key="frame" x="15.5" y="258" width="33" height="43"/>
+                                <rect key="frame" x="15" y="262" width="33" height="33"/>
                                 <accessibility key="accessibilityConfiguration" label="about us"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="hJP-xb-7ig"/>
+                                    <constraint firstAttribute="height" constant="33" id="hJP-xb-7ig"/>
                                     <constraint firstAttribute="width" constant="33" id="r8m-MW-tBR"/>
                                 </constraints>
                                 <state key="normal" image="aboutus.png"/>
@@ -247,34 +289,32 @@
                                     <action selector="onInfoButton:" destination="jvo-dj-hC6" eventType="touchUpInside" id="sVc-HF-b8j"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzf-Y3-ct6">
-                                <rect key="frame" x="0.0" y="0.0" width="64" height="55"/>
-                                <accessibility key="accessibilityConfiguration" label="메뉴 열기"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="ah2-jP-Sy5"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="onMenuPopButton:" destination="jvo-dj-hC6" eventType="touchUpInside" id="oX8-Bm-rsU"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="7Nv-Op-C1v" firstAttribute="top" secondItem="Qsx-LK-sxw" secondAttribute="bottom" constant="20" id="07F-UM-N5g"/>
                             <constraint firstItem="Qsx-LK-sxw" firstAttribute="centerX" secondItem="nyo-dX-7A3" secondAttribute="centerX" id="0Lf-SZ-R5r"/>
                             <constraint firstAttribute="trailing" secondItem="Hzf-Y3-ct6" secondAttribute="trailing" id="1eH-BY-0I8"/>
                             <constraint firstItem="nW0-03-V2T" firstAttribute="top" secondItem="E6Z-ky-RSl" secondAttribute="bottom" id="6xC-cl-6IH"/>
-                            <constraint firstItem="Qsx-LK-sxw" firstAttribute="top" secondItem="dYv-6E-lT4" secondAttribute="bottom" constant="20" id="Cz4-9G-cpA"/>
+                            <constraint firstItem="ddA-H4-rjw" firstAttribute="centerX" secondItem="nW0-03-V2T" secondAttribute="centerX" id="8i6-3v-Z8v"/>
+                            <constraint firstItem="ski-NO-gKe" firstAttribute="top" secondItem="gHp-iJ-WFG" secondAttribute="bottom" constant="5" id="ALu-JA-ibb"/>
                             <constraint firstItem="dYv-6E-lT4" firstAttribute="centerX" secondItem="nyo-dX-7A3" secondAttribute="centerX" id="Eun-dK-gG9"/>
+                            <constraint firstItem="1sr-bj-0Ol" firstAttribute="centerX" secondItem="nW0-03-V2T" secondAttribute="centerX" id="GHj-s6-wlK"/>
                             <constraint firstItem="nW0-03-V2T" firstAttribute="leading" secondItem="nyo-dX-7A3" secondAttribute="leading" id="Gmo-zr-QmK"/>
-                            <constraint firstItem="gHp-iJ-WFG" firstAttribute="top" secondItem="7Nv-Op-C1v" secondAttribute="bottom" constant="20" id="OBn-vm-ZtQ"/>
+                            <constraint firstItem="Uin-h6-WOy" firstAttribute="centerX" secondItem="nW0-03-V2T" secondAttribute="centerX" id="HIr-Ib-oVa"/>
+                            <constraint firstItem="ski-NO-gKe" firstAttribute="centerX" secondItem="nW0-03-V2T" secondAttribute="centerX" id="Iuz-rf-f7i"/>
                             <constraint firstItem="gHp-iJ-WFG" firstAttribute="centerX" secondItem="nyo-dX-7A3" secondAttribute="centerX" id="OIv-lB-VE6"/>
                             <constraint firstItem="dYv-6E-lT4" firstAttribute="top" secondItem="Hzf-Y3-ct6" secondAttribute="bottom" constant="20" id="RoI-rr-rAw"/>
                             <constraint firstItem="Hzf-Y3-ct6" firstAttribute="top" secondItem="E6Z-ky-RSl" secondAttribute="bottom" id="Waz-xS-1QM"/>
+                            <constraint firstItem="7Nv-Op-C1v" firstAttribute="top" secondItem="1sr-bj-0Ol" secondAttribute="bottom" constant="20" id="Wzr-kc-mHF"/>
+                            <constraint firstItem="Qsx-LK-sxw" firstAttribute="top" secondItem="ddA-H4-rjw" secondAttribute="bottom" constant="20" id="hlU-dp-dQb"/>
                             <constraint firstItem="dyY-Vk-njE" firstAttribute="top" secondItem="nW0-03-V2T" secondAttribute="bottom" id="jRD-XY-MMW"/>
+                            <constraint firstItem="Uin-h6-WOy" firstAttribute="top" secondItem="7Nv-Op-C1v" secondAttribute="bottom" constant="5" id="p7e-eM-Rlq"/>
                             <constraint firstAttribute="trailing" secondItem="nW0-03-V2T" secondAttribute="trailing" id="qv4-ip-8ee"/>
                             <constraint firstItem="Hzf-Y3-ct6" firstAttribute="leading" secondItem="nyo-dX-7A3" secondAttribute="leading" id="rgb-fW-7jT"/>
+                            <constraint firstItem="ddA-H4-rjw" firstAttribute="top" secondItem="dYv-6E-lT4" secondAttribute="bottom" constant="5" id="uvZ-sE-FoS"/>
+                            <constraint firstItem="gHp-iJ-WFG" firstAttribute="top" secondItem="Uin-h6-WOy" secondAttribute="bottom" constant="20" id="wCo-9F-Wum"/>
+                            <constraint firstItem="1sr-bj-0Ol" firstAttribute="top" secondItem="Qsx-LK-sxw" secondAttribute="bottom" constant="5" id="xVr-ZJ-AHn"/>
                             <constraint firstItem="7Nv-Op-C1v" firstAttribute="centerX" secondItem="nyo-dX-7A3" secondAttribute="centerX" id="xqS-49-B0l"/>
                         </constraints>
                     </view>
@@ -452,7 +492,7 @@
                                 <rect key="frame" x="56" y="70" width="263" height="527"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uy-pX-w28">
-                                        <rect key="frame" x="0.0" y="246" width="263" height="36.5"/>
+                                        <rect key="frame" x="0.0" y="245.5" width="263" height="36.5"/>
                                         <string key="text">당신의 언어로 
 '사랑합니다'는 무엇입니까?</string>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
@@ -460,14 +500,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quotation2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hrm-jv-mRy">
-                                        <rect key="frame" x="124.5" y="292.5" width="13" height="10"/>
+                                        <rect key="frame" x="124.5" y="292" width="13" height="10"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="13" id="Pgk-1r-3dU"/>
                                             <constraint firstAttribute="height" constant="10" id="qes-od-jxW"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quotation1.png" translatesAutoresizingMaskIntoConstraints="NO" id="vew-Xa-Z6L">
-                                        <rect key="frame" x="124.5" y="226" width="13" height="10"/>
+                                        <rect key="frame" x="124.5" y="225.5" width="13" height="10"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="3Zn-Vn-Rwb"/>
                                             <constraint firstAttribute="width" constant="13" id="HEM-fY-Zl3"/>
@@ -521,14 +561,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="aboutus.png" width="270" height="362"/>
-        <image name="alarm.png" width="267" height="367"/>
+        <image name="aboutus.png" width="267" height="267"/>
+        <image name="alarm.png" width="267" height="267"/>
         <image name="menubar.png" width="542" height="2494"/>
         <image name="peomCup.png" width="81" height="90"/>
         <image name="profile1.png" width="417" height="417"/>
         <image name="quotation1.png" width="105" height="85"/>
         <image name="quotation2.png" width="105" height="85"/>
-        <image name="save.png" width="240" height="290"/>
-        <image name="share.png" width="240" height="331"/>
+        <image name="save.png" width="205" height="181"/>
+        <image name="share.png" width="164" height="232"/>
     </resources>
 </document>
