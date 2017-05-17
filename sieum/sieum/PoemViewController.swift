@@ -57,7 +57,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+                
         if(self.accessDate == nil || self.accessDate != DateUtil().getDate() ){
             
             self.accessDate = DateUtil().getDate()
@@ -133,9 +133,9 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
 ////                            // test
 //                            contents = "오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n오월의 한날을 그대와 보내고 싶습니다\n둘이 서로에게 사무친 채로\n꽃잎 향기 가득한 풀꽃 사이로\n새하얀 꽃 가득한 곳까지 걷고 싶습니다\n"
                             
-                            contents = "서로 다른 언어를\n배우는 것은 어려운 일이다\n\n서로 다른 문화와\n생각의 방식\n하물며 농담까지도 다르다\n\n당신의 언어를 알고싶다\n\n어떤 생각을 하는지\n또 어떤 것을 좋아하는지\n아주 작은 것들 까지도 알고싶다\n\n아기가 옹알이를 하듯\n당신을 배우고 싶다\n\n언젠가 당신의 언어로\n당신에게 사랑한다 말할 수 있을 때까지."
-                            title = "당신의 언어"
-                            poetName = "위은총"
+//                            contents = "서로 다른 언어를\n배우는 것은 어려운 일이다\n\n서로 다른 문화와\n생각의 방식\n하물며 농담까지도 다르다\n\n당신의 언어를 알고싶다\n\n어떤 생각을 하는지\n또 어떤 것을 좋아하는지\n아주 작은 것들 까지도 알고싶다\n\n아기가 옹알이를 하듯\n당신을 배우고 싶다\n\n언젠가 당신의 언어로\n당신에게 사랑한다 말할 수 있을 때까지."
+//                            title = "당신의 언어"
+//                            poetName = "위은총"
                             
                             
 //                            contents = contents?.replacingOccurrences(of: "\\               ", with: "\n")

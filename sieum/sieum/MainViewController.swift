@@ -23,13 +23,32 @@ class MainViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
         self.addObserver()
         self.setLayout()
         
+//        log.verbose("viewDidLoad")
+
+        
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+//        log.verbose("viewDidAppear")
+        
+    }
+    
+    override func loadViewIfNeeded() {
+        
+        super.loadViewIfNeeded()
+        log.verbose("loadViewIfNeeded")
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -39,17 +58,17 @@ class MainViewController: UIViewController {
     
     @IBAction func panMenuView(_ sender: UIPanGestureRecognizer) {
         
-//        let translation = sender.translation(in: self.view)
-//        var menuPositionY = sender.view!.center.y + translation.y
-//        
-////        if(menuPositionY < screenHeight - MENU_HEIGHT + MENU_HEIGHT/2){
-////            menuPositionY = screenHeight - MENU_HEIGHT + MENU_HEIGHT/2
-////        }
-////        
-////        if(menuPositionY > screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2 ){
-////            menuPositionY = screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2
-////        }
-//        
+        let translation = sender.translation(in: self.view)
+        var menuPositionY = sender.view!.center.y + translation.y
+        
+        if(menuPositionY < screenHeight - MENU_HEIGHT + MENU_HEIGHT/2){
+            menuPositionY = screenHeight - MENU_HEIGHT + MENU_HEIGHT/2
+        }
+        
+        if(menuPositionY > screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2 ){
+            menuPositionY = screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2
+        }
+        
 //        if(menuPositionY < screenHeight - MENU_HEIGHT){
 //            menuPositionY = screenHeight - MENU_HEIGHT
 //        }
@@ -57,11 +76,11 @@ class MainViewController: UIViewController {
 //        if(menuPositionY > screenHeight - MENU_HEAD_HEIGHT){
 //            menuPositionY = screenHeight - MENU_HEAD_HEIGHT
 //        }
-//        
-//        let movePoint = CGPoint(x: sender.view!.center.x, y: menuPositionY)
-//        
-//        sender.view!.center = movePoint
-//        sender.setTranslation(CGPoint.zero, in: self.view)
+        
+        let movePoint = CGPoint(x: sender.view!.center.x, y: menuPositionY)
+        
+        sender.view!.center = movePoint
+        sender.setTranslation(CGPoint.zero, in: self.view)
         
     }
     
@@ -92,25 +111,23 @@ class MainViewController: UIViewController {
         print("didMenuPop")
         
         var menuPositionY = self.menuView.center.y
-
         
         if( menuPositionY == screenHeight - MENU_HEIGHT + MENU_HEIGHT/2){
             
             menuPositionY = screenHeight - MENU_HEAD_HEIGHT + MENU_HEIGHT/2
-            NotificationCenter.default.post(name: Constants.observer.didMenuClose, object: nil)
-
+//            NotificationCenter.default.post(name: Constants.observer.didMenuClose, object: nil)
             
         }else{
             
             menuPositionY = screenHeight - MENU_HEIGHT + MENU_HEIGHT/2
-            NotificationCenter.default.post(name: Constants.observer.didMenuOpen, object: nil)
+//            NotificationCenter.default.post(name: Constants.observer.didMenuOpen, object: nil)
 
         }
 
         
         let movePoint = CGPoint(x: self.menuView.center.x, y: menuPositionY)
         
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.7, delay: 0.0, options: .curveEaseOut, animations: {
 
             self.menuView.center = movePoint
             

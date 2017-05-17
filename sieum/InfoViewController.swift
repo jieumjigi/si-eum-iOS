@@ -58,7 +58,7 @@ class InfoViewController: UITableViewController {
         
         self.navigationController?.dismiss(animated: true, completion: { 
             
-            NotificationCenter.default.post(name: Constants.observer.didMenuClose, object: nil)
+//            NotificationCenter.default.post(name: Constants.observer.didMenuClose, object: nil)
             
         })
 //        self.navigationController?.dismiss(animated: true, completion: nil)

@@ -13,13 +13,26 @@ import UserNotifications
 
 class MenuViewController: UIViewController {
 
-    @IBOutlet weak var openButton: UIButton!
 
+    
+//    @IBOutlet weak var openButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.addObserver()
+//        self.addObserver()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        log.verbose("menu viewDidAppear")
+        
+//        UIView.animate(withDuration: 0.5) {
+//            self.openButton.alpha = 1.0
+//        }
         
     }
 
@@ -28,22 +41,22 @@ class MenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func addObserver(){
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.handleMenuOpen),
-            name: Constants.observer.didMenuOpen ,
-            object: nil)
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.handleMenuClose),
-            name: Constants.observer.didMenuClose ,
-            object: nil)
-
-        
-    }
+//    func addObserver(){
+//        
+//        NotificationCenter.default.addObserver(
+//            self,
+//            selector: #selector(self.handleMenuOpen),
+//            name: Constants.observer.didMenuOpen ,
+//            object: nil)
+//        
+//        NotificationCenter.default.addObserver(
+//            self,
+//            selector: #selector(self.handleMenuClose),
+//            name: Constants.observer.didMenuClose ,
+//            object: nil)
+//
+//        
+//    }
 
     
 
@@ -325,29 +338,29 @@ class MenuViewController: UIViewController {
     
     
     
-    // MARK: - Observer
-    
-    func handleMenuOpen(){
-        
-        UIView.animate(withDuration: 0.5) {
-            
-            self.openButton.alpha = 0.0
-            
-        }
-        
-    }
-    
-    func handleMenuClose(){
-        
-        UIView.animate(withDuration: 0.5) {
-            
-            self.openButton.alpha = 1.0
-
-            
-        }
-        
-    }
-    
+//    // MARK: - Observer
+//    
+//    func handleMenuOpen(){
+//        
+//        UIView.animate(withDuration: 0.7) {
+//            
+//            self.openButton.alpha = 0.0
+//            
+//        }
+//        
+//    }
+//    
+//    func handleMenuClose(){
+//        
+//        UIView.animate(withDuration: 0.7) {
+//            
+//            self.openButton.alpha = 1.0
+//
+//            
+//        }
+//        
+//    }
+//    
     
     /*
     // MARK: - Navigation

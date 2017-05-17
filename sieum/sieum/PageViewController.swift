@@ -53,6 +53,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
         appearance.pageIndicatorTintColor = UIColor.gray
         appearance.currentPageIndicatorTintColor = UIColor.white
         appearance.backgroundColor = UIColor.darkGray
+        
     }
     
     
@@ -61,8 +62,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
     
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.newViewController(name: "PoemViewController") ,
-                self.newViewController(name: "PoetViewController") ,
-                self.newViewController(name: "HelloViewController")]
+                self.newViewController(name: "QuestionViewController") ,
+                self.newViewController(name: "PoetViewController")]
     }()
     
     private func newViewController(name: String) -> UIViewController {

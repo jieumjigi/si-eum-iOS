@@ -21,7 +21,7 @@ class PoetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.buyBookButton.isHidden = true
+        self.buyBookButton.alpha = 0.0
         self.lbPoet.numberOfLines = 0
         
         // Do any additional setup after loading the view.
@@ -116,10 +116,11 @@ class PoetViewController: UIViewController {
                                         self.lbPoet.alpha = 1.0
                                         self.lbIntroPoet.alpha = 1.0
                                         
-                                        if(self.linkToBook != ""){
-                                            self.buyBookButton.isHidden = false
-                                            self.buyBookButton.alpha = 1.0
-                                        }
+                                        self.buyBookButton.alpha = 1.0
+                                        
+//                                        if(self.linkToBook != ""){
+//                                            self.buyBookButton.alpha = 1.0
+//                                        }
 
                                     }, completion: nil)
                                 })
