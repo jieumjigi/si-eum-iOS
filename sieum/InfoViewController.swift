@@ -194,7 +194,7 @@ class InfoViewController: UITableViewController {
     func shareAppInfo(){
         
         // text to share
-        let text = "This is some text that I want to share."
+        let text = "하루에 시 하나 😌\n매일 새로운 시를 만날 수 있는\n감성 어플리케이션 #시음\n\n지금 다운로드받기☞ http://apple.co/2qtNOgO"
         
         // set up activity view controller
         let textToShare = [ text ]
