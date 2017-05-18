@@ -11,7 +11,7 @@ import UIKit
 class InfoViewController: UITableViewController {
 
 //    var menu = ["지음지기 블로그", "문의하기", "오픈소스 라이센스"]
-    var menu = ["시음 페이스북", "문의하기"]
+    var menu = ["시음 페이스북", "문의하기", "리뷰 작성하기", "친구에게 알려주기"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +96,14 @@ class InfoViewController: UITableViewController {
             
             self.sendEmail()
             
+        }else if(indexPath.row == 2){
+            
+            self.openAppStore()
+            
+        }else if(indexPath.row == 3){
+            
+            self.shareAppInfo()
+            
         }
     }
     
@@ -157,6 +165,47 @@ class InfoViewController: UITableViewController {
             UIApplication.shared.open(mailUrl!, options: [:], completionHandler: nil)
             
         }
+        
+    }
+    
+    func openAppStore(){
+        
+//        let facebookUrl = NSURL(string: "https://appsto.re/kr/g_Hhib.i")! as URL
+        
+        
+        let facebookUrl = NSURL(string: "itms-apps://itunes.apple.com/gb/app/id1209933766?action=write-review&mt=8")! as URL
+
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(facebookUrl, options: [:], completionHandler: { (completion) in
+                
+                
+            })
+        } else {
+            // Fallback on earlier versions
+            UIApplication.shared.openURL(facebookUrl)
+            
+        }
+
+        
+    }
+    
+    
+    func shareAppInfo(){
+        
+        // text to share
+        let text = "This is some text that I want to share."
+        
+        // set up activity view controller
+        let textToShare = [ text ]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
         
     }
     

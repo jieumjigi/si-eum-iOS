@@ -341,19 +341,19 @@
                                 <rect key="frame" x="56" y="70" width="263" height="527"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1EB-lY-MiL">
-                                        <rect key="frame" x="0.0" y="197" width="263" height="20"/>
+                                        <rect key="frame" x="0.0" y="173.5" width="263" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="f0c-4L-tVW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="10"/>
-                                        <state key="normal" title="링크">
+                                        <state key="normal" title="https://www.instagram.com/peamessi/">
                                             <color key="titleColor" red="0.83921568627450982" green="0.61176470588235299" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="onLinkToBookButton:" destination="sCs-3h-fMS" eventType="touchUpInside" id="n0m-Ko-h4T"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1.png" translatesAutoresizingMaskIntoConstraints="NO" id="89o-cL-aXM">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile5.png" translatesAutoresizingMaskIntoConstraints="NO" id="89o-cL-aXM">
                                         <rect key="frame" x="76" y="20" width="110" height="110"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="110" id="BaP-pa-me8"/>
@@ -363,32 +363,23 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-wP-86E">
                                         <rect key="frame" x="0.0" y="150" width="263" height="18.5"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="14"/>
-                                        <color key="textColor" red="0.83921568627450982" green="0.61176470588235299" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="직업" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EoA-FY-6xY">
-                                        <rect key="frame" x="0.0" y="178.5" width="263" height="13"/>
-                                        <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="10"/>
                                         <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시인을 기다리는 중" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyt-zj-9gm">
-                                        <rect key="frame" x="0.0" y="247" width="263" height="16.5"/>
+                                        <rect key="frame" x="0.0" y="223.5" width="263" height="16.5"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="12.5"/>
                                         <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="1EB-lY-MiL" firstAttribute="top" secondItem="EoA-FY-6xY" secondAttribute="bottom" constant="5" id="1g4-nT-BKZ"/>
-                                    <constraint firstItem="EoA-FY-6xY" firstAttribute="top" secondItem="pOV-wP-86E" secondAttribute="bottom" constant="10" id="DTw-ND-0jn"/>
                                     <constraint firstItem="1EB-lY-MiL" firstAttribute="leading" secondItem="7hn-CO-1Q0" secondAttribute="leading" id="F1k-h6-l7H"/>
                                     <constraint firstAttribute="bottom" secondItem="Zyt-zj-9gm" secondAttribute="bottom" id="IqC-qG-XMP"/>
                                     <constraint firstAttribute="trailing" secondItem="1EB-lY-MiL" secondAttribute="trailing" id="JYV-nJ-DZV"/>
+                                    <constraint firstItem="1EB-lY-MiL" firstAttribute="top" secondItem="pOV-wP-86E" secondAttribute="bottom" constant="5" id="QO4-JA-8kR"/>
                                     <constraint firstItem="Zyt-zj-9gm" firstAttribute="top" secondItem="1EB-lY-MiL" secondAttribute="bottom" constant="30" id="Vmd-KI-53E"/>
                                     <constraint firstItem="pOV-wP-86E" firstAttribute="top" secondItem="89o-cL-aXM" secondAttribute="bottom" constant="20" id="djg-lg-Ls6"/>
-                                    <constraint firstItem="EoA-FY-6xY" firstAttribute="leading" secondItem="7hn-CO-1Q0" secondAttribute="leading" id="iTy-sr-uhL"/>
-                                    <constraint firstAttribute="trailing" secondItem="EoA-FY-6xY" secondAttribute="trailing" id="lve-lN-Mdv"/>
                                     <constraint firstItem="Zyt-zj-9gm" firstAttribute="leading" secondItem="7hn-CO-1Q0" secondAttribute="leading" id="oFR-Y6-Tf5"/>
                                     <constraint firstAttribute="trailing" secondItem="Zyt-zj-9gm" secondAttribute="trailing" id="qGQ-7d-gTa"/>
                                     <constraint firstItem="89o-cL-aXM" firstAttribute="top" secondItem="7hn-CO-1Q0" secondAttribute="top" constant="20" id="rOK-cW-2AO"/>
@@ -565,7 +556,7 @@
         <image name="alarm.png" width="267" height="267"/>
         <image name="menubar.png" width="542" height="2494"/>
         <image name="peomCup.png" width="81" height="90"/>
-        <image name="profile1.png" width="417" height="417"/>
+        <image name="profile5.png" width="417" height="417"/>
         <image name="quotation1.png" width="105" height="85"/>
         <image name="quotation2.png" width="105" height="85"/>
         <image name="save.png" width="205" height="181"/>

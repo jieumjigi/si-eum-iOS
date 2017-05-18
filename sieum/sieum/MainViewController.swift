@@ -127,7 +127,7 @@ class MainViewController: UIViewController {
         
         let movePoint = CGPoint(x: self.menuView.center.x, y: menuPositionY)
         
-        UIView.animate(withDuration: 0.7, delay: 0.0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
 
             self.menuView.center = movePoint
             

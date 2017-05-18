@@ -10,6 +10,14 @@ import UIKit
 
 class PoemModel: NSObject {
     
+    static let shared = PoemModel()
+    
+    private override init(){
+        
+        super.init()
+        
+    }
+    
     var poemId : String?
     var pushDueDate : String?
     
@@ -21,5 +29,9 @@ class PoemModel: NSObject {
     var introPoet : String?
     var linkToBook : String?
     
-
+    func parse(){
+        
+        
+    }
+    
 }

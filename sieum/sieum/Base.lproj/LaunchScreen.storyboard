@@ -13,6 +13,7 @@
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LaunchScreen" id="01J-lp-oVM" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
@@ -22,28 +23,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="nN2-fz-USF">
-                                <rect key="frame" x="0.0" y="145.5" width="375" height="375"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="l0a-0h-GqF">
+                                <rect key="frame" x="0.0" y="146" width="375" height="375"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="nN2-fz-USF" secondAttribute="height" multiplier="1:1" id="fP5-qH-ryJ"/>
+                                    <constraint firstAttribute="width" secondItem="l0a-0h-GqF" secondAttribute="height" multiplier="1:1" id="g9P-hk-YOD"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.99215686274509807" green="1" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="nN2-fz-USF" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="AI4-lw-sjE"/>
-                            <constraint firstItem="nN2-fz-USF" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="MQf-Ff-WQC"/>
-                            <constraint firstItem="nN2-fz-USF" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="RNI-sR-Moh"/>
-                            <constraint firstAttribute="trailing" secondItem="nN2-fz-USF" secondAttribute="trailing" id="kdD-1y-wZg"/>
+                            <constraint firstItem="l0a-0h-GqF" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="5Fc-UF-LEB"/>
+                            <constraint firstItem="l0a-0h-GqF" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="h4j-3N-a8P"/>
+                            <constraint firstAttribute="trailing" secondItem="l0a-0h-GqF" secondAttribute="trailing" id="jdk-bt-KMP"/>
                         </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
-        <image name="launchImage2.jpg" width="2362" height="2362"/>
+        <image name="launchImage.jpg" width="2362" height="2362"/>
     </resources>
 </document>
