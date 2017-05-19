@@ -11,9 +11,12 @@ import Alamofire
 
 class PoetViewController: UIViewController {
 
+    @IBOutlet weak var profileImage: UIImageView!
+    
     @IBOutlet weak var lbPoet: UILabel!
     @IBOutlet weak var lbIntroPoet: UILabel!
-    @IBOutlet weak var buyBookButton: UIButton!
+    @IBOutlet weak var poetLinkButton: UIButton!
+    
     var linkToBook = ""
     
     var accessDate : String?
@@ -21,9 +24,10 @@ class PoetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.buyBookButton.alpha = 0.0
         self.lbPoet.numberOfLines = 0
         
+        self.setContent()
+
         // Do any additional setup after loading the view.
     }
 
@@ -36,102 +40,152 @@ class PoetViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if(self.accessDate == nil || self.accessDate != DateUtil().getDate() ){
+//        if(self.accessDate == nil || self.accessDate != DateUtil().getDate() ){
+//            
+//            self.accessDate = DateUtil().getDate()
+//            
+//            self.getContent()
+//            
+//        }
+        self.setContent()
+        
+    }
+    
+    
+    func setContent(){
+        
+        self.setProfileImage()
+        
+        self.lbPoet.text = PoemModel.shared.poetName
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        paragraphStyle.alignment = .left
+
+        let attrString = NSMutableAttributedString(string: PoemModel.shared.introPoet!)
+        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        self.lbIntroPoet.attributedText = attrString
+        self.lbIntroPoet.textAlignment = .left
+        
+        if let tempLink = PoemModel.shared.linkToBook{
             
-            self.accessDate = DateUtil().getDate()
-            
-            self.getContent()
+            if(tempLink != ""){
+                self.linkToBook = tempLink
+                self.poetLinkButton.setTitle(self.linkToBook, for: .normal)
+                self.poetLinkButton.alpha = 1.0
+            }else{
+                self.poetLinkButton.alpha = 0.0
+            }
             
         }
+        
+    }
+    
+    func setProfileImage(){
+        
+        let poetName = PoemModel.shared.poetName
+        var imageName = "profile0.png"
+        
+        if(poetName == nil || poetName == ""){
+            imageName = "profile0.png"
+        }else if(poetName == "위은총"){
+            imageName = "profile1.png"
+        }else if(poetName == "박영하"){
+            imageName = "profile2.png"
+        }
+        
+        self.profileImage.image = UIImage.init(named: imageName)
         
     }
     
     
     func getContent(){
         
-        let todayPoemUrl = Constants.url.base.appending("poem/poemOfToday/")
-//        let todayPoemUrl = Constants.url.base.appending("poem/getPoem?/")
         
-        Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default)
-            .responseJSON { response in
-                
-                log.info(response)
-                
-                //to get status code
-                if let status = response.response?.statusCode {
-                    
-                    switch(status){
-                    case 200 :
-                        log.info("success")
-                    default:
-                        log.error("error with response status: \(status)")
-                    }
-                    
-                    //to get JSON return value
-                    if let result = response.result.value {
-                        let json = result as! NSDictionary
-                        log.info(json)
-                        
-                        if let items = json["poem"] as? NSArray {
-                            
-                            if (items.count == 0){
-                                return
-                            }
-                            
-                            if let items = items[0] as? NSDictionary {
-                                
-                                let poetName = items["poetName"] as? String
-                                let introPoet = items["introPoet"] as? String
-                                self.linkToBook = (items["linkToBook"] as? String)!
-                                
-                                log.info("poetName\(String(describing: poetName))")
-                                
-                                
-                                UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-                                    
-                                    self.lbPoet.alpha = 0.0
-                                    self.lbIntroPoet.alpha = 0.0
-                                    self.buyBookButton.alpha = 0.0
-                                    
-                                }, completion: {
-                                    (finished: Bool) -> Void in
-                                    
-                                    
-                                    // Fade in
-                                    UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-                                        
-                                        self.lbPoet.text = poetName
-//                                        self.lbIntroPoet.text = introPoet
-                                        
-                                        let paragraphStyle = NSMutableParagraphStyle()
-                                        paragraphStyle.lineSpacing = 5
-                                        paragraphStyle.alignment = .left
-                                        
-                                        let attrString = NSMutableAttributedString(string: introPoet!)
-                                        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-                                        self.lbIntroPoet.attributedText = attrString
-                                        
-                                        self.lbIntroPoet.textAlignment = .left
-                                        
-                                        self.lbPoet.alpha = 1.0
-                                        self.lbIntroPoet.alpha = 1.0
-                                        
-                                        self.buyBookButton.alpha = 1.0
-                                        
-//                                        if(self.linkToBook != ""){
-//                                            self.buyBookButton.alpha = 1.0
-//                                        }
-
-                                    }, completion: nil)
-                                })
-                                
-                            }
-                        }
-                        
-                    }
-                    
-                }
-        }
+        
+//        let todayPoemUrl = Constants.url.base.appending("poem/poemOfToday/")
+////        let todayPoemUrl = Constants.url.base.appending("poem/getPoem?/")
+//        
+//        Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default)
+//            .responseJSON { response in
+//                
+//                log.info(response)
+//                
+//                //to get status code
+//                if let status = response.response?.statusCode {
+//                    
+//                    switch(status){
+//                    case 200 :
+//                        log.info("success")
+//                    default:
+//                        log.error("error with response status: \(status)")
+//                    }
+//                    
+//                    //to get JSON return value
+//                    if let result = response.result.value {
+//                        let json = result as! NSDictionary
+//                        log.info(json)
+//                        
+//                        if let items = json["poem"] as? NSArray {
+//                            
+//                            if (items.count == 0){
+//                                return
+//                            }
+//                            
+//                            if let items = items[0] as? NSDictionary {
+//                                
+//                                let poetName = items["poetName"] as? String
+//                                let introPoet = items["introPoet"] as? String
+//                                self.linkToBook = (items["linkToBook"] as? String)!
+//                                
+//                                log.info("poetName\(String(describing: poetName))")
+//                                
+//                                
+//                                UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+//                                    
+//                                    self.lbPoet.alpha = 0.0
+//                                    self.lbIntroPoet.alpha = 0.0
+//                                    self.buyBookButton.alpha = 0.0
+//                                    
+//                                }, completion: {
+//                                    (finished: Bool) -> Void in
+//                                    
+//                                    
+//                                    // Fade in
+//                                    UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+//                                        
+//                                        self.lbPoet.text = poetName
+////                                        self.lbIntroPoet.text = introPoet
+//                                        
+//                                        let paragraphStyle = NSMutableParagraphStyle()
+//                                        paragraphStyle.lineSpacing = 5
+//                                        paragraphStyle.alignment = .left
+//                                        
+//                                        let attrString = NSMutableAttributedString(string: introPoet!)
+//                                        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+//                                        self.lbIntroPoet.attributedText = attrString
+//                                        
+//                                        self.lbIntroPoet.textAlignment = .left
+//                                        
+//                                        self.lbPoet.alpha = 1.0
+//                                        self.lbIntroPoet.alpha = 1.0
+//                                        
+//                                        self.buyBookButton.alpha = 1.0
+//                                        
+////                                        if(self.linkToBook != ""){
+////                                            self.buyBookButton.alpha = 1.0
+////                                        }
+//
+//                                    }, completion: nil)
+//                                })
+//                                
+//                            }
+//                        }
+//                        
+//                    }
+//                    
+//                }
+//        }
 
     }
     

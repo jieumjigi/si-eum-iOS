@@ -11,7 +11,7 @@ import UIKit
 class InfoViewController: UITableViewController {
 
 //    var menu = ["지음지기 블로그", "문의하기", "오픈소스 라이센스"]
-    var menu = ["시음 페이스북", "문의하기", "리뷰 작성하기", "친구에게 알려주기"]
+    var menu = ["시음 페이스북", "문의하기", "리뷰 작성하기", "소중한 사람에게 알려주기"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,6 @@ class InfoViewController: UITableViewController {
         self.setBackground()
         self.setNavi()
         
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -194,7 +193,7 @@ class InfoViewController: UITableViewController {
     func shareAppInfo(){
         
         // text to share
-        let text = "하루에 시 하나 😌\n매일 새로운 시를 만날 수 있는\n감성 어플리케이션 #시음\n\n지금 다운로드받기☞ http://apple.co/2qtNOgO"
+        let text = "하루에 시 하나\n매일 새로운 시를 만날 수 있는\n감성 어플리케이션 #시음\n\n지금 다운로드받기:\nhttp://apple.co/2qtNOgO"
         
         // set up activity view controller
         let textToShare = [ text ]

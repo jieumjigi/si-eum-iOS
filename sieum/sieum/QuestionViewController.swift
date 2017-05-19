@@ -10,15 +10,60 @@ import UIKit
 
 class QuestionViewController: UIViewController {
 
+    @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet var quotations: [UIImageView]!
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.setContent()
+        
     }
 
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        self.setContent()
+
+    }
+    
+    func setContent(){
+        
+        if( PoemModel.shared.question == nil ||  PoemModel.shared.question == "" ){
+            return
+        }
+        
+//        self.questionLabel.alpha = 0.0
+//        
+//        for quotation in self.quotations{
+//            quotation.alpha = 0.0
+//        }
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 6
+        paragraphStyle.alignment = .center
+        
+        let attrString = NSMutableAttributedString(string: PoemModel.shared.question!)
+        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        self.questionLabel.attributedText = attrString
+        
+//        // Fade in
+//        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+//            
+//            self.questionLabel.alpha = 1.0
+//
+//            for quotation in self.quotations{
+//                quotation.alpha = 1.0
+//            }
+//            
+//        }, completion: nil)
+
     }
     
 

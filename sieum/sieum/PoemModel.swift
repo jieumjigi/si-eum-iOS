@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class PoemModel: NSObject {
     
@@ -18,19 +19,78 @@ class PoemModel: NSObject {
         
     }
     
-    var poemId : String?
-    var pushDueDate : String?
+    var poemId : String? = ""
+    var pushDueDate : String? = ""
     
-    var title : String?
-    var poetName : String?
-    var contents : String?
-    var question : String?
+    var title : String? = ""
+    var poetName : String? = ""
+    var contents : String? = ""
+    var question : String? = ""
     
-    var introPoet : String?
-    var linkToBook : String?
+    var introPoet : String? = ""
+    var linkToBook : String? = ""
     
-    func parse(){
+    func parse(response:DataResponse<Any>){
         
+        //to get JSON return value
+        if let result = response.result.value {
+            let json = result as! NSDictionary
+            log.info(json)
+            
+            if let items = json["poem"] as? NSArray {
+                
+                if (items.count == 0){
+                    return
+                }
+                
+                if let items = items[0] as? NSDictionary {
+                    
+                    // 첫 페이지
+                    
+                    if let title = items["title"] as? String{
+                        self.title = title
+                    }else{
+                        self.title = ""
+                    }
+                    
+                    if let poetName = items["poetName"] as? String{
+                        self.poetName = poetName
+                    }else{
+                        self.poetName = ""
+                    }
+                    
+                    if let contents = items["contents"] as? String{
+                        self.contents = contents
+                    }else{
+                        self.contents = ""
+                    }
+                    
+                    // 두번째 페이지
+                    
+                    if let question = items["question"] as? String{
+                        self.question = question
+                    }else{
+                        self.question = ""
+                    }
+                    
+                    // 세번째 페이지
+                    
+                    if let linkToBook = items["linkToBook"] as? String{
+                        self.linkToBook = linkToBook
+                    }else{
+                        self.linkToBook = ""
+                    }
+                    
+                    if let introPoet = items["introPoet"] as? String{
+                        self.introPoet = introPoet
+                    }else{
+                        self.introPoet = ""
+                    }
+                    
+                }
+            }
+        }
+
         
     }
     
