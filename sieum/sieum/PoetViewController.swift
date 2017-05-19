@@ -88,10 +88,24 @@ class PoetViewController: UIViewController {
         
         if(poetName == nil || poetName == ""){
             imageName = "profile0.png"
+            
         }else if(poetName == "위은총"){
             imageName = "profile1.png"
+            
         }else if(poetName == "박영하"){
             imageName = "profile2.png"
+            
+        }else if(poetName == "이경원"){
+            imageName = "profile3.png"
+            
+        }else if(poetName == "차예랑"){
+            imageName = "profile4.png"
+            
+        }else if(poetName == "이승재"){
+            imageName = "profile5.png"
+            
+        }else if(poetName == "차예솔"){
+            imageName = "profile6.png"
         }
         
         self.profileImage.image = UIImage.init(named: imageName)
