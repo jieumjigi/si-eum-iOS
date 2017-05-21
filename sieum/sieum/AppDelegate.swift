@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        self.setNotiAuth()
+        
         Thread.sleep(forTimeInterval: 2.0)
         
         // Override point for customization after application launch.
@@ -31,7 +33,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setAlertView()
         self.setNotiDelegate()
         
+        let center = UNUserNotificationCenter.current()
         
+        center.getPendingNotificationRequests(completionHandler: { (requestList) in
+            
+            center.removeAllPendingNotificationRequests()
+            
+            for request in requestList{
+                log.verbose("request: \(request)")
+                center.add(request, withCompletionHandler: nil)
+                
+                let content = UNMutableNotificationContent()
+                content.body = "오늘의 시가 도착했습니다"
+                content.sound = UNNotificationSound.default()
+                
+                let newRequest = UNNotificationRequest.init(identifier: UUID().uuidString, content: content, trigger: request.trigger)
+                
+                center.add(newRequest, withCompletionHandler: nil)
+            
+            }
+            
+        })
         
         return true
     }
@@ -169,6 +191,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        
 //    }
     
+    
+    // MARK :- Noti
+    func setNotiAuth(){
+        
+        let center = UNUserNotificationCenter.current()
+        
+        center.getNotificationSettings { (settings) in
+            
+            if settings.authorizationStatus != .authorized {
+                
+                // Notifications not allowed
+                
+                let options: UNAuthorizationOptions = [.alert, .sound]
+                center.requestAuthorization(options: options) { (granted, error) in
+                    
+                    if !granted {
+                        print("인증되지 않았습니다")
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+        
+        
+    }
 
 }
 

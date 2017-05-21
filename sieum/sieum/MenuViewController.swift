@@ -155,16 +155,13 @@ class MenuViewController: UIViewController {
         myDatePicker.timeZone = NSTimeZone.local
         myDatePicker.frame = CGRect.init(x: 0, y: 15, width: 270, height: 150)
         let alertController = UIAlertController(title: "" , message: "\n\n\n\n\n\n\n\n", preferredStyle: .alert)
-
+        
         alertController.view.addSubview(myDatePicker)
         alertController.view.tintColor = UIColor.alertBackground()
         
-//        let somethingAction = UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: nil)
+        
         let confirmAction = UIAlertAction.init(title: "확인", style: .default) { (action) in
             
-            // 설정된 시간 가져옴
-            
-            myDatePicker.datePickerMode = UIDatePickerMode.date
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH"
             let selectedHour = Int(dateFormatter.string(from: myDatePicker.date))
@@ -176,13 +173,14 @@ class MenuViewController: UIViewController {
             print("selectedHours : \(String(describing: selectedMinute))")
             
             
+            
             // 반복되는 노티 만들기
             
             var dateComponents = DateComponents()
             dateComponents.hour = selectedHour
             dateComponents.minute = selectedMinute
             let trigger = UNCalendarNotificationTrigger.init(dateMatching: dateComponents, repeats: true)
-            
+
             let content = UNMutableNotificationContent()
             content.body = "오늘의 시가 도착했습니다"
             content.sound = UNNotificationSound.default()
@@ -192,14 +190,9 @@ class MenuViewController: UIViewController {
             let center = UNUserNotificationCenter.current()
             
             let request = UNNotificationRequest.init(identifier: UUID().uuidString, content: content, trigger: trigger)
+
             center.removeAllPendingNotificationRequests()
             center.add(request, withCompletionHandler: { (error) in
-                
-//                if(error!=nil){
-//
-//                    print("노티를 설정하는데 에러가 발생했습니다 :\(String(describing: error))")
-//
-//                }
                 
             })
             
@@ -253,6 +246,8 @@ class MenuViewController: UIViewController {
     
     
     func presentEditTimerAlert(){
+        
+        self.setNotiAuth()
         
         // Prepare the popup assets
         let title = "이미 설정된 알림이 있습니다"
