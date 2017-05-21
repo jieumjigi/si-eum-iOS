@@ -11,6 +11,7 @@ import DBImageColorPicker
 import Alamofire
 import FBSDKShareKit
 import PopupDialog
+import KakaoLink
 
 //protocol PoemViewControllerDelegate: class {
 //    func didRequestDownload()
@@ -53,9 +54,11 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
         setAttribute()
         setGUI()
         addObserver()
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         super.viewDidAppear(animated)
                 
         if(self.accessDate == nil || self.accessDate != DateUtil().getDate() ){
@@ -326,21 +329,160 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     
     func didRequestShare(){
         
+        
+        let title = "오늘의 시를 전해줍니다"
+        let message = "어디에 공유하는게 좋을까요?"
+        
+        
+        // Create the dialog
+        let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .vertical, transitionStyle: .fadeIn, gestureDismissal: true) {
+            
+        }
+        
+        // Create buttons
+        let facebookButton = DefaultButton(title: "페이스북") {
+
+            popup.dismiss()
+            self.shareFacebook()
+        }
+        
+        
+        let kakaoButton = DefaultButton(title: "카카오톡") {
+
+//            popup.dismiss()
+            self.shareKakao()
+
+        }
+        
+        let cancelButton = CancelButton(title: "취소") {
+
+            popup.dismiss()
+
+        }
+        
+        popup.addButton(facebookButton)
+        popup.addButton(kakaoButton)
+        popup.addButton(cancelButton)
+        
+        
+        // Present dialog
+        self.present(popup, animated: true)
+    
+    }
+    
+    func shareKakao(){
+        
+        let poemImage = self.getPoemImage()
+        
+        log.verbose("image width: \(poemImage.size.width)")
+        log.verbose("image height: \(poemImage.size.height)")
+
+        KLKImageStorage().upload(with: poemImage, success: { (original) in
+            
+            let imageUrl = original.url
+            
+            log.verbose("imageUrl: \(imageUrl)")
+            
+            
+            // Feed 타입 템플릿 오브젝트 생성
+            let template = KLKFeedTemplate.init { (feedTemplateBuilder) in
+                
+                // 컨텐츠
+                feedTemplateBuilder.content = KLKContentObject.init(builderBlock: { (contentBuilder) in
+                    
+                    var titleString = ""
+                    var descString = ""
+                    
+                    if let title = PoemModel.shared.title{
+                        titleString = titleString + title
+                    }
+                    
+                    if let poetName = PoemModel.shared.poetName{
+                        titleString = titleString + " / " + poetName
+                    }
+                    
+                    if let poemContent = PoemModel.shared.contents{
+                        descString = poemContent
+                    }
+                    
+                    contentBuilder.title = titleString
+                    contentBuilder.desc = descString
+                    contentBuilder.imageURL = imageUrl
+                    contentBuilder.imageWidth = poemImage.size.width as NSNumber
+                    contentBuilder.imageHeight = poemImage.size.height as NSNumber
+                    contentBuilder.link = KLKLinkObject.init(builderBlock: { (linkBuilder) in
+//                        linkBuilder.mobileWebURL = URL.init(string: "https://itunes.apple.com/app/id1209933766")
+                        
+                        linkBuilder.iosExecutionParams = "param1=value1&param2=value2"
+                        linkBuilder.androidExecutionParams = "param1=value1&param2=value2"
+                        linkBuilder.mobileWebURL = imageUrl
+
+                    })
+                })
+                
+//                // 소셜
+//                feedTemplateBuilder.social = KLKSocialObject.init(builderBlock: { (socialBuilder) in
+//                    socialBuilder.likeCount = 286
+//                    socialBuilder.commnentCount = 45
+//                    socialBuilder.sharedCount = 845
+//                })
+                
+                // 버튼
+                feedTemplateBuilder.addButton(KLKButtonObject.init(builderBlock: { (buttonBuilder) in
+                    buttonBuilder.title = "웹으로 보기"
+                    buttonBuilder.link = KLKLinkObject.init(builderBlock: { (linkBuilder) in
+//                        linkBuilder.mobileWebURL = URL.init(string: "https://developers.kakao.com")
+                        linkBuilder.mobileWebURL = imageUrl
+                    })
+                }))
+                feedTemplateBuilder.addButton(KLKButtonObject.init(builderBlock: { (buttonBuilder) in
+                    buttonBuilder.title = "앱으로 보기"
+                    buttonBuilder.link = KLKLinkObject.init(builderBlock: { (linkBuilder) in
+                        linkBuilder.iosExecutionParams = "param1=value1&param2=value2"
+                        linkBuilder.androidExecutionParams = "param1=value1&param2=value2"
+                    })
+                }))
+            }
+            
+            // 카카오링크 실행
+            KLKTalkLinkCenter.shared().sendDefault(with: template, success: { (warningMsg, argumentMsg) in
+                
+                // 성공
+//                print("warning message: \(warningMsg)")
+//                print("argument message: \(argumentMsg)")
+                
+            }, failure: { (error) in
+                
+                // 실패
+                print("error \(error)")
+                self.showSimpleAlert(title: "문제가 발생하여 공유하지 못했습니다", message: nil, buttonTitle: "확인")
+
+            })
+
+            
+        }) { (error) in
+            
+            self.showSimpleAlert(title: "문제가 발생하여 공유하지 못했습니다", message: nil, buttonTitle: "확인")
+            
+        }
+        
+        
+        
+
+        
+        
+    }
+    
+    
+    func shareFacebook(){
+        
         if( UIApplication.shared.canOpenURL(URL.init(string: "fb://")!) ){ // 페이스북 앱 존재
             
-            let tempViewRect = self.view.frame
-            
-            let adjustedHeight = self.scrollView.contentSize.height + 150
-            
-            self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: adjustedHeight)
-            
-            let image = UIImage.init(view: self.view)
-            
-            self.view.frame = tempViewRect
+
             
             
             let photo = FBSDKSharePhoto.init()
-            photo.image = image
+            photo.image = self.getPoemImage()
             photo.isUserGenerated = true
             
             let content = FBSDKSharePhotoContent.init()
@@ -354,12 +496,12 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
             dialog.show()
             
             self.loadingIndicator.startAnimating()
-        
+            
         }else{
             
             let title = "페이스북 앱이 없으면 공유할 수 없습니다"
             let message = "페이스북 앱을 설치하겠습니까?"
-
+            
             
             // Create the dialog
             let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
@@ -379,7 +521,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
                 } else {
                     // Fallback on earlier versions
                     UIApplication.shared.openURL(facebookUrl)
-
+                    
                 }
             }
             
@@ -387,7 +529,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
             let cancelButton = CancelButton(title: "취소") {
                 
             }
-
+            
             popup.addButton(cancelButton)
             popup.addButton(confirmButton)
             
@@ -397,9 +539,24 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
             
         }
         
-
         
-
+    }
+    
+    
+    func getPoemImage() -> UIImage{
+        
+        let tempViewRect = self.view.frame
+        
+        let adjustedHeight = self.scrollView.contentSize.height + 150
+        
+        self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: adjustedHeight)
+        
+        let image = UIImage.init(view: self.view)
+        
+        self.view.frame = tempViewRect
+        
+        return image
+        
     }
     
     

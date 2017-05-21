@@ -151,7 +151,7 @@
         <!--Page View Controller-->
         <scene sceneID="eBq-1t-dhL">
             <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="max" id="AWS-Vy-su5" customClass="PageViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" definesPresentationContext="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="AWS-Vy-su5" customClass="PageViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K84-n0-LrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-681" y="492"/>
@@ -354,10 +354,10 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile0.png" translatesAutoresizingMaskIntoConstraints="NO" id="89o-cL-aXM">
-                                        <rect key="frame" x="81" y="20" width="100" height="100"/>
+                                        <rect key="frame" x="76" y="10" width="110" height="110"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="BaP-pa-me8"/>
-                                            <constraint firstAttribute="width" constant="100" id="ujZ-nr-q1V"/>
+                                            <constraint firstAttribute="height" constant="110" id="BaP-pa-me8"/>
+                                            <constraint firstAttribute="width" constant="110" id="ujZ-nr-q1V"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-wP-86E">
@@ -382,7 +382,7 @@
                                     <constraint firstItem="pOV-wP-86E" firstAttribute="top" secondItem="89o-cL-aXM" secondAttribute="bottom" constant="20" id="djg-lg-Ls6"/>
                                     <constraint firstItem="Zyt-zj-9gm" firstAttribute="leading" secondItem="7hn-CO-1Q0" secondAttribute="leading" id="oFR-Y6-Tf5"/>
                                     <constraint firstAttribute="trailing" secondItem="Zyt-zj-9gm" secondAttribute="trailing" id="qGQ-7d-gTa"/>
-                                    <constraint firstItem="89o-cL-aXM" firstAttribute="top" secondItem="7hn-CO-1Q0" secondAttribute="top" constant="20" id="rOK-cW-2AO"/>
+                                    <constraint firstItem="89o-cL-aXM" firstAttribute="top" secondItem="7hn-CO-1Q0" secondAttribute="top" constant="10" id="rOK-cW-2AO"/>
                                 </constraints>
                             </scrollView>
                         </subviews>

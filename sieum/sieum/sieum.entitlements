@@ -6,5 +6,9 @@
 	<array>
 		<string>group.jieum.sieum</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)com.jieum.sieum.ios</string>
+	</array>
 </dict>
 </plist>

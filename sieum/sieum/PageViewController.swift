@@ -50,9 +50,9 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
     private func setupPageControl() {
         
         let appearance = UIPageControl.appearance()
-        appearance.pageIndicatorTintColor = UIColor.gray
-        appearance.currentPageIndicatorTintColor = UIColor.white
-        appearance.backgroundColor = UIColor.darkGray
+//        appearance.pageIndicatorTintColor = UIColor.gray
+//        appearance.currentPageIndicatorTintColor = UIColor.white
+//        appearance.backgroundColor = UIColor.darkGray
         
     }
     
@@ -115,17 +115,21 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
     
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return orderedViewControllers.count
+//        return orderedViewControllers.count
+        return 4
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        guard let firstViewController = viewControllers?.first,
-            let firstViewControllerIndex = orderedViewControllers.index(of: firstViewController) else {
-                return 0
-        }
+//        guard let firstViewController = viewControllers?.first,
+//            let firstViewControllerIndex = orderedViewControllers.index(of: firstViewController) else {
+//                return 0
+//        }
+//        
+//        return firstViewControllerIndex
         
-        return firstViewControllerIndex
+        return 1
     }
+    
 
     /*
     // MARK: - Navigation
