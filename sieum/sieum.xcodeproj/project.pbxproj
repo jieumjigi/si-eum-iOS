@@ -17,6 +17,7 @@
 		C127B5D01E67019000275D21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C127B5CE1E67019000275D21 /* LaunchScreen.storyboard */; };
 		C13236BC1EBAFBCC00C54E9A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13236BB1EBAFBCC00C54E9A /* Constants.swift */; };
 		C13236BD1EBB110500C54E9A /* IropkeBatangM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */; };
+		C14AFAEF1F641AEC00283D9E /* launchImage4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14AFAEE1F641AEC00283D9E /* launchImage4.jpg */; };
 		C14B055F1E67032900EE2A58 /* launchImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14B055E1E67032900EE2A58 /* launchImage.jpg */; };
 		C14B05611E6703F400EE2A58 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C14B05601E6703F400EE2A58 /* Images.xcassets */; };
 		C14F81EF1ECC94E50070F833 /* alarm.png.black.old in Resources */ = {isa = PBXBuildFile; fileRef = C14F81EB1ECC94E50070F833 /* alarm.png.black.old */; };
@@ -142,6 +143,7 @@
 		C105D4761EA1198400631D41 /* SieumWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SieumWidget.entitlements; sourceTree = "<group>"; };
 		C127B5CF1E67019000275D21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C13236BB1EBAFBCC00C54E9A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C14AFAEE1F641AEC00283D9E /* launchImage4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage4.jpg; sourceTree = "<group>"; };
 		C14B055E1E67032900EE2A58 /* launchImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage.jpg; sourceTree = "<group>"; };
 		C14B05601E6703F400EE2A58 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C14F81EB1ECC94E50070F833 /* alarm.png.black.old */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.png.black.old; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 				C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */,
 				C15BEE361ECD9DA700F006C0 /* launchImage3.jpg */,
 				C14B055E1E67032900EE2A58 /* launchImage.jpg */,
+				C14AFAEE1F641AEC00283D9E /* launchImage4.jpg */,
 				C15EDADE1E66AB4B0024C5C5 /* menu */,
 				C15EDAF11E66FE830024C5C5 /* icon.png */,
 			);
@@ -680,6 +683,7 @@
 				C15EDAE61E66AB640024C5C5 /* save.png in Resources */,
 				C1CDBF1B1ECB1E2600C25A0C /* share.png.old.white in Resources */,
 				C15EDAE81E66AB640024C5C5 /* menubar.png in Resources */,
+				C14AFAEF1F641AEC00283D9E /* launchImage4.jpg in Resources */,
 				C14F81EF1ECC94E50070F833 /* alarm.png.black.old in Resources */,
 				C1CDBF0A1ECB1DC200C25A0C /* closebutton.png in Resources */,
 				C15EDAE41E66AB640024C5C5 /* aboutus.png in Resources */,

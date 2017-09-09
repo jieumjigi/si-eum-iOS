@@ -43,8 +43,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
     private func setupPageControl() {
     
         let appearance = UIPageControl.appearance()
-        appearance.pageIndicatorTintColor = UIColor.darkBrown()
-        appearance.currentPageIndicatorTintColor = UIColor.lightBrown()
+        appearance.pageIndicatorTintColor = UIColor.lightBrown()
+        appearance.currentPageIndicatorTintColor = UIColor.darkBrown()
 //        appearance.backgroundColor = UIColor.darkGray
     }
     
