@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        self.setNotiAuth()
         
         Thread.sleep(forTimeInterval: 2.0)
         
@@ -37,22 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         center.getPendingNotificationRequests(completionHandler: { (requestList) in
             
-            center.removeAllPendingNotificationRequests()
-            
-            for request in requestList{
-                log.verbose("request: \(request)")
-                center.add(request, withCompletionHandler: nil)
+            if(requestList.count > 0){
                 
-                let content = UNMutableNotificationContent()
-                content.body = "오늘의 시가 도착했습니다"
-                content.sound = UNNotificationSound.default()
+                self.setNotiAuth()
                 
-                let newRequest = UNNotificationRequest.init(identifier: UUID().uuidString, content: content, trigger: request.trigger)
-                
-                center.add(newRequest, withCompletionHandler: nil)
-            
             }
-            
         })
         
         return true

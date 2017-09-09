@@ -39,8 +39,6 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     @IBOutlet weak var contentTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var contentBottomConstraint: NSLayoutConstraint!
     
-    
-    
     @IBOutlet weak var lbPoet: UILabel!
     @IBOutlet weak var lbBody: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!

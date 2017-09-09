@@ -18,6 +18,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UIGestureRecogni
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
         
+        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+        
         self.setTap()
         self.getContent()
         
@@ -33,6 +35,20 @@ class TodayViewController: UIViewController, NCWidgetProviding, UIGestureRecogni
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        
+        if (activeDisplayMode == .compact){
+            
+            self.preferredContentSize = maxSize;
+
+        }else{
+            
+            self.preferredContentSize = CGSize(width: 0, height: 200);
+            
+        }
+        
     }
     
     

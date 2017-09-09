@@ -9,16 +9,25 @@
 import UIKit
 
 extension UIColor{
-    class func defaultBackground () -> UIColor{
+    
+    class func defaultBackground() -> UIColor{
         
         return UIColor(red: (253/255.0), green: (255/255.0), blue: (251/255.0), alpha: 1.0)
-
     }
     
-    class func alertBackground () -> UIColor{
+    class func alertBackground() -> UIColor{
         
         return UIColor(red: (78/255.0), green: (78/255.0), blue: (78/255.0), alpha: 1.0)
+    }
+    
+    class func lightBrown() -> UIColor{
         
+        return UIColor(red: (203/255.0), green: (200/255.0), blue: (193/255.0), alpha: 1.0)
+    }
+    
+    class func darkBrown() -> UIColor{
+        
+        return UIColor(red: (78/255.0), green: (78/255.0), blue: (78/255.0), alpha: 1.0)
     }
 }
 

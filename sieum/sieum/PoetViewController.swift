@@ -92,7 +92,7 @@ class PoetViewController: UIViewController {
         }else if(poetName == "위은총"){
             imageName = "profile1.png"
             
-        }else if(poetName == "박영하"){
+        }else if(poetName == "영하"){
             imageName = "profile2.png"
             
         }else if(poetName == "이경원"){

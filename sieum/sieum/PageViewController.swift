@@ -1,5 +1,5 @@
 //
-//  MainPageViewController.swift
+///  MainPageViewController.swift
 //  sieum
 //
 //  Created by 홍성호 on 2017. 2. 22..
@@ -10,16 +10,9 @@ import UIKit
 
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
     
-    // The custom UIPageControl
-    @IBOutlet weak var pageControl: UIPageControl!
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setColor()
-        self.setupPageControl()
-
         self.dataSource = self
         
         if let firstViewController = orderedViewControllers.first {
@@ -29,7 +22,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
                                completion: nil)
         }
         
-
+        self.setColor()
+        self.setupPageControl()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,19 +35,17 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
     // MARK: - UI
     
     func setColor(){
-//        self.view.backgroundColor = UIColor(red: (247/255.0), green: (247/255.0), blue: (247/255.0), alpha: 1.0)
-        self.view.backgroundColor = UIColor(red: (254.0/255.0), green: (255.0/255.0), blue: (250.0/255.0), alpha: 1.0)
-
+//        self.view.backgroundColor = UIColor(red: (254.0/255.0), green: (255.0/255.0), blue: (250.0/255.0), alpha: 1.0)
+        self.view.backgroundColor = UIColor.defaultBackground()
     }
     
     
     private func setupPageControl() {
-        
+    
         let appearance = UIPageControl.appearance()
-//        appearance.pageIndicatorTintColor = UIColor.gray
-//        appearance.currentPageIndicatorTintColor = UIColor.white
+        appearance.pageIndicatorTintColor = UIColor.darkBrown()
+        appearance.currentPageIndicatorTintColor = UIColor.lightBrown()
 //        appearance.backgroundColor = UIColor.darkGray
-        
     }
     
     
@@ -114,20 +106,12 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource{
     }
     
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-//        return orderedViewControllers.count
-        return 4
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return 0
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-//        guard let firstViewController = viewControllers?.first,
-//            let firstViewControllerIndex = orderedViewControllers.index(of: firstViewController) else {
-//                return 0
-//        }
-//        
-//        return firstViewControllerIndex
-        
-        return 1
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return 3
     }
     
 

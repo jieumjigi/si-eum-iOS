@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>KAKAO_APP_KEY</key>
-	<string>dee922889cd0851ea85bb52415640e09</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -19,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string>
+	<string>1.2</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -48,11 +46,13 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>13</string>
+	<string>16</string>
 	<key>FacebookAppID</key>
 	<string>424383144577452</string>
 	<key>FacebookDisplayName</key>
 	<string>시음</string>
+	<key>KAKAO_APP_KEY</key>
+	<string>dee922889cd0851ea85bb52415640e09</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fb</string>
@@ -60,15 +60,14 @@
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
-        <string>kakao0123456789abcdefghijklmn</string>
-        <string>kakaokompassauth</string>
-        <string>storykompassauth</string>
-        <string>kakaolink</string>
-<!--        <string>kakaotalk-4.5.0</string>-->
-        <string>kakaotalk-5.9.7</string>
-        <string>kakaostory-2.9.0</string>
-        <string>storylink</string>
-        <string>kakaodee922889cd0851ea85bb52415640e09</string>
+		<string>kakao0123456789abcdefghijklmn</string>
+		<string>kakaokompassauth</string>
+		<string>storykompassauth</string>
+		<string>kakaolink</string>
+		<string>kakaotalk-5.9.7</string>
+		<string>kakaostory-2.9.0</string>
+		<string>storylink</string>
+		<string>kakaodee922889cd0851ea85bb52415640e09</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

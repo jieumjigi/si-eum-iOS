@@ -153,7 +153,7 @@ class MenuViewController: UIViewController {
         // setting properties of the datePicker
         myDatePicker.datePickerMode = UIDatePickerMode.time
         myDatePicker.timeZone = NSTimeZone.local
-        myDatePicker.frame = CGRect.init(x: 0, y: 15, width: 270, height: 150)
+        myDatePicker.frame = CGRect.init(x: 0, y: 30, width: 270, height: 150)
         let alertController = UIAlertController(title: "" , message: "\n\n\n\n\n\n\n\n", preferredStyle: .alert)
         
         alertController.view.addSubview(myDatePicker)
@@ -193,6 +193,7 @@ class MenuViewController: UIViewController {
 
             center.removeAllPendingNotificationRequests()
             center.add(request, withCompletionHandler: { (error) in
+
                 
             })
             
