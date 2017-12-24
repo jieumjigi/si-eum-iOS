@@ -157,7 +157,9 @@ class InfoViewController: UITableViewController {
     
     func sendEmail(){
         
-        let mailUrl = URL.init(string: "mailto:hsh3592@gmail.com")
+        let title = ""
+        let contents = ""
+        let mailUrl = URL.init(string: "mailto:hsh3592@gmail.com?subject=\(title)&body=\(contents)")
         
         if(UIApplication.shared.canOpenURL(mailUrl!)){
             

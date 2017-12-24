@@ -11,6 +11,7 @@ target 'sieum' do
     pod 'Alamofire', '~> 4.3'
     pod 'SwiftyBeaver'
     pod 'PopupDialog', '~> 0.5'
+    pod 'SwiftyJSON'
 
   target 'sieumTests' do
     inherit! :search_paths
