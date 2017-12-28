@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class PoemModel: NSObject {
     
@@ -20,78 +21,57 @@ class PoemModel: NSObject {
     }
     
     var poemId : String? = ""
-    var pushDueDate : String? = ""
+    var reservation_date : String? = ""
     
     var title : String? = ""
-    var poetName : String? = ""
+    var authorName : String? = ""
     var contents : String? = ""
     var question : String? = ""
     
-    var introPoet : String? = ""
-    var linkToBook : String? = ""
+    var introduction : String? = ""
+    var link : String? = ""
     
-    func parse(response:DataResponse<Any>){
-        
-        //to get JSON return value
-        if let result = response.result.value {
-            let json = result as! NSDictionary
-            log.info(json)
-            
-            if let items = json["poem"] as? NSArray {
-                
-                if (items.count == 0){
-                    return
-                }
-                
-                if let items = items[0] as? NSDictionary {
-                    
-                    // 첫 페이지
-                    
-                    if let title = items["title"] as? String{
-                        self.title = title
-                    }else{
-                        self.title = ""
-                    }
-                    
-                    if let poetName = items["poetName"] as? String{
-                        self.poetName = poetName
-                    }else{
-                        self.poetName = ""
-                    }
-                    
-                    if let contents = items["contents"] as? String{
-                        self.contents = contents
-                    }else{
-                        self.contents = ""
-                    }
-                    
-                    // 두번째 페이지
-                    
-                    if let question = items["question"] as? String{
-                        self.question = question
-                    }else{
-                        self.question = ""
-                    }
-                    
-                    // 세번째 페이지
-                    
-                    if let linkToBook = items["linkToBook"] as? String{
-                        self.linkToBook = linkToBook
-                    }else{
-                        self.linkToBook = ""
-                    }
-                    
-                    if let introPoet = items["introPoet"] as? String{
-                        self.introPoet = introPoet
-                    }else{
-                        self.introPoet = ""
-                    }
-                    
-                }
-            }
+    func parse(json:JSON){
+    
+        // 첫 페이지
+        if let title = json["title"].string{
+            self.title = title
+        }else{
+            self.title = ""
         }
 
-        
+        if let authorName = json["authorName"].string{
+            self.authorName = authorName
+        }else{
+            self.authorName = ""
+        }
+
+        if let contents = json["contents"].string{
+            self.contents = contents
+        }else{
+            self.contents = ""
+        }
+
+        // 두번째 페이지
+
+        if let question = json["question"].string{
+            self.question = question
+        }else{
+            self.question = ""
+        }
+
+        // 세번째 페이지
+
+        if let link = json["link"].string{
+            self.link = link
+        }else{
+            self.link = ""
+        }
+
+        if let introduction = json["introduction"].string{
+            self.introduction = introduction
+        }else{
+            self.introduction = ""
+        }
     }
-    
 }

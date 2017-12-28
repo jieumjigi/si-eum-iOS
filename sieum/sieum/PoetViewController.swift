@@ -56,18 +56,18 @@ class PoetViewController: UIViewController {
         
         self.setProfileImage()
         
-        self.lbPoet.text = PoemModel.shared.poetName
+        self.lbPoet.text = PoemModel.shared.authorName
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 5
         paragraphStyle.alignment = .left
 
-        let attrString = NSMutableAttributedString(string: PoemModel.shared.introPoet!)
+        let attrString = NSMutableAttributedString(string: PoemModel.shared.introduction!)
         attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
         self.lbIntroPoet.attributedText = attrString
         self.lbIntroPoet.textAlignment = .left
         
-        if let tempLink = PoemModel.shared.linkToBook{
+        if let tempLink = PoemModel.shared.link{
             
             if(tempLink != ""){
                 self.linkToBook = tempLink
@@ -83,7 +83,7 @@ class PoetViewController: UIViewController {
     
     func setProfileImage(){
         
-        let poetName = PoemModel.shared.poetName
+        let poetName = PoemModel.shared.authorName
         var imageName = "profile0.png"
         
         if(poetName == nil || poetName == ""){

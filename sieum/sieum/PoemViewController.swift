@@ -12,25 +12,9 @@ import Alamofire
 import FBSDKShareKit
 import PopupDialog
 import KakaoLink
-
-//protocol PoemViewControllerDelegate: class {
-//    func didRequestDownload()
-//}
-//
-//extension PoemViewController: PoemViewControllerDelegate {
-//    
-//    func didRequestDownload(){
-//        
-//        UIImageWriteToSavedPhotosAlbum(UIImage.init(view: self.view),
-//                                       self,
-//                                       #selector(self.didSaveImage),
-//                                       nil);
-//    }
-//}
+import SwiftyJSON
 
 class PoemViewController: UIViewController, FBSDKSharingDelegate {
-    
-//    weak var delegate:PoemViewControllerDelegate?
     
     @IBOutlet var bgView: UIView!
     @IBOutlet weak var bgImage: UIImageView!
@@ -92,172 +76,70 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
 
     func getContent(){
         
+        guard let path = Bundle.main.path(forResource: "Keys", ofType: "plist"),
+            let keys = NSDictionary(contentsOfFile: path),
+            let auth = keys["Authorization"] as? String else { return }
         
+        let headers = ["Authorization": auth]
         
-        let todayPoemUrl = Constants.url.base.appending("poem/poemOfToday/")
-//        let todayPoemUrl = Constants.url.base.appending("poem/getPoem?/")
-
-        
-        Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default)
-            .responseJSON { response in
+        let todayPoemUrl = Constants.url.today
+        Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON { responseData in
                 
-            log.info(response)
-                
-            //to get status code
-            if let status = response.response?.statusCode {
-                
-                switch(status){
-                    case 200 :
-                        log.info("success")
-                    default:
-                        log.error("error with response status: \(status)")
-                    
+                guard let result = responseData.result.value else {
+                        
+                    self.lbBody.text = "죄송합니다.\n 오늘의 시를 가져올 수 없습니다."
+                    return
                 }
                 
-                PoemModel.shared.parse(response: response)
+                let json = JSON(result)
+                log.info(json[0])
                 
-                let title = PoemModel.shared.title
-                let poetName = PoemModel.shared.poetName
-                let contents = PoemModel.shared.contents
-                
-//                log.verbose("title: \(title)")
-//                log.verbose("poetName: \(poetName)")
-//                log.verbose("contents: \(contents)")
-                
-                UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-
-                    self.lbPoet.alpha = 0.0
-                    self.lbBody.alpha = 0.0
-
-                }, completion: {
-                    (finished: Bool) -> Void in
+                //to get status code
+                if let status = responseData.response?.statusCode {
                     
-                    self.lbPoet.text = title?.appending(" / ").appending(poetName!)
-
+                    switch(status){
+                        case 200 :
+                            log.info("success")
+                        default:
+                            log.error("error with response status: \(status)")
+                    }
                     
-                    let paragraphStyle = NSMutableParagraphStyle()
-                    paragraphStyle.lineSpacing = 6
-                    paragraphStyle.alignment = .left
-
-                    let attrString = NSMutableAttributedString(string: contents!)
-                    attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-                    self.lbBody.attributedText = attrString
+                    PoemModel.shared.parse(json: json[0])
                     
-                    // Fade in
-                    UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                    let title = PoemModel.shared.title
+                    let poetName = PoemModel.shared.authorName
+                    let contents = PoemModel.shared.contents
+                    
+                    UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
 
-                        self.lbPoet.alpha = 1.0
-                        self.lbBody.alpha = 1.0
+                        self.lbPoet.alpha = 0.0
+                        self.lbBody.alpha = 0.0
+
+                    }, completion: {
+                        (finished: Bool) -> Void in
+                        
+                        self.lbPoet.text = title?.appending(" / ").appending(poetName!)
+                        
+                        let paragraphStyle = NSMutableParagraphStyle()
+                        paragraphStyle.lineSpacing = 6
+                        paragraphStyle.alignment = .left
+
+                        let attrString = NSMutableAttributedString(string: contents!)
+                        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+                        self.lbBody.attributedText = attrString
+                        
+                        // Fade in
+                        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+
+                            self.lbPoet.alpha = 1.0
+                            self.lbBody.alpha = 1.0
 
 
-                    }, completion: nil)
-                
-                })
-                
-                
-                
-            
-//                //to get JSON return value
-//                if let result = response.result.value {
-//                    let json = result as! NSDictionary
-//                    log.info(json)
-//                    
-//                    if let items = json["poem"] as? NSArray {
-//                        
-//                        if (items.count == 0){
-//                            return
-//                        }
-//                        
-//                        if let items = items[0] as? NSDictionary {
-//                            
-//                            var title = items["title"] as? String
-//                            var poetName = items["poetName"] as? String
-//                            var contents = items["contents"] as? String
-//                            
-//                            log.info("title\(String(describing: title))")
-//                            log.info("poetName\(String(describing: poetName))")
-//                            log.info("contents\(String(describing: contents))")
-//                            
-//                            
-//                            UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-//                                
-//                                self.lbPoet.alpha = 0.0
-//                                self.lbBody.alpha = 0.0
-//                                
-//                            }, completion: {
-//                                (finished: Bool) -> Void in
-//                                
-//                                //Once the label is completely invisible, set the text and fade it back in
-////                                self.birdTypeLabel.text = "Bird Type: Swift"
-////                                self.lbTitle.text = title
-//                                self.lbPoet.text = title?.appending(" / ").appending(poetName!)
-////                                self.lbBody.text = contents
-//                                
-//                                let paragraphStyle = NSMutableParagraphStyle()
-//                                paragraphStyle.lineSpacing = 6
-//                                paragraphStyle.alignment = .left
-//                        
-//                                let attrString = NSMutableAttributedString(string: contents!)
-//                                attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-//                                self.lbBody.attributedText = attrString
-//                                
-//                                
-//
-//
-////                                
-////                                // Fade in
-////                                UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-////
-////                                    self.lbPoet.alpha = 1.0
-////                                    self.lbBody.alpha = 1.0
-////                                    
-////
-////                                }, completion: nil)
-//                                
-//                                
-//                                UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { 
-//                                    
-//                                    self.lbPoet.alpha = 1.0
-//                                    self.lbBody.alpha = 1.0
-//                                    
-//                                    // 시가 짧을 때 가운데로 이동시키는 코드
-//                                    
-////                                    let emptySpacing = self.scrollView.frame.size.height - self.scrollView.contentSize.height
-////                                    
-////                                    log.verbose("frame height : \(self.scrollView.frame.size.height)")
-////                                    log.verbose("content height : \(self.scrollView.contentSize.height)")
-////                                    log.verbose("emptySpacing : \(emptySpacing)")
-////                                    
-////                                    
-////                                    if(emptySpacing > 0){
-////                                        
-////                                        self.contentTopConstraint.constant = CGFloat(Int(emptySpacing)/2)
-////
-////                                        
-////                                        log.verbose("공간이 남음")
-////                                        
-////                                        UIView.animate(withDuration: 1.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-////                                            
-////                                            self.view.layoutIfNeeded()
-////                                            
-////                                        }, completion: nil)
-////                                        
-////                                    }
-//
-//                                    
-//                                }, completion: { (success) in
-//                                    
-//
-//                                    
-//                                })
-//                            })
-//
-//                        }
-//                    }
-//                    
-//                }
-            
-            }
+                        }, completion: nil)
+                    
+                    })
+                }
         }
     }
     
@@ -395,7 +277,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
                         titleString = titleString + title
                     }
                     
-                    if let poetName = PoemModel.shared.poetName{
+                    if let poetName = PoemModel.shared.authorName{
                         titleString = titleString + " / " + poetName
                     }
                     
@@ -414,7 +296,6 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
                         linkBuilder.iosExecutionParams = "param1=value1&param2=value2"
                         linkBuilder.androidExecutionParams = "param1=value1&param2=value2"
                         linkBuilder.mobileWebURL = imageUrl
-
                     })
                 })
                 
