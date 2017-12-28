@@ -76,11 +76,11 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
 
     func getContent(){
         
-        guard let path = Bundle.main.path(forResource: "Keys", ofType: "plist"),
+        guard let path = Bundle.main.path(forResource: "keys", ofType: "plist"),
             let keys = NSDictionary(contentsOfFile: path),
             let auth = keys["Authorization"] as? String else { return }
         
-        let headers = ["Authorization": auth]
+        let headers = ["Authorization" : auth]
         
         let todayPoemUrl = Constants.url.today
         Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)

@@ -14,7 +14,7 @@ struct Constants {
 //        static let base = "https://si-eum.appspot.com/poem/getPoem?"
 //        static let base = "https://si-eum-169901.appspot.com/"
 //        static let base = "https://si-eum-petercha90.c9users.io/"
-        static let base = "https://seongho.pythonanywhere.com/api/"
+        static let base = "http://seongho.pythonanywhere.com/api/"
         static let today = base + "today/"
         static let blog = "https://www.facebook.com/tasteapoem/"
         static let webSite = "https://jieumjigi.github.io/si-eum-web/"

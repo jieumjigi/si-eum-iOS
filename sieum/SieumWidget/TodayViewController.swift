@@ -77,8 +77,12 @@ class TodayViewController: UIViewController, NCWidgetProviding, UIGestureRecogni
     
     func getContent(){
         
+        guard let path = Bundle.main.path(forResource: "keys", ofType: "plist"),
+            let keys = NSDictionary(contentsOfFile: path),
+            let auth = keys["Authorization"] as? String else { return }
+        
         let todayPoemUrl = Constants.url.today
-        let headers = ["Authorization":"Basic c2VvbmdobzpzdGF0aWNnbw=="]
+        let headers = ["Authorization" : auth]
 
         Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers:headers)
             .responseJSON { responseData in
