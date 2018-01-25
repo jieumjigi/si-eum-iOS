@@ -10,7 +10,6 @@ import UIKit
 
 class InfoViewController: UITableViewController {
 
-//    var menu = ["지음지기 블로그", "문의하기", "오픈소스 라이센스"]
     var menu = ["시음 페이스북", "문의하기", "리뷰 작성하기", "소중한 사람에게 알려주기"]
     
     override func viewDidLoad() {
@@ -21,7 +20,6 @@ class InfoViewController: UITableViewController {
         
         self.setBackground()
         self.setNavi()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -209,38 +207,5 @@ class InfoViewController: UITableViewController {
         self.present(activityViewController, animated: true, completion: nil)
         
     }
-    
-//    - (void) sendEmail {
-//    
-//    UserModel * user = self.dataManager.userModel;
-//    NSString *toRecipents = SUPPORT_CONTACT_US_RECEPIENT;
-//    NSString *messageBody = NSLocalizedString(@"email_contact_us_message_body", @"email_contact_us_message_body");
-//    NSString *ccRecipients = @"";
-//    if(user!=nil && user.email!=nil){
-//    ccRecipients = user.email;
-//    }
-//    
-//    NSString *stringURL = [NSString stringWithFormat:@"mailto:%@?body=%@&cc=%@", toRecipents, messageBody, ccRecipients];
-//    NSURL *url = [NSURL URLWithString:stringURL];
-//    if([[UIApplication sharedApplication] canOpenURL:url] ){
-//    [[UIApplication sharedApplication] openURL:url];
-//    }else{
-//    [self recordWithCategory:@"ui_action" action:@"Contact Us menu clicked" label:@"show email error alert" value:nil];
-//    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-//    pasteboard.string = SUPPORT_CONTACT_US_RECEPIENT;
-//    [self showSimpleAlertWithTitle:NSLocalizedString(@"error_email_app_not_support", @"error_email_app_not_support") message:SUPPORT_CONTACT_US_RECEPIENT];
-//    }
-//    }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -15,9 +15,7 @@ class PoemModel: NSObject {
     static let shared = PoemModel()
     
     private override init(){
-        
         super.init()
-        
     }
     
     var poemId : String? = ""
@@ -47,7 +45,7 @@ class PoemModel: NSObject {
         }
 
         if let contents = json["contents"].string{
-            self.contents = contents
+          self.contents = contents
         }else{
             self.contents = ""
         }

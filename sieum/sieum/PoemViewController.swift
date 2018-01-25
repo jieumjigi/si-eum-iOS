@@ -15,544 +15,489 @@ import KakaoLink
 import SwiftyJSON
 
 class PoemViewController: UIViewController, FBSDKSharingDelegate {
+  
+  @IBOutlet var bgView: UIView!
+  @IBOutlet weak var bgImage: UIImageView!
+  @IBOutlet weak var scrollView: UIScrollView!
+  
+  @IBOutlet weak var contentTopConstraint: NSLayoutConstraint!
+  @IBOutlet weak var contentBottomConstraint: NSLayoutConstraint!
+  
+  @IBOutlet weak var lbPoet: UILabel!
+  @IBOutlet weak var lbBody: UILabel!
+  @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+  
+  var accessDate : String?
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view, typically from a nib.
     
-    @IBOutlet var bgView: UIView!
-    @IBOutlet weak var bgImage: UIImageView!
-    @IBOutlet weak var scrollView: UIScrollView!
+    setAttribute()
+    setGUI()
+    addObserver()
     
-    @IBOutlet weak var contentTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var contentBottomConstraint: NSLayoutConstraint!
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
     
-    @IBOutlet weak var lbPoet: UILabel!
-    @IBOutlet weak var lbBody: UILabel!
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    super.viewDidAppear(animated)
     
-    var accessDate : String?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        setAttribute()
-        setGUI()
-        addObserver()
-    
+    if(self.accessDate == nil || self.accessDate != DateUtil().getDate() ){
+      
+      self.accessDate = DateUtil().getDate()
+      
+      self.getContent()
+      
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  
+  
+  
+  func convertToDictionary(text: String) -> [String: Any]? {
+    if let data = text.data(using: .utf8) {
+      do {
+        return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+      } catch {
         
-        super.viewDidAppear(animated)
-                
-        if(self.accessDate == nil || self.accessDate != DateUtil().getDate() ){
-            
-            self.accessDate = DateUtil().getDate()
-            
-            self.getContent()
-            
-        }
-
+        print(error.localizedDescription)
+      }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    return nil
+  }
+  
+  
+  func getContent(){
     
+    guard let path = Bundle.main.path(forResource: "keys", ofType: "plist"),
+      let keys = NSDictionary(contentsOfFile: path),
+      let auth = keys["Authorization"] as? String else { return }
     
+    let headers = ["Authorization" : auth]
     
-    
-    func convertToDictionary(text: String) -> [String: Any]? {
-        if let data = text.data(using: .utf8) {
-            do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            } catch {
-           
-                print(error.localizedDescription)
-            }
-        }
-        return nil
-    }
-    
-
-    func getContent(){
+    let todayPoemUrl = Constants.url.today
+    Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
+      .responseJSON { responseData in
         
-        guard let path = Bundle.main.path(forResource: "keys", ofType: "plist"),
-            let keys = NSDictionary(contentsOfFile: path),
-            let auth = keys["Authorization"] as? String else { return }
-        
-        let headers = ["Authorization" : auth]
-        
-        let todayPoemUrl = Constants.url.today
-        Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
-            .responseJSON { responseData in
-                
-                guard let result = responseData.result.value else {
-                        
-                    self.lbBody.text = "죄송합니다.\n 오늘의 시를 가져올 수 없습니다."
-                    return
-                }
-                
-                let json = JSON(result)
-                log.info(json[0])
-                
-                //to get status code
-                if let status = responseData.response?.statusCode {
-                    
-                    switch(status){
-                        case 200 :
-                            log.info("success")
-                        default:
-                            log.error("error with response status: \(status)")
-                    }
-                    
-                    PoemModel.shared.parse(json: json[0])
-                    
-                    let title = PoemModel.shared.title
-                    let poetName = PoemModel.shared.authorName
-                    let contents = PoemModel.shared.contents
-                    
-                    UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-
-                        self.lbPoet.alpha = 0.0
-                        self.lbBody.alpha = 0.0
-
-                    }, completion: {
-                        (finished: Bool) -> Void in
-                        
-                        self.lbPoet.text = title?.appending(" / ").appending(poetName!)
-                        
-                        let paragraphStyle = NSMutableParagraphStyle()
-                        paragraphStyle.lineSpacing = 6
-                        paragraphStyle.alignment = .left
-
-                        let attrString = NSMutableAttributedString(string: contents!)
-                        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-                        self.lbBody.attributedText = attrString
-                        
-                        // Fade in
-                        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-
-                            self.lbPoet.alpha = 1.0
-                            self.lbBody.alpha = 1.0
-
-
-                        }, completion: nil)
-                    
-                    })
-                }
-        }
-    }
-    
-    /// 시, 시인 등 내용을 설정
-    func setAttribute(){
-        
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.lineSpacing = 5
-//        paragraphStyle.alignment = .center
-//
-//        let attrString = NSMutableAttributedString(string: "계절이 지나가는 하늘에는\n가을로 가득 차 있습니다.\n\n나는 아무 걱정도 없이\n가을 속의 별들을 다 헤일 듯합니다.\n\n가슴 속에 하나 둘 새겨지는 별을\n이제 다 못 헤는 것은\n쉬이 아침이 오는 까닭이요,\n내일 밤이 남은 까닭이요,\n아직 나의 청춘이 다하지 않은 까닭입니다.\n\n별 하나에 추억과\n별 하나에 사랑과\n별 하나에 쓸쓸함과\n별 하나에 동경과\n별 하나에 시와\n별 하나에 어머니, 어머니,")
-//        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-//        lbBody.attributedText = attrString
-        
-    }
-    
-    
-    func setGUI(){
-
-//        bgImage.image = UIImage(named: "image_example7.jpg")
-        
-        self.loadingIndicator.stopAnimating()
-        
-        self.lbPoet.numberOfLines = 0
-        
-        
-        setColor() // 서버에서 받아온 후에 동작해야 함
-    }
-    
-    
-    func setColor(){
-        
-        if bgImage.image == nil{
-            
-        }else{
-            let colorPicker = DBImageColorPicker.init(from: bgImage.image, with: .default)
-            
-            bgView.backgroundColor = colorPicker?.backgroundColor
-//            lbTitle.textColor = colorPicker?.primaryTextColor
-            lbPoet.textColor = colorPicker?.primaryTextColor
-            
-            if ColorUtil().isLight(targetColor: (bgView.backgroundColor?.cgColor)!) {
-                lbBody.textColor = UIColor.black
-            }else{
-                lbBody.textColor = UIColor.white
-            }
-        }
-    }
-    
-    func addObserver(){
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.didRequestSave),
-            name: Constants.observer.requestSave ,
-            object: nil)
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.didRequestShare),
-            name: Constants.observer.requestShare ,
-            object: nil)
-        
-    }
-    
-    //MARK: - Share
-    
-    func didRequestShare(){
-        
-        
-        let title = "오늘의 시를 전해줍니다"
-        let message = "어디에 공유하는게 좋을까요?"
-        
-        
-        // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .vertical, transitionStyle: .fadeIn, gestureDismissal: true) {
-            
+        guard let result = responseData.result.value else {
+          
+          self.lbBody.text = "죄송합니다.\n 오늘의 시를 가져올 수 없습니다."
+          return
         }
         
-        // Create buttons
-        let facebookButton = DefaultButton(title: "페이스북") {
-
-            popup.dismiss()
-            self.shareFacebook()
+        let json = JSON(result)
+        log.info(json[0])
+        
+        //to get status code
+        if let status = responseData.response?.statusCode {
+          
+          switch(status){
+          case 200 :
+            log.info("success")
+          default:
+            log.error("error with response status: \(status)")
+          }
+          
+          PoemModel.shared.parse(json: json[0])
+          
+          let title = PoemModel.shared.title
+          let poetName = PoemModel.shared.authorName
+          let contents = PoemModel.shared.contents
+          
+          UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            
+            self.lbPoet.alpha = 0.0
+            self.lbBody.alpha = 0.0
+            
+          }, completion: {
+            (finished: Bool) -> Void in
+            
+            self.lbPoet.text = title?.appending(" / ").appending(poetName!)
+            
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 6
+            paragraphStyle.alignment = .left
+            
+            let attrString = NSMutableAttributedString(string: contents!)
+            attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+            self.lbBody.attributedText = attrString
+            
+            // Fade in
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+              
+              self.lbPoet.alpha = 1.0
+              self.lbBody.alpha = 1.0
+              
+              
+            }, completion: nil)
+            
+          })
         }
-        
-        
-        let kakaoButton = DefaultButton(title: "카카오톡") {
-
-//            popup.dismiss()
-            self.shareKakao()
-
-        }
-        
-        let cancelButton = CancelButton(title: "취소") {
-
-            popup.dismiss()
-
-        }
-        
-        popup.addButton(facebookButton)
-        popup.addButton(kakaoButton)
-        popup.addButton(cancelButton)
-        
-        
-        // Present dialog
-        self.present(popup, animated: true)
+    }
+  }
+  
+  /// 시, 시인 등 내용을 설정
+  func setAttribute(){
     
+    //        let paragraphStyle = NSMutableParagraphStyle()
+    //        paragraphStyle.lineSpacing = 5
+    //        paragraphStyle.alignment = .center
+    //
+    //        let attrString = NSMutableAttributedString(string: "계절이 지나가는 하늘에는\n가을로 가득 차 있습니다.\n\n나는 아무 걱정도 없이\n가을 속의 별들을 다 헤일 듯합니다.\n\n가슴 속에 하나 둘 새겨지는 별을\n이제 다 못 헤는 것은\n쉬이 아침이 오는 까닭이요,\n내일 밤이 남은 까닭이요,\n아직 나의 청춘이 다하지 않은 까닭입니다.\n\n별 하나에 추억과\n별 하나에 사랑과\n별 하나에 쓸쓸함과\n별 하나에 동경과\n별 하나에 시와\n별 하나에 어머니, 어머니,")
+    //        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+    //        lbBody.attributedText = attrString
+    
+  }
+  
+  
+  func setGUI(){
+    
+    //        bgImage.image = UIImage(named: "image_example7.jpg")
+    
+    self.loadingIndicator.stopAnimating()
+    
+    self.lbPoet.numberOfLines = 0
+    
+    
+    setColor() // 서버에서 받아온 후에 동작해야 함
+  }
+  
+  
+  func setColor(){
+    
+    if bgImage.image == nil{
+      
+    }else{
+      let colorPicker = DBImageColorPicker.init(from: bgImage.image, with: .default)
+      
+      bgView.backgroundColor = colorPicker?.backgroundColor
+      //            lbTitle.textColor = colorPicker?.primaryTextColor
+      lbPoet.textColor = colorPicker?.primaryTextColor
+      
+      if ColorUtil().isLight(targetColor: (bgView.backgroundColor?.cgColor)!) {
+        lbBody.textColor = UIColor.black
+      }else{
+        lbBody.textColor = UIColor.white
+      }
+    }
+  }
+  
+  func addObserver(){
+    
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(self.didRequestSave),
+      name: Constants.observer.requestSave ,
+      object: nil)
+    
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(self.didRequestShare),
+      name: Constants.observer.requestShare ,
+      object: nil)
+    
+  }
+  
+  //MARK: - Share
+  
+  func didRequestShare(){
+    
+    
+    let title = "오늘의 시를 전해줍니다"
+    let message = "어디에 공유하는게 좋을까요?"
+    
+    
+    // Create the dialog
+    let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .vertical, transitionStyle: .fadeIn, gestureDismissal: true) {
+      
     }
     
-    func shareKakao(){
-        
-        let poemImage = self.getPoemImage()
-        
-        log.verbose("image width: \(poemImage.size.width)")
-        log.verbose("image height: \(poemImage.size.height)")
-
-        KLKImageStorage().upload(with: poemImage, success: { (original) in
-            
-            let imageUrl = original.url
-            
-            log.verbose("imageUrl: \(imageUrl)")
-            
-            
-            // Feed 타입 템플릿 오브젝트 생성
-            let template = KLKFeedTemplate.init { (feedTemplateBuilder) in
-                
-                // 컨텐츠
-                feedTemplateBuilder.content = KLKContentObject.init(builderBlock: { (contentBuilder) in
-                    
-                    var titleString = ""
-                    var descString = ""
-                    
-                    if let title = PoemModel.shared.title{
-                        titleString = titleString + title
-                    }
-                    
-                    if let poetName = PoemModel.shared.authorName{
-                        titleString = titleString + " / " + poetName
-                    }
-                    
-                    if let poemContent = PoemModel.shared.contents{
-                        descString = poemContent
-                    }
-                    
-                    contentBuilder.title = titleString
-                    contentBuilder.desc = descString
-                    contentBuilder.imageURL = imageUrl
-                    contentBuilder.imageWidth = poemImage.size.width as NSNumber
-                    contentBuilder.imageHeight = poemImage.size.height as NSNumber
-                    contentBuilder.link = KLKLinkObject.init(builderBlock: { (linkBuilder) in
-//                        linkBuilder.mobileWebURL = URL.init(string: "https://itunes.apple.com/app/id1209933766")
-                        
-                        linkBuilder.iosExecutionParams = "param1=value1&param2=value2"
-                        linkBuilder.androidExecutionParams = "param1=value1&param2=value2"
-                        linkBuilder.mobileWebURL = imageUrl
-                    })
-                })
-                
-//                // 소셜
-//                feedTemplateBuilder.social = KLKSocialObject.init(builderBlock: { (socialBuilder) in
-//                    socialBuilder.likeCount = 286
-//                    socialBuilder.commnentCount = 45
-//                    socialBuilder.sharedCount = 845
-//                })
-                
-                // 버튼
-                feedTemplateBuilder.addButton(KLKButtonObject.init(builderBlock: { (buttonBuilder) in
-                    buttonBuilder.title = "웹으로 보기"
-                    buttonBuilder.link = KLKLinkObject.init(builderBlock: { (linkBuilder) in
-//                        linkBuilder.mobileWebURL = URL.init(string: "https://developers.kakao.com")
-                        linkBuilder.mobileWebURL = imageUrl
-                    })
-                }))
-                feedTemplateBuilder.addButton(KLKButtonObject.init(builderBlock: { (buttonBuilder) in
-                    buttonBuilder.title = "앱으로 보기"
-                    buttonBuilder.link = KLKLinkObject.init(builderBlock: { (linkBuilder) in
-                        linkBuilder.iosExecutionParams = "param1=value1&param2=value2"
-                        linkBuilder.androidExecutionParams = "param1=value1&param2=value2"
-                    })
-                }))
-            }
-            
-            // 카카오링크 실행
-            KLKTalkLinkCenter.shared().sendDefault(with: template, success: { (warningMsg, argumentMsg) in
-                
-                // 성공
-//                print("warning message: \(warningMsg)")
-//                print("argument message: \(argumentMsg)")
-                
-            }, failure: { (error) in
-                
-                // 실패
-                print("error \(error)")
-                self.showSimpleAlert(title: "문제가 발생하여 공유하지 못했습니다", message: nil, buttonTitle: "확인")
-
-            })
-
-            
-        }) { (error) in
-            
-            self.showSimpleAlert(title: "문제가 발생하여 공유하지 못했습니다", message: nil, buttonTitle: "확인")
-            
-        }
-        
-        
-        
-
-        
-        
+    // Create buttons
+    let facebookButton = DefaultButton(title: "페이스북") {
+      
+      popup.dismiss()
+      self.shareFacebook()
     }
     
-    
-    func shareFacebook(){
-        
-        if( UIApplication.shared.canOpenURL(URL.init(string: "fb://")!) ){ // 페이스북 앱 존재
-            
-
-            
-            
-            let photo = FBSDKSharePhoto.init()
-            photo.image = self.getPoemImage()
-            photo.isUserGenerated = true
-            
-            let content = FBSDKSharePhotoContent.init()
-            content.photos = [photo]
-            
-            let dialog = FBSDKShareDialog.init()
-            dialog.fromViewController = self
-            dialog.shareContent = content
-            dialog.mode = FBSDKShareDialogMode.shareSheet
-            dialog.delegate = self
-            dialog.show()
-            
-            self.loadingIndicator.startAnimating()
-            
-        }else{
-            
-            let title = "페이스북 앱이 없으면 공유할 수 없습니다"
-            let message = "페이스북 앱을 설치하겠습니까?"
-            
-            
-            // Create the dialog
-            let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
-                
-            }
-            
-            // Create buttons
-            let confirmButton = DefaultButton(title: "확인") {
-                
-                let facebookUrl = NSURL(string: "itms://itunes.com/apps/Facebook")! as URL
-                
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(facebookUrl, options: [:], completionHandler: { (completion) in
-                        
-                        
-                    })
-                } else {
-                    // Fallback on earlier versions
-                    UIApplication.shared.openURL(facebookUrl)
-                    
-                }
-            }
-            
-            
-            let cancelButton = CancelButton(title: "취소") {
-                
-            }
-            
-            popup.addButton(cancelButton)
-            popup.addButton(confirmButton)
-            
-            // Present dialog
-            self.present(popup, animated: true, completion: nil)
-            
-            
-        }
-        
-        
+    let kakaoButton = DefaultButton(title: "카카오톡") {
+      self.shareKakao()
     }
     
-    
-    func getPoemImage() -> UIImage{
-        
-        let tempViewRect = self.view.frame
-        
-        let adjustedHeight = self.scrollView.contentSize.height + 150
-        
-        self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: adjustedHeight)
-        
-        let image = UIImage.init(view: self.view)
-        
-        self.view.frame = tempViewRect
-        
-        return image
-        
+    let cancelButton = CancelButton(title: "취소") {
+      popup.dismiss()
     }
     
+    popup.addButton(facebookButton)
+    popup.addButton(kakaoButton)
+    popup.addButton(cancelButton)
     
-    // FB delegate
+    // Present dialog
+    self.present(popup, animated: true)
+  }
+  
+  func shareKakao(){
     
-    public func sharer(_ sharer: FBSDKSharing!, didCompleteWithResults results: [AnyHashable : Any]!){
-        
-        
-        print("didCompleteWithResults")
-        
-        self.dismiss(animated: true, completion: nil)
-        
-        self.showSimpleAlert(title: "페이스북에 공유되었습니다", message: nil, buttonTitle: "확인")
-
-        
-        self.loadingIndicator.stopAnimating()
-        
-
+    guard KLKTalkLinkCenter.shared().canOpenTalkLink() else {
+      self.showSimpleAlert(title: "먼저 카카오톡 앱을 다운받아 주세요", message: nil, buttonTitle: "확인")
+      return
     }
     
+    let poemImage = self.getPoemImage()
     
-    /**
-     Sent to the delegate when the sharer encounters an error.
-     - Parameter sharer: The FBSDKSharing that completed.
-     - Parameter error: The error.
-     */
-    public func sharer(_ sharer: FBSDKSharing!, didFailWithError error: Error!){
+    KLKImageStorage().upload(with: poemImage, success: { (original) in
+      
+      let imageUrl = original.url
+      
+      log.verbose("imageUrl: \(imageUrl)")
+      
+      
+      // Feed 타입 템플릿 오브젝트 생성
+      let template = KLKFeedTemplate.init { (feedTemplateBuilder) in
         
-        print("didFailWithError")
-
-        self.dismiss(animated: true, completion: nil)
+        // 컨텐츠
+        feedTemplateBuilder.content = KLKContentObject.init(builderBlock: { (contentBuilder) in
+          
+          var titleString = ""
+          var descString = ""
+          
+          if let title = PoemModel.shared.title{
+            titleString = titleString + title
+          }
+          
+          if let poetName = PoemModel.shared.authorName{
+            titleString = titleString + " / " + poetName
+          }
+          
+          if let poemContent = PoemModel.shared.contents{
+            descString = poemContent
+          }
+          
+          contentBuilder.title = titleString
+          contentBuilder.desc = descString
+          contentBuilder.imageURL = imageUrl
+          contentBuilder.imageWidth = poemImage.size.width as NSNumber
+          contentBuilder.imageHeight = poemImage.size.height as NSNumber
+          contentBuilder.link = KLKLinkObject.init(builderBlock: { (linkBuilder) in
+            //                        linkBuilder.mobileWebURL = URL.init(string: "https://itunes.apple.com/app/id1209933766")
+            
+            linkBuilder.iosExecutionParams = "param1=value1&param2=value2"
+            linkBuilder.androidExecutionParams = "param1=value1&param2=value2"
+            linkBuilder.mobileWebURL = imageUrl
+          })
+        })
         
+        // 버튼
+        feedTemplateBuilder.addButton(KLKButtonObject.init(builderBlock: { (buttonBuilder) in
+          buttonBuilder.title = "웹으로 보기"
+          buttonBuilder.link = KLKLinkObject.init(builderBlock: { (linkBuilder) in
+            //                        linkBuilder.mobileWebURL = URL.init(string: "https://developers.kakao.com")
+            linkBuilder.mobileWebURL = imageUrl
+          })
+        }))
+        feedTemplateBuilder.addButton(KLKButtonObject.init(builderBlock: { (buttonBuilder) in
+          buttonBuilder.title = "앱으로 보기"
+          buttonBuilder.link = KLKLinkObject.init(builderBlock: { (linkBuilder) in
+            linkBuilder.iosExecutionParams = "param1=value1&param2=value2"
+            linkBuilder.androidExecutionParams = "param1=value1&param2=value2"
+          })
+        }))
+      }
+      
+      // 카카오링크 실행
+      KLKTalkLinkCenter.shared().sendDefault(with: template, success: { (warningMsg, argumentMsg) in
+        
+      }, failure: { (error) in
+        
+        // 실패
+        print("error \(error)")
         self.showSimpleAlert(title: "문제가 발생하여 공유하지 못했습니다", message: nil, buttonTitle: "확인")
+        
+      })
+      
+      
+    }) { (error) in
+      
+      self.showSimpleAlert(title: "문제가 발생하여 공유하지 못했습니다", message: nil, buttonTitle: "확인")
+      
+    }
+  }
+  
+  
+  func shareFacebook(){
+    
+    self.loadingIndicator.startAnimating()
 
-        
-        self.loadingIndicator.stopAnimating()
-        
+    let dialog = FBSDKShareDialog.init()
+    dialog.fromViewController = self
+    dialog.delegate = self
+
+    if existFacebookApp() {
+      dialog.mode = .native
+      dialog.shareContent = makeNaviteFacebookPhotoContent()
+      dialog.show()
+    }else{
+      dialog.mode = .browser
+      makeWebFacebookPhotoContent(completion: { (content) in
+        dialog.shareContent = content
+        dialog.show()
+      })
+    }
+  }
+  
+  fileprivate func makeWebFacebookPhotoContent(completion: @escaping(_ content: FBSDKShareLinkContent) -> Void) {
+    let poemImage = self.getPoemImage()
+    KLKImageStorage().upload(with: poemImage, success: { (original) in
+      let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
+      content.imageURL = original.url
+      content.contentURL = original.url
+      completion(content)
+    })
+  }
+  
+  fileprivate func makeNaviteFacebookPhotoContent() -> FBSDKSharePhotoContent {
+    let photo = FBSDKSharePhoto.init()
+    photo.image = self.getPoemImage()
+    photo.isUserGenerated = true
+    let content = FBSDKSharePhotoContent.init()
+    content.photos = [photo]
+    content.hashtag = FBSDKHashtag(string: "시음")
+
+    return content
+  }
+  
+  fileprivate func existFacebookApp() -> Bool {
+    if let facebookAppUrl = URL.init(string: "fb://"),
+      UIApplication.shared.canOpenURL(facebookAppUrl) {
+      return true
+    } else {
+      return false
+    }
+  }
+  
+  
+  func getPoemImage() -> UIImage{
+    
+    let tempViewRect = self.view.frame
+    
+    let adjustedHeight = self.scrollView.contentSize.height + 150
+    
+    self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: adjustedHeight)
+    
+    let image = UIImage.init(view: self.view)
+    
+    self.view.frame = tempViewRect
+    
+    return image
+    
+  }
+  
+  
+  // FB delegate
+  
+  public func sharer(_ sharer: FBSDKSharing!, didCompleteWithResults results: [AnyHashable : Any]!){
+    
+    
+    print("didCompleteWithResults")
+    self.dismiss(animated: true, completion: nil)
+    self.loadingIndicator.stopAnimating()
+  }
+  
+  
+  /**
+   Sent to the delegate when the sharer encounters an error.
+   - Parameter sharer: The FBSDKSharing that completed.
+   - Parameter error: The error.
+   */
+  public func sharer(_ sharer: FBSDKSharing!, didFailWithError error: Error!){
+    
+    print("didFailWithError")
+    print("facebook error: \(error)")
+    
+    self.dismiss(animated: true, completion: nil)
+    
+    self.showSimpleAlert(title: "문제가 발생하여 공유하지 못했습니다", message: nil, buttonTitle: "확인")
+
+    self.loadingIndicator.stopAnimating()
+    
+  }
+  
+  
+  /**
+   Sent to the delegate when the sharer is cancelled.
+   - Parameter sharer: The FBSDKSharing that completed.
+   */
+  public func sharerDidCancel(_ sharer: FBSDKSharing!){
+    
+    print("sharerDidCancel")
+    
+    self.dismiss(animated: true, completion: nil)
+    
+    self.showSimpleAlert(title: "공유가 취소되었습니다", message: nil, buttonTitle: "확인")
+    
+    self.loadingIndicator.stopAnimating()
+    
+    
+    
+  }
+  
+  
+  func didRequestSave(){
+    
+    let tempViewRect = self.view.frame
+    
+    let adjustedHeight = self.scrollView.contentSize.height + 150
+    
+    self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: adjustedHeight)
+    
+    let image = UIImage.init(view: self.view)
+    
+    self.view.frame = tempViewRect
+    
+    self.loadingIndicator.startAnimating()
+    
+    UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    
+  }
+  
+  /// 이미지 저장 완료
+  func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+    
+    self.loadingIndicator.stopAnimating()
+    
+    if error != nil {
+      
+      self.showSimpleAlert(title: "저장실패", message: nil, buttonTitle: "확인")
+      
+    } else {
+      
+      self.showSimpleAlert(title: "저장됨", message: nil, buttonTitle: "확인")
+    }
+  }
+  
+  func showSimpleAlert(title:String, message : String?, buttonTitle : String ){
+    
+    // Create the dialog
+    let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
+      
     }
     
-    
-    /**
-     Sent to the delegate when the sharer is cancelled.
-     - Parameter sharer: The FBSDKSharing that completed.
-     */
-    public func sharerDidCancel(_ sharer: FBSDKSharing!){
-        
-        print("sharerDidCancel")
-
-        self.dismiss(animated: true, completion: nil)
-        
-        self.showSimpleAlert(title: "공유가 취소되었습니다", message: nil, buttonTitle: "확인")
-        
-        self.loadingIndicator.stopAnimating()
-        
-
-
+    // Create buttons
+    let doneButton = CancelButton(title: buttonTitle) {
+      log.verbose(buttonTitle)
     }
     
+    popup.addButton(doneButton)
     
-    func didRequestSave(){
-
-        let tempViewRect = self.view.frame
-        
-        let adjustedHeight = self.scrollView.contentSize.height + 150
-        
-        self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: adjustedHeight)
-        
-        let image = UIImage.init(view: self.view)
-        
-        self.view.frame = tempViewRect
-
-        self.loadingIndicator.startAnimating()
-
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-
-    }
-    
-    
-    
-    
-    /// 이미지 저장 완료
-    
-    func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
-        
-        self.loadingIndicator.stopAnimating()
-
-        if error != nil {
-
-            self.showSimpleAlert(title: "저장실패", message: nil, buttonTitle: "확인")
-
-        } else {
-
-            self.showSimpleAlert(title: "저장됨", message: nil, buttonTitle: "확인")
-        }
-    }
-    
-    func showSimpleAlert(title:String, message : String?, buttonTitle : String ){
-        
-        // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
-            
-        }
-        
-        // Create buttons
-        let doneButton = CancelButton(title: buttonTitle) {
-            log.verbose(buttonTitle)
-        }
-
-        popup.addButton(doneButton)
-        
-        // Present dialog
-        self.present(popup, animated: true, completion: nil)
-    }
-    
-
-
-
-
+    // Present dialog
+    self.present(popup, animated: true, completion: nil)
+  }
+  
 }
 
