@@ -213,7 +213,6 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     let title = "오늘의 시를 전해줍니다"
     let message = "어디에 공유하는게 좋을까요?"
     
-    
     // Create the dialog
     let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .vertical, transitionStyle: .fadeIn, gestureDismissal: true) {
       
@@ -331,7 +330,6 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
   
   
   func shareFacebook(){
-    
     self.loadingIndicator.startAnimating()
 
     let dialog = FBSDKShareDialog.init()
@@ -381,21 +379,18 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     }
   }
   
-  
   func getPoemImage() -> UIImage{
+    self.loadingIndicator.isHidden = true;
+    defer{
+      self.loadingIndicator.isHidden = false;
+    }
     
     let tempViewRect = self.view.frame
-    
     let adjustedHeight = self.scrollView.contentSize.height + 150
-    
     self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: adjustedHeight)
-    
     let image = UIImage.init(view: self.view)
-    
     self.view.frame = tempViewRect
-    
     return image
-    
   }
   
   

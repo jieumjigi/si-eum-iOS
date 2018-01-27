@@ -64,9 +64,7 @@ class MenuViewController: UIViewController {
         let eventName = "onShareButton"
         FBSDKAppEvents.logEvent(eventName)
         log.verbose(eventName)
-        
-//        self.presentShareAlert()
-        
+      
         NotificationCenter.default.post(name: Constants.observer.requestShare, object: nil)
     }
     
