@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.3.0)
   - DBImageColorPicker (1.0.5)
+  - Kingfisher (4.1.1)
   - PopupDialog (0.5.3)
   - SwiftyBeaver (1.1.1)
   - SwiftyJSON (3.1.4)
@@ -8,6 +9,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.3)
   - DBImageColorPicker (~> 1.0.0)
+  - Kingfisher (~> 4.0)
   - PopupDialog (~> 0.5)
   - SwiftyBeaver
   - SwiftyJSON
@@ -15,10 +17,11 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   DBImageColorPicker: b0b419b0653338544d766ed2008f2558b899fc60
+  Kingfisher: 6793a473357b5dbee42b0068ef203fe8325f259e
   PopupDialog: 533dd564f8781633375505b9fbd406f8f146ccc9
   SwiftyBeaver: 2b68694df862381235e32bcfc4ec991e26bf131d
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: e0e9c9178a62fb27cbe4ea2a0f664e90a25e8f4e
+PODFILE CHECKSUM: 8c392aaea751848feac39ed5c850e6b1490543a6
 
 COCOAPODS: 1.2.1
