@@ -493,6 +493,4 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     // Present dialog
     self.present(popup, animated: true, completion: nil)
   }
-  
 }
-

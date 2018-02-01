@@ -14,6 +14,7 @@
 		C105D4691EA1187300631D41 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105D4681EA1187300631D41 /* TodayViewController.swift */; };
 		C105D46C1EA1187300631D41 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C105D46A1EA1187300631D41 /* MainInterface.storyboard */; };
 		C105D4701EA1187300631D41 /* SieumWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C105D4641EA1187300631D41 /* SieumWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C11634C12022066600543070 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C11634C02022066600543070 /* Assets.xcassets */; };
 		C11BDD721FEABFBF00A569D5 /* IntroTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11BDD711FEABFBF00A569D5 /* IntroTabViewController.swift */; };
 		C127B5D01E67019000275D21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C127B5CE1E67019000275D21 /* LaunchScreen.storyboard */; };
 		C13236BC1EBAFBCC00C54E9A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13236BB1EBAFBCC00C54E9A /* Constants.swift */; };
@@ -63,7 +64,6 @@
 		C19AC43A1EC5DAA700068A21 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19AC4391EC5DAA700068A21 /* DateUtil.swift */; };
 		C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769751E48998100B5E216 /* AppDelegate.swift */; };
 		C1A769781E48998100B5E216 /* PoemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769771E48998100B5E216 /* PoemViewController.swift */; };
-		C1A7697D1E48998100B5E216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1A7697C1E48998100B5E216 /* Assets.xcassets */; };
 		C1A7698B1E48998100B5E216 /* sieumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A7698A1E48998100B5E216 /* sieumTests.swift */; };
 		C1A769961E48998100B5E216 /* sieumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769951E48998100B5E216 /* sieumUITests.swift */; };
 		C1A769A91E48C45400B5E216 /* IropkeBatangM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */; };
@@ -144,6 +144,7 @@
 		C105D46D1EA1187300631D41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C105D4751EA118B900631D41 /* sieum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sieum.entitlements; sourceTree = "<group>"; };
 		C105D4761EA1198400631D41 /* SieumWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SieumWidget.entitlements; sourceTree = "<group>"; };
+		C11634C02022066600543070 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C11BDD711FEABFBF00A569D5 /* IntroTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroTabViewController.swift; sourceTree = "<group>"; };
 		C127B5CF1E67019000275D21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C13236BB1EBAFBCC00C54E9A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -190,7 +191,6 @@
 		C1A769721E48998100B5E216 /* sieum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sieum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A769751E48998100B5E216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1A769771E48998100B5E216 /* PoemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemViewController.swift; sourceTree = "<group>"; };
-		C1A7697C1E48998100B5E216 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1A769811E48998100B5E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1A769861E48998100B5E216 /* sieumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sieumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A7698A1E48998100B5E216 /* sieumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sieumTests.swift; sourceTree = "<group>"; };
@@ -423,8 +423,8 @@
 				C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */,
 				C17F52321E5DB941006AD57A /* BaseViewController.swift */,
 				C17F523B1E5DE0B0006AD57A /* InfoViewController.swift */,
+				C11634C02022066600543070 /* Assets.xcassets */,
 				C14B05601E6703F400EE2A58 /* Images.xcassets */,
-				C1A7697C1E48998100B5E216 /* Assets.xcassets */,
 				C17F523D1E5DE4EF006AD57A /* Main.storyboard */,
 				C127B5CE1E67019000275D21 /* LaunchScreen.storyboard */,
 				C1A769811E48998100B5E216 /* Info.plist */,
@@ -691,8 +691,8 @@
 				C14F81FC1ECD34FC0070F833 /* profile0.png in Resources */,
 				C1CDBF0F1ECB1DCC00C25A0C /* menu_folded.png in Resources */,
 				C1CDBF1E1ECB1E2600C25A0C /* aboutus.png.old.white in Resources */,
+				C11634C12022066600543070 /* Assets.xcassets in Resources */,
 				C17F523E1E5DE4EF006AD57A /* Main.storyboard in Resources */,
-				C1A7697D1E48998100B5E216 /* Assets.xcassets in Resources */,
 				C15EDAF21E66FE830024C5C5 /* icon.png in Resources */,
 				C1FFE09B1EC3642100E5FFD0 /* peomCup.png in Resources */,
 				C19803791FF5277100F7EDF3 /* keys.plist in Resources */,
