@@ -1,0 +1,1249 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		37D36C928A8128AE2C4A453B /* Pods_sieumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B57E4D41CDAEE9F1EC198D7 /* Pods_sieumTests.framework */; };
+		4A18B9366A519982809F87F9 /* Pods_sieum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F09FAE3434EBD7F50C6438B /* Pods_sieum.framework */; };
+		660977B85D079883A76A9CA1 /* Pods_sieumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ECE973D68BBCBC74CA4452B /* Pods_sieumUITests.framework */; };
+		C1028D3920DE8C3000D5C995 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1028D3820DE8C3000D5C995 /* IntroViewController.swift */; };
+		C1028D3B20DE8C7900D5C995 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1028D3A20DE8C7900D5C995 /* Intro.storyboard */; };
+		C105D4661EA1187300631D41 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105D4651EA1187300631D41 /* NotificationCenter.framework */; };
+		C105D4691EA1187300631D41 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105D4681EA1187300631D41 /* TodayViewController.swift */; };
+		C105D46C1EA1187300631D41 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C105D46A1EA1187300631D41 /* MainInterface.storyboard */; };
+		C105D4701EA1187300631D41 /* SieumWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C105D4641EA1187300631D41 /* SieumWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C11634C12022066600543070 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C11634C02022066600543070 /* Assets.xcassets */; };
+		C127B5D01E67019000275D21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C127B5CE1E67019000275D21 /* LaunchScreen.storyboard */; };
+		C13236BC1EBAFBCC00C54E9A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13236BB1EBAFBCC00C54E9A /* Constants.swift */; };
+		C13236BD1EBB110500C54E9A /* IropkeBatangM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */; };
+		C1377E1720234CCA008FB68D /* UIImageViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1377E1620234CCA008FB68D /* UIImageViewUtil.swift */; };
+		C14AFAEF1F641AEC00283D9E /* launchImage4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14AFAEE1F641AEC00283D9E /* launchImage4.jpg */; };
+		C14B055F1E67032900EE2A58 /* launchImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14B055E1E67032900EE2A58 /* launchImage.jpg */; };
+		C14B05611E6703F400EE2A58 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C14B05601E6703F400EE2A58 /* Images.xcassets */; };
+		C14F81EF1ECC94E50070F833 /* alarm.png.black.old in Resources */ = {isa = PBXBuildFile; fileRef = C14F81EB1ECC94E50070F833 /* alarm.png.black.old */; };
+		C14F81F01ECC94E50070F833 /* save.png.black.old in Resources */ = {isa = PBXBuildFile; fileRef = C14F81EC1ECC94E50070F833 /* save.png.black.old */; };
+		C14F81F11ECC94E50070F833 /* share.png.black.old in Resources */ = {isa = PBXBuildFile; fileRef = C14F81ED1ECC94E50070F833 /* share.png.black.old */; };
+		C14F81F21ECC94E50070F833 /* aboutus.png.black.old in Resources */ = {isa = PBXBuildFile; fileRef = C14F81EE1ECC94E50070F833 /* aboutus.png.black.old */; };
+		C14F81F41ECC983C0070F833 /* PoemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F81F31ECC983C0070F833 /* PoemModel.swift */; };
+		C14F81FC1ECD34FC0070F833 /* profile0.png in Resources */ = {isa = PBXBuildFile; fileRef = C14F81F61ECD34FC0070F833 /* profile0.png */; };
+		C14F81FD1ECD34FC0070F833 /* profile6.png in Resources */ = {isa = PBXBuildFile; fileRef = C14F81F71ECD34FC0070F833 /* profile6.png */; };
+		C14F81FE1ECD34FC0070F833 /* profile5.png in Resources */ = {isa = PBXBuildFile; fileRef = C14F81F81ECD34FC0070F833 /* profile5.png */; };
+		C14F81FF1ECD34FC0070F833 /* profile4.png in Resources */ = {isa = PBXBuildFile; fileRef = C14F81F91ECD34FC0070F833 /* profile4.png */; };
+		C14F82001ECD34FC0070F833 /* profile3.png in Resources */ = {isa = PBXBuildFile; fileRef = C14F81FA1ECD34FC0070F833 /* profile3.png */; };
+		C14F82011ECD34FC0070F833 /* profile2.png in Resources */ = {isa = PBXBuildFile; fileRef = C14F81FB1ECD34FC0070F833 /* profile2.png */; };
+		C152D82E1E50976800719583 /* ColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152D82D1E50976800719583 /* ColorUtil.swift */; };
+		C15BEE371ECD9DA700F006C0 /* launchImage3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C15BEE361ECD9DA700F006C0 /* launchImage3.jpg */; };
+		C15EDAE41E66AB640024C5C5 /* aboutus.png in Resources */ = {isa = PBXBuildFile; fileRef = C15EDADF1E66AB640024C5C5 /* aboutus.png */; };
+		C15EDAE51E66AB640024C5C5 /* alarm.png in Resources */ = {isa = PBXBuildFile; fileRef = C15EDAE01E66AB640024C5C5 /* alarm.png */; };
+		C15EDAE61E66AB640024C5C5 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = C15EDAE11E66AB640024C5C5 /* save.png */; };
+		C15EDAE71E66AB640024C5C5 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = C15EDAE21E66AB640024C5C5 /* share.png */; };
+		C15EDAE81E66AB640024C5C5 /* menubar.png in Resources */ = {isa = PBXBuildFile; fileRef = C15EDAE31E66AB640024C5C5 /* menubar.png */; };
+		C15EDAED1E66E35E0024C5C5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15EDAE91E66E35E0024C5C5 /* Bolts.framework */; };
+		C15EDAEE1E66E35E0024C5C5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15EDAEA1E66E35E0024C5C5 /* FBSDKCoreKit.framework */; };
+		C15EDAEF1E66E35E0024C5C5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15EDAEB1E66E35E0024C5C5 /* FBSDKLoginKit.framework */; };
+		C15EDAF01E66E35E0024C5C5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15EDAEC1E66E35E0024C5C5 /* FBSDKShareKit.framework */; };
+		C15EDAF21E66FE830024C5C5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C15EDAF11E66FE830024C5C5 /* icon.png */; };
+		C16CA9E11ECECECF009C2227 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C16CA9DE1ECECECF009C2227 /* KakaoOpenSDK.framework */; };
+		C16CA9E21ECECECF009C2227 /* KakaoLink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C16CA9DF1ECECECF009C2227 /* KakaoLink.framework */; };
+		C16CA9E31ECECECF009C2227 /* KakaoS2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C16CA9E01ECECECF009C2227 /* KakaoS2.framework */; };
+		C1752EBA1EC0216A0042C24E /* launchImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14B055E1E67032900EE2A58 /* launchImage.jpg */; };
+		C1752EBB1EC0216B0042C24E /* launchImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14B055E1E67032900EE2A58 /* launchImage.jpg */; };
+		C1752EBC1EC0216B0042C24E /* launchImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14B055E1E67032900EE2A58 /* launchImage.jpg */; };
+		C1752EBE1EC034200042C24E /* UYLNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1752EBD1EC034200042C24E /* UYLNotificationDelegate.swift */; };
+		C17F52291E5DA79E006AD57A /* PoetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F52281E5DA79E006AD57A /* PoetViewController.swift */; };
+		C17F522C1E5DA80D006AD57A /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F522B1E5DA80D006AD57A /* PageViewController.swift */; };
+		C17F52331E5DB941006AD57A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F52321E5DB941006AD57A /* BaseViewController.swift */; };
+		C17F52381E5DBED4006AD57A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F52371E5DBED4006AD57A /* MenuViewController.swift */; };
+		C17F523A1E5DC2EB006AD57A /* PoemCoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F52391E5DC2EB006AD57A /* PoemCoverViewController.swift */; };
+		C17F523C1E5DE0B0006AD57A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F523B1E5DE0B0006AD57A /* InfoViewController.swift */; };
+		C17F523E1E5DE4EF006AD57A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C17F523D1E5DE4EF006AD57A /* Main.storyboard */; };
+		C19803791FF5277100F7EDF3 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C19803781FF5277100F7EDF3 /* keys.plist */; };
+		C198037A1FF5277100F7EDF3 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C19803781FF5277100F7EDF3 /* keys.plist */; };
+		C19AC43A1EC5DAA700068A21 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19AC4391EC5DAA700068A21 /* DateUtil.swift */; };
+		C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769751E48998100B5E216 /* AppDelegate.swift */; };
+		C1A769781E48998100B5E216 /* PoemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769771E48998100B5E216 /* PoemViewController.swift */; };
+		C1A7698B1E48998100B5E216 /* sieumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A7698A1E48998100B5E216 /* sieumTests.swift */; };
+		C1A769961E48998100B5E216 /* sieumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769951E48998100B5E216 /* sieumUITests.swift */; };
+		C1A769A91E48C45400B5E216 /* IropkeBatangM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */; };
+		C1C209231E606A0B000C76B7 /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C209221E606A0B000C76B7 /* ImageUtil.swift */; };
+		C1C209251E607234000C76B7 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C209241E607234000C76B7 /* GlobalConstants.swift */; };
+		C1CDBF0A1ECB1DC200C25A0C /* closebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF091ECB1DC200C25A0C /* closebutton.png */; };
+		C1CDBF0F1ECB1DCC00C25A0C /* menu_folded.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF0B1ECB1DCC00C25A0C /* menu_folded.png */; };
+		C1CDBF101ECB1DCC00C25A0C /* menu_unfold.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF0C1ECB1DCC00C25A0C /* menu_unfold.png */; };
+		C1CDBF111ECB1DCC00C25A0C /* quotation1.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF0D1ECB1DCC00C25A0C /* quotation1.png */; };
+		C1CDBF121ECB1DCC00C25A0C /* quotation2.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF0E1ECB1DCC00C25A0C /* quotation2.png */; };
+		C1CDBF151ECB1E0D00C25A0C /* circle1.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF131ECB1E0D00C25A0C /* circle1.png */; };
+		C1CDBF161ECB1E0D00C25A0C /* circle2.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF141ECB1E0D00C25A0C /* circle2.png */; };
+		C1CDBF1B1ECB1E2600C25A0C /* share.png.old.white in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF171ECB1E2600C25A0C /* share.png.old.white */; };
+		C1CDBF1C1ECB1E2600C25A0C /* alarm.png.old.white in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF181ECB1E2600C25A0C /* alarm.png.old.white */; };
+		C1CDBF1D1ECB1E2600C25A0C /* save.png.old.white in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF191ECB1E2600C25A0C /* save.png.old.white */; };
+		C1CDBF1E1ECB1E2600C25A0C /* aboutus.png.old.white in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF1A1ECB1E2600C25A0C /* aboutus.png.old.white */; };
+		C1CDBF201ECB4AB600C25A0C /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CDBF1F1ECB4AB600C25A0C /* QuestionViewController.swift */; };
+		C1CDBF221ECB552500C25A0C /* profile1.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF211ECB552500C25A0C /* profile1.png */; };
+		C1FFE0991EC3599B00E5FFD0 /* launchImage2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */; };
+		C1FFE09B1EC3642100E5FFD0 /* peomCup.png in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE09A1EC3642100E5FFD0 /* peomCup.png */; };
+		C1FFE09D1EC3649800E5FFD0 /* HelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */; };
+		DB5F96F4ED2D5A9C4E45BECA /* Pods_sieum_SieumWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00E10EC84DF1B67253AFB91 /* Pods_sieum_SieumWidget.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C105D46E1EA1187300631D41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1A7696A1E48998100B5E216 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C105D4631EA1187300631D41;
+			remoteInfo = SieumWidget;
+		};
+		C1A769871E48998100B5E216 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1A7696A1E48998100B5E216 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1A769711E48998100B5E216;
+			remoteInfo = sieum;
+		};
+		C1A769921E48998100B5E216 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1A7696A1E48998100B5E216 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1A769711E48998100B5E216;
+			remoteInfo = sieum;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C105D4741EA1187300631D41 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C105D4701EA1187300631D41 /* SieumWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1CB3758F4B709D10D2DA6999 /* Pods-sieum-SieumWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieum-SieumWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sieum-SieumWidget/Pods-sieum-SieumWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		1F09FAE3434EBD7F50C6438B /* Pods_sieum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2645917B1628DD4F13D99538 /* Pods-sieum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieum.release.xcconfig"; path = "Pods/Target Support Files/Pods-sieum/Pods-sieum.release.xcconfig"; sourceTree = "<group>"; };
+		379D5464401AAF3C8DE37BC0 /* Pods-sieum-SieumWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieum-SieumWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-sieum-SieumWidget/Pods-sieum-SieumWidget.release.xcconfig"; sourceTree = "<group>"; };
+		38C922B3F215B5E1843DB6F8 /* Pods-sieumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieumTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sieumTests/Pods-sieumTests.release.xcconfig"; sourceTree = "<group>"; };
+		405EB608E5FFF346921B4D1D /* Pods-sieumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieumUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sieumUITests/Pods-sieumUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4090484F470BE9C3AE75E98C /* Pods-sieum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sieum/Pods-sieum.debug.xcconfig"; sourceTree = "<group>"; };
+		713883869EA0B7CF9E02CD28 /* Pods-sieumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieumUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sieumUITests/Pods-sieumUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7ECE973D68BBCBC74CA4452B /* Pods_sieumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B57E4D41CDAEE9F1EC198D7 /* Pods_sieumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1028D3820DE8C3000D5C995 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		C1028D3A20DE8C7900D5C995 /* Intro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
+		C105D4641EA1187300631D41 /* SieumWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SieumWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C105D4651EA1187300631D41 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		C105D4681EA1187300631D41 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		C105D46B1EA1187300631D41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		C105D46D1EA1187300631D41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C105D4751EA118B900631D41 /* sieum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sieum.entitlements; sourceTree = "<group>"; };
+		C105D4761EA1198400631D41 /* SieumWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SieumWidget.entitlements; sourceTree = "<group>"; };
+		C11634C02022066600543070 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C127B5CF1E67019000275D21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C13236BB1EBAFBCC00C54E9A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C1377E1620234CCA008FB68D /* UIImageViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewUtil.swift; sourceTree = "<group>"; };
+		C14AFAEE1F641AEC00283D9E /* launchImage4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage4.jpg; sourceTree = "<group>"; };
+		C14B055E1E67032900EE2A58 /* launchImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage.jpg; sourceTree = "<group>"; };
+		C14B05601E6703F400EE2A58 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C14F81EB1ECC94E50070F833 /* alarm.png.black.old */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.png.black.old; sourceTree = "<group>"; };
+		C14F81EC1ECC94E50070F833 /* save.png.black.old */ = {isa = PBXFileReference; lastKnownFileType = file; path = save.png.black.old; sourceTree = "<group>"; };
+		C14F81ED1ECC94E50070F833 /* share.png.black.old */ = {isa = PBXFileReference; lastKnownFileType = file; path = share.png.black.old; sourceTree = "<group>"; };
+		C14F81EE1ECC94E50070F833 /* aboutus.png.black.old */ = {isa = PBXFileReference; lastKnownFileType = file; path = aboutus.png.black.old; sourceTree = "<group>"; };
+		C14F81F31ECC983C0070F833 /* PoemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoemModel.swift; sourceTree = "<group>"; };
+		C14F81F61ECD34FC0070F833 /* profile0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile0.png; sourceTree = "<group>"; };
+		C14F81F71ECD34FC0070F833 /* profile6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile6.png; sourceTree = "<group>"; };
+		C14F81F81ECD34FC0070F833 /* profile5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile5.png; sourceTree = "<group>"; };
+		C14F81F91ECD34FC0070F833 /* profile4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile4.png; sourceTree = "<group>"; };
+		C14F81FA1ECD34FC0070F833 /* profile3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile3.png; sourceTree = "<group>"; };
+		C14F81FB1ECD34FC0070F833 /* profile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile2.png; sourceTree = "<group>"; };
+		C152D82D1E50976800719583 /* ColorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtil.swift; sourceTree = "<group>"; };
+		C15BEE361ECD9DA700F006C0 /* launchImage3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage3.jpg; sourceTree = "<group>"; };
+		C15EDADF1E66AB640024C5C5 /* aboutus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aboutus.png; sourceTree = "<group>"; };
+		C15EDAE01E66AB640024C5C5 /* alarm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm.png; sourceTree = "<group>"; };
+		C15EDAE11E66AB640024C5C5 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
+		C15EDAE21E66AB640024C5C5 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		C15EDAE31E66AB640024C5C5 /* menubar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menubar.png; sourceTree = "<group>"; };
+		C15EDAE91E66E35E0024C5C5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
+		C15EDAEA1E66E35E0024C5C5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		C15EDAEB1E66E35E0024C5C5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		C15EDAEC1E66E35E0024C5C5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		C15EDAF11E66FE830024C5C5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		C16CA9DE1ECECECF009C2227 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
+		C16CA9DF1ECECECF009C2227 /* KakaoLink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoLink.framework; sourceTree = "<group>"; };
+		C16CA9E01ECECECF009C2227 /* KakaoS2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoS2.framework; sourceTree = "<group>"; };
+		C1752EBD1EC034200042C24E /* UYLNotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UYLNotificationDelegate.swift; sourceTree = "<group>"; };
+		C17F52281E5DA79E006AD57A /* PoetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoetViewController.swift; sourceTree = "<group>"; };
+		C17F522B1E5DA80D006AD57A /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		C17F522F1E5DAD2B006AD57A /* sieum-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sieum-Bridging-Header.h"; sourceTree = "<group>"; };
+		C17F52321E5DB941006AD57A /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C17F52371E5DBED4006AD57A /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		C17F52391E5DC2EB006AD57A /* PoemCoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoemCoverViewController.swift; sourceTree = "<group>"; };
+		C17F523B1E5DE0B0006AD57A /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = ../InfoViewController.swift; sourceTree = "<group>"; };
+		C17F523D1E5DE4EF006AD57A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C19803781FF5277100F7EDF3 /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
+		C19AC4391EC5DAA700068A21 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		C1A769721E48998100B5E216 /* sieum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sieum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1A769751E48998100B5E216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C1A769771E48998100B5E216 /* PoemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemViewController.swift; sourceTree = "<group>"; };
+		C1A769811E48998100B5E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1A769861E48998100B5E216 /* sieumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sieumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1A7698A1E48998100B5E216 /* sieumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sieumTests.swift; sourceTree = "<group>"; };
+		C1A7698C1E48998100B5E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1A769911E48998100B5E216 /* sieumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sieumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1A769951E48998100B5E216 /* sieumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sieumUITests.swift; sourceTree = "<group>"; };
+		C1A769971E48998100B5E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IropkeBatangM.otf; sourceTree = "<group>"; };
+		C1C209221E606A0B000C76B7 /* ImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
+		C1C209241E607234000C76B7 /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		C1CDBF091ECB1DC200C25A0C /* closebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closebutton.png; sourceTree = "<group>"; };
+		C1CDBF0B1ECB1DCC00C25A0C /* menu_folded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_folded.png; sourceTree = "<group>"; };
+		C1CDBF0C1ECB1DCC00C25A0C /* menu_unfold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_unfold.png; sourceTree = "<group>"; };
+		C1CDBF0D1ECB1DCC00C25A0C /* quotation1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quotation1.png; sourceTree = "<group>"; };
+		C1CDBF0E1ECB1DCC00C25A0C /* quotation2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quotation2.png; sourceTree = "<group>"; };
+		C1CDBF131ECB1E0D00C25A0C /* circle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle1.png; sourceTree = "<group>"; };
+		C1CDBF141ECB1E0D00C25A0C /* circle2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle2.png; sourceTree = "<group>"; };
+		C1CDBF171ECB1E2600C25A0C /* share.png.old.white */ = {isa = PBXFileReference; lastKnownFileType = file; path = share.png.old.white; sourceTree = "<group>"; };
+		C1CDBF181ECB1E2600C25A0C /* alarm.png.old.white */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.png.old.white; sourceTree = "<group>"; };
+		C1CDBF191ECB1E2600C25A0C /* save.png.old.white */ = {isa = PBXFileReference; lastKnownFileType = file; path = save.png.old.white; sourceTree = "<group>"; };
+		C1CDBF1A1ECB1E2600C25A0C /* aboutus.png.old.white */ = {isa = PBXFileReference; lastKnownFileType = file; path = aboutus.png.old.white; sourceTree = "<group>"; };
+		C1CDBF1F1ECB4AB600C25A0C /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		C1CDBF211ECB552500C25A0C /* profile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile1.png; sourceTree = "<group>"; };
+		C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage2.jpg; sourceTree = "<group>"; };
+		C1FFE09A1EC3642100E5FFD0 /* peomCup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peomCup.png; sourceTree = "<group>"; };
+		C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloViewController.swift; sourceTree = "<group>"; };
+		C99F21B4C27AC4E20538F3F5 /* Pods-sieumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sieumTests/Pods-sieumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D00E10EC84DF1B67253AFB91 /* Pods_sieum_SieumWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieum_SieumWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C105D4611EA1187300631D41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C105D4661EA1187300631D41 /* NotificationCenter.framework in Frameworks */,
+				DB5F96F4ED2D5A9C4E45BECA /* Pods_sieum_SieumWidget.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A7696F1E48998100B5E216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A18B9366A519982809F87F9 /* Pods_sieum.framework in Frameworks */,
+				C16CA9E31ECECECF009C2227 /* KakaoS2.framework in Frameworks */,
+				C15EDAEE1E66E35E0024C5C5 /* FBSDKCoreKit.framework in Frameworks */,
+				C15EDAF01E66E35E0024C5C5 /* FBSDKShareKit.framework in Frameworks */,
+				C15EDAEF1E66E35E0024C5C5 /* FBSDKLoginKit.framework in Frameworks */,
+				C15EDAED1E66E35E0024C5C5 /* Bolts.framework in Frameworks */,
+				C16CA9E21ECECECF009C2227 /* KakaoLink.framework in Frameworks */,
+				C16CA9E11ECECECF009C2227 /* KakaoOpenSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A769831E48998100B5E216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37D36C928A8128AE2C4A453B /* Pods_sieumTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A7698E1E48998100B5E216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				660977B85D079883A76A9CA1 /* Pods_sieumUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		595D7FCF53CC1D13D9C4D316 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C16CA9DE1ECECECF009C2227 /* KakaoOpenSDK.framework */,
+				C16CA9DF1ECECECF009C2227 /* KakaoLink.framework */,
+				C16CA9E01ECECECF009C2227 /* KakaoS2.framework */,
+				C15EDAE91E66E35E0024C5C5 /* Bolts.framework */,
+				C15EDAEA1E66E35E0024C5C5 /* FBSDKCoreKit.framework */,
+				C15EDAEB1E66E35E0024C5C5 /* FBSDKLoginKit.framework */,
+				C15EDAEC1E66E35E0024C5C5 /* FBSDKShareKit.framework */,
+				1F09FAE3434EBD7F50C6438B /* Pods_sieum.framework */,
+				8B57E4D41CDAEE9F1EC198D7 /* Pods_sieumTests.framework */,
+				7ECE973D68BBCBC74CA4452B /* Pods_sieumUITests.framework */,
+				C105D4651EA1187300631D41 /* NotificationCenter.framework */,
+				D00E10EC84DF1B67253AFB91 /* Pods_sieum_SieumWidget.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C1028D3720DE8C0800D5C995 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				C1028D3A20DE8C7900D5C995 /* Intro.storyboard */,
+				C1028D3820DE8C3000D5C995 /* IntroViewController.swift */,
+			);
+			name = Intro;
+			sourceTree = "<group>";
+		};
+		C105D4671EA1187300631D41 /* SieumWidget */ = {
+			isa = PBXGroup;
+			children = (
+				C105D4761EA1198400631D41 /* SieumWidget.entitlements */,
+				C13236BB1EBAFBCC00C54E9A /* Constants.swift */,
+				C105D4681EA1187300631D41 /* TodayViewController.swift */,
+				C105D46A1EA1187300631D41 /* MainInterface.storyboard */,
+				C105D46D1EA1187300631D41 /* Info.plist */,
+				C19803781FF5277100F7EDF3 /* keys.plist */,
+			);
+			path = SieumWidget;
+			sourceTree = "<group>";
+		};
+		C11A6C6520DE8B8600EE3495 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */,
+				C17F52321E5DB941006AD57A /* BaseViewController.swift */,
+				C17F523B1E5DE0B0006AD57A /* InfoViewController.swift */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		C14F81F51ECD34ED0070F833 /* poet */ = {
+			isa = PBXGroup;
+			children = (
+				C1CDBF211ECB552500C25A0C /* profile1.png */,
+				C14F81F61ECD34FC0070F833 /* profile0.png */,
+				C14F81F71ECD34FC0070F833 /* profile6.png */,
+				C14F81F81ECD34FC0070F833 /* profile5.png */,
+				C14F81F91ECD34FC0070F833 /* profile4.png */,
+				C14F81FA1ECD34FC0070F833 /* profile3.png */,
+				C14F81FB1ECD34FC0070F833 /* profile2.png */,
+			);
+			name = poet;
+			sourceTree = "<group>";
+		};
+		C152D8281E506D6200719583 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C1752EBD1EC034200042C24E /* UYLNotificationDelegate.swift */,
+				C1C209241E607234000C76B7 /* GlobalConstants.swift */,
+				C152D82D1E50976800719583 /* ColorUtil.swift */,
+				C1C209221E606A0B000C76B7 /* ImageUtil.swift */,
+				C1377E1620234CCA008FB68D /* UIImageViewUtil.swift */,
+				C19AC4391EC5DAA700068A21 /* DateUtil.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		C15BEE341ECD99C300F006C0 /* Poem */ = {
+			isa = PBXGroup;
+			children = (
+				C15BEE351ECD9BBA00F006C0 /* Page */,
+				C17F52391E5DC2EB006AD57A /* PoemCoverViewController.swift */,
+				C17F52371E5DBED4006AD57A /* MenuViewController.swift */,
+				C17F522B1E5DA80D006AD57A /* PageViewController.swift */,
+				C14F81F31ECC983C0070F833 /* PoemModel.swift */,
+			);
+			name = Poem;
+			sourceTree = "<group>";
+		};
+		C15BEE351ECD9BBA00F006C0 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				C1A769771E48998100B5E216 /* PoemViewController.swift */,
+				C1CDBF1F1ECB4AB600C25A0C /* QuestionViewController.swift */,
+				C17F52281E5DA79E006AD57A /* PoetViewController.swift */,
+			);
+			name = Page;
+			sourceTree = "<group>";
+		};
+		C15EDADE1E66AB4B0024C5C5 /* menu */ = {
+			isa = PBXGroup;
+			children = (
+				C14F81EB1ECC94E50070F833 /* alarm.png.black.old */,
+				C14F81EC1ECC94E50070F833 /* save.png.black.old */,
+				C14F81ED1ECC94E50070F833 /* share.png.black.old */,
+				C14F81EE1ECC94E50070F833 /* aboutus.png.black.old */,
+				C1CDBF091ECB1DC200C25A0C /* closebutton.png */,
+				C15EDADF1E66AB640024C5C5 /* aboutus.png */,
+				C15EDAE01E66AB640024C5C5 /* alarm.png */,
+				C15EDAE11E66AB640024C5C5 /* save.png */,
+				C15EDAE21E66AB640024C5C5 /* share.png */,
+				C15EDAE31E66AB640024C5C5 /* menubar.png */,
+				C1CDBF171ECB1E2600C25A0C /* share.png.old.white */,
+				C1CDBF181ECB1E2600C25A0C /* alarm.png.old.white */,
+				C1CDBF191ECB1E2600C25A0C /* save.png.old.white */,
+				C1CDBF1A1ECB1E2600C25A0C /* aboutus.png.old.white */,
+				C1CDBF0B1ECB1DCC00C25A0C /* menu_folded.png */,
+				C1CDBF0C1ECB1DCC00C25A0C /* menu_unfold.png */,
+				C1CDBF0D1ECB1DCC00C25A0C /* quotation1.png */,
+				C1CDBF0E1ECB1DCC00C25A0C /* quotation2.png */,
+			);
+			name = menu;
+			sourceTree = "<group>";
+		};
+		C1A769691E48998100B5E216 = {
+			isa = PBXGroup;
+			children = (
+				C1A769741E48998100B5E216 /* sieum */,
+				C1A769891E48998100B5E216 /* sieumTests */,
+				C1A769941E48998100B5E216 /* sieumUITests */,
+				C105D4671EA1187300631D41 /* SieumWidget */,
+				C1A769731E48998100B5E216 /* Products */,
+				C1A769A81E48C44100B5E216 /* supporting files */,
+				C568A2F628C33D4F9218C6B4 /* Pods */,
+				595D7FCF53CC1D13D9C4D316 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C1A769731E48998100B5E216 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C1A769721E48998100B5E216 /* sieum.app */,
+				C1A769861E48998100B5E216 /* sieumTests.xctest */,
+				C1A769911E48998100B5E216 /* sieumUITests.xctest */,
+				C105D4641EA1187300631D41 /* SieumWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C1A769741E48998100B5E216 /* sieum */ = {
+			isa = PBXGroup;
+			children = (
+				C1028D3720DE8C0800D5C995 /* Intro */,
+				C152D8281E506D6200719583 /* Util */,
+				C15BEE341ECD99C300F006C0 /* Poem */,
+				C11A6C6520DE8B8600EE3495 /* Setting */,
+				C11634C02022066600543070 /* Assets.xcassets */,
+				C14B05601E6703F400EE2A58 /* Images.xcassets */,
+				C17F523D1E5DE4EF006AD57A /* Main.storyboard */,
+				C127B5CE1E67019000275D21 /* LaunchScreen.storyboard */,
+				C105D4751EA118B900631D41 /* sieum.entitlements */,
+				C17F522F1E5DAD2B006AD57A /* sieum-Bridging-Header.h */,
+				C1A769751E48998100B5E216 /* AppDelegate.swift */,
+				C1A769811E48998100B5E216 /* Info.plist */,
+			);
+			path = sieum;
+			sourceTree = "<group>";
+		};
+		C1A769891E48998100B5E216 /* sieumTests */ = {
+			isa = PBXGroup;
+			children = (
+				C1A7698A1E48998100B5E216 /* sieumTests.swift */,
+				C1A7698C1E48998100B5E216 /* Info.plist */,
+			);
+			path = sieumTests;
+			sourceTree = "<group>";
+		};
+		C1A769941E48998100B5E216 /* sieumUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C1A769951E48998100B5E216 /* sieumUITests.swift */,
+				C1A769971E48998100B5E216 /* Info.plist */,
+			);
+			path = sieumUITests;
+			sourceTree = "<group>";
+		};
+		C1A769A31E48A88500B5E216 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				C14F81F51ECD34ED0070F833 /* poet */,
+				C1CDBF131ECB1E0D00C25A0C /* circle1.png */,
+				C1CDBF141ECB1E0D00C25A0C /* circle2.png */,
+				C1FFE09A1EC3642100E5FFD0 /* peomCup.png */,
+				C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */,
+				C15BEE361ECD9DA700F006C0 /* launchImage3.jpg */,
+				C14B055E1E67032900EE2A58 /* launchImage.jpg */,
+				C14AFAEE1F641AEC00283D9E /* launchImage4.jpg */,
+				C15EDADE1E66AB4B0024C5C5 /* menu */,
+				C15EDAF11E66FE830024C5C5 /* icon.png */,
+			);
+			name = image;
+			path = sieum;
+			sourceTree = "<group>";
+		};
+		C1A769A61E48C19400B5E216 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */,
+			);
+			name = font;
+			path = sieum;
+			sourceTree = "<group>";
+		};
+		C1A769A81E48C44100B5E216 /* supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				C1A769A61E48C19400B5E216 /* font */,
+				C1A769A31E48A88500B5E216 /* image */,
+			);
+			name = "supporting files";
+			sourceTree = "<group>";
+		};
+		C568A2F628C33D4F9218C6B4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4090484F470BE9C3AE75E98C /* Pods-sieum.debug.xcconfig */,
+				2645917B1628DD4F13D99538 /* Pods-sieum.release.xcconfig */,
+				C99F21B4C27AC4E20538F3F5 /* Pods-sieumTests.debug.xcconfig */,
+				38C922B3F215B5E1843DB6F8 /* Pods-sieumTests.release.xcconfig */,
+				405EB608E5FFF346921B4D1D /* Pods-sieumUITests.debug.xcconfig */,
+				713883869EA0B7CF9E02CD28 /* Pods-sieumUITests.release.xcconfig */,
+				1CB3758F4B709D10D2DA6999 /* Pods-sieum-SieumWidget.debug.xcconfig */,
+				379D5464401AAF3C8DE37BC0 /* Pods-sieum-SieumWidget.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C105D4631EA1187300631D41 /* SieumWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C105D4711EA1187300631D41 /* Build configuration list for PBXNativeTarget "SieumWidget" */;
+			buildPhases = (
+				90BDDA82D7E7CDBB88017395 /* [CP] Check Pods Manifest.lock */,
+				C105D4601EA1187300631D41 /* Sources */,
+				C105D4611EA1187300631D41 /* Frameworks */,
+				C105D4621EA1187300631D41 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SieumWidget;
+			productName = SieumWidget;
+			productReference = C105D4641EA1187300631D41 /* SieumWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		C1A769711E48998100B5E216 /* sieum */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1A7699A1E48998100B5E216 /* Build configuration list for PBXNativeTarget "sieum" */;
+			buildPhases = (
+				9816E5DABBBB20EDB526F355 /* [CP] Check Pods Manifest.lock */,
+				C1A7696E1E48998100B5E216 /* Sources */,
+				C1A7696F1E48998100B5E216 /* Frameworks */,
+				C1A769701E48998100B5E216 /* Resources */,
+				D0E8FDFE3E0931A20DA7FC0A /* [CP] Embed Pods Frameworks */,
+				C105D4741EA1187300631D41 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C105D46F1EA1187300631D41 /* PBXTargetDependency */,
+			);
+			name = sieum;
+			productName = sieum;
+			productReference = C1A769721E48998100B5E216 /* sieum.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C1A769851E48998100B5E216 /* sieumTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1A7699D1E48998100B5E216 /* Build configuration list for PBXNativeTarget "sieumTests" */;
+			buildPhases = (
+				4026D7E5C90EE3A5AAE26BA4 /* [CP] Check Pods Manifest.lock */,
+				C1A769821E48998100B5E216 /* Sources */,
+				C1A769831E48998100B5E216 /* Frameworks */,
+				C1A769841E48998100B5E216 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1A769881E48998100B5E216 /* PBXTargetDependency */,
+			);
+			name = sieumTests;
+			productName = sieumTests;
+			productReference = C1A769861E48998100B5E216 /* sieumTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C1A769901E48998100B5E216 /* sieumUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1A769A01E48998100B5E216 /* Build configuration list for PBXNativeTarget "sieumUITests" */;
+			buildPhases = (
+				E09A19175863A3A1A9837AFC /* [CP] Check Pods Manifest.lock */,
+				C1A7698D1E48998100B5E216 /* Sources */,
+				C1A7698E1E48998100B5E216 /* Frameworks */,
+				C1A7698F1E48998100B5E216 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1A769931E48998100B5E216 /* PBXTargetDependency */,
+			);
+			name = sieumUITests;
+			productName = sieumUITests;
+			productReference = C1A769911E48998100B5E216 /* sieumUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C1A7696A1E48998100B5E216 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "홍성호";
+				TargetAttributes = {
+					C105D4631EA1187300631D41 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = T5T6697UB7;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					C1A769711E48998100B5E216 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = T5T6697UB7;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+					C1A769851E48998100B5E216 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = E53J4346HQ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C1A769711E48998100B5E216;
+					};
+					C1A769901E48998100B5E216 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = E53J4346HQ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C1A769711E48998100B5E216;
+					};
+				};
+			};
+			buildConfigurationList = C1A7696D1E48998100B5E216 /* Build configuration list for PBXProject "sieum" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C1A769691E48998100B5E216;
+			productRefGroup = C1A769731E48998100B5E216 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C1A769711E48998100B5E216 /* sieum */,
+				C1A769851E48998100B5E216 /* sieumTests */,
+				C1A769901E48998100B5E216 /* sieumUITests */,
+				C105D4631EA1187300631D41 /* SieumWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C105D4621EA1187300631D41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C198037A1FF5277100F7EDF3 /* keys.plist in Resources */,
+				C1752EBA1EC0216A0042C24E /* launchImage.jpg in Resources */,
+				C13236BD1EBB110500C54E9A /* IropkeBatangM.otf in Resources */,
+				C105D46C1EA1187300631D41 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A769701E48998100B5E216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C15BEE371ECD9DA700F006C0 /* launchImage3.jpg in Resources */,
+				C14F81FE1ECD34FC0070F833 /* profile5.png in Resources */,
+				C1CDBF161ECB1E0D00C25A0C /* circle2.png in Resources */,
+				C14F81F11ECC94E50070F833 /* share.png.black.old in Resources */,
+				C1CDBF101ECB1DCC00C25A0C /* menu_unfold.png in Resources */,
+				C1CDBF1D1ECB1E2600C25A0C /* save.png.old.white in Resources */,
+				C14B055F1E67032900EE2A58 /* launchImage.jpg in Resources */,
+				C1FFE0991EC3599B00E5FFD0 /* launchImage2.jpg in Resources */,
+				C14F81FD1ECD34FC0070F833 /* profile6.png in Resources */,
+				C14F82001ECD34FC0070F833 /* profile3.png in Resources */,
+				C1CDBF1C1ECB1E2600C25A0C /* alarm.png.old.white in Resources */,
+				C1CDBF121ECB1DCC00C25A0C /* quotation2.png in Resources */,
+				C15EDAE71E66AB640024C5C5 /* share.png in Resources */,
+				C1CDBF151ECB1E0D00C25A0C /* circle1.png in Resources */,
+				C1A769A91E48C45400B5E216 /* IropkeBatangM.otf in Resources */,
+				C14F81F21ECC94E50070F833 /* aboutus.png.black.old in Resources */,
+				C14F81FC1ECD34FC0070F833 /* profile0.png in Resources */,
+				C1CDBF0F1ECB1DCC00C25A0C /* menu_folded.png in Resources */,
+				C1CDBF1E1ECB1E2600C25A0C /* aboutus.png.old.white in Resources */,
+				C1028D3B20DE8C7900D5C995 /* Intro.storyboard in Resources */,
+				C11634C12022066600543070 /* Assets.xcassets in Resources */,
+				C17F523E1E5DE4EF006AD57A /* Main.storyboard in Resources */,
+				C15EDAF21E66FE830024C5C5 /* icon.png in Resources */,
+				C1FFE09B1EC3642100E5FFD0 /* peomCup.png in Resources */,
+				C19803791FF5277100F7EDF3 /* keys.plist in Resources */,
+				C1CDBF111ECB1DCC00C25A0C /* quotation1.png in Resources */,
+				C15EDAE61E66AB640024C5C5 /* save.png in Resources */,
+				C1CDBF1B1ECB1E2600C25A0C /* share.png.old.white in Resources */,
+				C15EDAE81E66AB640024C5C5 /* menubar.png in Resources */,
+				C14AFAEF1F641AEC00283D9E /* launchImage4.jpg in Resources */,
+				C14F81EF1ECC94E50070F833 /* alarm.png.black.old in Resources */,
+				C1CDBF0A1ECB1DC200C25A0C /* closebutton.png in Resources */,
+				C15EDAE41E66AB640024C5C5 /* aboutus.png in Resources */,
+				C14B05611E6703F400EE2A58 /* Images.xcassets in Resources */,
+				C14F82011ECD34FC0070F833 /* profile2.png in Resources */,
+				C1CDBF221ECB552500C25A0C /* profile1.png in Resources */,
+				C14F81FF1ECD34FC0070F833 /* profile4.png in Resources */,
+				C127B5D01E67019000275D21 /* LaunchScreen.storyboard in Resources */,
+				C14F81F01ECC94E50070F833 /* save.png.black.old in Resources */,
+				C15EDAE51E66AB640024C5C5 /* alarm.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A769841E48998100B5E216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1752EBB1EC0216B0042C24E /* launchImage.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A7698F1E48998100B5E216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1752EBC1EC0216B0042C24E /* launchImage.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4026D7E5C90EE3A5AAE26BA4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sieumTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90BDDA82D7E7CDBB88017395 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sieum-SieumWidget-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9816E5DABBBB20EDB526F355 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sieum-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0E8FDFE3E0931A20DA7FC0A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-sieum/Pods-sieum-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DBImageColorPicker/DBImageColorPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DBImageColorPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sieum/Pods-sieum-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E09A19175863A3A1A9837AFC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sieumUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C105D4601EA1187300631D41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C105D4691EA1187300631D41 /* TodayViewController.swift in Sources */,
+				C13236BC1EBAFBCC00C54E9A /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A7696E1E48998100B5E216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1377E1720234CCA008FB68D /* UIImageViewUtil.swift in Sources */,
+				C17F522C1E5DA80D006AD57A /* PageViewController.swift in Sources */,
+				C152D82E1E50976800719583 /* ColorUtil.swift in Sources */,
+				C1FFE09D1EC3649800E5FFD0 /* HelloViewController.swift in Sources */,
+				C1A769781E48998100B5E216 /* PoemViewController.swift in Sources */,
+				C17F52291E5DA79E006AD57A /* PoetViewController.swift in Sources */,
+				C17F523C1E5DE0B0006AD57A /* InfoViewController.swift in Sources */,
+				C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */,
+				C17F52331E5DB941006AD57A /* BaseViewController.swift in Sources */,
+				C1028D3920DE8C3000D5C995 /* IntroViewController.swift in Sources */,
+				C17F52381E5DBED4006AD57A /* MenuViewController.swift in Sources */,
+				C1752EBE1EC034200042C24E /* UYLNotificationDelegate.swift in Sources */,
+				C1C209251E607234000C76B7 /* GlobalConstants.swift in Sources */,
+				C1CDBF201ECB4AB600C25A0C /* QuestionViewController.swift in Sources */,
+				C14F81F41ECC983C0070F833 /* PoemModel.swift in Sources */,
+				C17F523A1E5DC2EB006AD57A /* PoemCoverViewController.swift in Sources */,
+				C1C209231E606A0B000C76B7 /* ImageUtil.swift in Sources */,
+				C19AC43A1EC5DAA700068A21 /* DateUtil.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A769821E48998100B5E216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1A7698B1E48998100B5E216 /* sieumTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A7698D1E48998100B5E216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1A769961E48998100B5E216 /* sieumUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C105D46F1EA1187300631D41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C105D4631EA1187300631D41 /* SieumWidget */;
+			targetProxy = C105D46E1EA1187300631D41 /* PBXContainerItemProxy */;
+		};
+		C1A769881E48998100B5E216 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1A769711E48998100B5E216 /* sieum */;
+			targetProxy = C1A769871E48998100B5E216 /* PBXContainerItemProxy */;
+		};
+		C1A769931E48998100B5E216 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1A769711E48998100B5E216 /* sieum */;
+			targetProxy = C1A769921E48998100B5E216 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C105D46A1EA1187300631D41 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C105D46B1EA1187300631D41 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		C127B5CE1E67019000275D21 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C127B5CF1E67019000275D21 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C105D4721EA1187300631D41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CB3758F4B709D10D2DA6999 /* Pods-sieum-SieumWidget.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = SieumWidget/SieumWidget.entitlements;
+				DEVELOPMENT_TEAM = T5T6697UB7;
+				INFOPLIST_FILE = SieumWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum.ios.SieumWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		C105D4731EA1187300631D41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 379D5464401AAF3C8DE37BC0 /* Pods-sieum-SieumWidget.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = SieumWidget/SieumWidget.entitlements;
+				DEVELOPMENT_TEAM = T5T6697UB7;
+				INFOPLIST_FILE = SieumWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum.ios.SieumWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		C1A769981E48998100B5E216 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C1A769991E48998100B5E216 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C1A7699B1E48998100B5E216 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4090484F470BE9C3AE75E98C /* Pods-sieum.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = sieum/sieum.entitlements;
+				DEVELOPMENT_TEAM = T5T6697UB7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DBImageColorPicker\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyBeaver\"",
+					/Users/seongho/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = sieum/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"DBImageColorPicker\"",
+					"-framework",
+					"\"PopupDialog\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "sieum/sieum-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		C1A7699C1E48998100B5E216 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2645917B1628DD4F13D99538 /* Pods-sieum.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = sieum/sieum.entitlements;
+				DEVELOPMENT_TEAM = T5T6697UB7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DBImageColorPicker\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyBeaver\"",
+					/Users/seongho/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = sieum/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"DBImageColorPicker\"",
+					"-framework",
+					"\"PopupDialog\"",
+					"-framework",
+					"\"SwiftyBeaver\"",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "sieum/sieum-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		C1A7699E1E48998100B5E216 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C99F21B4C27AC4E20538F3F5 /* Pods-sieumTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = E53J4346HQ;
+				INFOPLIST_FILE = sieumTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieumTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sieum.app/sieum";
+			};
+			name = Debug;
+		};
+		C1A7699F1E48998100B5E216 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38C922B3F215B5E1843DB6F8 /* Pods-sieumTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = E53J4346HQ;
+				INFOPLIST_FILE = sieumTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieumTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sieum.app/sieum";
+			};
+			name = Release;
+		};
+		C1A769A11E48998100B5E216 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 405EB608E5FFF346921B4D1D /* Pods-sieumUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = E53J4346HQ;
+				INFOPLIST_FILE = sieumUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieumUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = sieum;
+			};
+			name = Debug;
+		};
+		C1A769A21E48998100B5E216 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 713883869EA0B7CF9E02CD28 /* Pods-sieumUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = E53J4346HQ;
+				INFOPLIST_FILE = sieumUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieumUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = sieum;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C105D4711EA1187300631D41 /* Build configuration list for PBXNativeTarget "SieumWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C105D4721EA1187300631D41 /* Debug */,
+				C105D4731EA1187300631D41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1A7696D1E48998100B5E216 /* Build configuration list for PBXProject "sieum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1A769981E48998100B5E216 /* Debug */,
+				C1A769991E48998100B5E216 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1A7699A1E48998100B5E216 /* Build configuration list for PBXNativeTarget "sieum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1A7699B1E48998100B5E216 /* Debug */,
+				C1A7699C1E48998100B5E216 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1A7699D1E48998100B5E216 /* Build configuration list for PBXNativeTarget "sieumTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1A7699E1E48998100B5E216 /* Debug */,
+				C1A7699F1E48998100B5E216 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1A769A01E48998100B5E216 /* Build configuration list for PBXNativeTarget "sieumUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1A769A11E48998100B5E216 /* Debug */,
+				C1A769A21E48998100B5E216 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C1A7696A1E48998100B5E216 /* Project object */;
+}
