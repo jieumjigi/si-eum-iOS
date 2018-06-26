@@ -13,6 +13,13 @@ class IntroViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(onSideMenuButtonTouch(_:)))
+        
+    }
+    
+    @objc func onSideMenuButtonTouch(_ sender: UIButton) {
+        let sideMenuViewController = SideMenuViewController()
+        sideMenuViewController.modalPresentationStyle = .overCurrentContext
+        navigationController?.present(sideMenuViewController, animated: false)
     }
 }

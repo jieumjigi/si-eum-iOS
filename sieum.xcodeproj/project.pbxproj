@@ -12,6 +12,7 @@
 		660977B85D079883A76A9CA1 /* Pods_sieumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ECE973D68BBCBC74CA4452B /* Pods_sieumUITests.framework */; };
 		C1028D3920DE8C3000D5C995 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1028D3820DE8C3000D5C995 /* IntroViewController.swift */; };
 		C1028D3B20DE8C7900D5C995 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1028D3A20DE8C7900D5C995 /* Intro.storyboard */; };
+		C1028D3E20E1BE5400D5C995 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1028D3D20E1BE5400D5C995 /* SideMenuViewController.swift */; };
 		C105D4661EA1187300631D41 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105D4651EA1187300631D41 /* NotificationCenter.framework */; };
 		C105D4691EA1187300631D41 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105D4681EA1187300631D41 /* TodayViewController.swift */; };
 		C105D46C1EA1187300631D41 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C105D46A1EA1187300631D41 /* MainInterface.storyboard */; };
@@ -141,6 +142,7 @@
 		8B57E4D41CDAEE9F1EC198D7 /* Pods_sieumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1028D3820DE8C3000D5C995 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		C1028D3A20DE8C7900D5C995 /* Intro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
+		C1028D3D20E1BE5400D5C995 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		C105D4641EA1187300631D41 /* SieumWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SieumWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C105D4651EA1187300631D41 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		C105D4681EA1187300631D41 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +299,14 @@
 			name = Intro;
 			sourceTree = "<group>";
 		};
+		C1028D3C20E1BE4100D5C995 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				C1028D3D20E1BE5400D5C995 /* SideMenuViewController.swift */,
+			);
+			name = SideMenu;
+			sourceTree = "<group>";
+		};
 		C105D4671EA1187300631D41 /* SieumWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +432,7 @@
 		C1A769741E48998100B5E216 /* sieum */ = {
 			isa = PBXGroup;
 			children = (
+				C1028D3C20E1BE4100D5C995 /* SideMenu */,
 				C1028D3720DE8C0800D5C995 /* Intro */,
 				C152D8281E506D6200719583 /* Util */,
 				C15BEE341ECD99C300F006C0 /* Poem */,
@@ -797,8 +808,10 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-sieum/Pods-sieum-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DBImageColorPicker/DBImageColorPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -806,8 +819,10 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DBImageColorPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -867,6 +882,7 @@
 				C14F81F41ECC983C0070F833 /* PoemModel.swift in Sources */,
 				C17F523A1E5DC2EB006AD57A /* PoemCoverViewController.swift in Sources */,
 				C1C209231E606A0B000C76B7 /* ImageUtil.swift in Sources */,
+				C1028D3E20E1BE5400D5C995 /* SideMenuViewController.swift in Sources */,
 				C19AC43A1EC5DAA700068A21 /* DateUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
