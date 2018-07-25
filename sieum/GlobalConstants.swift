@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct GlobalConstants {
+enum GlobalConstants {
     
-    struct url {
+    enum url {
         static let base = "http://seongho.pythonanywhere.com/api/"
         static let today = base + "today/"
         static let blog = "https://www.facebook.com/tasteapoem/"
         static let webSite = "https://jieumjigi.github.io/si-eum-web/"
     }
     
-    struct observer {
+    enum observer {
         static let requestSave = NSNotification.Name(rawValue: "REQUEST_SAVE")
         static let requestShare = NSNotification.Name(rawValue: "REQUEST_SHARE")
         static let requestTimer = NSNotification.Name(rawValue: "REQUEST_TIMER")

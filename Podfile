@@ -13,6 +13,7 @@ target 'sieum' do
     pod 'PopupDialog', '~> 0.5'
     pod 'SwiftyJSON'
     pod 'Kingfisher', '~> 4.0'
+    pod 'SHSideMenu', '~> 0.0.4' 
 
   target 'sieumTests' do
     inherit! :search_paths
