@@ -184,10 +184,10 @@
             </objects>
             <point key="canvasLocation" x="-682" y="1286"/>
         </scene>
-        <!--Menu View Controller-->
+        <!--Floating Menu View Controller-->
         <scene sceneID="1yZ-iN-Cgf">
             <objects>
-                <viewController storyboardIdentifier="MenuViewController" id="jvo-dj-hC6" customClass="MenuViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FloatingMenuViewController" id="jvo-dj-hC6" customClass="FloatingMenuViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E6Z-ky-RSl"/>
                         <viewControllerLayoutGuide type="bottom" id="dyY-Vk-njE"/>

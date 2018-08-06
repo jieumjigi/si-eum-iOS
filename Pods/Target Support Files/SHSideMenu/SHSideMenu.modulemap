@@ -1,0 +1,6 @@
+framework module SHSideMenu {
+  umbrella header "SHSideMenu-umbrella.h"
+
+  export *
+  module * { export * }
+}

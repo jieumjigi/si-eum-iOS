@@ -187,7 +187,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
     let message = "어디에 공유하는게 좋을까요?"
     
     // Create the dialog
-    let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .vertical, transitionStyle: .fadeIn, gestureDismissal: true) {
+    let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .vertical, transitionStyle: .fadeIn) {
       
     }
     
@@ -452,7 +452,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
   func showSimpleAlert(title:String, message : String?, buttonTitle : String ){
     
     // Create the dialog
-    let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
+    let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn) {
       
     }
     
