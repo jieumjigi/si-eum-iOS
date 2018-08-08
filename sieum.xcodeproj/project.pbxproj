@@ -85,6 +85,11 @@
 		C1CDBF201ECB4AB600C25A0C /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CDBF1F1ECB4AB600C25A0C /* QuestionViewController.swift */; };
 		C1CDBF221ECB552500C25A0C /* profile1.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF211ECB552500C25A0C /* profile1.png */; };
 		C1E03C7921106A61002741A0 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E03C7821106A61002741A0 /* UINavigationController+Extension.swift */; };
+		C1FA0FF3211B2E7A0066A22C /* Emptiable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA0FF2211B2E7A0066A22C /* Emptiable+Extension.swift */; };
+		C1FA0FF5211B32640066A22C /* EmptiableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA0FF4211B32640066A22C /* EmptiableTests.swift */; };
+		C1FA0FF7211B3ACD0066A22C /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA0FF6211B3ACD0066A22C /* MenuViewModel.swift */; };
+		C1FA0FF9211B3D5B0066A22C /* Enum+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA0FF8211B3D5B0066A22C /* Enum+Extension.swift */; };
+		C1FA0FFB211B46030066A22C /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA0FFA211B46030066A22C /* MenuTableViewCell.swift */; };
 		C1FFE0991EC3599B00E5FFD0 /* launchImage2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */; };
 		C1FFE09B1EC3642100E5FFD0 /* peomCup.png in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE09A1EC3642100E5FFD0 /* peomCup.png */; };
 		C1FFE09D1EC3649800E5FFD0 /* HelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */; };
@@ -220,6 +225,11 @@
 		C1CDBF1F1ECB4AB600C25A0C /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		C1CDBF211ECB552500C25A0C /* profile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile1.png; sourceTree = "<group>"; };
 		C1E03C7821106A61002741A0 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		C1FA0FF2211B2E7A0066A22C /* Emptiable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Emptiable+Extension.swift"; sourceTree = "<group>"; };
+		C1FA0FF4211B32640066A22C /* EmptiableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptiableTests.swift; sourceTree = "<group>"; };
+		C1FA0FF6211B3ACD0066A22C /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		C1FA0FF8211B3D5B0066A22C /* Enum+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+Extension.swift"; sourceTree = "<group>"; };
+		C1FA0FFA211B46030066A22C /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage2.jpg; sourceTree = "<group>"; };
 		C1FFE09A1EC3642100E5FFD0 /* peomCup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peomCup.png; sourceTree = "<group>"; };
 		C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloViewController.swift; sourceTree = "<group>"; };
@@ -317,6 +327,8 @@
 			isa = PBXGroup;
 			children = (
 				C12469492118B5BF0066F554 /* MenuViewController.swift */,
+				C1FA0FF6211B3ACD0066A22C /* MenuViewModel.swift */,
+				C1FA0FFA211B46030066A22C /* MenuTableViewCell.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -345,6 +357,8 @@
 				C1377E1620234CCA008FB68D /* UIImageViewUtil.swift */,
 				C19AC4391EC5DAA700068A21 /* DateUtil.swift */,
 				C1E03C7821106A61002741A0 /* UINavigationController+Extension.swift */,
+				C1FA0FF2211B2E7A0066A22C /* Emptiable+Extension.swift */,
+				C1FA0FF8211B3D5B0066A22C /* Enum+Extension.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -425,8 +439,8 @@
 		C1A769741E48998100B5E216 /* sieum */ = {
 			isa = PBXGroup;
 			children = (
-				C12469482118B5A60066F554 /* Main */,
 				C152D8281E506D6200719583 /* Util */,
+				C12469482118B5A60066F554 /* Main */,
 				C15BEE341ECD99C300F006C0 /* Poem */,
 				C11A6C6520DE8B8600EE3495 /* Setting */,
 				C11634C02022066600543070 /* Assets.xcassets */,
@@ -446,6 +460,7 @@
 			children = (
 				C1A7698A1E48998100B5E216 /* sieumTests.swift */,
 				C1A7698C1E48998100B5E216 /* Info.plist */,
+				C1FA0FF4211B32640066A22C /* EmptiableTests.swift */,
 			);
 			path = sieumTests;
 			sourceTree = "<group>";
@@ -799,9 +814,12 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-sieum/Pods-sieum-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DBImageColorPicker/DBImageColorPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SHSideMenu/SHSideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -812,9 +830,12 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DBImageColorPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SHSideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -862,11 +883,14 @@
 			files = (
 				C1377E1720234CCA008FB68D /* UIImageViewUtil.swift in Sources */,
 				C17F522C1E5DA80D006AD57A /* PageViewController.swift in Sources */,
+				C1FA0FFB211B46030066A22C /* MenuTableViewCell.swift in Sources */,
 				C1E03C7921106A61002741A0 /* UINavigationController+Extension.swift in Sources */,
 				C152D82E1E50976800719583 /* ColorUtil.swift in Sources */,
 				C1FFE09D1EC3649800E5FFD0 /* HelloViewController.swift in Sources */,
+				C1FA0FF7211B3ACD0066A22C /* MenuViewModel.swift in Sources */,
 				C1A769781E48998100B5E216 /* PoemViewController.swift in Sources */,
 				C17F52291E5DA79E006AD57A /* PoetViewController.swift in Sources */,
+				C1FA0FF9211B3D5B0066A22C /* Enum+Extension.swift in Sources */,
 				C17F523C1E5DE0B0006AD57A /* InfoViewController.swift in Sources */,
 				C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */,
 				C17F52331E5DB941006AD57A /* BaseViewController.swift in Sources */,
@@ -878,6 +902,7 @@
 				C14F81F41ECC983C0070F833 /* PoemModel.swift in Sources */,
 				C1A85D832118B66500AB6811 /* PoemPageViewController.swift in Sources */,
 				C17F523A1E5DC2EB006AD57A /* PoemCoverViewController.swift in Sources */,
+				C1FA0FF3211B2E7A0066A22C /* Emptiable+Extension.swift in Sources */,
 				C1C209231E606A0B000C76B7 /* ImageUtil.swift in Sources */,
 				C19AC43A1EC5DAA700068A21 /* DateUtil.swift in Sources */,
 			);
@@ -888,6 +913,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1A7698B1E48998100B5E216 /* sieumTests.swift in Sources */,
+				C1FA0FF5211B32640066A22C /* EmptiableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,7 +978,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum.ios.SieumWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -969,7 +995,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum.ios.SieumWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1102,7 +1128,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "sieum/sieum-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1141,7 +1167,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "sieum/sieum-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1156,7 +1182,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieumTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sieum.app/sieum";
 			};
 			name = Debug;
@@ -1172,7 +1198,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieumTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sieum.app/sieum";
 			};
 			name = Release;
@@ -1187,7 +1213,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieumUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = sieum;
 			};
 			name = Debug;
@@ -1202,7 +1228,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieumUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = sieum;
 			};
 			name = Release;

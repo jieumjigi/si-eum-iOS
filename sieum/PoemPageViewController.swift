@@ -14,6 +14,10 @@ class PoemPageViewController: BaseViewController, SideMenuUsable {
 
     var sideMenuAction: PublishSubject<SideMenuAction> = PublishSubject<SideMenuAction>()
     
+    deinit {
+        print("deinit.\(self)")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

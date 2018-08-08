@@ -1,6 +1,0 @@
-framework module Pods_sieumUITests {
-  umbrella header "Pods-sieumUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

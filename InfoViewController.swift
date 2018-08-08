@@ -44,14 +44,15 @@ class InfoViewController: UITableViewController {
         // 닫기 버튼
         let doneButton : UIBarButtonItem = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(onDoneItem))
         let doneButtonFont = UIFont(name: "IropkeBatangOTFM", size: 15) ?? UIFont.systemFont(ofSize: 15)
-        doneButton.setTitleTextAttributes([NSFontAttributeName: doneButtonFont, NSForegroundColorAttributeName:UIColor.gray], for: .normal)
+        doneButton.setTitleTextAttributes([.font: doneButtonFont,
+                                           .foregroundColor: UIColor.gray], for: .normal)
         self.navigationItem.setRightBarButton(doneButton, animated: true)
         
 
         
     }
     
-    func onDoneItem(){
+    @objc func onDoneItem(){
         
         self.navigationController?.dismiss(animated: true, completion: { 
             
