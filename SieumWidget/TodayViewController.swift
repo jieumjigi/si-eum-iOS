@@ -57,7 +57,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UIGestureRecogni
         self.view.addGestureRecognizer(tap)
     }
     
-    func handleTap(sender: UITapGestureRecognizer? = nil) {
+    @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
         let url = URL.init(string: "com.jieum.sieum.ios://")
         self.extensionContext?.open(url!, completionHandler: nil)
     }
@@ -126,7 +126,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UIGestureRecogni
                         paragraphStyle.alignment = .left
                         
                         let attrString = NSMutableAttributedString(string: contents)
-                        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+                        attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
                         self.lbContents.attributedText = attrString
                         
                         // Fade in

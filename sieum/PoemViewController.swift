@@ -117,7 +117,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
             paragraphStyle.alignment = .left
             
             let attrString = NSMutableAttributedString(string: contents!)
-            attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+            attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
             self.lbBody.attributedText = attrString
             
             // Fade in
@@ -180,14 +180,13 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
   
   //MARK: - Share
   
-  func didRequestShare(){
-    
+    @objc func didRequestShare(){
     
     let title = "오늘의 시를 전해줍니다"
     let message = "어디에 공유하는게 좋을까요?"
     
     // Create the dialog
-    let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .vertical, transitionStyle: .fadeIn, gestureDismissal: true) {
+    let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .vertical, transitionStyle: .fadeIn) {
       
     }
     
@@ -416,7 +415,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
   }
   
   
-  func didRequestSave(){
+    @objc func didRequestSave(){
     
     let tempViewRect = self.view.frame
     
@@ -435,7 +434,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
   }
   
   /// 이미지 저장 완료
-  func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
     
     self.loadingIndicator.stopAnimating()
     
@@ -452,7 +451,7 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
   func showSimpleAlert(title:String, message : String?, buttonTitle : String ){
     
     // Create the dialog
-    let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
+    let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn) {
       
     }
     

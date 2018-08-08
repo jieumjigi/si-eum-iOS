@@ -10,7 +10,7 @@ import UIKit
 
 class DateUtil: NSObject {
     
-    public func getDate() -> String{
+    public func getDate() -> String {
     
         let date = Date()
         let formatter = DateFormatter()
