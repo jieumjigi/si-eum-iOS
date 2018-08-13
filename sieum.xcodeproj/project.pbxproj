@@ -90,6 +90,9 @@
 		C1FA0FF7211B3ACD0066A22C /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA0FF6211B3ACD0066A22C /* MenuViewModel.swift */; };
 		C1FA0FF9211B3D5B0066A22C /* Enum+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA0FF8211B3D5B0066A22C /* Enum+Extension.swift */; };
 		C1FA0FFB211B46030066A22C /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA0FFA211B46030066A22C /* MenuTableViewCell.swift */; };
+		C1FA0FFF2121C6580066A22C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA0FFE2121C6580066A22C /* Theme.swift */; };
+		C1FA10012121C9090066A22C /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA10002121C9090066A22C /* UIFont+Extension.swift */; };
+		C1FA10032121DBB90066A22C /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA10022121DBB90066A22C /* PageViewModel.swift */; };
 		C1FFE0991EC3599B00E5FFD0 /* launchImage2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */; };
 		C1FFE09B1EC3642100E5FFD0 /* peomCup.png in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE09A1EC3642100E5FFD0 /* peomCup.png */; };
 		C1FFE09D1EC3649800E5FFD0 /* HelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */; };
@@ -230,6 +233,9 @@
 		C1FA0FF6211B3ACD0066A22C /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		C1FA0FF8211B3D5B0066A22C /* Enum+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+Extension.swift"; sourceTree = "<group>"; };
 		C1FA0FFA211B46030066A22C /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		C1FA0FFE2121C6580066A22C /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		C1FA10002121C9090066A22C /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		C1FA10022121DBB90066A22C /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
 		C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage2.jpg; sourceTree = "<group>"; };
 		C1FFE09A1EC3642100E5FFD0 /* peomCup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peomCup.png; sourceTree = "<group>"; };
 		C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloViewController.swift; sourceTree = "<group>"; };
@@ -350,6 +356,7 @@
 		C152D8281E506D6200719583 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				C1FA0FFE2121C6580066A22C /* Theme.swift */,
 				C1752EBD1EC034200042C24E /* UYLNotificationDelegate.swift */,
 				C1C209241E607234000C76B7 /* GlobalConstants.swift */,
 				C152D82D1E50976800719583 /* ColorUtil.swift */,
@@ -359,6 +366,7 @@
 				C1E03C7821106A61002741A0 /* UINavigationController+Extension.swift */,
 				C1FA0FF2211B2E7A0066A22C /* Emptiable+Extension.swift */,
 				C1FA0FF8211B3D5B0066A22C /* Enum+Extension.swift */,
+				C1FA10002121C9090066A22C /* UIFont+Extension.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -370,6 +378,7 @@
 				C17F52391E5DC2EB006AD57A /* PoemCoverViewController.swift */,
 				C17F52371E5DBED4006AD57A /* FloatingMenuViewController.swift */,
 				C17F522B1E5DA80D006AD57A /* PageViewController.swift */,
+				C1FA10022121DBB90066A22C /* PageViewModel.swift */,
 				C14F81F31ECC983C0070F833 /* PoemModel.swift */,
 				C1A85D822118B66500AB6811 /* PoemPageViewController.swift */,
 			);
@@ -821,6 +830,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTheme/RxTheme.framework",
 				"${BUILT_PRODUCTS_DIR}/SHSideMenu/SHSideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
@@ -837,6 +847,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTheme.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SHSideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
@@ -891,10 +902,13 @@
 				C1A769781E48998100B5E216 /* PoemViewController.swift in Sources */,
 				C17F52291E5DA79E006AD57A /* PoetViewController.swift in Sources */,
 				C1FA0FF9211B3D5B0066A22C /* Enum+Extension.swift in Sources */,
+				C1FA10012121C9090066A22C /* UIFont+Extension.swift in Sources */,
 				C17F523C1E5DE0B0006AD57A /* InfoViewController.swift in Sources */,
 				C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */,
+				C1FA0FFF2121C6580066A22C /* Theme.swift in Sources */,
 				C17F52331E5DB941006AD57A /* BaseViewController.swift in Sources */,
 				C17F52381E5DBED4006AD57A /* FloatingMenuViewController.swift in Sources */,
+				C1FA10032121DBB90066A22C /* PageViewModel.swift in Sources */,
 				C1752EBE1EC034200042C24E /* UYLNotificationDelegate.swift in Sources */,
 				C1C209251E607234000C76B7 /* GlobalConstants.swift in Sources */,
 				C1CDBF201ECB4AB600C25A0C /* QuestionViewController.swift in Sources */,

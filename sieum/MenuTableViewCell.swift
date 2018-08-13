@@ -8,8 +8,12 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MenuTableViewCell: UITableViewCell {
+    
+    private let disposeBag: DisposeBag = DisposeBag()
     
     static var reuseIdentifier: String {
         return MenuTableViewCell.description()
@@ -20,11 +24,24 @@ class MenuTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         textLabel?.textAlignment = .center
-        backgroundColor = .clear
+        textLabel?.font = UIFont.mainFont(ofSize: .medium)
+        
+        bind()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func bind() {
+        guard let textLabel = textLabel else {
+            return
+        }
+        
+        themeService.rx
+            .bind({ $0.backgroundColor }, to: contentView.rx.backgroundColor)
+            .bind({ $0.textColor }, to: textLabel.rx.textColor)
+            .disposed(by: disposeBag)
     }
     
     func configure(model: Menu) {

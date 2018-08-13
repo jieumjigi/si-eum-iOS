@@ -13,7 +13,7 @@ import SHSideMenu
 
 class MenuViewController: UIViewController, ContentViewChangable {
     
-    var viewTransition: BehaviorSubject<UIViewController> = BehaviorSubject<UIViewController>(value: UINavigationController(rootViewController: PoemPageViewController()))
+    var viewTransition: BehaviorSubject<UIViewController> = BehaviorSubject<UIViewController>(value: UINavigationController(rootViewController: PageViewController()))
     
     private let viewModel: MenuViewModel = MenuViewModel()
     private let disposeBag: DisposeBag = DisposeBag()

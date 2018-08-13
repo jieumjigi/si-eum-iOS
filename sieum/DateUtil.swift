@@ -9,16 +9,12 @@
 import UIKit
 
 class DateUtil: NSObject {
-    
-    public func getDate() -> String {
-    
+    static func getDate() -> String {
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         let result = formatter.string(from: date)
         
         return result
-    
     }
-
 }

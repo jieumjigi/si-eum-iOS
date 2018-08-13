@@ -16,6 +16,7 @@ target 'sieum' do
   pod 'Kingfisher', '~> 4.0'
   pod 'SHSideMenu', '~> 0.0.4' 
   pod 'RxDataSources', '~> 3.0'
+  pod 'RxTheme', '2.0'
 
   target 'sieumTests' do
     inherit! :search_paths

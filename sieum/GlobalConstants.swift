@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum GlobalConstants {
     
@@ -26,5 +27,11 @@ enum GlobalConstants {
         
         static let didMenuOpen = NSNotification.Name(rawValue: "DID_MENU_OPEN")
         static let didMenuClose = NSNotification.Name(rawValue: "DID_MENU_CLOSE")
+    }
+    
+    enum font {
+        static let small: CGFloat = 12.0
+        static let medium: CGFloat = 14.0
+        static let large: CGFloat = 16.0
     }
 }

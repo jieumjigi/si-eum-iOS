@@ -7,95 +7,98 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import SHSideMenu
 
-class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
+class PageViewController: UIPageViewController, SideMenuUsable {
+    
+    private let disposeBag: DisposeBag = DisposeBag()
+    
+    var sideMenuAction: PublishSubject<SideMenuAction> = PublishSubject<SideMenuAction>()
+    
+    private(set) lazy var orderedViewControllers: [UIViewController] = {
+        return [self.newViewController(type: PoemViewController.self),
+                self.newViewController(type: QuestionViewController.self),
+                self.newViewController(type: PoetViewController.self)]
+    }()
+    
+    private func newViewController(type: UIViewController.Type) -> UIViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: type))
+    }
+    
+    override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]? = nil) {
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: options)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.dataSource = self
-        
-        if let firstViewController = orderedViewControllers.first {
-            setViewControllers([firstViewController],
-                               direction: .forward,
-                               animated: true,
-                               completion: nil)
-        }
-        
-        self.setColor()
-        self.setupPageControl()
+        dataSource = self
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(onSideMenuButtonTouch(_:)))
+        navigationController?.makeClearBar()
+
+        setFirstViewController()
+        setupPageControl()
+        bind()
+    }
+    
+    @objc private func onSideMenuButtonTouch(_ sender: UIButton) {
+        sideMenuAction.onNext(.open)
     }
 
-    // MARK: - UI
+    // MARK: - Bind
     
-    func setColor(){
-        self.view.backgroundColor = UIColor.defaultBackground()
+    private func bind() {
+        themeService.rx
+            .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
+            .disposed(by: disposeBag)
     }
-    
     
     private func setupPageControl() {
-    
-        let appearance = UIPageControl.appearance()
-        appearance.pageIndicatorTintColor = UIColor.lightBrown()
-        appearance.currentPageIndicatorTintColor = UIColor.darkBrown()
+        UIPageControl.appearance().pageIndicatorTintColor = UIColor.lightBrown()
+        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.darkBrown()
     }
+}
+
+// MARK: UIPageViewControllerDataSource
+extension PageViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
-    
-    // MARK: UIPageViewControllerDataSource
-    
-    private(set) lazy var orderedViewControllers: [UIViewController] = {
-        return [self.newViewController(name: "PoemViewController") ,
-                self.newViewController(name: "QuestionViewController") ,
-                self.newViewController(name: "PoetViewController")]
-    }()
-    
-    private func newViewController(name: String) -> UIViewController {
+    func setFirstViewController() {
+        guard let firstViewController = orderedViewControllers.first else {
+            return
+        }
         
-        return UIStoryboard(name: "Main", bundle: nil) .
-            instantiateViewController(withIdentifier: "\(name)")
+        setViewControllers([firstViewController], direction: .forward, animated: true)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
-            return nil
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController),
+            viewControllerIndex - 1 >= 0,
+            orderedViewControllers.count > viewControllerIndex - 1 else {
+                return nil
         }
         
-        let previousIndex = viewControllerIndex - 1
-        
-        guard previousIndex >= 0 else {
-            return nil
-        }
-        
-        guard orderedViewControllers.count > previousIndex else {
-            return nil
-        }
-        
-        return orderedViewControllers[previousIndex]
+        return orderedViewControllers[viewControllerIndex - 1]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
-            return nil
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController),
+            orderedViewControllers.count != viewControllerIndex + 1,
+            orderedViewControllers.count > viewControllerIndex + 1 else {
+                return nil
         }
         
-        let nextIndex = viewControllerIndex + 1
-        let orderedViewControllersCount = orderedViewControllers.count
-        
-        guard orderedViewControllersCount != nextIndex else {
-            return nil
-        }
-        
-        guard orderedViewControllersCount > nextIndex else {
-            return nil
-        }
-        
-        return orderedViewControllers[nextIndex]
+        return orderedViewControllers[viewControllerIndex + 1]
     }
-    
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0

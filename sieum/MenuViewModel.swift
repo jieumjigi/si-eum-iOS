@@ -45,7 +45,7 @@ enum Menu: Int, CaseIterable {
     }
     
     var viewController: UIViewController {
-        return UINavigationController(rootViewController: PoemPageViewController())
+        return UINavigationController(rootViewController: PageViewController())
     }
 }
 
