@@ -8,14 +8,39 @@
 
 import Foundation
 import RxSwift
+import Alamofire
+import SwiftyJSON
 
 class PageViewModel {
     
+    private lazy var poemSubject: PublishSubject<PoemModel> = PublishSubject<PoemModel>()
+    lazy var poem: Observable<PoemModel> = poemSubject.asObserver()
+    
     init() {
-        
+        loadToadyPoem()
     }
     
-    func load() {
-        
+    func loadToadyPoem(){
+        Alamofire.request(GlobalConstants.url.today, method: .get, parameters: nil, encoding: JSONEncoding.default)
+            .responseJSON { [weak self] responseData in
+                guard let result = responseData.result.value,
+                    let status = responseData.response?.statusCode else {
+                        return
+                }
+                
+                let json = JSON(result)
+                
+                switch(status){
+                case 200 :
+                    log.info("success")
+                default:
+                    log.error("error with response status: \(status)")
+                }
+                
+                let poemModel = PoemModel()
+                poemModel.parse(json: json[0])
+                
+                self?.poemSubject.onNext(poemModel)
+        }
     }
 }

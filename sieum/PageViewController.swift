@@ -16,6 +16,7 @@ class PageViewController: UIPageViewController, SideMenuUsable {
     private let disposeBag: DisposeBag = DisposeBag()
     
     var sideMenuAction: PublishSubject<SideMenuAction> = PublishSubject<SideMenuAction>()
+    lazy var pageViewModel: PageViewModel = PageViewModel()
     
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.newViewController(type: PoemViewController.self),
@@ -24,7 +25,13 @@ class PageViewController: UIPageViewController, SideMenuUsable {
     }()
     
     private func newViewController(type: UIViewController.Type) -> UIViewController {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: type))
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: type))
+        
+        if var pageViewModelUsable = viewController as? PageViewModelUsable {
+            pageViewModelUsable.pageViewModel = pageViewModel
+        }
+        
+        return viewController
     }
     
     override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]? = nil) {

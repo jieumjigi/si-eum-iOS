@@ -93,6 +93,7 @@
 		C1FA0FFF2121C6580066A22C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA0FFE2121C6580066A22C /* Theme.swift */; };
 		C1FA10012121C9090066A22C /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA10002121C9090066A22C /* UIFont+Extension.swift */; };
 		C1FA10032121DBB90066A22C /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA10022121DBB90066A22C /* PageViewModel.swift */; };
+		C1FA10052122660A0066A22C /* PageViewModelUsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA10042122660A0066A22C /* PageViewModelUsable.swift */; };
 		C1FFE0991EC3599B00E5FFD0 /* launchImage2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */; };
 		C1FFE09B1EC3642100E5FFD0 /* peomCup.png in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE09A1EC3642100E5FFD0 /* peomCup.png */; };
 		C1FFE09D1EC3649800E5FFD0 /* HelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */; };
@@ -236,6 +237,7 @@
 		C1FA0FFE2121C6580066A22C /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		C1FA10002121C9090066A22C /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		C1FA10022121DBB90066A22C /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
+		C1FA10042122660A0066A22C /* PageViewModelUsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModelUsable.swift; sourceTree = "<group>"; };
 		C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage2.jpg; sourceTree = "<group>"; };
 		C1FFE09A1EC3642100E5FFD0 /* peomCup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peomCup.png; sourceTree = "<group>"; };
 		C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloViewController.swift; sourceTree = "<group>"; };
@@ -378,7 +380,6 @@
 				C17F52391E5DC2EB006AD57A /* PoemCoverViewController.swift */,
 				C17F52371E5DBED4006AD57A /* FloatingMenuViewController.swift */,
 				C17F522B1E5DA80D006AD57A /* PageViewController.swift */,
-				C1FA10022121DBB90066A22C /* PageViewModel.swift */,
 				C14F81F31ECC983C0070F833 /* PoemModel.swift */,
 				C1A85D822118B66500AB6811 /* PoemPageViewController.swift */,
 			);
@@ -388,9 +389,11 @@
 		C15BEE351ECD9BBA00F006C0 /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				C1FA10022121DBB90066A22C /* PageViewModel.swift */,
 				C1A769771E48998100B5E216 /* PoemViewController.swift */,
 				C1CDBF1F1ECB4AB600C25A0C /* QuestionViewController.swift */,
 				C17F52281E5DA79E006AD57A /* PoetViewController.swift */,
+				C1FA10042122660A0066A22C /* PageViewModelUsable.swift */,
 			);
 			name = Page;
 			sourceTree = "<group>";
@@ -913,6 +916,7 @@
 				C1C209251E607234000C76B7 /* GlobalConstants.swift in Sources */,
 				C1CDBF201ECB4AB600C25A0C /* QuestionViewController.swift in Sources */,
 				C124694A2118B5BF0066F554 /* MenuViewController.swift in Sources */,
+				C1FA10052122660A0066A22C /* PageViewModelUsable.swift in Sources */,
 				C14F81F41ECC983C0070F833 /* PoemModel.swift in Sources */,
 				C1A85D832118B66500AB6811 /* PoemPageViewController.swift in Sources */,
 				C17F523A1E5DC2EB006AD57A /* PoemCoverViewController.swift in Sources */,

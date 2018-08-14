@@ -12,8 +12,12 @@ import FBSDKShareKit
 import PopupDialog
 import KakaoLink
 import SwiftyJSON
+import RxSwift
 
-class PoemViewController: UIViewController, FBSDKSharingDelegate {
+class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDelegate {
+    
+    var pageViewModel: PageViewModel?
+    let disposeBag: DisposeBag = DisposeBag()
     
     @IBOutlet var bgView: UIView!
     @IBOutlet weak var bgImage: UIImageView!
@@ -31,15 +35,22 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
         super.viewDidLoad()
         
         lbPoet.numberOfLines = 0
+        bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if accessDate == nil || accessDate != DateUtil.getDate() {
-            accessDate = DateUtil.getDate()
-            getContent()
-        }
+//        if accessDate == nil || accessDate != DateUtil.getDate() {
+//            accessDate = DateUtil.getDate()
+//            getContent()
+//        }
+    }
+    
+    private func bind() {
+        pageViewModel?.poem.subscribe(onNext: { [weak self] poem in
+            self?.configure(model: poem)
+        }).disposed(by: disposeBag)
     }
     
     func convertToDictionary(text: String) -> [String: Any]? {
@@ -53,64 +64,32 @@ class PoemViewController: UIViewController, FBSDKSharingDelegate {
         return nil
     }
     
-    func getContent(){
-        let todayPoemUrl = GlobalConstants.url.today
-        Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default)
-            .responseJSON { responseData in
+    func configure(model: PoemModel) {
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            
+            self.lbPoet.alpha = 0.0
+            self.lbBody.alpha = 0.0
+            
+        }, completion: { [weak self] finished in
+            
+            self?.lbPoet.text = "\(model.title ?? "") / \(model.authorName ?? "")"
+
+            if let contents = model.contents {
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.lineSpacing = 6
+                paragraphStyle.alignment = .left
                 
-                guard let result = responseData.result.value else {
-                    
-                    self.lbBody.text = "죄송합니다.\n 오늘의 시를 가져올 수 없습니다."
-                    return
-                }
-                
-                let json = JSON(result)
-                
-                if let status = responseData.response?.statusCode {
-                    
-                    switch(status){
-                    case 200 :
-                        log.info("success")
-                    default:
-                        log.error("error with response status: \(status)")
-                    }
-                    
-                    PoemModel.shared.parse(json: json[0])
-                    
-                    let title = PoemModel.shared.title
-                    let poetName = PoemModel.shared.authorName
-                    let contents = PoemModel.shared.contents
-                    
-                    UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-                        
-                        self.lbPoet.alpha = 0.0
-                        self.lbBody.alpha = 0.0
-                        
-                    }, completion: {
-                        (finished: Bool) -> Void in
-                        
-                        self.lbPoet.text = title?.appending(" / ").appending(poetName!)
-                        
-                        let paragraphStyle = NSMutableParagraphStyle()
-                        paragraphStyle.lineSpacing = 6
-                        paragraphStyle.alignment = .left
-                        
-                        let attrString = NSMutableAttributedString(string: contents!)
-                        attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-                        self.lbBody.attributedText = attrString
-                        
-                        // Fade in
-                        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-                            
-                            self.lbPoet.alpha = 1.0
-                            self.lbBody.alpha = 1.0
-                            
-                            
-                        }, completion: nil)
-                        
-                    })
-                }
-        }
+                let attrString = NSMutableAttributedString(string: contents)
+                attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+                self?.lbBody.attributedText = attrString
+            }
+            
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                self?.lbPoet.alpha = 1.0
+                self?.lbBody.alpha = 1.0
+            }, completion: nil)
+        })
     }
     
     func addObserver(){
