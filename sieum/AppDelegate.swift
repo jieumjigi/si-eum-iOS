@@ -12,6 +12,7 @@ import FBSDKCoreKit
 import PopupDialog
 import UserNotifications
 import SHSideMenu
+import Firebase
 
 let log = SwiftyBeaver.self
 
@@ -28,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
         
+        FirebaseApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         self.setLogger()

@@ -150,10 +150,10 @@
             </objects>
             <point key="canvasLocation" x="-681" y="492"/>
         </scene>
-        <!--Info View Controller-->
+        <!--Setting View Controller-->
         <scene sceneID="ksx-0F-bk7">
             <objects>
-                <tableViewController storyboardIdentifier="InfoViewController" id="Wlu-fG-1he" customClass="InfoViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingViewController" id="Wlu-fG-1he" customClass="SettingViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="kAa-oW-bBY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

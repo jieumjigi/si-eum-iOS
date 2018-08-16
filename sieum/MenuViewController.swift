@@ -26,7 +26,7 @@ class MenuViewController: UIViewController, ContentViewChangable {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor.defaultBackground()
         tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: MenuTableViewCell.reuseIdentifier)
-        tableView.separatorColor = .clear
+        tableView.separatorInset = .zero
         return tableView
     }()
     
@@ -35,10 +35,10 @@ class MenuViewController: UIViewController, ContentViewChangable {
         
         view.addSubview(tableView)
         bind()
+        view.setNeedsUpdateConstraints()
     }
     
     override func updateViewConstraints() {
-        
         if !didUpdateViewConstraints {
             didUpdateViewConstraints = true
             
@@ -50,6 +50,13 @@ class MenuViewController: UIViewController, ContentViewChangable {
     }
     
     private func bind() {
+        
+        themeService.rx
+            .bind({ $0.menuBackgroundColor }, to: view.rx.backgroundColor)
+            .bind({ $0.menuBackgroundColor }, to: tableView.rx.backgroundColor)
+            .bind({ $0.menuBackgroundColor }, to: tableView.rx.separatorColor)
+            .disposed(by: disposeBag)
+        
         let dataSource = RxTableViewSectionedReloadDataSource<MenuSection>(
             configureCell: { ds, tv, ip, item in
                 let cell = tv.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell
@@ -64,7 +71,20 @@ class MenuViewController: UIViewController, ContentViewChangable {
             guard let menu = Menu(rawValue: indexPath.row) else {
                 return
             }
-            self?.viewTransition.onNext(menu.viewController)
+            switch menu {
+            case .today:
+                let viewController = UINavigationController(rootViewController: PageViewController())
+                self?.viewTransition.onNext(viewController)
+            case .past:
+                let viewController = UINavigationController(rootViewController: PoetsViewController())
+                self?.viewTransition.onNext(viewController)
+            case .bookmark:
+                let viewController = UINavigationController(rootViewController: BookmarkViewController())
+                self?.viewTransition.onNext(viewController)
+            case .setting:
+                let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController")
+                self?.viewTransition.onNext(UINavigationController(rootViewController: viewController))
+            }
         }).disposed(by: disposeBag)
         
         viewModel.section
@@ -82,10 +102,10 @@ extension MenuViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 150.0
+        return 170.0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
+        return UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 170))
     }
 }

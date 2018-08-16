@@ -9,5 +9,5 @@
 import Foundation
 
 protocol PageViewModelUsable {
-    var pageViewModel: PageViewModel? { get set } // BehaviorSubject 로 변경해야 함
+    var pageViewModel: PageViewModel? { get set }
 }

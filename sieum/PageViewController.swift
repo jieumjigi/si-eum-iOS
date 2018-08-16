@@ -46,16 +46,15 @@ class PageViewController: UIPageViewController, SideMenuUsable {
         super.viewDidLoad()
         
         dataSource = self
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(onSideMenuButtonTouch(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(for: .menu) { [weak self] in
+            self?.sideMenuAction.onNext(.open)
+        }
+    
         navigationController?.makeClearBar()
 
         setFirstViewController()
         setupPageControl()
         bind()
-    }
-    
-    @objc private func onSideMenuButtonTouch(_ sender: UIButton) {
-        sideMenuAction.onNext(.open)
     }
 
     // MARK: - Bind

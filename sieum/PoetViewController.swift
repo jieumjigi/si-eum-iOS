@@ -9,96 +9,88 @@
 import UIKit
 import Alamofire
 import Kingfisher
+import RxSwift
 
-class PoetViewController: UIViewController {
-  
-  @IBOutlet weak var profileImage: UIImageView!
-  
-  @IBOutlet weak var lbPoet: UILabel!
-  @IBOutlet weak var lbIntroPoet: UILabel!
-  @IBOutlet weak var poetLinkButton: UIButton!
-  
-  var linkToBook = ""
-  
-  var accessDate : String?
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
+class PoetViewController: UIViewController, PageViewModelUsable {
     
-    self.lbPoet.numberOfLines = 0
+    var pageViewModel: PageViewModel?
+    let disposeBag: DisposeBag = DisposeBag()
     
-    self.setContent()
+    @IBOutlet weak var profileImage: UIImageView!
     
-    // Do any additional setup after loading the view.
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-
-    self.setContent()
-  }
-  
-  
-  func setContent(){
+    @IBOutlet weak var lbPoet: UILabel!
+    @IBOutlet weak var lbIntroPoet: UILabel!
+    @IBOutlet weak var poetLinkButton: UIButton!
     
-    self.setProfileImage()
+    var linkToBook = ""
     
-    self.lbPoet.text = PoemModel.shared.authorName
+    var accessDate : String?
     
-    let paragraphStyle = NSMutableParagraphStyle()
-    paragraphStyle.lineSpacing = 5
-    paragraphStyle.alignment = .left
-    
-    let attrString = NSMutableAttributedString(string: PoemModel.shared.introduction!)
-    attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-    self.lbIntroPoet.attributedText = attrString
-    self.lbIntroPoet.textAlignment = .left
-    
-    if let tempLink = PoemModel.shared.link{
-      
-      if(tempLink != ""){
-        self.linkToBook = tempLink
-        self.poetLinkButton.setTitle(self.linkToBook, for: .normal)
-        self.poetLinkButton.alpha = 1.0
-      }else{
-        self.poetLinkButton.alpha = 0.0
-      }
-    }
-  }
-  
-  func setProfileImage(){
-    
-    let profileImageLink = PoemModel.shared.profileImageLink
-    let placeHolderImage = UIImage.placeHolderImage()
-    profileImage.image = placeHolderImage
-    profileImage.setRoundedMaskLayer()
-
-    guard let urlString = profileImageLink,
-      let imageUrl = URL(string: urlString) else {
-        return
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        lbPoet.numberOfLines = 0
+        bind()
     }
     
-    profileImage.kf.indicatorType = .activity
-    profileImage.kf.setImage(with: imageUrl, placeholder: placeHolderImage)
-  }
-  
-  @IBAction func onLinkToBookButton(_ sender: Any) {
-    
-    if(self.linkToBook != ""){
-      let bookUrl = URL.init(string: self.linkToBook)!
-      
-      if #available(iOS 10.0, *) {
-        UIApplication.shared.open(bookUrl, options: [:], completionHandler: { (isSucess) in
-        })
-      } else {
-        UIApplication.shared.openURL(bookUrl)
-      }
+    private func bind() {
+        pageViewModel?.poem.subscribe(onNext: { [weak self] model in
+            guard let model = model else {
+                return
+            }
+            self?.configure(model: model)
+        }).disposed(by: disposeBag)
     }
-  }
+
+    func configure(model: PoemModel){
+        setProfileImage(model: model)
+        lbPoet.text = model.authorName
+        
+        if let introduciton = model.introduction {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 5
+            paragraphStyle.alignment = .left
+            let attrString = NSMutableAttributedString(string: introduciton)
+            attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+            lbIntroPoet.attributedText = attrString
+            lbIntroPoet.textAlignment = .left
+        }
+        
+        if let tempLink = model.link {
+            linkToBook = tempLink
+            poetLinkButton.setTitle(self.linkToBook, for: .normal)
+            poetLinkButton.alpha = 1.0
+        } else {
+            poetLinkButton.alpha = 0.0
+        }
+    }
+    
+    func setProfileImage(model: PoemModel){
+        
+        let placeHolderImage = UIImage.placeHolderImage()
+        profileImage.image = placeHolderImage
+        profileImage.setRoundedMaskLayer()
+        
+        guard let urlString = model.profileImageLink,
+            let imageUrl = URL(string: urlString) else {
+                return
+        }
+        
+        profileImage.kf.indicatorType = .activity
+        profileImage.kf.setImage(with: imageUrl, placeholder: placeHolderImage)
+    }
+    
+    @IBAction func onLinkToBookButton(_ sender: Any) {
+        guard poetLinkButton.titleLabel?.text != "" else {
+            return
+        }
+        let bookUrl = URL.init(string: self.linkToBook)!
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(bookUrl, options: [:], completionHandler: { (isSucess) in
+            })
+        } else {
+            UIApplication.shared.openURL(bookUrl)
+        }
+    }
 }

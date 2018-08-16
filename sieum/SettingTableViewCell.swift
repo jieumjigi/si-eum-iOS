@@ -1,36 +1,43 @@
 //
-//  MenuTableViewCell.swift
+//  SettingTableViewCell.swift
 //  sieum
 //
-//  Created by 홍성호 on 2018. 8. 9..
+//  Created by 홍성호 on 2018. 8. 17..
 //  Copyright © 2018년 홍성호. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import RxTheme
 import RxSwift
 import RxCocoa
 
-class MenuTableViewCell: UITableViewCell {
+class SettingTableViewCell: UITableViewCell {
     
-    private let disposeBag: DisposeBag = DisposeBag()
-    
-    static var reuseIdentifier: String {
-        return MenuTableViewCell.description()
-    }
-    
+    private var disposeBag: DisposeBag = DisposeBag()
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
-        selectionStyle = .none
-        textLabel?.textAlignment = .center
-        textLabel?.font = UIFont.mainFont(ofSize: .large)
-        
-        bind()
+        textLabel?.font = UIFont.mainFont(ofSize: .medium)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
+    }
+    
+    func configure(model: SettingMenu?) {
+        guard let model = model else {
+            return
+        }
+        
+        textLabel?.text = model.title
+        bind()
     }
     
     private func bind() {
@@ -39,13 +46,8 @@ class MenuTableViewCell: UITableViewCell {
         }
         
         themeService.rx
-            .bind({ $0.menuBackgroundColor }, to: contentView.rx.backgroundColor)
+            .bind({ $0.backgroundColor }, to: rx.backgroundColor)
             .bind({ $0.textColor }, to: textLabel.rx.textColor)
             .disposed(by: disposeBag)
     }
-    
-    func configure(model: Menu) {
-        textLabel?.text = model.title
-    }
 }
-

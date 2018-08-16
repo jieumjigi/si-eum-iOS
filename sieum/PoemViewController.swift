@@ -38,17 +38,11 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
         bind()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        if accessDate == nil || accessDate != DateUtil.getDate() {
-//            accessDate = DateUtil.getDate()
-//            getContent()
-//        }
-    }
-    
     private func bind() {
         pageViewModel?.poem.subscribe(onNext: { [weak self] poem in
+            guard let poem = poem else {
+                return
+            }
             self?.configure(model: poem)
         }).disposed(by: disposeBag)
     }

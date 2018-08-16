@@ -13,8 +13,8 @@ import SwiftyJSON
 
 class PageViewModel {
     
-    private lazy var poemSubject: PublishSubject<PoemModel> = PublishSubject<PoemModel>()
-    lazy var poem: Observable<PoemModel> = poemSubject.asObserver()
+    private lazy var poemSubject: BehaviorSubject<PoemModel?> = BehaviorSubject<PoemModel?>(value: nil)
+    lazy var poem: Observable<PoemModel?> = poemSubject.asObserver()
     
     init() {
         loadToadyPoem()

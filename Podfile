@@ -6,6 +6,7 @@ target 'sieum' do
   use_frameworks!
   swift_version = "4.1"
   pod 'SnapKit', '~> 4.0.0'
+  pod 'Firebase/Core'
 
   # Pods for sieum
   pod 'DBImageColorPicker', '~> 1.0.0'

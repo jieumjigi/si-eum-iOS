@@ -29,23 +29,15 @@ enum Menu: Int, CaseIterable {
     case today = 0
     case past
     case bookmark
-    case alarm
     case setting
-    case about
     
     var title: String {
         switch self {
         case .today: return "오늘의 시"
         case .past: return "지나간 시"
         case .bookmark: return "즐겨찾기"
-        case .alarm: return "알람"
         case .setting: return "설정"
-        case .about: return "About 시음"
         }
-    }
-    
-    var viewController: UIViewController {
-        return UINavigationController(rootViewController: PageViewController())
     }
 }
 

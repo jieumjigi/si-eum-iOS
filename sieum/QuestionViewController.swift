@@ -7,24 +7,32 @@
 //
 
 import UIKit
+import RxSwift
 
-class QuestionViewController: UIViewController {
+class QuestionViewController: UIViewController, PageViewModelUsable {
+    
+    var pageViewModel: PageViewModel?
+    let disposeBag: DisposeBag = DisposeBag()
 
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet var quotations: [UIImageView]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setContent()
+        bind()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setContent()
+    private func bind() {
+        pageViewModel?.poem.subscribe(onNext: { [weak self] model in
+            guard let model = model else {
+                return
+            }
+            self?.configure(model: model)
+        }).disposed(by: disposeBag)
     }
     
-    func setContent(){
-        guard (PoemModel.shared.question ?? "") != nil &&  PoemModel.shared.question != "" else {
+    func configure(model: PoemModel){
+        guard let question = model.question else {
             return
         }
         
@@ -32,8 +40,8 @@ class QuestionViewController: UIViewController {
         paragraphStyle.lineSpacing = 6
         paragraphStyle.alignment = .center
         
-        let attrString = NSMutableAttributedString(string: PoemModel.shared.question!)
+        let attrString = NSMutableAttributedString(string: question)
         attrString.addAttribute(.paragraphStyle, value:paragraphStyle, range: NSMakeRange(0, attrString.length))
-        self.questionLabel.attributedText = attrString
+        questionLabel.attributedText = attrString
     }
 }

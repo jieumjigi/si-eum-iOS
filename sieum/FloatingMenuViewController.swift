@@ -251,7 +251,7 @@ class FloatingMenuViewController: UIViewController {
         FBSDKAppEvents.logEvent(eventName)
         log.verbose(eventName)
         
-        let infoViewController = self.storyboard!.instantiateViewController(withIdentifier: "InfoViewController") as! InfoViewController
+        let infoViewController = self.storyboard!.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
         let navController = UINavigationController(rootViewController: infoViewController) // Creating a navigation controller with VC1 at the root of the navigation stack.
         self.present(navController, animated:true, completion: nil)
         
