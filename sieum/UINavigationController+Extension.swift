@@ -10,6 +10,7 @@ import UIKit
 
 extension UINavigationController {
     func makeClearBar() {
+//        navigationBar.isTranslucent = false
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
     }

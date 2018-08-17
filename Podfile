@@ -18,6 +18,7 @@ target 'sieum' do
   pod 'SHSideMenu', '~> 0.0.4' 
   pod 'RxDataSources', '~> 3.0'
   pod 'RxTheme', '2.0'
+  pod 'Then'
 
   target 'sieumTests' do
     inherit! :search_paths

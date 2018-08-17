@@ -16,6 +16,7 @@ enum SettingMenu: Int, CaseIterable {
     case email
     case review
     case promote
+    case theme
     
     var title: String {
         switch self {
@@ -27,6 +28,8 @@ enum SettingMenu: Int, CaseIterable {
             return "리뷰 작성하기"
         case .promote:
             return "소중한 사람에게 알려주기"
+        case .theme:
+            return "어두운 테마"
         }
     }
 }
@@ -96,34 +99,6 @@ class SettingViewController: UITableViewController, SideMenuUsable {
             break
         }
     }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return self.getSectionView()
-    }
-    
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat.init(self.getSectionView().frame.height)
-    }
-    
-    func getSectionView() -> UIView{
-        
-        let screenSize = UIScreen.main.bounds
-        let screenWidth = screenSize.width
-
-        let sectionView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: screenWidth, height: screenWidth))
-        
-        UIGraphicsBeginImageContextWithOptions(sectionView.bounds.size, false, 0)
-        UIImage(named: "launchImage.jpg")?.draw(in: sectionView.frame)
-        sectionView.drawHierarchy(in: sectionView.bounds, afterScreenUpdates: false)
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        sectionView.backgroundColor = UIColor(patternImage: image)
-        
-        return sectionView
-    }
-    
-    // MARK : - Blog
     
     func presentBlog(){
         let webViewRect = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: self.view.frame.size.height - CGFloat(60))

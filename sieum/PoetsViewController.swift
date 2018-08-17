@@ -13,13 +13,21 @@ import SHSideMenu
 
 struct Poet {
     var name: String?
-    var imageURL: String?
+    var imageUrl: String?
+    var job: String?
+    var snsUrl: String?
+    var description: String?
 }
 
 enum PoetsSection: Int, CaseIterable {
     case thumnail = 0
     case profile
     case poems
+}
+
+enum ProfileRow: Int, CaseIterable {
+    case main = 0
+    case description
 }
 
 class PoetsViewController: UIViewController, SideMenuUsable {
@@ -30,15 +38,9 @@ class PoetsViewController: UIViewController, SideMenuUsable {
     var didupdateViewConstraints: Bool = false
     
     var poets = [
-        Poet(name: "위은총", imageURL: "https://cdn.dribbble.com/users/1882814/avatars/small/93a2b3113970dd05049e88e0f5e86671.jpeg?1523149370"),
-        Poet(name: "영하", imageURL: "https://cdn.dribbble.com/users/970352/avatars/small/af1d8b2bdd8ece4f6e2ea0e3d7264ae8.jpg?1494195530"),
-        Poet(name: "꼬마시인", imageURL: nil),
-        Poet(name: "시음", imageURL: nil),
-        Poet(name: "시음", imageURL: nil),
-        Poet(name: "시음", imageURL: nil),
-        Poet(name: "시음", imageURL: nil),
-        Poet(name: "시음", imageURL: nil),
-        Poet(name: "시음", imageURL: nil)
+        Poet(name: "위은총", imageUrl: "https://drive.google.com/uc?id=14yYgOjnU65FhdvB3es3AC-t3jmTZodeb", job: "싱어송라이터 / 그래픽디자이너", snsUrl: "www.instagram.com/eunchongwi", description: "아이보리 색이 되고 싶고\n밥 같은 사람이 되고 싶어하지만\n화려하고 다채로운 색과 음식들 사이에서\n살아남을 수 있을지 걱정이 앞선다.\n\n하지만 집밥처럼\n언제든 함께 있지만 그리운,\n평범한 것을 특별하게 만드는 사람이 되고 싶다.\n\n그래서 좋은 쌀이 되도록\n열심히 뜨겁게 익어가는 중이다."),
+        Poet(name: "영하", imageUrl: "https://cdn.dribbble.com/users/970352/avatars/small/af1d8b2bdd8ece4f6e2ea0e3d7264ae8.jpg?1494195530", job: "싱어송라이터 / 그래픽디자이너", snsUrl: "www.instagram.com/eunchongwi", description: "아이보리 색이 되고 싶고\n밥 같은 사람이 되고 싶어하지만\n화려하고 다채로운 색과 음식들 사이에서\n살아남을 수 있을지 걱정이 앞선다.\n\n하지만 집밥처럼\n언제든 함께 있지만 그리운,\n평범한 것을 특별하게 만드는 사람이 되고 싶다.\n\n그래서 좋은 쌀이 되도록\n열심히 뜨겁게 익어가는 중이다."),
+        Poet(name: "꼬마시인", imageUrl: nil, job: "싱어송라이터 / 그래픽디자이너", snsUrl: "www.instagram.com/eunchongwi", description: "아이보리 색이 되고 싶고\n밥 같은 사람이 되고 싶어하지만\n화려하고 다채로운 색과 음식들 사이에서\n살아남을 수 있을지 걱정이 앞선다.\n\n하지만 집밥처럼\n언제든 함께 있지만 그리운,\n평범한 것을 특별하게 만드는 사람이 되고 싶다.\n\n그래서 좋은 쌀이 되도록\n열심히 뜨겁게 익어가는 중이다.")
     ]
     
     private lazy var refreshControl: UIRefreshControl = {
@@ -53,6 +55,7 @@ class PoetsViewController: UIViewController, SideMenuUsable {
         tableView.dataSource = self
         tableView.register(PoetsThumbnailContainerCell.self)
         tableView.register(PoetProfileCell.self)
+        tableView.register(PoetDescriptionCell.self)
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .clear
         tableView.showsVerticalScrollIndicator = false
@@ -93,6 +96,13 @@ class PoetsViewController: UIViewController, SideMenuUsable {
             .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
             .bind({ $0.backgroundColor }, to: tableView.rx.backgroundColor)
             .disposed(by: disposeBag)
+        
+        if let navigationController = navigationController {
+            themeService.rx
+                .bind({ $0.backgroundColor }, to: navigationController.navigationBar.rx.barTintColor)
+                .bind({ $0.backgroundColor }, to: navigationController.view.rx.backgroundColor)
+                .disposed(by: disposeBag)
+        }
     }
 }
 
@@ -102,7 +112,12 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch section {
+        case PoetsSection.profile.rawValue:
+            return ProfileRow.allCases.count
+        default:
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -117,9 +132,16 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(poets)
             return cell
         case PoetsSection.profile.rawValue:
-            let cell = tableView.dequeueReusableCell(for: indexPath) as PoetProfileCell
-            cell.configure(model: poets[2])
-            return cell
+            switch indexPath.row {
+            case ProfileRow.main.rawValue:
+                let cell = tableView.dequeueReusableCell(for: indexPath) as PoetProfileCell
+                cell.configure(model: poets[0])
+                return cell
+            default:
+                let cell = tableView.dequeueReusableCell(for: indexPath) as PoetDescriptionCell
+                cell.configure(model: poets[0])
+                return cell
+            }
         default:
             let cell = UITableViewCell()
             cell.backgroundColor = UIColor.defaultBackground()
@@ -132,12 +154,11 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.section {
         case PoetsSection.profile.rawValue:
-            if let cell = tableView.cellForRow(at: indexPath) as? PoetProfileCell {
-                cell.toggleDescription()
+            if let cell = tableView.cellForRow(at: indexPath) as? PoetDescriptionCell {
+                cell.toggle()
+                tableView.beginUpdates()
+                tableView.endUpdates()
             }
-            tableView.beginUpdates()
-            tableView.endUpdates()
-//            tableView.reloadSections([PoetsSection.profile.rawValue], with: .automatic)
         default:
             return
         }

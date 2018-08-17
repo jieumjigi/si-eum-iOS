@@ -26,6 +26,7 @@
 		C12D6F8C2125DF6F006DA57D /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F8B2125DF6F006DA57D /* UITableView+Extension.swift */; };
 		C12D6F8E2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F8D2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift */; };
 		C12D6F9221265212006DA57D /* PoetProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F9121265212006DA57D /* PoetProfileCell.swift */; };
+		C12D6F9421271891006DA57D /* PoemsOfPoetContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F9321271891006DA57D /* PoemsOfPoetContainerCell.swift */; };
 		C13236BC1EBAFBCC00C54E9A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13236BB1EBAFBCC00C54E9A /* Constants.swift */; };
 		C13236BD1EBB110500C54E9A /* IropkeBatangM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */; };
 		C1377E1720234CCA008FB68D /* UIImageViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1377E1620234CCA008FB68D /* UIImageViewUtil.swift */; };
@@ -176,6 +177,7 @@
 		C12D6F8B2125DF6F006DA57D /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		C12D6F8D2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetsThumbnailContainerCell.swift; sourceTree = "<group>"; };
 		C12D6F9121265212006DA57D /* PoetProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetProfileCell.swift; sourceTree = "<group>"; };
+		C12D6F9321271891006DA57D /* PoemsOfPoetContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemsOfPoetContainerCell.swift; sourceTree = "<group>"; };
 		C13236BB1EBAFBCC00C54E9A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C1377E1620234CCA008FB68D /* UIImageViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewUtil.swift; sourceTree = "<group>"; };
 		C14AFAEE1F641AEC00283D9E /* launchImage4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage4.jpg; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 				C1FA1007212308D00066A22C /* PoetsViewController.swift */,
 				C12D6F8D2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift */,
 				C12D6F9121265212006DA57D /* PoetProfileCell.swift */,
+				C12D6F9321271891006DA57D /* PoemsOfPoetContainerCell.swift */,
 			);
 			name = Poets;
 			sourceTree = "<group>";
@@ -872,6 +875,7 @@
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -891,6 +895,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -937,6 +942,7 @@
 				C17F522C1E5DA80D006AD57A /* PageViewController.swift in Sources */,
 				C1FA0FFB211B46030066A22C /* MenuTableViewCell.swift in Sources */,
 				C1E03C7921106A61002741A0 /* UINavigationController+Extension.swift in Sources */,
+				C12D6F9421271891006DA57D /* PoemsOfPoetContainerCell.swift in Sources */,
 				C12D6F842123A0BB006DA57D /* UIButton+Extension.swift in Sources */,
 				C12D6F7C21230B63006DA57D /* BookmarkViewController.swift in Sources */,
 				C152D82E1E50976800719583 /* ColorUtil.swift in Sources */,

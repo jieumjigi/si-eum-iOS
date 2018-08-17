@@ -19,6 +19,8 @@ class PoetsCollectionView: UICollectionView {
         static let padding: CGFloat = 16
     }
     
+    var disposeBag: DisposeBag = DisposeBag()
+    
     init() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 45, height: 60)
@@ -30,6 +32,10 @@ class PoetsCollectionView: UICollectionView {
         contentInset = UIEdgeInsets(top: 0, left: Consts.padding, bottom: 0, right: Consts.padding)
         showsHorizontalScrollIndicator = false
         backgroundColor = .white
+        
+        themeService.rx
+            .bind({ $0.backgroundColor }, to: rx.backgroundColor)
+            .disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -88,7 +94,7 @@ class PoetsCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(_ poet: Poet) {
-        if let imageUrlString = poet.imageURL, let imageUrl = URL(string: imageUrlString) {
+        if let imageUrlString = poet.imageUrl, let imageUrl = URL(string: imageUrlString) {
             imageView.kf.setImage(with: imageUrl, placeholder: #imageLiteral(resourceName: "profile_default"))
         } else {
             imageView.image = #imageLiteral(resourceName: "profile_default")

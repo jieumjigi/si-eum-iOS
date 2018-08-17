@@ -10,8 +10,13 @@ import UIKit
 import RxTheme
 import RxSwift
 import RxCocoa
+import Then
 
 class SettingTableViewCell: UITableViewCell {
+    
+    private lazy var switcher = UISwitch().then {
+        $0.onTintColor = ThemeType.light.associatedObject.tintColor
+    }
     
     private var disposeBag: DisposeBag = DisposeBag()
 
@@ -37,6 +42,8 @@ class SettingTableViewCell: UITableViewCell {
         }
         
         textLabel?.text = model.title
+        accessoryView = (model == .theme) ? switcher : nil
+        
         bind()
     }
     
@@ -49,5 +56,16 @@ class SettingTableViewCell: UITableViewCell {
             .bind({ $0.backgroundColor }, to: rx.backgroundColor)
             .bind({ $0.textColor }, to: textLabel.rx.textColor)
             .disposed(by: disposeBag)
+        
+        if let switcher = accessoryView as? UISwitch {
+            themeService.relay.map({
+                $0 == .dark
+            }).bind(to: switcher.rx.isOn)
+            .disposed(by: disposeBag)
+            
+            switcher.rx.isOn.asObservable().subscribe(onNext: { isOn in
+                themeService.set(isOn ? .dark : .light)
+            }).disposed(by: disposeBag)
+        }
     }
 }
