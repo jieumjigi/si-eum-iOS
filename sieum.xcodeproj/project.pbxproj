@@ -25,6 +25,7 @@
 		C12D6F8A2125DE69006DA57D /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F892125DE69006DA57D /* SettingTableViewCell.swift */; };
 		C12D6F8C2125DF6F006DA57D /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F8B2125DF6F006DA57D /* UITableView+Extension.swift */; };
 		C12D6F8E2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F8D2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift */; };
+		C12D6F9221265212006DA57D /* PoetProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F9121265212006DA57D /* PoetProfileCell.swift */; };
 		C13236BC1EBAFBCC00C54E9A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13236BB1EBAFBCC00C54E9A /* Constants.swift */; };
 		C13236BD1EBB110500C54E9A /* IropkeBatangM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */; };
 		C1377E1720234CCA008FB68D /* UIImageViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1377E1620234CCA008FB68D /* UIImageViewUtil.swift */; };
@@ -174,6 +175,7 @@
 		C12D6F892125DE69006DA57D /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		C12D6F8B2125DF6F006DA57D /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		C12D6F8D2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetsThumbnailContainerCell.swift; sourceTree = "<group>"; };
+		C12D6F9121265212006DA57D /* PoetProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetProfileCell.swift; sourceTree = "<group>"; };
 		C13236BB1EBAFBCC00C54E9A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C1377E1620234CCA008FB68D /* UIImageViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewUtil.swift; sourceTree = "<group>"; };
 		C14AFAEE1F641AEC00283D9E /* launchImage4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage4.jpg; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 			children = (
 				C1FA1007212308D00066A22C /* PoetsViewController.swift */,
 				C12D6F8D2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift */,
+				C12D6F9121265212006DA57D /* PoetProfileCell.swift */,
 			);
 			name = Poets;
 			sourceTree = "<group>";
@@ -949,6 +952,7 @@
 				C17F523C1E5DE0B0006AD57A /* SettingViewController.swift in Sources */,
 				C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */,
 				C1FA0FFF2121C6580066A22C /* Theme.swift in Sources */,
+				C12D6F9221265212006DA57D /* PoetProfileCell.swift in Sources */,
 				C12D6F8E2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift in Sources */,
 				C17F52381E5DBED4006AD57A /* FloatingMenuViewController.swift in Sources */,
 				C1FA10032121DBB90066A22C /* PageViewModel.swift in Sources */,

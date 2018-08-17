@@ -29,6 +29,18 @@ class PoetsViewController: UIViewController, SideMenuUsable {
     
     var didupdateViewConstraints: Bool = false
     
+    var poets = [
+        Poet(name: "위은총", imageURL: "https://cdn.dribbble.com/users/1882814/avatars/small/93a2b3113970dd05049e88e0f5e86671.jpeg?1523149370"),
+        Poet(name: "영하", imageURL: "https://cdn.dribbble.com/users/970352/avatars/small/af1d8b2bdd8ece4f6e2ea0e3d7264ae8.jpg?1494195530"),
+        Poet(name: "꼬마시인", imageURL: nil),
+        Poet(name: "시음", imageURL: nil),
+        Poet(name: "시음", imageURL: nil),
+        Poet(name: "시음", imageURL: nil),
+        Poet(name: "시음", imageURL: nil),
+        Poet(name: "시음", imageURL: nil),
+        Poet(name: "시음", imageURL: nil)
+    ]
+    
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         
@@ -40,10 +52,11 @@ class PoetsViewController: UIViewController, SideMenuUsable {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PoetsThumbnailContainerCell.self)
+        tableView.register(PoetProfileCell.self)
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .clear
         tableView.showsVerticalScrollIndicator = false
-        tableView.estimatedRowHeight = view.frame.width
+        tableView.estimatedRowHeight = 300
         return tableView
     }()
     
@@ -101,20 +114,11 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case PoetsSection.thumnail.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as PoetsThumbnailContainerCell
-            cell.configure([
-                Poet(name: "위은총", imageURL: "https://cdn.dribbble.com/users/1882814/avatars/small/93a2b3113970dd05049e88e0f5e86671.jpeg?1523149370"),
-                Poet(name: "위은총", imageURL: "https://cdn.dribbble.com/users/970352/avatars/small/af1d8b2bdd8ece4f6e2ea0e3d7264ae8.jpg?1494195530"),
-                Poet(name: "꼬마시인", imageURL: nil),
-                Poet(name: "위은총", imageURL: nil),
-                Poet(name: "위은총", imageURL: nil),
-                Poet(name: "위은총", imageURL: nil),
-                Poet(name: "위은총", imageURL: nil),
-                Poet(name: "위은총", imageURL: nil),
-                Poet(name: "위은총", imageURL: nil)])
+            cell.configure(poets)
             return cell
         case PoetsSection.profile.rawValue:
-            let cell = UITableViewCell()
-            cell.backgroundColor = UIColor.defaultBackground()
+            let cell = tableView.dequeueReusableCell(for: indexPath) as PoetProfileCell
+            cell.configure(model: poets[2])
             return cell
         default:
             let cell = UITableViewCell()
@@ -126,6 +130,17 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        switch indexPath.section {
+        case PoetsSection.profile.rawValue:
+            if let cell = tableView.cellForRow(at: indexPath) as? PoetProfileCell {
+                cell.toggleDescription()
+            }
+            tableView.beginUpdates()
+            tableView.endUpdates()
+//            tableView.reloadSections([PoetsSection.profile.rawValue], with: .automatic)
+        default:
+            return
+        }
     }
 }
 
