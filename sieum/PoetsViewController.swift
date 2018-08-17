@@ -56,6 +56,7 @@ class PoetsViewController: UIViewController, SideMenuUsable {
         tableView.register(PoetsThumbnailContainerCell.self)
         tableView.register(PoetProfileCell.self)
         tableView.register(PoetDescriptionCell.self)
+        tableView.register(PoemsOfPoetContainerCell.self)
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .clear
         tableView.showsVerticalScrollIndicator = false
@@ -142,6 +143,9 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.configure(model: poets[0])
                 return cell
             }
+        case PoetsSection.poems.rawValue:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as PoemsOfPoetContainerCell
+            return cell
         default:
             let cell = UITableViewCell()
             cell.backgroundColor = UIColor.defaultBackground()
