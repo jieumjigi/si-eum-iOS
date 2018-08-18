@@ -145,6 +145,7 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
             }
         case PoetsSection.poems.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as PoemsOfPoetContainerCell
+            cell.configure(poems: [])
             return cell
         default:
             let cell = UITableViewCell()

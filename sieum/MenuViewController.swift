@@ -52,9 +52,9 @@ class MenuViewController: UIViewController, ContentViewChangable {
     private func bind() {
         
         themeService.rx
-            .bind({ $0.menuBackgroundColor }, to: view.rx.backgroundColor)
-            .bind({ $0.menuBackgroundColor }, to: tableView.rx.backgroundColor)
-            .bind({ $0.menuBackgroundColor }, to: tableView.rx.separatorColor)
+            .bind({ $0.contentBackgroundColor }, to: view.rx.backgroundColor)
+            .bind({ $0.contentBackgroundColor }, to: tableView.rx.backgroundColor)
+            .bind({ $0.contentBackgroundColor }, to: tableView.rx.separatorColor)
             .disposed(by: disposeBag)
         
         let dataSource = RxTableViewSectionedReloadDataSource<MenuSection>(

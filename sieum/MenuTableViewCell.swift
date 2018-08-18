@@ -39,7 +39,7 @@ class MenuTableViewCell: UITableViewCell {
         }
         
         themeService.rx
-            .bind({ $0.menuBackgroundColor }, to: contentView.rx.backgroundColor)
+            .bind({ $0.contentBackgroundColor }, to: contentView.rx.backgroundColor)
             .bind({ $0.textColor }, to: textLabel.rx.textColor)
             .disposed(by: disposeBag)
     }

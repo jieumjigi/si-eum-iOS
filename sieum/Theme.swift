@@ -11,21 +11,24 @@ import RxTheme
 
 protocol Theme {
     var backgroundColor: UIColor { get }
-    var menuBackgroundColor: UIColor { get }
+    var contentBackgroundColor: UIColor { get }
+    var shadowColor: UIColor { get }
     var textColor: UIColor { get }
     var tintColor: UIColor { get }
 }
 
 struct LightTheme: Theme {
     let backgroundColor = #colorLiteral(red: 0.9960784314, green: 1, blue: 0.9803921569, alpha: 1)
-    let menuBackgroundColor = #colorLiteral(red: 0.8980392157, green: 0.8784313725, blue: 0.8666666667, alpha: 1)
+    let contentBackgroundColor = #colorLiteral(red: 0.8862746358, green: 0.882353127, blue: 0.8705883622, alpha: 1)
+    let shadowColor = #colorLiteral(red: 0.7960784314, green: 0.8, blue: 0.7960784314, alpha: 1)
     let textColor = #colorLiteral(red: 0.3921568627, green: 0.3921568627, blue: 0.3921568627, alpha: 1)
     let tintColor = #colorLiteral(red: 0.8196078431, green: 0.6, blue: 0.5960784314, alpha: 1)
 }
 
 struct DarkTheme: Theme {
     let backgroundColor = #colorLiteral(red: 0.3921568627, green: 0.3921568627, blue: 0.3921568627, alpha: 1)
-    let menuBackgroundColor = #colorLiteral(red: 0.3294117647, green: 0.3294117647, blue: 0.3294117647, alpha: 1)
+    let contentBackgroundColor = #colorLiteral(red: 0.3294117647, green: 0.3294117647, blue: 0.3294117647, alpha: 1)
+    let shadowColor = #colorLiteral(red: 0.7960784314, green: 0.8, blue: 0.7960784314, alpha: 1)
     let textColor = #colorLiteral(red: 0.9960784314, green: 1, blue: 0.9803921569, alpha: 1)
     let tintColor = #colorLiteral(red: 0.8196078431, green: 0.6, blue: 0.5960784314, alpha: 1)
 }
