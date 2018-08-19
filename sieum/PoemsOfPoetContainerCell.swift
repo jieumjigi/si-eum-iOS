@@ -101,7 +101,11 @@ class PoemsOfPoetContainerCell: UITableViewCell {
         var testPoems: [PoemModel] = []
 
         for _ in 0...10 {
-            testPoems.append(PoemModel())
+            let poem = PoemModel()
+            poem.reservation_date = "20180628"
+            poem.title = "나의 노을에게"
+            poem.question = "당신의 노을은\n어떤 의미인가요?"
+            testPoems.append(poem)
         }
         
         self.poems = testPoems
@@ -142,15 +146,31 @@ class PoemCardCell: UICollectionViewCell {
     
     private let dateLabel = UILabel().then {
         $0.font = .mainFont(ofSize: .small)
+        $0.textAlignment = .center
     }
 
     private let titleLabel = UILabel().then {
         $0.font = .mainFont(ofSize: .large)
+        $0.minimumScaleFactor = 9 / FontSize.large.rawValue
+        $0.adjustsFontSizeToFitWidth = true
+        $0.numberOfLines = 2
+        $0.textAlignment = .center
     }
     
     private let questionLabel = UILabel().then {
         $0.font = .mainFont(ofSize: .small)
-        $0.numberOfLines = 0
+        $0.minimumScaleFactor = 9 / FontSize.large.rawValue
+        $0.adjustsFontSizeToFitWidth = true
+        $0.numberOfLines = 2
+        $0.textAlignment = .center
+    }
+    
+    private let quotationStartImage = UIImageView(image: #imageLiteral(resourceName: "quotation1")).then {
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    private let quotationEndImage = UIImageView(image: #imageLiteral(resourceName: "quotation2")).then {
+        $0.contentMode = .scaleAspectFit
     }
     
     override init(frame: CGRect) {
@@ -159,11 +179,19 @@ class PoemCardCell: UICollectionViewCell {
         contentView.addSubview(shadowView)
         contentView.addSubview(containerView)
         
+        containerView.addSubview(dateLabel)
+        containerView.addSubview(titleLabel)
+        containerView.addSubview(questionLabel)
+        containerView.addSubview(quotationStartImage)
+        containerView.addSubview(quotationEndImage)
+        
         themeService.rx
             .bind({ $0.backgroundColor }, to: rx.backgroundColor)
-            .bind({ $0.textColor }, to: titleLabel.rx.textColor)
             .bind({ $0.contentBackgroundColor }, to: containerView.rx.backgroundColor)
             .bind({ $0.shadowColor }, to: shadowView.rx.backgroundColor)
+            .bind({ $0.textColor }, to: dateLabel.rx.textColor)
+            .bind({ $0.textColor }, to: titleLabel.rx.textColor)
+            .bind({ $0.textColor }, to: questionLabel.rx.textColor)
             .disposed(by: disposeBag)
         
         setNeedsUpdateConstraints()
@@ -178,7 +206,7 @@ class PoemCardCell: UICollectionViewCell {
             didUpdateConstraints = true
             
             shadowView.snp.makeConstraints { make in
-                make.top.leading.equalToSuperview().inset(5)
+                make.top.leading.equalToSuperview().inset(10)
                 make.bottom.trailing.equalToSuperview()
             }
             
@@ -186,13 +214,42 @@ class PoemCardCell: UICollectionViewCell {
                 make.top.leading.equalToSuperview()
                 make.bottom.trailing.equalToSuperview().inset(5)
             }
+            
+            dateLabel.snp.makeConstraints { make in
+                make.top.equalToSuperview().inset(5)
+                make.leading.trailing.equalToSuperview().inset(5)
+            }
+            
+            titleLabel.snp.makeConstraints { make in
+                make.top.equalTo(dateLabel.snp.bottom).inset(-10)
+                make.leading.trailing.equalToSuperview().inset(5)
+            }
+            
+            quotationStartImage.snp.makeConstraints { make in
+                make.bottom.equalTo(questionLabel.snp.top).offset(-5)
+                make.centerX.equalToSuperview()
+                make.width.height.equalTo(10)
+            }
+            
+            questionLabel.snp.makeConstraints { make in
+                make.bottom.equalTo(quotationEndImage.snp.top).offset(-5)
+                make.leading.trailing.equalToSuperview().inset(5)
+            }
+            
+            quotationEndImage.snp.makeConstraints { make in
+                make.bottom.equalToSuperview().offset(-15)
+                make.centerX.equalToSuperview()
+                make.width.height.equalTo(10)
+            }
         }
         
         super.updateConstraints()
     }
     
     func configure(_ poem: PoemModel) {
-        
+        dateLabel.text = poem.reservation_date
+        titleLabel.text = poem.title
+        questionLabel.text = poem.question
     }
 }
 

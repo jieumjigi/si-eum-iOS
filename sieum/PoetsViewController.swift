@@ -35,7 +35,8 @@ class PoetsViewController: UIViewController, SideMenuUsable {
     let disposeBag = DisposeBag()
     var sideMenuAction: PublishSubject<SideMenuAction> = PublishSubject<SideMenuAction>()
     
-    var didupdateViewConstraints: Bool = false
+    private var didupdateViewConstraints: Bool = false
+    fileprivate var cellHeightsDictionary: [String: CGFloat] = [:]
     
     var poets = [
         Poet(name: "위은총", imageUrl: "https://drive.google.com/uc?id=14yYgOjnU65FhdvB3es3AC-t3jmTZodeb", job: "싱어송라이터 / 그래픽디자이너", snsUrl: "www.instagram.com/eunchongwi", description: "아이보리 색이 되고 싶고\n밥 같은 사람이 되고 싶어하지만\n화려하고 다채로운 색과 음식들 사이에서\n살아남을 수 있을지 걱정이 앞선다.\n\n하지만 집밥처럼\n언제든 함께 있지만 그리운,\n평범한 것을 특별하게 만드는 사람이 되고 싶다.\n\n그래서 좋은 쌀이 되도록\n열심히 뜨겁게 익어가는 중이다."),
@@ -98,12 +99,12 @@ class PoetsViewController: UIViewController, SideMenuUsable {
             .bind({ $0.backgroundColor }, to: tableView.rx.backgroundColor)
             .disposed(by: disposeBag)
         
-        if let navigationController = navigationController {
-            themeService.rx
-                .bind({ $0.backgroundColor }, to: navigationController.navigationBar.rx.barTintColor)
-                .bind({ $0.backgroundColor }, to: navigationController.view.rx.backgroundColor)
-                .disposed(by: disposeBag)
-        }
+//        if let navigationController = navigationController {
+//            themeService.rx
+//                .bind({ $0.backgroundColor }, to: navigationController.navigationBar.rx.barTintColor)
+//                .bind({ $0.backgroundColor }, to: navigationController.view.rx.backgroundColor)
+//                .disposed(by: disposeBag)
+//        }
     }
 }
 
@@ -123,6 +124,14 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeightsDictionary[indexPath.cacheKey] ?? UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cellHeightsDictionary[indexPath.cacheKey] = cell.frame.size.height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

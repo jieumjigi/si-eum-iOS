@@ -81,16 +81,15 @@ class PoetsCollectionViewCell: UICollectionViewCell {
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
         }
+        
+        themeService.rx
+            .bind({ $0.backgroundColor }, to: rx.backgroundColor)
+            .bind({ $0.textColor }, to: titleLabel.rx.textColor)
+            .disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        disposeBag = DisposeBag()
     }
     
     func configure(_ poet: Poet) {
@@ -105,11 +104,6 @@ class PoetsCollectionViewCell: UICollectionViewCell {
         } else {
             titleLabel.text = nil
         }
-        
-        themeService.rx
-            .bind({ $0.backgroundColor }, to: rx.backgroundColor)
-            .bind({ $0.textColor }, to: titleLabel.rx.textColor)
-            .disposed(by: disposeBag)
     }
 }
 
@@ -136,27 +130,21 @@ class PoetsThumbnailContainerCell: UITableViewCell {
             make.edges.equalToSuperview()
             make.height.equalTo(90)
         }
+        
+        themeService.rx
+            .bind({ $0.backgroundColor }, to: rx.backgroundColor)
+            .bind({ $0.backgroundColor }, to: poetsCollectionView.rx.backgroundColor)
+            .disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        disposeBag = DisposeBag()
-    }
-    
     func configure(_ poets: [Poet]) {
         self.poets = poets
         
         poetsCollectionView.reloadData()
-        
-        themeService.rx
-            .bind({ $0.backgroundColor }, to: rx.backgroundColor)
-            .bind({ $0.backgroundColor }, to: poetsCollectionView.rx.backgroundColor)
-            .disposed(by: disposeBag)
     }
 }
 

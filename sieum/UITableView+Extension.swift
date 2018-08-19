@@ -75,4 +75,8 @@ extension UICollectionView {
     }
 }
 
-
+extension IndexPath {
+    var cacheKey: String {
+        return String(describing: self)
+    }
+}

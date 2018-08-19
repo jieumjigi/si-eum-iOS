@@ -414,6 +414,8 @@
 		C15EDADE1E66AB4B0024C5C5 /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				C1CDBF0D1ECB1DCC00C25A0C /* quotation1.png */,
+				C1CDBF0E1ECB1DCC00C25A0C /* quotation2.png */,
 				C14F81EB1ECC94E50070F833 /* alarm.png.black.old */,
 				C14F81EC1ECC94E50070F833 /* save.png.black.old */,
 				C14F81ED1ECC94E50070F833 /* share.png.black.old */,
@@ -430,8 +432,6 @@
 				C1CDBF1A1ECB1E2600C25A0C /* aboutus.png.old.white */,
 				C1CDBF0B1ECB1DCC00C25A0C /* menu_folded.png */,
 				C1CDBF0C1ECB1DCC00C25A0C /* menu_unfold.png */,
-				C1CDBF0D1ECB1DCC00C25A0C /* quotation1.png */,
-				C1CDBF0E1ECB1DCC00C25A0C /* quotation2.png */,
 			);
 			name = menu;
 			sourceTree = "<group>";
