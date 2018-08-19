@@ -22,7 +22,7 @@ class SettingTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
-        
+
         textLabel?.font = UIFont.mainFont(ofSize: .medium)
     }
     

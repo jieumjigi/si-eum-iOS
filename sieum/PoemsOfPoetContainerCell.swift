@@ -37,7 +37,8 @@ class PoemsOfPoetCollectionView: UICollectionView {
         contentInset = UIEdgeInsets(top: 0, left: Consts.padding, bottom: Consts.padding, right: Consts.padding)
         showsHorizontalScrollIndicator = false
         
-        backgroundColor = .white
+        backgroundColor = themeService.theme.associatedObject.backgroundColor
+        
         themeService.rx
             .bind({ $0.backgroundColor }, to: rx.backgroundColor)
             .disposed(by: disposeBag)

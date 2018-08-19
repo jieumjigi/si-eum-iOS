@@ -24,7 +24,6 @@ class MenuViewController: UIViewController, ContentViewChangable {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = UIColor.defaultBackground()
         tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: MenuTableViewCell.reuseIdentifier)
         tableView.separatorInset = .zero
         return tableView
