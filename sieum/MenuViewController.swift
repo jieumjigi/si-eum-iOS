@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import RxDataSources
 import SHSideMenu
 
@@ -24,17 +25,38 @@ class MenuViewController: UIViewController, ContentViewChangable {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.tableHeaderView = headerView
         tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: MenuTableViewCell.reuseIdentifier)
         tableView.separatorInset = .zero
         return tableView
+    }()
+    
+    private lazy var headerView: MenuHeaderView = {
+        let headerView = MenuHeaderView()
+        return headerView
+    }()
+    
+    private lazy var versionLabel: UILabel = {
+        let versionLabel = UILabel()
+        versionLabel.font = UIFont.mainFont(ofSize: .small)
+        return versionLabel
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addSubview(tableView)
+        view.addSubview(versionLabel)
         bind()
         view.setNeedsUpdateConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let version = Bundle.version {
+            versionLabel.text = "ver \(version)"
+        }
     }
     
     override func updateViewConstraints() {
@@ -44,6 +66,16 @@ class MenuViewController: UIViewController, ContentViewChangable {
             tableView.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
+            
+            versionLabel.snp.makeConstraints { make in
+                make.trailing.equalToSuperview().inset(10)
+                if #available(iOS 11.0, *) {
+                    make.bottom.equalTo(view.safeAreaLayoutGuide)
+                } else {
+                    make.bottom.equalToSuperview()
+                }
+            }
+            
             super.updateViewConstraints()
         }
     }
@@ -54,7 +86,13 @@ class MenuViewController: UIViewController, ContentViewChangable {
             .bind({ $0.contentBackgroundColor }, to: view.rx.backgroundColor)
             .bind({ $0.contentBackgroundColor }, to: tableView.rx.backgroundColor)
             .bind({ $0.contentBackgroundColor }, to: tableView.rx.separatorColor)
+            .bind({ $0.textColor }, to: versionLabel.rx.textColor)
             .disposed(by: disposeBag)
+        
+        headerView.onTouch { [weak self] in
+            let viewController = UINavigationController(rootViewController: MyPageViewController())
+            self?.viewTransition.onNext(viewController)
+        }
         
         let dataSource = RxTableViewSectionedReloadDataSource<MenuSection>(
             configureCell: { ds, tv, ip, item in
@@ -98,13 +136,5 @@ class MenuViewController: UIViewController, ContentViewChangable {
 extension MenuViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 170.0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 170))
     }
 }

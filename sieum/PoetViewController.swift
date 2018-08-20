@@ -26,6 +26,8 @@ class PoetViewController: UIViewController, PageViewModelUsable {
     
     var accessDate : String?
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +36,13 @@ class PoetViewController: UIViewController, PageViewModelUsable {
     }
     
     private func bind() {
+        
+        view.backgroundColor = themeService.theme.associatedObject.backgroundColor
+        
+        themeService.rx
+            .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
         pageViewModel?.poem.subscribe(onNext: { [weak self] model in
             guard let model = model else {
                 return

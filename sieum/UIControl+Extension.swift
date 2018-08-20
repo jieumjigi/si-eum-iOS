@@ -25,6 +25,34 @@ extension UIControl {
     func addTarget(for controlEvents: UIControlEvents, _ onEvent: @escaping () -> Void) {
         let sleeve = ClosureSleeve(onEvent)
         addTarget(sleeve, action: #selector(ClosureSleeve.invoke), for: controlEvents)
-        objc_setAssociatedObject(self, String(format: "[%d]", arc4random()), sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        objc_setAssociatedObject(self, "\(arc4random())", sleeve, .OBJC_ASSOCIATION_RETAIN)
+    }
+}
+
+extension UIGestureRecognizer {
+    convenience init(_ onEvent: @escaping () -> Void) {
+        let sleeve = ClosureSleeve(onEvent)
+        self.init(target: sleeve, action: #selector(ClosureSleeve.invoke))
+        objc_setAssociatedObject(self, "\(arc4random())", sleeve, .OBJC_ASSOCIATION_RETAIN)
+    }
+}
+
+enum GestureType {
+    case tap
+    case pan
+}
+
+extension UIView {
+    func addGesture(type: GestureType, _ onEvent: @escaping () -> Void) {
+        isUserInteractionEnabled = true
+        
+        var gesture: UIGestureRecognizer
+        switch type {
+        case .tap:
+            gesture = UITapGestureRecognizer(onEvent)
+        case .pan:
+            gesture = UIPanGestureRecognizer(onEvent)
+        }
+        addGestureRecognizer(gesture)
     }
 }

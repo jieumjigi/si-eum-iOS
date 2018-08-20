@@ -53,7 +53,7 @@ class PoetsCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = imageView.frame.width / 2
         imageView.clipsToBounds = true
         imageView.image = #imageLiteral(resourceName: "profile_default")
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     

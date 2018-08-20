@@ -39,6 +39,13 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
     }
     
     private func bind() {
+
+        view.backgroundColor = themeService.theme.associatedObject.backgroundColor
+        
+        themeService.rx
+            .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
         pageViewModel?.poem.subscribe(onNext: { [weak self] poem in
             guard let poem = poem else {
                 return
