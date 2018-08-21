@@ -104,16 +104,11 @@ class PoetsViewController: UIViewController, SideMenuUsable {
             .bind({ $0.backgroundColor }, to: tableView.rx.backgroundColor)
             .disposed(by: disposeBag)
         
-//        if let navigationController = navigationController {
-//            navigationController.view.backgroundColor = themeService.theme.associatedObject.backgroundColor
-//            navigationController.navigationBar.backgroundColor = themeService.theme.associatedObject.backgroundColor
-//            navigationController.navigationBar.barTintColor = themeService.theme.associatedObject.backgroundColor
-//
-//            themeService.rx
-//                .bind({ $0.backgroundColor }, to: navigationController.navigationBar.rx.barTintColor)
-//                .bind({ $0.backgroundColor }, to: navigationController.view.rx.backgroundColor)
-//                .disposed(by: disposeBag)
-//        }
+        Request.poets().subscribe(onNext: { users in
+            users.forEach({ user in
+                print("user: \(user)")
+            })
+        }).disposed(by: disposeBag)
     }
 }
 

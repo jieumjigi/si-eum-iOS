@@ -11,6 +11,7 @@ import UIKit
 
 enum BarButtonType {
     case menu
+    case write
 }
 
 extension UIButton {
@@ -24,6 +25,8 @@ extension UIButton {
         switch type {
         case .menu:
             setImage(#imageLiteral(resourceName: "menu_icon"), for: .normal)
+        case .write:
+            setImage(#imageLiteral(resourceName: "write_icon"), for: .normal)
         }
     }
 }

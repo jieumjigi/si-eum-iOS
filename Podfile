@@ -7,6 +7,7 @@ target 'sieum' do
   swift_version = "4.1"
   pod 'SnapKit', '~> 4.0.0'
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
   # Pods for sieum
   pod 'DBImageColorPicker', '~> 1.0.0'
@@ -19,6 +20,7 @@ target 'sieum' do
   pod 'RxDataSources', '~> 3.0'
   pod 'RxTheme', '2.0'
   pod 'Then'
+  pod 'ObjectMapper', '~> 3.3'
 
   target 'sieumTests' do
     inherit! :search_paths
