@@ -93,8 +93,8 @@ class PoetsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(_ poet: Poet) {
-        if let imageUrlString = poet.imageUrl, let imageUrl = URL(string: imageUrlString) {
+    func configure(_ poet: User) {
+        if let imageUrlString = poet.imageURLString, let imageUrl = URL(string: imageUrlString) {
             imageView.kf.setImage(with: imageUrl, placeholder: #imageLiteral(resourceName: "profile_default"))
         } else {
             imageView.image = #imageLiteral(resourceName: "profile_default")
@@ -110,9 +110,9 @@ class PoetsCollectionViewCell: UICollectionViewCell {
 
 class PoetsThumbnailContainerCell: UITableViewCell {
     
+    private(set) var selectedUser: PublishSubject<User> = PublishSubject<User>()
     private var disposeBag = DisposeBag()
-    
-    private var poets: [Poet] = []
+    private var poets: [User] = []
     
     private lazy var poetsCollectionView: PoetsCollectionView = {
         let poetsCollectionView = PoetsCollectionView()
@@ -131,21 +131,28 @@ class PoetsThumbnailContainerCell: UITableViewCell {
             make.edges.equalToSuperview()
             make.height.equalTo(90)
         }
-        
-        themeService.rx
-            .bind({ $0.backgroundColor }, to: rx.backgroundColor)
-            .bind({ $0.backgroundColor }, to: poetsCollectionView.rx.backgroundColor)
-            .disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(_ poets: [Poet]) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
+    }
+    
+    func configure(_ poets: [User]) {
+        
         self.poets = poets
         
         poetsCollectionView.reloadData()
+        
+        themeService.rx
+            .bind({ $0.backgroundColor }, to: rx.backgroundColor)
+            .bind({ $0.backgroundColor }, to: poetsCollectionView.rx.backgroundColor)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -161,6 +168,10 @@ extension PoetsThumbnailContainerCell: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard poets.count > indexPath.item else {
+            return
+        }
         
+        selectedUser.onNext(poets[indexPath.item])
     }
 }

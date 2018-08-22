@@ -8,7 +8,9 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import RxTheme
+import RxDataSources
 import SHSideMenu
 
 struct Poet {
@@ -38,15 +40,11 @@ class PoetsViewController: UIViewController, SideMenuUsable {
     private var didupdateViewConstraints: Bool = false
     fileprivate var cellHeightsDictionary: [String: CGFloat] = [:]
     
-    var poets = [
-        Poet(name: "위은총", imageUrl: "https://drive.google.com/uc?id=14yYgOjnU65FhdvB3es3AC-t3jmTZodeb", job: "싱어송라이터 / 그래픽디자이너", snsUrl: "www.instagram.com/eunchongwi", description: "아이보리 색이 되고 싶고\n밥 같은 사람이 되고 싶어하지만\n화려하고 다채로운 색과 음식들 사이에서\n살아남을 수 있을지 걱정이 앞선다.\n\n하지만 집밥처럼\n언제든 함께 있지만 그리운,\n평범한 것을 특별하게 만드는 사람이 되고 싶다.\n\n그래서 좋은 쌀이 되도록\n열심히 뜨겁게 익어가는 중이다."),
-        Poet(name: "영하", imageUrl: "https://cdn.dribbble.com/users/970352/avatars/small/af1d8b2bdd8ece4f6e2ea0e3d7264ae8.jpg?1494195530", job: "싱어송라이터 / 그래픽디자이너", snsUrl: "www.instagram.com/eunchongwi", description: "아이보리 색이 되고 싶고\n밥 같은 사람이 되고 싶어하지만\n화려하고 다채로운 색과 음식들 사이에서\n살아남을 수 있을지 걱정이 앞선다.\n\n하지만 집밥처럼\n언제든 함께 있지만 그리운,\n평범한 것을 특별하게 만드는 사람이 되고 싶다.\n\n그래서 좋은 쌀이 되도록\n열심히 뜨겁게 익어가는 중이다."),
-        Poet(name: "꼬마시인", imageUrl: nil, job: "싱어송라이터 / 그래픽디자이너", snsUrl: "www.instagram.com/eunchongwi", description: "아이보리 색이 되고 싶고\n밥 같은 사람이 되고 싶어하지만\n화려하고 다채로운 색과 음식들 사이에서\n살아남을 수 있을지 걱정이 앞선다.\n\n하지만 집밥처럼\n언제든 함께 있지만 그리운,\n평범한 것을 특별하게 만드는 사람이 되고 싶다.\n\n그래서 좋은 쌀이 되도록\n열심히 뜨겁게 익어가는 중이다.")
-    ]
+    var users: [User] = []
+    var selectedUser: User?
     
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        
         return refreshControl
     }()
     
@@ -94,9 +92,7 @@ class PoetsViewController: UIViewController, SideMenuUsable {
     }
     
     private func bind() {
-
         view.backgroundColor = themeService.theme.associatedObject.backgroundColor
-
         tableView.backgroundColor = themeService.theme.associatedObject.backgroundColor
         
         themeService.rx
@@ -104,11 +100,17 @@ class PoetsViewController: UIViewController, SideMenuUsable {
             .bind({ $0.backgroundColor }, to: tableView.rx.backgroundColor)
             .disposed(by: disposeBag)
         
-        Request.poets().subscribe(onNext: { users in
-            users.forEach({ user in
-                print("user: \(user)")
-            })
+        Request.poets().subscribe(onNext: { [weak self] users in
+            self?.updateUsersAndSelectFirst(users: users)
         }).disposed(by: disposeBag)
+    }
+    
+    private func updateUsersAndSelectFirst(users: [User]) {
+        self.users = users
+        if let firstUser = users.first {
+            selectedUser = firstUser
+        }
+        tableView.reloadData(with: .automatic)
     }
 }
 
@@ -143,17 +145,22 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case PoetsSection.thumnail.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as PoetsThumbnailContainerCell
-            cell.configure(poets)
+            cell.configure(users)
+            cell.selectedUser.asObserver()
+                .subscribe(onNext: { [weak self] user in
+                    self?.selectedUser = user
+                    self?.tableView.reloadSections(IndexSet(integer: PoetsSection.profile.rawValue), with: .fade)
+                }).disposed(by: disposeBag)
             return cell
         case PoetsSection.profile.rawValue:
             switch indexPath.row {
             case ProfileRow.main.rawValue:
                 let cell = tableView.dequeueReusableCell(for: indexPath) as PoetProfileCell
-                cell.configure(model: poets[0])
+                cell.configure(model: selectedUser)
                 return cell
             default:
                 let cell = tableView.dequeueReusableCell(for: indexPath) as PoetDescriptionCell
-                cell.configure(model: poets[0])
+                cell.configure(model: selectedUser)
                 return cell
             }
         case PoetsSection.poems.rawValue:

@@ -29,7 +29,6 @@ class PoetProfileCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.spacing = 20
-        
         return stackView
     }()
     
@@ -71,16 +70,12 @@ class PoetProfileCell: UITableViewCell {
             stackView.setCustomSpacing(10, after: nameLabel)
             stackView.setCustomSpacing(3, after: jobLabel)
         }
+        
+        bind()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        disposeBag = DisposeBag()
     }
     
     override func updateConstraints() {
@@ -104,19 +99,20 @@ class PoetProfileCell: UITableViewCell {
         super.updateConstraints()
     }
     
-    func configure(model: Poet) {
-        if let imageUrlString = model.imageUrl, let imageUrl = URL(string: imageUrlString) {
+    func configure(model: User?) {
+        guard let model = model else {
+            return
+        }
+        
+        if let imageUrlString = model.imageURLString, let imageUrl = URL(string: imageUrlString) {
             profileImageView.kf.setImage(with: imageUrl, placeholder: #imageLiteral(resourceName: "profile_default"))
         } else {
             profileImageView.image = #imageLiteral(resourceName: "profile_default")
         }
         
         nameLabel.text = model.name
-        jobLabel.text = model.job
-        urlLabel.text = model.snsUrl
-        
-        bind()
-        
+        urlLabel.text = model.snsURLString
+        //        jobLabel.text = model.job
         setNeedsUpdateConstraints()
     }
     
@@ -133,7 +129,7 @@ class PoetProfileCell: UITableViewCell {
 class PoetDescriptionCell: UITableViewCell {
     
     private var isExpanded: Bool = false
-    private var model: Poet?
+    private var model: User?
     private var disposeBag = DisposeBag()
     private var didUpdateConstraints: Bool = false
     
@@ -147,6 +143,7 @@ class PoetDescriptionCell: UITableViewCell {
         
         selectionStyle = .none
         contentView.addSubview(descriptionLabel)
+        bind()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -166,22 +163,33 @@ class PoetDescriptionCell: UITableViewCell {
         super.updateConstraints()
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        disposeBag = DisposeBag()
-    }
-    
-    func configure(model: Poet) {
+    func configure(model: User?) {
+        guard let model = model else {
+            return
+        }
+
         self.model = model
-        
-        descriptionLabel.text = model.description
-        bind()
+
+        hide()
         setNeedsUpdateConstraints()
     }
     
     func toggle() {
-        descriptionLabel.text = descriptionLabel.text != model?.description ? model?.description : "..."
+        if descriptionLabel.text == model?.introduce {
+            hide()
+        } else {
+            show()
+        }
+    }
+    
+    func show() {
+        descriptionLabel.text = model?.introduce
+        descriptionLabel.textAlignment = .left
+    }
+    
+    func hide() {
+        descriptionLabel.text = "..."
+        descriptionLabel.textAlignment = .center
     }
     
     private func bind() {

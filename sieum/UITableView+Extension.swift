@@ -51,6 +51,10 @@ extension UITableView {
         
         return cell
     }
+    
+    func reloadData(with animation: UITableViewRowAnimation) {
+        reloadSections(IndexSet(integersIn: 0..<numberOfSections), with: animation)
+    }
 }
 
 extension UICollectionView {
