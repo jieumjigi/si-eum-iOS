@@ -25,4 +25,23 @@ class Request {
             .observeSingleEvent(of: .value)
             .map(Mapper<User>().mapArray)
     }
+    
+    static func poems(of userID: Int) -> Observable<[Poem]> {
+        return reference.child("poems")
+            .queryStarting(atValue: userID - 1, childKey: "author")
+            .queryEnding(atValue: userID, childKey: "author")
+            .queryOrdered(byChild: "author")
+            .rx
+            .observeSingleEvent(of: .value)
+            .map(Mapper<Poem>().mapArray)
+    }
+    
+//    static func poems(of userID: Int) -> Observable<[Poem]> {
+//        return reference.child("poems")
+//            .queryEqual(toValue: userID, childKey: "author")
+//            .queryOrdered(byChild: "reservation_date")
+//            .rx
+//            .observeSingleEvent(of: .value)
+//            .map(Mapper<Poem>().mapArray)
+//    }
 }

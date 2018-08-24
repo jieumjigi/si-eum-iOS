@@ -19,16 +19,10 @@ class MyPageViewController: UIViewController, SideMenuUsable {
     let disposeBag = DisposeBag()
     var sideMenuAction: PublishSubject<SideMenuAction> = PublishSubject<SideMenuAction>()
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        return tableView
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         makeNavigationBar()
-        view.addSubview(tableView)
         
         bind()
     }
@@ -37,9 +31,6 @@ class MyPageViewController: UIViewController, SideMenuUsable {
         if !didUpdateConstraints {
             didUpdateConstraints = true
             
-            tableView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
         }
         
         super.updateViewConstraints()
@@ -56,9 +47,8 @@ class MyPageViewController: UIViewController, SideMenuUsable {
         navigationItem.leftBarButtonItem = UIBarButtonItem(for: .menu) { [weak self] in
             self?.sideMenuAction.onNext(.open)
         }
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(for: .write) { [weak self] in
-            
+            self?.navigationController?.pushViewController(WriteViewController(), animated: true)
         }
     }
 }

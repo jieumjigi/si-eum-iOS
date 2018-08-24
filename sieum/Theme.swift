@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import RxSwift
 import RxTheme
+import RxCocoa
 
 protocol Theme {
     var backgroundColor: UIColor { get }
@@ -46,3 +48,13 @@ enum ThemeType: ThemeProvider {
 }
 
 let themeService = ThemeType.service(initial: .light)
+
+public extension Reactive where Base: UIButton {
+    public func titleColor(for state: UIControlState) -> Binder<UIColor?> {
+        return Binder(self.base) { view, attr in
+            UIView.animate(withDuration: 0.3, animations: {
+                view.setTitleColor(attr, for: state)
+            })
+        }
+    }
+}

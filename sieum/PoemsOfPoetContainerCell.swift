@@ -51,7 +51,7 @@ class PoemsOfPoetCollectionView: UICollectionView {
 
 class PoemsOfPoetContainerCell: UITableViewCell {
     
-    var poems: [PoemModel] = []
+    var poems: [Poem] = []
     var didUpdateConstraints: Bool = false
     
     private var disposeBag: DisposeBag = DisposeBag()
@@ -96,20 +96,20 @@ class PoemsOfPoetContainerCell: UITableViewCell {
         return CGSize(width: collectionView.contentSize.width, height: collectionView.contentSize.height)
     }
     
-    func configure(poems: [PoemModel]) {
+    func configure(poems: [Poem]) {
         self.poems = poems
-        
-        var testPoems: [PoemModel] = []
-
-        for _ in 0...10 {
-            let poem = PoemModel()
-            poem.reservation_date = "20180628"
-            poem.title = "나의 노을에게"
-            poem.question = "당신의 노을은\n어떤 의미인가요?"
-            testPoems.append(poem)
-        }
-        
-        self.poems = testPoems
+        collectionView.reloadData()
+//        var testPoems: [Poem] = []
+//
+//        for _ in 0...10 {
+//            let poem = PoemModel()
+//            poem.reservation_date = "20180628"
+//            poem.title = "나의 노을에게"
+//            poem.question = "당신의 노을은\n어떤 의미인가요?"
+//            testPoems.append(poem)
+//        }
+//
+//        self.poems = testPoems
         
         contentView.layoutIfNeeded()
     }
@@ -152,7 +152,7 @@ class PoemCardCell: UICollectionViewCell {
 
     private let titleLabel = UILabel().then {
         $0.font = .mainFont(ofSize: .large)
-        $0.minimumScaleFactor = 9 / FontSize.large.rawValue
+        $0.minimumScaleFactor = FontSize.small.rawValue / FontSize.large.rawValue
         $0.adjustsFontSizeToFitWidth = true
         $0.numberOfLines = 2
         $0.textAlignment = .center
@@ -160,8 +160,6 @@ class PoemCardCell: UICollectionViewCell {
     
     private let questionLabel = UILabel().then {
         $0.font = .mainFont(ofSize: .small)
-        $0.minimumScaleFactor = 9 / FontSize.large.rawValue
-        $0.adjustsFontSizeToFitWidth = true
         $0.numberOfLines = 2
         $0.textAlignment = .center
     }
@@ -247,8 +245,8 @@ class PoemCardCell: UICollectionViewCell {
         super.updateConstraints()
     }
     
-    func configure(_ poem: PoemModel) {
-        dateLabel.text = poem.reservation_date
+    func configure(_ poem: Poem) {
+//        dateLabel.text = poem.reservationDate
         titleLabel.text = poem.title
         questionLabel.text = poem.question
     }

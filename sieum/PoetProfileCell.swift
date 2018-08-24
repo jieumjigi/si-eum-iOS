@@ -28,7 +28,7 @@ class PoetProfileCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
-        stackView.spacing = 20
+        stackView.spacing = 10
         return stackView
     }()
     
@@ -46,14 +46,9 @@ class PoetProfileCell: UITableViewCell {
         return nameLabel
     }()
     
-    private lazy var jobLabel = UILabel().then {
-        $0.numberOfLines = 0
-        $0.font = .mainFont(ofSize: .small)
-    }
-    
-    private lazy var urlLabel = UILabel().then {
-        $0.numberOfLines = 0
-        $0.font = .mainFont(ofSize: .small)
+    private lazy var urlButton = UIButton().then {
+        $0.titleLabel?.numberOfLines = 0
+        $0.titleLabel?.font = .mainFont(ofSize: .small)
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -63,12 +58,10 @@ class PoetProfileCell: UITableViewCell {
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(profileImageView)
         stackView.addArrangedSubview(nameLabel)
-        stackView.addArrangedSubview(jobLabel)
-        stackView.addArrangedSubview(urlLabel)
+        stackView.addArrangedSubview(urlButton)
         
         if #available(iOS 11.0, *) {
-            stackView.setCustomSpacing(10, after: nameLabel)
-            stackView.setCustomSpacing(3, after: jobLabel)
+            stackView.setCustomSpacing(0, after: nameLabel)
         }
         
         bind()
@@ -111,17 +104,19 @@ class PoetProfileCell: UITableViewCell {
         }
         
         nameLabel.text = model.name
-        urlLabel.text = model.snsURLString
-        //        jobLabel.text = model.job
+        urlButton.setTitle(model.snsURLString, for: .normal)
         setNeedsUpdateConstraints()
     }
     
     private func bind() {
         themeService.rx
             .bind({ $0.backgroundColor }, to: rx.backgroundColor)
-            .bind({ $0.tintColor }, to: nameLabel.rx.textColor)
-            .bind({ $0.textColor }, to: jobLabel.rx.textColor)
-            .bind({ $0.tintColor }, to: urlLabel.rx.textColor)
+            .bind({ $0.textColor }, to: nameLabel.rx.textColor)
+            .disposed(by: disposeBag)
+        
+        themeService.rx
+            .bind({ $0.tintColor }, to: urlButton.rx.titleColor(for: .normal))
+            .bind({ $0.textColor }, to: urlButton.rx.titleColor(for: .highlighted))
             .disposed(by: disposeBag)
     }
 }

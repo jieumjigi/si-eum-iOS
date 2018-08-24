@@ -39,6 +39,9 @@
 		C14A043C212C67DF00292D42 /* Mapper+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A043B212C67DF00292D42 /* Mapper+Extension.swift */; };
 		C14A043E212C6B8800292D42 /* DatabaseQuery+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A043D212C6B8800292D42 /* DatabaseQuery+Rx.swift */; };
 		C14A0440212C6F1000292D42 /* DatabaseQuery+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A043F212C6F1000292D42 /* DatabaseQuery+Extension.swift */; };
+		C14A0444212EB34600292D42 /* Poem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A0443212EB34600292D42 /* Poem.swift */; };
+		C14A0446212EBE5600292D42 /* Optional+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A0445212EBE5600292D42 /* Optional+Rx.swift */; };
+		C14A0448212F9B2A00292D42 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A0447212F9B2A00292D42 /* WriteViewController.swift */; };
 		C14AFAEF1F641AEC00283D9E /* launchImage4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14AFAEE1F641AEC00283D9E /* launchImage4.jpg */; };
 		C14B055F1E67032900EE2A58 /* launchImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14B055E1E67032900EE2A58 /* launchImage.jpg */; };
 		C14B05611E6703F400EE2A58 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C14B05601E6703F400EE2A58 /* Images.xcassets */; };
@@ -198,6 +201,9 @@
 		C14A043B212C67DF00292D42 /* Mapper+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mapper+Extension.swift"; sourceTree = "<group>"; };
 		C14A043D212C6B8800292D42 /* DatabaseQuery+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseQuery+Rx.swift"; sourceTree = "<group>"; };
 		C14A043F212C6F1000292D42 /* DatabaseQuery+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseQuery+Extension.swift"; sourceTree = "<group>"; };
+		C14A0443212EB34600292D42 /* Poem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poem.swift; sourceTree = "<group>"; };
+		C14A0445212EBE5600292D42 /* Optional+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Rx.swift"; sourceTree = "<group>"; };
+		C14A0447212F9B2A00292D42 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		C14AFAEE1F641AEC00283D9E /* launchImage4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage4.jpg; sourceTree = "<group>"; };
 		C14B055E1E67032900EE2A58 /* launchImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage.jpg; sourceTree = "<group>"; };
 		C14B05601E6703F400EE2A58 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -384,9 +390,11 @@
 			children = (
 				C14A0437212C3D3600292D42 /* Request.swift */,
 				C14A0439212C578600292D42 /* User.swift */,
+				C14A0443212EB34600292D42 /* Poem.swift */,
 				C14A043B212C67DF00292D42 /* Mapper+Extension.swift */,
 				C14A043D212C6B8800292D42 /* DatabaseQuery+Rx.swift */,
 				C14A043F212C6F1000292D42 /* DatabaseQuery+Extension.swift */,
+				C14A0445212EBE5600292D42 /* Optional+Rx.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -577,6 +585,7 @@
 			isa = PBXGroup;
 			children = (
 				C14A0431212AF1F000292D42 /* MyPageViewController.swift */,
+				C14A0447212F9B2A00292D42 /* WriteViewController.swift */,
 			);
 			name = MyPage;
 			sourceTree = "<group>";
@@ -994,11 +1003,13 @@
 				C12D6F9421271891006DA57D /* PoemsOfPoetContainerCell.swift in Sources */,
 				C12D6F842123A0BB006DA57D /* UIButton+Extension.swift in Sources */,
 				C12D6F7C21230B63006DA57D /* BookmarkViewController.swift in Sources */,
+				C14A0444212EB34600292D42 /* Poem.swift in Sources */,
 				C14A0438212C3D3600292D42 /* Request.swift in Sources */,
 				C152D82E1E50976800719583 /* ColorUtil.swift in Sources */,
 				C1FFE09D1EC3649800E5FFD0 /* HelloViewController.swift in Sources */,
 				C1FA0FF7211B3ACD0066A22C /* MenuViewModel.swift in Sources */,
 				C12D6F882125D81C006DA57D /* VisualActivityViewController.swift in Sources */,
+				C14A0446212EBE5600292D42 /* Optional+Rx.swift in Sources */,
 				C12D6F8C2125DF6F006DA57D /* UITableView+Extension.swift in Sources */,
 				C14A0432212AF1F000292D42 /* MyPageViewController.swift in Sources */,
 				C14A0440212C6F1000292D42 /* DatabaseQuery+Extension.swift in Sources */,
@@ -1012,6 +1023,7 @@
 				C14A043C212C67DF00292D42 /* Mapper+Extension.swift in Sources */,
 				C1FA10012121C9090066A22C /* UIFont+Extension.swift in Sources */,
 				C17F523C1E5DE0B0006AD57A /* SettingViewController.swift in Sources */,
+				C14A0448212F9B2A00292D42 /* WriteViewController.swift in Sources */,
 				C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */,
 				C1FA0FFF2121C6580066A22C /* Theme.swift in Sources */,
 				C12D6F9221265212006DA57D /* PoetProfileCell.swift in Sources */,

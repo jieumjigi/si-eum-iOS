@@ -41,7 +41,8 @@ class PoetsViewController: UIViewController, SideMenuUsable {
     fileprivate var cellHeightsDictionary: [String: CGFloat] = [:]
     
     var users: [User] = []
-    var selectedUser: User?
+    var selectedUser: BehaviorSubject<User?> = BehaviorSubject<User?>(value: nil)
+    var poems: [Poem] = []
     
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -103,12 +104,29 @@ class PoetsViewController: UIViewController, SideMenuUsable {
         Request.poets().subscribe(onNext: { [weak self] users in
             self?.updateUsersAndSelectFirst(users: users)
         }).disposed(by: disposeBag)
+        
+        selectedUser.asObserver().subscribe(onNext: { user in
+            guard let user = user else {
+                return
+            }
+        }).disposed(by: disposeBag)
+        
+        selectedUser
+            .asObserver()
+            .map { $0?.identifier }
+            .unwrappedOptional()
+            .flatMap({ userID -> Observable<[Poem]> in
+                return Request.poems(of: userID)
+            }).subscribe(onNext: { [weak self] poems in
+                self?.poems = poems
+                self?.tableView.reloadSections(IndexSet(integer: PoetsSection.poems.rawValue), with: .automatic)
+            }).disposed(by: disposeBag)
     }
     
     private func updateUsersAndSelectFirst(users: [User]) {
         self.users = users
         if let firstUser = users.first {
-            selectedUser = firstUser
+            selectedUser.onNext(firstUser)
         }
         tableView.reloadData(with: .automatic)
     }
@@ -148,7 +166,7 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(users)
             cell.selectedUser.asObserver()
                 .subscribe(onNext: { [weak self] user in
-                    self?.selectedUser = user
+                    self?.selectedUser.onNext(user)
                     self?.tableView.reloadSections(IndexSet(integer: PoetsSection.profile.rawValue), with: .fade)
                 }).disposed(by: disposeBag)
             return cell
@@ -156,16 +174,24 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
             switch indexPath.row {
             case ProfileRow.main.rawValue:
                 let cell = tableView.dequeueReusableCell(for: indexPath) as PoetProfileCell
-                cell.configure(model: selectedUser)
+                do {
+                    cell.configure(model: try selectedUser.value())
+                } catch {
+                    
+                }
                 return cell
             default:
                 let cell = tableView.dequeueReusableCell(for: indexPath) as PoetDescriptionCell
-                cell.configure(model: selectedUser)
+                do {
+                    cell.configure(model: try selectedUser.value())
+                } catch {
+                    
+                }
                 return cell
             }
         case PoetsSection.poems.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as PoemsOfPoetContainerCell
-            cell.configure(poems: [])
+            cell.configure(poems: poems)
             return cell
         default:
             let cell = UITableViewCell()
