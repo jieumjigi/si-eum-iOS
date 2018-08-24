@@ -12,6 +12,7 @@ import UIKit
 enum BarButtonType {
     case menu
     case back
+    case close
     case write
 }
 
@@ -28,6 +29,8 @@ extension UIButton {
             setImage(#imageLiteral(resourceName: "menu_icon"), for: .normal) // 87888B
         case .back:
             setImage(#imageLiteral(resourceName: "back_icon"), for: .normal)
+        case .close:
+            setImage(#imageLiteral(resourceName: "close_icon"), for: .normal)
         case .write:
             setImage(#imageLiteral(resourceName: "write_icon"), for: .normal)
         }

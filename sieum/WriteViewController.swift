@@ -50,7 +50,7 @@ class WriteViewController: UIViewController {
     
     private func makeNavigationBar() {
         navigationController?.makeClearBar()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(for: .back) { [weak self] in
+        navigationItem.leftBarButtonItem = UIBarButtonItem(for: .close) { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
         

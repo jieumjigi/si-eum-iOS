@@ -39,6 +39,15 @@ enum Menu: Int, CaseIterable {
         case .setting: return "설정"
         }
     }
+    
+    var isEnabled: Bool {
+        switch self {
+        case .bookmark:
+            return false
+        default:
+            return true
+        }
+    }
 }
 
 class MenuViewModel {

@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import SHSideMenu
+import PopupDialog
 
 class MenuViewController: UIViewController, ContentViewChangable {
     
@@ -90,8 +91,15 @@ class MenuViewController: UIViewController, ContentViewChangable {
             .disposed(by: disposeBag)
         
         headerView.onTouch { [weak self] in
-            let viewController = UINavigationController(rootViewController: MyPageViewController())
-            self?.viewTransition.onNext(viewController)
+            let popup = PopupDialog(title: "로그아웃", message: "로그아웃 하시겠습니까?", buttonAlignment: .horizontal, transitionStyle: .fadeIn)
+            popup.addButton(DefaultButton(title: "확인") {
+                popup.dismiss()
+            })
+            popup.addButton(CancelButton(title: "취소") {
+                popup.dismiss()
+            })
+            
+            self?.present(popup, animated: true)
         }
         
         let dataSource = RxTableViewSectionedReloadDataSource<MenuSection>(
