@@ -36,6 +36,16 @@ class Request {
             .map(Mapper<Poem>().mapArray)
     }
     
+    static var todayPoem: Observable<Poem> {
+        return reference.child("poems")
+            .queryStarting(atValue: "", childKey: "author")
+            .queryLimited(toFirst: 1)
+            .rx
+            .observeSingleEvent(of: .value)
+            .map { Poem(snapshot: $0) }
+            .unwrappedOptional()
+    }
+    
 //    static func poems(of userID: Int) -> Observable<[Poem]> {
 //        return reference.child("poems")
 //            .queryEqual(toValue: userID, childKey: "author")

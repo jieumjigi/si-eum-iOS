@@ -10,6 +10,7 @@
 		37D36C928A8128AE2C4A453B /* Pods_sieumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B57E4D41CDAEE9F1EC198D7 /* Pods_sieumTests.framework */; };
 		4A18B9366A519982809F87F9 /* Pods_sieum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F09FAE3434EBD7F50C6438B /* Pods_sieum.framework */; };
 		660977B85D079883A76A9CA1 /* Pods_sieumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ECE973D68BBCBC74CA4452B /* Pods_sieumUITests.framework */; };
+		C02A9779C1087DEDA156F143 /* Pods_SieumWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A926E6F7CB0843884B3B801 /* Pods_SieumWidget.framework */; };
 		C105D4661EA1187300631D41 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105D4651EA1187300631D41 /* NotificationCenter.framework */; };
 		C105D4691EA1187300631D41 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105D4681EA1187300631D41 /* TodayViewController.swift */; };
 		C105D46C1EA1187300631D41 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C105D46A1EA1187300631D41 /* MainInterface.storyboard */; };
@@ -104,6 +105,8 @@
 		C1CDBF1E1ECB1E2600C25A0C /* aboutus.png.old.white in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF1A1ECB1E2600C25A0C /* aboutus.png.old.white */; };
 		C1CDBF201ECB4AB600C25A0C /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CDBF1F1ECB4AB600C25A0C /* QuestionViewController.swift */; };
 		C1CDBF221ECB552500C25A0C /* profile1.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CDBF211ECB552500C25A0C /* profile1.png */; };
+		C1D5EFC32136E2BF00B2DDA2 /* LoginKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5EFC22136E2BF00B2DDA2 /* LoginKit.swift */; };
+		C1D5EFC52136E78E00B2DDA2 /* MenuHeaderPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5EFC42136E78E00B2DDA2 /* MenuHeaderPopup.swift */; };
 		C1E03C7921106A61002741A0 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E03C7821106A61002741A0 /* UINavigationController+Extension.swift */; };
 		C1FA0FF3211B2E7A0066A22C /* Emptiable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA0FF2211B2E7A0066A22C /* Emptiable+Extension.swift */; };
 		C1FA0FF5211B32640066A22C /* EmptiableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA0FF4211B32640066A22C /* EmptiableTests.swift */; };
@@ -163,6 +166,7 @@
 		1CB3758F4B709D10D2DA6999 /* Pods-sieum-SieumWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieum-SieumWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sieum-SieumWidget/Pods-sieum-SieumWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		1F09FAE3434EBD7F50C6438B /* Pods_sieum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2645917B1628DD4F13D99538 /* Pods-sieum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieum.release.xcconfig"; path = "Pods/Target Support Files/Pods-sieum/Pods-sieum.release.xcconfig"; sourceTree = "<group>"; };
+		2A926E6F7CB0843884B3B801 /* Pods_SieumWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SieumWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		379D5464401AAF3C8DE37BC0 /* Pods-sieum-SieumWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieum-SieumWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-sieum-SieumWidget/Pods-sieum-SieumWidget.release.xcconfig"; sourceTree = "<group>"; };
 		38C922B3F215B5E1843DB6F8 /* Pods-sieumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieumTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sieumTests/Pods-sieumTests.release.xcconfig"; sourceTree = "<group>"; };
 		405EB608E5FFF346921B4D1D /* Pods-sieumUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieumUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sieumUITests/Pods-sieumUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -269,6 +273,8 @@
 		C1CDBF1A1ECB1E2600C25A0C /* aboutus.png.old.white */ = {isa = PBXFileReference; lastKnownFileType = file; path = aboutus.png.old.white; sourceTree = "<group>"; };
 		C1CDBF1F1ECB4AB600C25A0C /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		C1CDBF211ECB552500C25A0C /* profile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile1.png; sourceTree = "<group>"; };
+		C1D5EFC22136E2BF00B2DDA2 /* LoginKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginKit.swift; sourceTree = "<group>"; };
+		C1D5EFC42136E78E00B2DDA2 /* MenuHeaderPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderPopup.swift; sourceTree = "<group>"; };
 		C1E03C7821106A61002741A0 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		C1FA0FF2211B2E7A0066A22C /* Emptiable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Emptiable+Extension.swift"; sourceTree = "<group>"; };
 		C1FA0FF4211B32640066A22C /* EmptiableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptiableTests.swift; sourceTree = "<group>"; };
@@ -283,7 +289,9 @@
 		C1FFE0981EC3599B00E5FFD0 /* launchImage2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage2.jpg; sourceTree = "<group>"; };
 		C1FFE09A1EC3642100E5FFD0 /* peomCup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peomCup.png; sourceTree = "<group>"; };
 		C1FFE09C1EC3649800E5FFD0 /* HelloViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloViewController.swift; sourceTree = "<group>"; };
+		C4022B05F99605DD1B2877EB /* Pods-SieumWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SieumWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-SieumWidget/Pods-SieumWidget.release.xcconfig"; sourceTree = "<group>"; };
 		C99F21B4C27AC4E20538F3F5 /* Pods-sieumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sieumTests/Pods-sieumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CFB8F45CEFBB69FDEEA3F3F4 /* Pods-SieumWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SieumWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SieumWidget/Pods-SieumWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		D00E10EC84DF1B67253AFB91 /* Pods_sieum_SieumWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieum_SieumWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -294,6 +302,7 @@
 			files = (
 				C105D4661EA1187300631D41 /* NotificationCenter.framework in Frameworks */,
 				DB5F96F4ED2D5A9C4E45BECA /* Pods_sieum_SieumWidget.framework in Frameworks */,
+				C02A9779C1087DEDA156F143 /* Pods_SieumWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +355,7 @@
 				7ECE973D68BBCBC74CA4452B /* Pods_sieumUITests.framework */,
 				C105D4651EA1187300631D41 /* NotificationCenter.framework */,
 				D00E10EC84DF1B67253AFB91 /* Pods_sieum_SieumWidget.framework */,
+				2A926E6F7CB0843884B3B801 /* Pods_SieumWidget.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -376,6 +386,7 @@
 		C12469482118B5A60066F554 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				C1D5EFC42136E78E00B2DDA2 /* MenuHeaderPopup.swift */,
 				C12469492118B5BF0066F554 /* MenuViewController.swift */,
 				C1FA0FF6211B3ACD0066A22C /* MenuViewModel.swift */,
 				C1FA0FFA211B46030066A22C /* MenuTableViewCell.swift */,
@@ -417,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				C1FA0FFE2121C6580066A22C /* Theme.swift */,
+				C1D5EFC22136E2BF00B2DDA2 /* LoginKit.swift */,
 				C12D6F832123A0BB006DA57D /* UIButton+Extension.swift */,
 				C1752EBD1EC034200042C24E /* UYLNotificationDelegate.swift */,
 				C1C209241E607234000C76B7 /* GlobalConstants.swift */,
@@ -620,6 +632,8 @@
 				713883869EA0B7CF9E02CD28 /* Pods-sieumUITests.release.xcconfig */,
 				1CB3758F4B709D10D2DA6999 /* Pods-sieum-SieumWidget.debug.xcconfig */,
 				379D5464401AAF3C8DE37BC0 /* Pods-sieum-SieumWidget.release.xcconfig */,
+				CFB8F45CEFBB69FDEEA3F3F4 /* Pods-SieumWidget.debug.xcconfig */,
+				C4022B05F99605DD1B2877EB /* Pods-SieumWidget.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -674,6 +688,7 @@
 				C1A769821E48998100B5E216 /* Sources */,
 				C1A769831E48998100B5E216 /* Frameworks */,
 				C1A769841E48998100B5E216 /* Resources */,
+				847C1B1EE4602CECE01E2351 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -693,6 +708,7 @@
 				C1A7698D1E48998100B5E216 /* Sources */,
 				C1A7698E1E48998100B5E216 /* Frameworks */,
 				C1A7698F1E48998100B5E216 /* Resources */,
+				C70AFA588FD9439ECD4258A6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -869,49 +885,13 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		90BDDA82D7E7CDBB88017395 /* [CP] Check Pods Manifest.lock */ = {
+		847C1B1EE4602CECE01E2351 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-sieum-SieumWidget-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9816E5DABBBB20EDB526F355 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-sieum-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D0E8FDFE3E0931A20DA7FC0A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-sieum/Pods-sieum-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-sieumTests/Pods-sieumTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DBImageColorPicker/DBImageColorPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
@@ -938,6 +918,156 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DBImageColorPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTheme.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SHSideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sieumTests/Pods-sieumTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90BDDA82D7E7CDBB88017395 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SieumWidget-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9816E5DABBBB20EDB526F355 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sieum-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C70AFA588FD9439ECD4258A6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-sieumUITests/Pods-sieumUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DBImageColorPicker/DBImageColorPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTheme/RxTheme.framework",
+				"${BUILT_PRODUCTS_DIR}/SHSideMenu/SHSideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DBImageColorPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTheme.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SHSideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sieumUITests/Pods-sieumUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0E8FDFE3E0931A20DA7FC0A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-sieum/Pods-sieum-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/DBImageColorPicker/DBImageColorPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTheme/RxTheme.framework",
+				"${BUILT_PRODUCTS_DIR}/SHSideMenu/SHSideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DBImageColorPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
@@ -997,6 +1127,7 @@
 				C10A4A55212AE4C4005B65B4 /* MenuHeaderView.swift in Sources */,
 				C12D6F862123A299006DA57D /* UIControl+Extension.swift in Sources */,
 				C17F522C1E5DA80D006AD57A /* PageViewController.swift in Sources */,
+				C1D5EFC52136E78E00B2DDA2 /* MenuHeaderPopup.swift in Sources */,
 				C10A4A57212AE5BA005B65B4 /* MenuHeaderViewModel.swift in Sources */,
 				C1FA0FFB211B46030066A22C /* MenuTableViewCell.swift in Sources */,
 				C1E03C7921106A61002741A0 /* UINavigationController+Extension.swift in Sources */,
@@ -1037,6 +1168,7 @@
 				C124694A2118B5BF0066F554 /* MenuViewController.swift in Sources */,
 				C1FA10052122660A0066A22C /* PageViewModelUsable.swift in Sources */,
 				C14F81F41ECC983C0070F833 /* PoemModel.swift in Sources */,
+				C1D5EFC32136E2BF00B2DDA2 /* LoginKit.swift in Sources */,
 				C17F523A1E5DC2EB006AD57A /* PoemCoverViewController.swift in Sources */,
 				C1FA0FF3211B2E7A0066A22C /* Emptiable+Extension.swift in Sources */,
 				C1C209231E606A0B000C76B7 /* ImageUtil.swift in Sources */,
@@ -1103,7 +1235,7 @@
 /* Begin XCBuildConfiguration section */
 		C105D4721EA1187300631D41 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1CB3758F4B709D10D2DA6999 /* Pods-sieum-SieumWidget.debug.xcconfig */;
+			baseConfigurationReference = CFB8F45CEFBB69FDEEA3F3F4 /* Pods-SieumWidget.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = SieumWidget/SieumWidget.entitlements;
@@ -1120,7 +1252,7 @@
 		};
 		C105D4731EA1187300631D41 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 379D5464401AAF3C8DE37BC0 /* Pods-sieum-SieumWidget.release.xcconfig */;
+			baseConfigurationReference = C4022B05F99605DD1B2877EB /* Pods-SieumWidget.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = SieumWidget/SieumWidget.entitlements;

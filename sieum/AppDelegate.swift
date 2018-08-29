@@ -37,12 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setAlertView()
         self.setNotiDelegate()
         
-        UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { [weak self] requestList in
-            guard requestList.count > 0 else {
-                return
-            }
-            self?.setNotiAuth()
-        })
+        UNUserNotificationCenter.current()
+            .getPendingNotificationRequests(completionHandler: { [weak self] requestList in
+                guard requestList.count > 0 else {
+                    return
+                }
+                self?.setNotiAuth()
+            })
         
         return true
     }

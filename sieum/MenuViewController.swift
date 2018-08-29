@@ -34,6 +34,13 @@ class MenuViewController: UIViewController, ContentViewChangable {
     
     private lazy var headerView: MenuHeaderView = {
         let headerView = MenuHeaderView()
+        headerView.onTouch { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            strongSelf.present(MenuHeaderPopup.make(from: strongSelf), animated: true)
+        }
         return headerView
     }()
     
@@ -89,18 +96,6 @@ class MenuViewController: UIViewController, ContentViewChangable {
             .bind({ $0.contentBackgroundColor }, to: tableView.rx.separatorColor)
             .bind({ $0.textColor }, to: versionLabel.rx.textColor)
             .disposed(by: disposeBag)
-        
-        headerView.onTouch { [weak self] in
-            let popup = PopupDialog(title: "로그아웃", message: "로그아웃 하시겠습니까?", buttonAlignment: .horizontal, transitionStyle: .fadeIn)
-            popup.addButton(DefaultButton(title: "확인") {
-                popup.dismiss()
-            })
-            popup.addButton(CancelButton(title: "취소") {
-                popup.dismiss()
-            })
-            
-            self?.present(popup, animated: true)
-        }
         
         let dataSource = RxTableViewSectionedReloadDataSource<MenuSection>(
             configureCell: { ds, tv, ip, item in
