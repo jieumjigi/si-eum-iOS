@@ -1,8 +1,18 @@
 PODS:
   - Alamofire (4.7.3)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
   - DBImageColorPicker (1.0.5)
   - Differentiator (3.0.2)
   - DynamicBlurView (2.0.2)
+  - FBSDKCoreKit (4.35.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.35.0):
+    - FBSDKCoreKit
   - Firebase/Core (5.5.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.1.0)
@@ -81,6 +91,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.3)
   - DBImageColorPicker (~> 1.0.0)
+  - FBSDKLoginKit
   - Firebase/Core
   - Firebase/Database
   - Kingfisher (~> 4.0)
@@ -97,9 +108,12 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Bolts
     - DBImageColorPicker
     - Differentiator
     - DynamicBlurView
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -124,9 +138,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   DBImageColorPicker: b0b419b0653338544d766ed2008f2558b899fc60
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
+  FBSDKCoreKit: 1a5b2e3ceb5ca827a53c54aa5f4a3480efff80d2
+  FBSDKLoginKit: 00a3d65d1226852f9d76dcddff01981e5e6d9c38
   Firebase: 8c957f9cb3852b519180fb378801b7eeeba4d288
   FirebaseAnalytics: d4a260c114aec0d765ab5b9c404ac63de1d29381
   FirebaseCore: ee4b35cf8c8e781da296cc7c15125e4608bb954d
@@ -149,6 +166,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   Then: ee21c97b85ff6062b9b0080c9abb1eea46743345
 
-PODFILE CHECKSUM: 1e51be883cf576d5844df93ac1e97f5c3bfc3df7
+PODFILE CHECKSUM: b6fdb2683daa915b928053be1c5b9ebc77a2d7e9
 
 COCOAPODS: 1.5.3
