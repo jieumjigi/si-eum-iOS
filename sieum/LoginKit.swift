@@ -8,6 +8,8 @@
 
 import Foundation
 import FBSDKLoginKit
+import RxSwift
+import RxCocoa
 
 enum LoginCompletionType {
     case success(FBSDKLoginManagerLoginResult)
@@ -19,16 +21,6 @@ class LoginKit {
     
     static var isLoggedIn: Bool {
         return FBSDKAccessToken.current() != nil
-    }
-    
-    static func fetchName(completion: @escaping ((String?) -> Void)) {
-        FBSDKProfile.loadCurrentProfile { profile, error in
-            guard error == nil, let profile = profile else {
-                completion(nil)
-                return
-            }
-            return completion((profile.lastName ?? "") + " " + (profile.firstName ?? ""))
-        }
     }
     
     static func login(from viewController: UIViewController?,
@@ -61,5 +53,26 @@ class LoginKit {
     
     static func logout() {
         FBSDKLoginManager().logOut()
+    }
+}
+
+extension LoginKit {
+    static func fetchName(completion: @escaping ((String?) -> Void)) {
+        FBSDKProfile.loadCurrentProfile { profile, error in
+            guard error == nil, let profile = profile else {
+                completion(nil)
+                return
+            }
+            return completion((profile.lastName ?? "") + " " + (profile.firstName ?? ""))
+        }
+    }
+    
+    static func imageURL(size: CGSize) -> Observable<URL?> {
+        FBSDKProfile.enableUpdates(onAccessTokenChange: true)
+        return NotificationCenter.default.rx
+            .notification(NSNotification.Name.FBSDKProfileDidChange)
+            .map { _ in
+                return FBSDKProfile.current()?.imageURL(for: .normal, size: size)
+            }
     }
 }

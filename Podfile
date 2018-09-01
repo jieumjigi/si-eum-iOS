@@ -19,6 +19,7 @@ def shared_pods
   pod 'RxTheme', '2.0'
   pod 'Then'
   pod 'ObjectMapper', '~> 3.3'
+  pod 'RxSwiftExt'
 end
 
 target 'sieum' do
