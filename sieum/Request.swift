@@ -10,6 +10,7 @@ import Foundation
 import FirebaseDatabase
 import ObjectMapper
 import RxSwift
+import FBSDKLoginKit
 
 class Request {
     
@@ -54,4 +55,32 @@ class Request {
 //            .observeSingleEvent(of: .value)
 //            .map(Mapper<Poem>().mapArray)
 //    }
+}
+
+extension Request {
+    
+    static func isUserIDRegistred(profile: FBSDKProfile) -> Observable<Bool> {
+        return Request.isUserIDRegistred(userID: profile.userID)
+    }
+    
+    static func isUserIDRegistred(userID: String) -> Observable<Bool> {
+        return reference.child("users")
+            .queryEqual(toValue: "uid", childKey: userID)
+            .rx
+            .observeSingleEvent(of: .value)
+            .map { Poem(snapshot: $0) }
+            .map { return $0 != nil }
+    }
+    
+//    static func register(userID: String) -> Observable<Void> {
+//
+//    }
+    
+    static func registerUserIDIfNeeded(userID: String) -> Observable<Void> {
+        Request.isUserIDRegistred(userID: userID)
+            .filter { $0 }
+            .map { _ in }
+//            .flatMapLatest(<#T##selector: (()) throws -> ObservableConvertibleType##(()) throws -> ObservableConvertibleType#>)
+    }
+    
 }
