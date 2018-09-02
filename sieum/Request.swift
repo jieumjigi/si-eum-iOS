@@ -10,11 +10,24 @@ import Foundation
 import FirebaseDatabase
 import ObjectMapper
 import RxSwift
+import FBSDKLoginKit
 
 class Request {
     
     static var reference: DatabaseReference {
         return Database.database().reference()
+    }
+    
+    static func isUserIDRegistred(profile: FBSDKProfile) -> Observable<FBSDKProfile, Bool> {
+        return reference.child("users")
+            .queryEqual(toValue: "uid", childKey: profile.userID)
+            .rx
+            .observeSingleEvent(of: .value)
+            .map {
+                if let 
+            }
+            .map { Poem(snapshot: $0) }
+            .map { return $0 != nil }
     }
     
     static func poets() -> Observable<[User]> {

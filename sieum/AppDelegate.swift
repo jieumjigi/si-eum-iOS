@@ -7,21 +7,23 @@
 //
 
 import UIKit
-import SwiftyBeaver
-import FBSDKCoreKit
-import PopupDialog
 import UserNotifications
-import SHSideMenu
+
+import FBSDKCoreKit
 import Firebase
+import PopupDialog
+import RxSwift
+import SwiftyBeaver
+import SHSideMenu
 
 let log = SwiftyBeaver.self
-
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let notificationDelegate = UYLNotificationDelegate()
+    let disposeBag: DisposeBag = DisposeBag()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
@@ -33,9 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        self.setLogger()
-        self.setAlertView()
-        self.setNotiDelegate()
+        setLogger()
+        setAlertView()
+        setNotiDelegate()
+        LoginKit.didProfileChanged().subscribe(onNext: { profile in
+            print("received profile: \(profile?.userID)")
+        }).disposed(by: disposeBag)
         
         UNUserNotificationCenter.current()
             .getPendingNotificationRequests(completionHandler: { [weak self] requestList in

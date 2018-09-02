@@ -10,11 +10,16 @@ import Foundation
 import FBSDKLoginKit
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 enum LoginCompletionType {
     case success(FBSDKLoginManagerLoginResult)
     case fail(Error?)
     case cancel
+}
+
+enum LoginKitError: Error {
+    case profileNotExist
 }
 
 class LoginKit {
@@ -54,16 +59,56 @@ class LoginKit {
     static func logout() {
         FBSDKLoginManager().logOut()
     }
+
 }
 
 extension LoginKit {
+    
+    static func didProfileChanged() -> Observable<FBSDKProfile?> {
+        return NotificationCenter.default.rx
+            .notification(NSNotification.Name.FBSDKProfileDidChange)
+            .map { notification in
+                print("userInfo: \(String(describing: notification.userInfo?[FBSDKProfileChangeNewKey]))")
+                guard let userInfo = notification.userInfo, let profile = userInfo[FBSDKProfileChangeNewKey] as? FBSDKProfile else {
+                    return nil
+                }
+                return profile
+            }
+    }
+    
+    static func syncUserIDWithFirebaseDB() {
+        LoginKit.didProfileChanged()
+            .unwrap()
+            .flatMapLatest(Request.isUserIDRegistred)
+    }
+    
+    static func syncUserIDWithFirebase() {
+        
+    }
+}
+
+extension LoginKit {
+    
+    static func profile() -> Observable<FBSDKProfile> {
+        return Observable<FBSDKProfile>.create { observer in
+            FBSDKProfile.loadCurrentProfile(completion: { profile, error in
+                guard error == nil, let profile = profile else {
+                    return observer.onError(LoginKitError.profileNotExist)
+                }
+                return observer.onNext(profile)
+            })
+            return Disposables.create()
+        }
+    }
+    
     static func fetchName(completion: @escaping ((String?) -> Void)) {
         FBSDKProfile.loadCurrentProfile { profile, error in
             guard error == nil, let profile = profile else {
                 completion(nil)
                 return
             }
-            return completion((profile.lastName ?? "") + " " + (profile.firstName ?? ""))
+            
+            return completion(profile.name)
         }
     }
     
