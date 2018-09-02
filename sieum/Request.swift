@@ -18,18 +18,6 @@ class Request {
         return Database.database().reference()
     }
     
-    static func isUserIDRegistred(profile: FBSDKProfile) -> Observable<FBSDKProfile, Bool> {
-        return reference.child("users")
-            .queryEqual(toValue: "uid", childKey: profile.userID)
-            .rx
-            .observeSingleEvent(of: .value)
-            .map {
-                if let 
-            }
-            .map { Poem(snapshot: $0) }
-            .map { return $0 != nil }
-    }
-    
     static func poets() -> Observable<[User]> {
         return reference.child("users")
             .queryOrdered(byChild: "level")
@@ -67,4 +55,32 @@ class Request {
 //            .observeSingleEvent(of: .value)
 //            .map(Mapper<Poem>().mapArray)
 //    }
+}
+
+extension Request {
+    
+    static func isUserIDRegistred(profile: FBSDKProfile) -> Observable<Bool> {
+        return Request.isUserIDRegistred(userID: profile.userID)
+    }
+    
+    static func isUserIDRegistred(userID: String) -> Observable<Bool> {
+        return reference.child("users")
+            .queryEqual(toValue: "uid", childKey: userID)
+            .rx
+            .observeSingleEvent(of: .value)
+            .map { Poem(snapshot: $0) }
+            .map { return $0 != nil }
+    }
+    
+//    static func register(userID: String) -> Observable<Void> {
+//
+//    }
+    
+    static func registerUserIDIfNeeded(userID: String) -> Observable<Void> {
+        Request.isUserIDRegistred(userID: userID)
+            .filter { $0 }
+            .map { _ in }
+//            .flatMapLatest(<#T##selector: (()) throws -> ObservableConvertibleType##(()) throws -> ObservableConvertibleType#>)
+    }
+    
 }
