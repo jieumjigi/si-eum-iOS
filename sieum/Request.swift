@@ -60,27 +60,28 @@ class Request {
 extension Request {
     
     static func isUserIDRegistred(profile: FBSDKProfile) -> Observable<Bool> {
-        return Request.isUserIDRegistred(userID: profile.userID)
-    }
-    
-    static func isUserIDRegistred(userID: String) -> Observable<Bool> {
         return reference.child("users")
-            .queryEqual(toValue: "uid", childKey: userID)
+            .queryEqual(toValue: "uid", childKey: profile.userID)
             .rx
             .observeSingleEvent(of: .value)
             .map { Poem(snapshot: $0) }
             .map { return $0 != nil }
     }
     
-//    static func register(userID: String) -> Observable<Void> {
-//
-//    }
-    
-    static func registerUserIDIfNeeded(userID: String) -> Observable<Void> {
-        Request.isUserIDRegistred(userID: userID)
-            .filter { $0 }
+    static func registerUserIDIfNeeded(profile: FBSDKProfile) -> Observable<Void> {
+        return Request.isUserIDRegistred(profile: profile)
+            .filter { !$0 }
             .map { _ in }
-//            .flatMapLatest(<#T##selector: (()) throws -> ObservableConvertibleType##(()) throws -> ObservableConvertibleType#>)
+            .do(onNext:{ _ in
+                Request.register(profile: profile)
+            })
     }
     
+    static func register(profile: FBSDKProfile) {
+        reference.child("users")
+            .childByAutoId()
+            .setValue(["uid": profile.userID,
+                       "name": profile.name,
+                       "profile_img": profile.imageURL(for: .normal, size: CGSize(width: 100, height: 100))])
+    }
 }

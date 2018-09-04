@@ -38,9 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setLogger()
         setAlertView()
         setNotiDelegate()
-        LoginKit.didProfileChanged().subscribe(onNext: { profile in
-            print("received profile: \(profile?.userID)")
-        }).disposed(by: disposeBag)
+        LoginKit.syncUserIDWithFirebaseDB().subscribe().disposed(by: disposeBag)
         
         UNUserNotificationCenter.current()
             .getPendingNotificationRequests(completionHandler: { [weak self] requestList in
