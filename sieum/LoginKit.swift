@@ -76,16 +76,15 @@ extension LoginKit {
             }
     }
     
-    static func syncUserIDWithFirebaseDB() {
-        LoginKit.didProfileChanged()
+    static func syncUserIDWithFirebaseDB() -> Observable<Void> {
+        return LoginKit.didProfileChanged()
             .unwrap()
-            .flatMapLatest(Request.isUserIDRegistred) // 비동기로 DB에 등록여부 체크
-            .filter { $0 }
-            // profile 을 가지고 DB에 업로드 func 실행
-    }
-    
-    static func syncUserIDWithFirebase() {
-        
+            .flatMapLatest({ profile in
+                Request.isUserIDRegistred(profile: profile)
+                    .filter { !$0 }
+                    .map { _ in profile }
+            })
+            .flatMapLatest({ Request.registerUserIDIfNeeded(profile: $0) })
     }
 }
 
