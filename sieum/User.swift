@@ -10,6 +10,7 @@ import Foundation
 import ObjectMapper
 
 class User: Mappable {
+    
     var identifier: Int?
     var uid: Int?
     var level: Int?
