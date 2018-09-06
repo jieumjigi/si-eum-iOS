@@ -82,6 +82,6 @@ extension Request {
             .childByAutoId()
             .setValue(["uid": profile.userID,
                        "name": profile.name,
-                       "profile_img": profile.imageURL(for: .normal, size: CGSize(width: 100, height: 100))])
+                       "profile_img": profile.imageURL(for: .normal, size: CGSize(width: 100, height: 100)).absoluteString])
     }
 }
