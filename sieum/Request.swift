@@ -18,6 +18,22 @@ class Request {
         return Database.database().reference()
     }
     
+    static func poet(byID id: Int) -> Observable<User> {
+        return reference.child("users")
+            .queryOrdered(byChild: "id")
+            .queryStarting(atValue: id - 1, childKey: "id")
+            .queryEnding(atValue: id, childKey: "id")
+            .rx
+            .observeSingleEvent(of: .value)
+            .map(Mapper<User>().mapArray)
+            .map{
+                if $0.isNotEmpty {
+                    return $0[0]
+                }
+                return nil
+            }.unwrap()
+    }
+
     static func poets() -> Observable<[User]> {
         return reference.child("users")
             .queryOrdered(byChild: "level")
@@ -29,9 +45,9 @@ class Request {
     
     static func poems(of userID: Int) -> Observable<[Poem]> {
         return reference.child("poems")
+            .queryOrdered(byChild: "author")
             .queryStarting(atValue: userID - 1, childKey: "author")
             .queryEnding(atValue: userID, childKey: "author")
-            .queryOrdered(byChild: "author")
             .rx
             .observeSingleEvent(of: .value)
             .map(Mapper<Poem>().mapArray)
@@ -39,13 +55,21 @@ class Request {
     
     static var todayPoem: Observable<Poem> {
         return reference.child("poems")
-            .queryStarting(atValue: "", childKey: "author")
-            .queryLimited(toFirst: 1)
+            .queryOrdered(byChild: "reservation_date")
+            .queryEnding(atValue: Date().today?.formattedText, childKey: "reservation_date")
+            .queryLimited(toLast: 1)
             .rx
             .observeSingleEvent(of: .value)
-            .map { Poem(snapshot: $0) }
-            .unwrappedOptional()
+            .map(Mapper<Poem>().mapArray)
+            .map{
+                if $0.isNotEmpty {
+                    return $0[0]
+                }
+                return nil
+            }.unwrap()
     }
+    
+//    static func isPoet(userID: Int)
     
 //    static func poems(of userID: Int) -> Observable<[Poem]> {
 //        return reference.child("poems")
@@ -60,12 +84,23 @@ class Request {
 extension Request {
     
     static func isUserIDRegistred(profile: FBSDKProfile) -> Observable<Bool> {
+        
         return reference.child("users")
-            .queryEqual(toValue: "uid", childKey: profile.userID)
+            .queryOrdered(byChild: "uid")
+            .queryStarting(atValue: profile.userID, childKey: "uid")
+            .queryEnding(atValue: profile.userID, childKey: "uid")
+            .queryLimited(toLast: 1)
             .rx
             .observeSingleEvent(of: .value)
-            .map { Poem(snapshot: $0) }
-            .map { return $0 != nil }
+            .do(onNext: { response in
+                print("response: \(response)")
+            }, onError: { error in
+                print("error: \(error)")
+            })
+            .map(Mapper<User>().mapArray)
+            .map{
+                $0.isNotEmpty
+            }
     }
     
     static func registerUserIDIfNeeded(profile: FBSDKProfile) -> Observable<Void> {
@@ -79,7 +114,7 @@ extension Request {
     
     static func register(profile: FBSDKProfile) {
         reference.child("users")
-            .childByAutoId()
+            .child(profile.userID)
             .setValue(["uid": profile.userID,
                        "name": profile.name,
                        "profile_img": profile.imageURL(for: .normal, size: CGSize(width: 100, height: 100)).absoluteString])

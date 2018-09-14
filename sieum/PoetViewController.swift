@@ -51,7 +51,7 @@ class PoetViewController: UIViewController, PageViewModelUsable {
         }).disposed(by: disposeBag)
     }
 
-    func configure(model: PoemModel){
+    func configure(model: PoemPageModel){
         setProfileImage(model: model)
         lbPoet.text = model.authorName
         
@@ -65,7 +65,7 @@ class PoetViewController: UIViewController, PageViewModelUsable {
             lbIntroPoet.textAlignment = .left
         }
         
-        if let tempLink = model.link {
+        if let tempLink = model.snsURLString {
             linkToBook = tempLink
             poetLinkButton.setTitle(self.linkToBook, for: .normal)
             poetLinkButton.alpha = 1.0
@@ -74,13 +74,13 @@ class PoetViewController: UIViewController, PageViewModelUsable {
         }
     }
     
-    func setProfileImage(model: PoemModel){
+    func setProfileImage(model: PoemPageModel){
         
         let placeHolderImage = UIImage.placeHolderImage()
         profileImage.image = placeHolderImage
         profileImage.setRoundedMaskLayer()
         
-        guard let urlString = model.profileImageLink,
+        guard let urlString = model.imageURLString,
             let imageUrl = URL(string: urlString) else {
                 return
         }

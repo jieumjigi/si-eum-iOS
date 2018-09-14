@@ -65,7 +65,7 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
         return nil
     }
     
-    func configure(model: PoemModel) {
+    func configure(model: PoemPageModel) {
         
         UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             

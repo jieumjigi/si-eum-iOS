@@ -38,7 +38,7 @@ class QuestionViewController: UIViewController, PageViewModelUsable {
         }).disposed(by: disposeBag)
     }
     
-    func configure(model: PoemModel){
+    func configure(model: PoemPageModel){
         guard let question = model.question else {
             return
         }

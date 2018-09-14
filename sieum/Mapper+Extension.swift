@@ -16,7 +16,7 @@ extension BaseMappable {
             return "FirebaseIdKey"
         }
     }
-    
+
     init?(snapshot: DataSnapshot) {
         guard var json = snapshot.value as? [String: Any] else {
             return nil

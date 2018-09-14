@@ -27,13 +27,14 @@ class Poem: Mappable {
     
     func mapping(map: Map) {
         identifier <- map["id"]
-        reservationDate <- map["reservation_date"]
         authorID <- map["author"]
         title <- map["title"]
         contents <- map["contents"]
         question <- map["question"]
         book <- map["book"]
         publisher <- map["publisher"]
-        publishedDate <- map["published_date"]
+
+        reservationDate <- (map["reservation_date"], FirebaseDateFormatterTrasnform())
+        publishedDate <- (map["published_date"], FirebaseDateFormatterTrasnform())
     }
 }

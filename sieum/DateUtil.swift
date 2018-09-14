@@ -18,3 +18,24 @@ class DateUtil: NSObject {
         return result
     }
 }
+
+extension String {
+    var date: Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        return dateFormatter.date(from: self)
+    }
+}
+
+extension Date {
+    var today: Date? {
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        return Calendar.current.date(from: components)
+    }
+    
+    var formattedText: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        return dateFormatter.string(from: self)
+    }
+}

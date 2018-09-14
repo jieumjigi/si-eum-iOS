@@ -10,6 +10,32 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+struct PoemPageModel {
+    var poemID: Int?
+    var reservationDate: Date?
+    
+    var title: String?
+    var authorName: String?
+    var contents: String?
+    var question: String?
+    
+    var introduction: String?
+    var imageURLString: String?
+    var snsURLString: String?
+    
+    init(poem: Poem, user: User) {
+        poemID = poem.identifier
+        reservationDate = poem.reservationDate
+        title = poem.title
+        authorName = user.name
+        contents = poem.contents
+        question = poem.question
+        introduction = user.introduce
+        imageURLString = user.imageURLString
+        snsURLString = user.snsURLString
+    }
+}
+
 class PoemModel: NSObject {
     
     static let shared = PoemModel()
