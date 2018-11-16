@@ -1,10 +1,9 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '10.0'
 
 def shared_pods
   use_frameworks!
   inhibit_all_warnings!
-  swift_version = "4.1"
   pod 'SnapKit', '~> 4.0.0'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
@@ -20,11 +19,14 @@ def shared_pods
   pod 'Then'
   pod 'ObjectMapper', '~> 3.3'
   pod 'RxSwiftExt'
+  pod 'Eureka', '4.3.0'
 end
 
 target 'sieum' do
   shared_pods
   # Pods for sieum
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
 end
 
@@ -32,6 +34,8 @@ target 'sieumTests' do
   inherit! :search_paths
   # Pods for testing
   shared_pods
+  pod 'Quick'
+  pod 'Nimble'
 end
 
 target 'sieumUITests' do

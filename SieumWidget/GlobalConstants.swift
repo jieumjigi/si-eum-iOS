@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Constants {
+struct GlobalConstants {
     
     struct url {
         static let base = "http://seongho.pythonanywhere.com/api/"

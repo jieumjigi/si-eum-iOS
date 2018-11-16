@@ -7,8 +7,6 @@
 //
 
 import XCTest
-import RxSwift
-@testable import sieum
 
 class sieumTests: XCTestCase {
     
@@ -23,7 +21,6 @@ class sieumTests: XCTestCase {
     }
     
     func testExample() {
-        let result = Request.todayPoem.observeOn(MainScheduler.instance)
         
     }
     

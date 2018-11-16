@@ -51,8 +51,6 @@ class PoetsViewController: UIViewController, SideMenuUsable {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.register(PoetsThumbnailContainerCell.self)
         tableView.register(PoetProfileCell.self)
         tableView.register(PoetDescriptionCell.self)
@@ -69,8 +67,12 @@ class PoetsViewController: UIViewController, SideMenuUsable {
         
         makeNavigationBar()
         view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
         
         bind()
+        
+        view.setNeedsUpdateConstraints()
     }
     
     override func updateViewConstraints() {
@@ -105,11 +107,11 @@ class PoetsViewController: UIViewController, SideMenuUsable {
             self?.updateUsersAndSelectFirst(users: users)
         }).disposed(by: disposeBag)
         
-        selectedUser.asObserver().subscribe(onNext: { user in
-            guard let user = user else {
-                return
-            }
-        }).disposed(by: disposeBag)
+//        selectedUser.asObserver().subscribe(onNext: { user in
+//            guard let user = user else {
+//                return
+//            }
+//        }).disposed(by: disposeBag)
         
         selectedUser
             .asObserver()
@@ -147,11 +149,11 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeightsDictionary[indexPath.cacheKey] ?? UITableViewAutomaticDimension
+        return cellHeightsDictionary[indexPath.cacheKey] ?? UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

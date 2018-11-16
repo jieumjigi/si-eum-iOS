@@ -117,7 +117,7 @@ class SettingViewController: UITableViewController, SideMenuUsable {
         }
         
         if UIApplication.shared.canOpenURL(mailUrl) {
-            UIApplication.shared.open(mailUrl, options: [:], completionHandler: nil)
+            UIApplication.shared.open(mailUrl, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
     }
     
@@ -127,7 +127,7 @@ class SettingViewController: UITableViewController, SideMenuUsable {
         }
 
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(facebookUrl, options: [:], completionHandler: { (completion) in
+            UIApplication.shared.open(facebookUrl, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (completion) in
             })
         } else {
             UIApplication.shared.openURL(facebookUrl)
@@ -152,4 +152,9 @@ class SettingViewController: UITableViewController, SideMenuUsable {
 
         present(VisualActivityViewController(activityItems: [text, url]), animated: true)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

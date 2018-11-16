@@ -28,30 +28,19 @@ struct MenuSection: SectionModelType {
 enum Menu: Int, CaseIterable {
     case today = 0
     case past
-    case bookmark
     case setting
     
     var title: String {
         switch self {
         case .today: return "오늘의 시"
         case .past: return "지나간 시"
-        case .bookmark: return "즐겨찾기"
         case .setting: return "설정"
-        }
-    }
-    
-    var isEnabled: Bool {
-        switch self {
-        case .bookmark:
-            return false
-        default:
-            return true
         }
     }
 }
 
 class MenuViewModel {
-    var section: Observable<[MenuSection]> {
+    var sections: Observable<[MenuSection]> {
         return Observable.just([MenuSection()])
     }
 }

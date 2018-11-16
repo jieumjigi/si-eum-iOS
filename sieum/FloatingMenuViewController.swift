@@ -52,7 +52,6 @@ class FloatingMenuViewController: UIViewController {
         let ov = PopupDialogOverlayView.appearance()
         ov.blurEnabled = true
         ov.blurRadius  = 30
-        ov.liveBlur    = true
         ov.opacity     = 0.7
         ov.color       = UIColor.black
         
@@ -99,7 +98,7 @@ class FloatingMenuViewController: UIViewController {
         let myDatePicker: UIDatePicker = UIDatePicker()
         
         // setting properties of the datePicker
-        myDatePicker.datePickerMode = UIDatePickerMode.time
+        myDatePicker.datePickerMode = UIDatePicker.Mode.time
         myDatePicker.timeZone = NSTimeZone.local
         myDatePicker.frame = CGRect.init(x: 0, y: 30, width: 270, height: 150)
         let alertController = UIAlertController(title: "" , message: "\n\n\n\n\n\n\n\n", preferredStyle: .alert)
@@ -131,7 +130,7 @@ class FloatingMenuViewController: UIViewController {
 
             let content = UNMutableNotificationContent()
             content.body = "오늘의 시가 도착했습니다"
-            content.sound = UNNotificationSound.default()
+            content.sound = UNNotificationSound.default
             
             
             // 설정
@@ -147,7 +146,7 @@ class FloatingMenuViewController: UIViewController {
             
         }
         
-        let cancelAction = UIAlertAction(title: "취소", style: UIAlertActionStyle.default, handler: nil)
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
         alertController.addAction(cancelAction)
         alertController.addAction(confirmAction)
         self.present(alertController, animated: true, completion:{})

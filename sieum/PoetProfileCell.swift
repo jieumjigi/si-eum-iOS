@@ -51,7 +51,7 @@ class PoetProfileCell: UITableViewCell {
         $0.titleLabel?.font = .mainFont(ofSize: .small)
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
 
         selectionStyle = .none
@@ -133,7 +133,7 @@ class PoetDescriptionCell: UITableViewCell {
         $0.font = UIFont.mainFont(ofSize: .medium)
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none

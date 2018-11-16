@@ -60,7 +60,7 @@ class PoetViewController: UIViewController, PageViewModelUsable {
             paragraphStyle.lineSpacing = 5
             paragraphStyle.alignment = .left
             let attrString = NSMutableAttributedString(string: introduciton)
-            attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+            attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedString.Key, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
             lbIntroPoet.attributedText = attrString
             lbIntroPoet.textAlignment = .left
         }
@@ -96,10 +96,15 @@ class PoetViewController: UIViewController, PageViewModelUsable {
         let bookUrl = URL.init(string: self.linkToBook)!
         
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(bookUrl, options: [:], completionHandler: { (isSucess) in
+            UIApplication.shared.open(bookUrl, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (isSucess) in
             })
         } else {
             UIApplication.shared.openURL(bookUrl)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

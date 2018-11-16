@@ -10,33 +10,39 @@ import Foundation
 import RxSwift
 import RxTheme
 import UIKit
+import Eureka
 
-class WriteViewController: UIViewController {
+class WriteViewController: FormViewController {
     
     private var didUpdateConstraints: Bool = false
     let disposeBag = DisposeBag()
-    
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        return tableView
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         makeNavigationBar()
-        view.addSubview(tableView)
-        
         bind()
+        
+        form +++ Section("Section1")
+            <<< TextRow(){ row in
+                row.title = "Text Row"
+                row.placeholder = "Enter text here"
+            }
+            <<< PhoneRow(){
+                $0.title = "Phone Row"
+                $0.placeholder = "And numbers here"
+            }
+            +++ Section("Section2")
+            <<< DateRow(){
+                $0.title = "Date Row"
+                $0.value = Date(timeIntervalSinceReferenceDate: 0)
+        }
     }
     
     override func updateViewConstraints() {
         if !didUpdateConstraints {
             didUpdateConstraints = true
-            
-            tableView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
+
         }
         
         super.updateViewConstraints()
@@ -50,9 +56,10 @@ class WriteViewController: UIViewController {
     }
     
     private func makeNavigationBar() {
+        title = "시 쓰기"
         navigationController?.makeClearBar()
         navigationItem.leftBarButtonItem = UIBarButtonItem(for: .close) { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            self?.dismiss(animated: true)
         }
         
         navigationController?.interactivePopGestureRecognizer?.delegate = self

@@ -67,7 +67,7 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
     
     func configure(model: PoemPageModel) {
         
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
             
             self.lbPoet.alpha = 0.0
             self.lbBody.alpha = 0.0
@@ -82,11 +82,11 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
                 paragraphStyle.alignment = .left
                 
                 let attrString = NSMutableAttributedString(string: contents)
-                attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+                attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedString.Key, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
                 self?.lbBody.attributedText = attrString
             }
             
-            UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
                 self?.lbPoet.alpha = 1.0
                 self?.lbBody.alpha = 1.0
             }, completion: nil)
@@ -236,7 +236,6 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
         let poemImage = self.getPoemImage()
         KLKImageStorage().upload(with: poemImage, success: { (original) in
             let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
-            content.imageURL = original.url
             content.contentURL = original.url
             completion(content)
         })

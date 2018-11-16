@@ -19,18 +19,33 @@ class MyPageViewController: UIViewController, SideMenuUsable {
     let disposeBag = DisposeBag()
     var sideMenuAction: PublishSubject<SideMenuAction> = PublishSubject<SideMenuAction>()
     
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(MyPageProfileTableViewCell.self)
+        tableView.dataSource = self
+        return tableView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(tableView)
         makeNavigationBar()
-        
         bind()
+        
+        view.setNeedsUpdateConstraints()
     }
     
     override func updateViewConstraints() {
         if !didUpdateConstraints {
             didUpdateConstraints = true
-            
+            tableView.snp.makeConstraints { make in
+                if #available(iOS 11.0, *) {
+                    make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
+                } else {
+                    make.edges.equalTo(view.snp.edges)
+                }
+            }
         }
         
         super.updateViewConstraints()
@@ -48,7 +63,30 @@ class MyPageViewController: UIViewController, SideMenuUsable {
             self?.sideMenuAction.onNext(.open)
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(for: .write) { [weak self] in
-            self?.navigationController?.pushViewController(WriteViewController(), animated: true)
+            self?.present(UINavigationController(rootViewController: WriteViewController()), animated: true)
+        }
+    }
+    
+//    private func requestPoems() {
+//        Request.poems().bind
+//    }
+}
+
+extension MyPageViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as MyPageProfileTableViewCell
+            cell.configure(profile: LoginKit.profile())
+            return cell
+        default:
+            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+            cell.textLabel?.text = "test \(indexPath.row)"
+            return cell
         }
     }
 }

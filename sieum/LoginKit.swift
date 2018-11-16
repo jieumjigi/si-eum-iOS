@@ -68,7 +68,6 @@ extension LoginKit {
         return NotificationCenter.default.rx
             .notification(NSNotification.Name.FBSDKProfileDidChange)
             .map { notification in
-                print("userInfo: \(String(describing: notification.userInfo?[FBSDKProfileChangeNewKey]))")
                 guard let userInfo = notification.userInfo, let profile = userInfo[FBSDKProfileChangeNewKey] as? FBSDKProfile else {
                     return nil
                 }
@@ -79,12 +78,7 @@ extension LoginKit {
     static func syncUserIDWithFirebaseDB() -> Observable<Void> {
         return LoginKit.didProfileChanged()
             .unwrap()
-            .flatMapLatest({ profile in
-                Request.isUserIDRegistred(profile: profile)
-                    .filter { !$0 }
-                    .map { _ in profile }
-            })
-            .flatMapLatest({ Request.registerUserIDIfNeeded(profile: $0) })
+            .flatMapLatest({ Request.registerUserIfNeeded(profile: $0) })
     }
 }
 
@@ -120,5 +114,12 @@ extension LoginKit {
             .map { _ in
                 return FBSDKProfile.current()?.imageURL(for: .normal, size: size)
             }
+    }
+    
+    static func isPoet() -> Observable<Bool> {
+        guard let userID = FBSDKProfile.current()?.userID else {
+            return Observable.just(false)
+        }
+        return Request.isPoet(userID: userID)
     }
 }

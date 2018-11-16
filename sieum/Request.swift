@@ -14,6 +14,10 @@ import FBSDKLoginKit
 
 class Request {
     
+    private enum Constants {
+        static let defulatUserLevel: Int = 9
+    }
+    
     static var reference: DatabaseReference {
         return Database.database().reference()
     }
@@ -43,6 +47,13 @@ class Request {
             .map(Mapper<User>().mapArray)
     }
     
+    static func poems() -> Observable<[Poem]> {
+        return reference.child("poems")
+            .rx
+            .observeSingleEvent(of: .value)
+            .map(Mapper<Poem>().mapArray)
+    }
+    
     static func poems(of userID: Int) -> Observable<[Poem]> {
         return reference.child("poems")
             .queryOrdered(byChild: "author")
@@ -69,45 +80,41 @@ class Request {
             }.unwrap()
     }
     
-//    static func isPoet(userID: Int)
-    
-//    static func poems(of userID: Int) -> Observable<[Poem]> {
-//        return reference.child("poems")
-//            .queryEqual(toValue: userID, childKey: "author")
-//            .queryOrdered(byChild: "reservation_date")
-//            .rx
-//            .observeSingleEvent(of: .value)
-//            .map(Mapper<Poem>().mapArray)
-//    }
+    static func isPoet(userID: String) -> Observable<Bool> {
+        return Observable.create { observer in
+            self.reference.child("users")
+                .child(userID)
+                .observeSingleEvent(of: .value, with: { snapshot in
+                    if let user = User(snapshot: snapshot),
+                        let level = user.level {
+                        observer.onNext(level < 9)
+                    } else {
+                        observer.onNext(false)
+                    }
+                    observer.onCompleted()
+                })
+            return Disposables.create()
+        }
+    }
 }
 
 extension Request {
-    
-    static func isUserIDRegistred(profile: FBSDKProfile) -> Observable<Bool> {
-        
+    static func isUserIDRegistred(_ userID: String) -> Observable<Bool> {
         return reference.child("users")
-            .queryOrdered(byChild: "uid")
-            .queryStarting(atValue: profile.userID, childKey: "uid")
-            .queryEnding(atValue: profile.userID, childKey: "uid")
-            .queryLimited(toLast: 1)
+            .child(userID)
             .rx
             .observeSingleEvent(of: .value)
-            .do(onNext: { response in
-                print("response: \(response)")
-            }, onError: { error in
-                print("error: \(error)")
-            })
-            .map(Mapper<User>().mapArray)
-            .map{
-                $0.isNotEmpty
+            .debug()
+            .map { snapshot in
+                return snapshot.exists()
             }
     }
     
-    static func registerUserIDIfNeeded(profile: FBSDKProfile) -> Observable<Void> {
-        return Request.isUserIDRegistred(profile: profile)
+    static func registerUserIfNeeded(profile: FBSDKProfile) -> Observable<Void> {
+        return Request.isUserIDRegistred(profile.userID)
             .filter { !$0 }
             .map { _ in }
-            .do(onNext:{ _ in
+            .do(onNext: {
                 Request.register(profile: profile)
             })
     }
@@ -115,8 +122,8 @@ extension Request {
     static func register(profile: FBSDKProfile) {
         reference.child("users")
             .child(profile.userID)
-            .setValue(["uid": profile.userID,
-                       "name": profile.name,
+            .setValue(["name": profile.name,
+                       "level": Constants.defulatUserLevel,
                        "profile_img": profile.imageURL(for: .normal, size: CGSize(width: 100, height: 100)).absoluteString])
     }
 }

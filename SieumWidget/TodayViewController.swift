@@ -74,7 +74,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UIGestureRecogni
     }
     
     func getContent(){
-        let todayPoemUrl = Constants.url.today
+        let todayPoemUrl = GlobalConstants.url.today
         Alamofire.request(todayPoemUrl, method: .get, parameters: nil, encoding: JSONEncoding.default)
             .responseJSON { responseData in
                 
@@ -115,7 +115,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UIGestureRecogni
                     print("poetName\(String(describing: poetName))")
                     print("contents\(String(describing: contents))")
                     
-                    UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                    UIView.animate(withDuration: 1.0, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
                         self.lbContents.alpha = 0.3
                         
                     }, completion: {
@@ -126,11 +126,11 @@ class TodayViewController: UIViewController, NCWidgetProviding, UIGestureRecogni
                         paragraphStyle.alignment = .left
                         
                         let attrString = NSMutableAttributedString(string: contents)
-                        attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+                        attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedString.Key, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
                         self.lbContents.attributedText = attrString
                         
                         // Fade in
-                        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
                             self.lbContents.alpha = 1.0
                             
                         }, completion: nil)

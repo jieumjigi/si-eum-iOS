@@ -19,6 +19,7 @@ class MenuViewController: UIViewController, ContentViewChangable {
     
     private let viewModel: MenuViewModel = MenuViewModel()
     private let disposeBag: DisposeBag = DisposeBag()
+    private lazy var menuHeaderPopup = MenuHeaderPopup()
     
     private lazy var didUpdateViewConstraints: Bool = false
     
@@ -38,8 +39,9 @@ class MenuViewController: UIViewController, ContentViewChangable {
             guard let strongSelf = self else {
                 return
             }
-            
-            strongSelf.present(MenuHeaderPopup.make(from: strongSelf), animated: true)
+            strongSelf.menuHeaderPopup.present(for: strongSelf, onEditorHandler: { [weak self] in
+                self?.viewTransition.onNext(UINavigationController(rootViewController: MyPageViewController()))
+            })
         }
         return headerView
     }()
@@ -78,9 +80,9 @@ class MenuViewController: UIViewController, ContentViewChangable {
             versionLabel.snp.makeConstraints { make in
                 make.trailing.equalToSuperview().inset(10)
                 if #available(iOS 11.0, *) {
-                    make.bottom.equalTo(view.safeAreaLayoutGuide)
+                    make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
                 } else {
-                    make.bottom.equalToSuperview()
+                    make.bottom.equalToSuperview().inset(10)
                 }
             }
             
@@ -118,16 +120,13 @@ class MenuViewController: UIViewController, ContentViewChangable {
             case .past:
                 let viewController = UINavigationController(rootViewController: PoetsViewController())
                 self?.viewTransition.onNext(viewController)
-            case .bookmark:
-                let viewController = UINavigationController(rootViewController: BookmarkViewController())
-                self?.viewTransition.onNext(viewController)
             case .setting:
                 let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController")
                 self?.viewTransition.onNext(UINavigationController(rootViewController: viewController))
             }
         }).disposed(by: disposeBag)
         
-        viewModel.section
+        viewModel.sections
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         

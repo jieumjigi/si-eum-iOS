@@ -31,7 +31,7 @@ class HelloViewController: UIViewController {
   }
   
   func setAnimation(){
-    UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+    UIView.animate(withDuration: 1.0, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
       self.lbHello.alpha = 1.0
       self.cupImage.alpha = 1.0
     }, completion: nil)
@@ -45,7 +45,7 @@ class HelloViewController: UIViewController {
     paragraphStyle.alignment = .center
     
     let attrString = NSMutableAttributedString(string: "시를 음미하다는 뜻의 '시음'은 \n매일 한편의 시를 전달합니다. \n\n익숙한 것들을 익숙하지 않게 바라보기.\n시를 음미하는 것으로 이 연습을 해보려 합니다.\n\n 어렵다고 생각하기 보다\n좋아할 수 있게되면 좋겠습니다.\n\n저희를 믿어주는 여섯의 시인과 함께하고 있고, \n작품을 공유하고 싶은 분들의 참여를 기다립니다.")
-    attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+    attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedString.Key, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
     self.lbHello.attributedText = attrString
   }
 }
