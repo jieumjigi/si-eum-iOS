@@ -9,24 +9,20 @@
 import Foundation
 import ObjectMapper
 
-class User: ImmutableMappable {
-    
-    var identifier: Int?
-    let uid: String?
-    let level: Int?
-    let name: String?
+struct User: ImmutableMappable {
+    let identifier: String
+    let name: String
+    let level: Int
+    let profileImageURLString: String?
     let introduce: String?
-    let imageURLString: String?
     let snsURLString: String?
     
-    required init(map: Map) throws {
-//        identifier = try? map.value(User.firebaseIdKey)
-        identifier = try? map.value("id")
-        uid = try map.value("uid")
-        level = try? map.value("level")
-        name = try? map.value("name")
+    init(map: Map) throws {
+        identifier = try map.value(User.firebaseIdKey)
+        name = try map.value("name")
+        level = try map.value("level")
         introduce = try? map.value("introduce")
-        imageURLString = try? map.value("profile_img")
+        profileImageURLString = try? map.value("profile_img")
         snsURLString = try? map.value("sns_url")
     }
 }

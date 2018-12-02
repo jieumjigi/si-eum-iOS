@@ -12,94 +12,108 @@ import ObjectMapper
 import RxSwift
 import FBSDKLoginKit
 
-class Request {
+enum APIError: Error {
+    case emptyResponse
+}
+
+class DatabaseService {
     
     private enum Constants {
         static let defulatUserLevel: Int = 9
     }
     
-    static var reference: DatabaseReference {
-        return Database.database().reference()
+    private let reference: DatabaseReference
+    
+    init(reference: DatabaseReference = Database.database().reference()) {
+        self.reference = reference
     }
     
-    static func poet(byID id: Int) -> Observable<User> {
+    func user(id: String) -> Observable<Result<User?>> {
         return reference.child("users")
-            .queryOrdered(byChild: "id")
-            .queryStarting(atValue: id - 1, childKey: "id")
-            .queryEnding(atValue: id, childKey: "id")
+            .child(id)
             .rx
             .observeSingleEvent(of: .value)
-            .map(Mapper<User>().mapArray)
             .map{
-                if $0.isNotEmpty {
-                    return $0[0]
+                if let user = User(snapshot: $0) {
+                    return .success(user)
+                } else {
+                    return .failure(APIError.emptyResponse)
                 }
-                return nil
-            }.unwrap()
+            }.catchError({ error in
+                Observable.just(.failure(error))
+            })
     }
 
-    static func poets() -> Observable<[User]> {
-        return reference.child("users")
-            .queryOrdered(byChild: "level")
-            .queryRange(in: 1...7, childKey: "level")
-            .rx
-            .observeSingleEvent(of: .value)
-            .map(Mapper<User>().mapArray)
+    func poets() -> Observable<[User]> {
+//        return reference.child("users")
+//            .queryOrdered(byChild: "level")
+//            .queryRange(in: 1...7, childKey: "level")
+//            .rx
+//            .observeSingleEvent(of: .value)
+//            .map(Mapper<User>().mapArray)
+        return Observable.just([]) // TODO
     }
     
-    static func poems() -> Observable<[Poem]> {
+    func poems() -> Observable<Result<[Poem]>> {
         return reference.child("poems")
             .rx
             .observeSingleEvent(of: .value)
             .map(Mapper<Poem>().mapArray)
+            .map {
+                .success($0)
+            }.catchError({ error in
+                Observable.just(.failure(error))
+            })
     }
     
-    static func poems(of userID: Int) -> Observable<[Poem]> {
-        return reference.child("poems")
-            .queryOrdered(byChild: "author")
-            .queryStarting(atValue: userID - 1, childKey: "author")
-            .queryEnding(atValue: userID, childKey: "author")
-            .rx
-            .observeSingleEvent(of: .value)
-            .map(Mapper<Poem>().mapArray)
+    func poems(of userID: String) -> Observable<[Poem]> {
+//        return reference.child("poems")
+//            .queryOrdered(byChild: "author")
+//            .queryStarting(atValue: userID - 1, childKey: "author")
+//            .queryEnding(atValue: userID, childKey: "author")
+//            .rx
+//            .observeSingleEvent(of: .value)
+//            .map(Mapper<Poem>().mapArray)
+        return Observable.just([]) // TODO
     }
     
-    static var todayPoem: Observable<Poem> {
-        return reference.child("poems")
-            .queryOrdered(byChild: "reservation_date")
-            .queryEnding(atValue: Date().today?.formattedText, childKey: "reservation_date")
-            .queryLimited(toLast: 1)
-            .rx
-            .observeSingleEvent(of: .value)
-            .map(Mapper<Poem>().mapArray)
-            .map{
-                if $0.isNotEmpty {
-                    return $0[0]
-                }
-                return nil
-            }.unwrap()
+    var todayPoem: Observable<Poem> {
+//        return reference.child("poems")
+//            .queryOrdered(byChild: "reservation_date")
+//            .queryEnding(atValue: Date().today?.formattedText, childKey: "reservation_date")
+//            .queryLimited(toLast: 1)
+//            .rx
+//            .observeSingleEvent(of: .value)
+//            .map(Mapper<Poem>().mapArray)
+//            .map{
+//                if $0.isNotEmpty {
+//                    return $0[0]
+//                }
+//                return nil
+//            }.unwrap()
+        return Observable.just(nil).unwrap() // TODO
     }
     
-    static func isPoet(userID: String) -> Observable<Bool> {
-        return Observable.create { observer in
-            self.reference.child("users")
-                .child(userID)
-                .observeSingleEvent(of: .value, with: { snapshot in
-                    if let user = User(snapshot: snapshot),
-                        let level = user.level {
-                        observer.onNext(level < 9)
-                    } else {
-                        observer.onNext(false)
-                    }
-                    observer.onCompleted()
-                })
-            return Disposables.create()
-        }
+    func isPoet(userID: String) -> Observable<Bool> {
+//        return Observable.create { observer in
+//            self.reference.child("users")
+//                .child(userID)
+//                .observeSingleEvent(of: .value, with: { snapshot in
+//                    if let user = User(snapshot: snapshot) {
+//                        observer.onNext(user.level < 9)
+//                    } else {
+//                        observer.onNext(false)
+//                    }
+//                    observer.onCompleted()
+//                })
+//            return Disposables.create()
+//        }
+        return Observable.just(nil).unwrap() // TODO
     }
 }
 
-extension Request {
-    static func isUserIDRegistred(_ userID: String) -> Observable<Bool> {
+extension DatabaseService {
+    func isUserIDRegistred(_ userID: String) -> Observable<Bool> {
         return reference.child("users")
             .child(userID)
             .rx
@@ -110,20 +124,30 @@ extension Request {
             }
     }
     
-    static func registerUserIfNeeded(profile: FBSDKProfile) -> Observable<Void> {
-        return Request.isUserIDRegistred(profile.userID)
+    func registerUserIfNeeded(profile: FBSDKProfile) -> Observable<Void> {
+        return isUserIDRegistred(profile.userID)
             .filter { !$0 }
             .map { _ in }
-            .do(onNext: {
-                Request.register(profile: profile)
+            .do(onNext: { [weak self] in
+                self?.register(profile: profile)
             })
     }
     
-    static func register(profile: FBSDKProfile) {
+    func register(profile: FBSDKProfile, completion: ((Error?, DatabaseReference) -> Void)? = nil) {
         reference.child("users")
             .child(profile.userID)
             .setValue(["name": profile.name,
                        "level": Constants.defulatUserLevel,
-                       "profile_img": profile.imageURL(for: .normal, size: CGSize(width: 100, height: 100)).absoluteString])
+                       "profile_img": profile.imageURL(for: .normal, size: CGSize(width: 100, height: 100)).absoluteString]) { error, databaseReference in
+                        completion?(error, databaseReference)
+        }
+    }
+    
+    func unregister(userID: String, completion: ((Error?, DatabaseReference) -> Void)? = nil) {
+        reference.child("users")
+            .child(userID)
+            .removeValue { error, databaseReference in
+                completion?(error, databaseReference)
+            }
     }
 }

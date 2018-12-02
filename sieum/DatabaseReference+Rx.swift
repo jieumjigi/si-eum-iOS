@@ -10,7 +10,7 @@ import Foundation
 import FirebaseDatabase
 import RxSwift
 
-extension Reactive where Base: DatabaseQuery {
+extension Reactive where Base: DatabaseReference {
     func observeSingleEvent(of event: DataEventType) -> Observable<DataSnapshot> {
         return Observable.create({ observer in
             self.base.observeSingleEvent(of: event, with: { snapshot in

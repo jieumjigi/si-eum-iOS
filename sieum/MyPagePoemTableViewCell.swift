@@ -1,5 +1,5 @@
 //
-//  MyPageProfileTableViewCell.swift
+//  MyPagePoemCell.swift
 //  sieum
 //
 //  Created by seongho on 16/11/2018.
@@ -10,13 +10,13 @@ import UIKit
 import RxSwift
 import FBSDKLoginKit
 
-class MyPageProfileTableViewCell: UITableViewCell {
+class MyPagePoemTableViewCell: UITableViewCell {
     
     private lazy var didUpdateConstraints: Bool = false
     private lazy var disposeBag: DisposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         accessoryType = .disclosureIndicator
     }
     
@@ -28,7 +28,6 @@ class MyPageProfileTableViewCell: UITableViewCell {
         if !didUpdateConstraints {
             didUpdateConstraints = true
             
-            
         }
         super.updateConstraints()
     }
@@ -38,10 +37,8 @@ class MyPageProfileTableViewCell: UITableViewCell {
         disposeBag = DisposeBag()
     }
     
-    func configure(profile profileObservable: Observable<FBSDKProfile>) {
-        profileObservable.subscribe(onNext: { [weak self] profile in
-            self?.textLabel?.text = profile.name
-            self?.imageView?.kf.setImage(with: profile.imageURL(for: .normal, size: CGSize(width: 90, height: 90)), placeholder: #imageLiteral(resourceName: "profile_default"))
-        }).disposed(by: disposeBag)
+    func configure(_ model: Poem?) {
+        textLabel?.text = model?.title
+        detailTextLabel?.text = model?.content
     }
 }

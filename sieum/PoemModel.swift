@@ -16,7 +16,7 @@ struct PoemPageModel {
     
     var title: String?
     var authorName: String?
-    var contents: String?
+    var content: String?
     var question: String?
     
     var introduction: String?
@@ -28,10 +28,10 @@ struct PoemPageModel {
         reservationDate = poem.reservationDate
         title = poem.title
         authorName = user.name
-        contents = poem.contents
+        content = poem.content
         question = poem.question
         introduction = user.introduce
-        imageURLString = user.imageURLString
+        imageURLString = user.profileImageURLString
         snsURLString = user.snsURLString
     }
 }

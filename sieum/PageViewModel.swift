@@ -23,18 +23,18 @@ class PageViewModel {
     }
     
     func loadToadyPoem(){
-                
-        Request.todayPoem.flatMapLatest { poem -> Observable<(Poem, User)> in
-            if let authorID = poem.authorID {
-                return Request.poet(byID: authorID).map { (poem, $0) }
-            }
-            return Observable.empty()
-            }.map { poem, user -> PoemPageModel in
-                PoemPageModel(poem: poem, user: user)
-            }.subscribe(onNext: { [weak self] poemPageModel in
-                self?.poemSubject.onNext(poemPageModel)
-                }, onError: { error in
-                    print("error: \(error)")
-            }).disposed(by: disposeBag)
+// TODO
+//        Request.todayPoem.flatMapLatest { poem -> Observable<(Poem, User)> in
+//            if let authorID = poem.authorID {
+//                return Request.user(id: authorID).map { (poem, $0) }
+//            }
+//            return Observable.empty()
+//            }.map { poem, user -> PoemPageModel in
+//                PoemPageModel(poem: poem, user: user)
+//            }.subscribe(onNext: { [weak self] poemPageModel in
+//                self?.poemSubject.onNext(poemPageModel)
+//                }, onError: { error in
+//                    print("error: \(error)")
+//            }).disposed(by: disposeBag)
     }
 }

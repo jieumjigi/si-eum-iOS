@@ -23,8 +23,8 @@ def shared_pods
 end
 
 target 'sieum' do
-  shared_pods
   # Pods for sieum
+  shared_pods
   pod 'FBSDKCoreKit'
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
@@ -34,8 +34,9 @@ target 'sieumTests' do
   inherit! :search_paths
   # Pods for testing
   shared_pods
-  pod 'Quick'
-  pod 'Nimble'
+  pod 'RxTest'
+  pod 'RxBlocking'
+  pod 'FBSDKLoginKit'
 end
 
 target 'sieumUITests' do
@@ -46,4 +47,13 @@ end
 
 target 'SieumWidget' do
   shared_pods
+end
+
+# Disable Code Coverage for Pods projects
+post_install do |installer_representation|
+    installer_representation.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['CLANG_ENABLE_CODE_COVERAGE'] = 'NO'
+        end
+    end
 end

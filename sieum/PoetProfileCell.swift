@@ -97,7 +97,7 @@ class PoetProfileCell: UITableViewCell {
             return
         }
         
-        if let imageUrlString = model.imageURLString, let imageUrl = URL(string: imageUrlString) {
+        if let imageUrlString = model.profileImageURLString, let imageUrl = URL(string: imageUrlString) {
             profileImageView.kf.setImage(with: imageUrl, placeholder: #imageLiteral(resourceName: "profile_default"))
         } else {
             profileImageView.image = #imageLiteral(resourceName: "profile_default")

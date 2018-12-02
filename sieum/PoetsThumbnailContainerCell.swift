@@ -94,17 +94,13 @@ class PoetsCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(_ poet: User) {
-        if let imageUrlString = poet.imageURLString, let imageUrl = URL(string: imageUrlString) {
+        if let imageUrlString = poet.profileImageURLString, let imageUrl = URL(string: imageUrlString) {
             imageView.kf.setImage(with: imageUrl, placeholder: #imageLiteral(resourceName: "profile_default"))
         } else {
             imageView.image = #imageLiteral(resourceName: "profile_default")
         }
         
-        if let name = poet.name {
-            titleLabel.text = name
-        } else {
-            titleLabel.text = nil
-        }
+        titleLabel.text = poet.name
     }
 }
 

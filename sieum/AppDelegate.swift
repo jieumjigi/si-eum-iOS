@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setLogger()
         setAlertView()
         setNotiDelegate()
-        LoginKit.syncUserIDWithFirebaseDB().subscribe().disposed(by: disposeBag)
+        LoginKit().syncUserIDWithFirebaseDB().subscribe().disposed(by: disposeBag)
         
         UNUserNotificationCenter.current()
             .getPendingNotificationRequests(completionHandler: { [weak self] requestList in

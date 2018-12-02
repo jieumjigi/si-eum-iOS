@@ -13,9 +13,9 @@ class Poem: Mappable {
 
     var identifier: Int?
     var reservationDate: Date?
-    var authorID: Int?
+    var authorID: String?
     var title: String?
-    var contents: String?
+    var content: String?
     var question: String?
     var book: String?
     var publisher: String?
@@ -29,7 +29,7 @@ class Poem: Mappable {
         identifier <- map["id"]
         authorID <- map["author"]
         title <- map["title"]
-        contents <- map["contents"]
+        content <- (map["content"], UnescapingNewLineStringTrasnform())
         question <- map["question"]
         book <- map["book"]
         publisher <- map["publisher"]

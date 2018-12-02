@@ -76,7 +76,7 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
             
             self?.lbPoet.text = "\(model.title ?? "") / \(model.authorName ?? "")"
 
-            if let contents = model.contents {
+            if let contents = model.content {
                 let paragraphStyle = NSMutableParagraphStyle()
                 paragraphStyle.lineSpacing = 6
                 paragraphStyle.alignment = .left

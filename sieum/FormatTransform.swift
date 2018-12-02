@@ -16,3 +16,20 @@ final class FirebaseDateFormatterTrasnform: DateFormatterTransform {
     }
 }
 
+final class UnescapingNewLineStringTrasnform: TransformType {
+    typealias Object = String
+    typealias JSON = String
+    
+    init() {}
+    func transformFromJSON(_ value: Any?) -> String? {
+        if let strValue = value as? String {
+            return strValue.replacingOccurrences(of: "\\n", with: "\n")
+        }
+        return value as? String
+    }
+    
+    func transformToJSON(_ value: String?) -> String? {
+        return value
+    }
+}
+

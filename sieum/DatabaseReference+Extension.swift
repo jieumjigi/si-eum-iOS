@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
-extension DatabaseQuery {
+extension DatabaseReference {
     func queryRange(in range: ClosedRange<Int>, childKey: String?) -> DatabaseQuery {
         return queryStarting(atValue: range.lowerBound - 1, childKey: childKey)
             .queryEnding(atValue: range.upperBound, childKey: childKey)

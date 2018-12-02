@@ -24,6 +24,12 @@ enum LoginKitError: Error {
 
 class LoginKit {
     
+    private let databaseService: DatabaseService
+    
+    init(databaseService: DatabaseService = DatabaseService()) {
+        self.databaseService = databaseService
+    }
+    
     static var isLoggedIn: Bool {
         return FBSDKAccessToken.current() != nil
     }
@@ -75,10 +81,12 @@ extension LoginKit {
             }
     }
     
-    static func syncUserIDWithFirebaseDB() -> Observable<Void> {
+    func syncUserIDWithFirebaseDB() -> Observable<Void> {
+        let db = databaseService
+        
         return LoginKit.didProfileChanged()
             .unwrap()
-            .flatMapLatest({ Request.registerUserIfNeeded(profile: $0) })
+            .flatMapLatest{ db.registerUserIfNeeded(profile: $0) }
     }
 }
 
@@ -120,6 +128,10 @@ extension LoginKit {
         guard let userID = FBSDKProfile.current()?.userID else {
             return Observable.just(false)
         }
-        return Request.isPoet(userID: userID)
+        return DatabaseService().isPoet(userID: userID)
+    }
+    
+    static var userID: String? {
+        return FBSDKProfile.current()?.userID
     }
 }

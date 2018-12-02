@@ -10,31 +10,42 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxTheme
-import RxDataSources
 import SHSideMenu
+import Alamofire
 
-class MyPageViewController: UIViewController, SideMenuUsable {
+class MyPageViewController: BaseViewController, SideMenuUsable {
+    
+    fileprivate enum Section: Int, CaseIterable {
+        case user = 0
+        case poem
+    }
     
     private var didUpdateConstraints: Bool = false
     let disposeBag = DisposeBag()
     var sideMenuAction: PublishSubject<SideMenuAction> = PublishSubject<SideMenuAction>()
     
+    private var user: User?
+    private var poems: [Poem]?
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(MyPageProfileTableViewCell.self)
+        tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(MyPageUserTableViewCell.self)
+        tableView.register(MyPagePoemTableViewCell.self)
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.addSubview(tableView)
         makeNavigationBar()
         bind()
-        
         view.setNeedsUpdateConstraints()
+        requestAPIs()
     }
+    
+    // MARK: - UI
     
     override func updateViewConstraints() {
         if !didUpdateConstraints {
@@ -47,7 +58,6 @@ class MyPageViewController: UIViewController, SideMenuUsable {
                 }
             }
         }
-        
         super.updateViewConstraints()
     }
     
@@ -67,26 +77,91 @@ class MyPageViewController: UIViewController, SideMenuUsable {
         }
     }
     
-//    private func requestPoems() {
-//        Request.poems().bind
-//    }
+    // MARk: - Network
+    
+    private func requestAPIs() {
+        requestUser()
+        requestPoems()
+    }
+    
+    private func requestUser() {
+        guard let userID = LoginKit.userID else {
+            return
+        }
+        
+        DatabaseService()
+            .user(id: userID)
+            .subscribe(onNext: { [weak self] userResult in
+                switch userResult {
+                case .success(let user):
+                    self?.user = user
+                case .failure(let error):
+                    print("\(error)")
+                }
+                self?.tableView.reloadData()
+            }).disposed(by: disposeBag)
+    }
+    
+    private func requestPoems() {
+        DatabaseService()
+            .poems()
+            .subscribe(onNext: { [weak self] poemsResult in
+                switch poemsResult {
+                case .success(let poems):
+                    self?.poems = poems
+                case .failure(let error):
+                    print("\(error)")
+                }
+                self?.tableView.reloadData()
+            }).disposed(by: disposeBag)
+    }
 }
 
 extension MyPageViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Section.allCases.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch section {
+        case Section.user.rawValue:
+            return 1
+        case Section.poem.rawValue:
+            return poems?.count ?? 0
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0:
-            let cell = tableView.dequeueReusableCell(for: indexPath) as MyPageProfileTableViewCell
-            cell.configure(profile: LoginKit.profile())
+        case Section.user.rawValue:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as MyPageUserTableViewCell
+            cell.configure(user)
+            return cell
+        case Section.poem.rawValue:
+            let cell = tableView.dequeueReusableCell(for: indexPath) as MyPagePoemTableViewCell
+            if (poems?.count ?? 0) > indexPath.row {
+                cell.configure(poems?[indexPath.row])
+            }
             return cell
         default:
-            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-            cell.textLabel?.text = "test \(indexPath.row)"
-            return cell
+            return UITableViewCell()
+        }
+    }
+}
+
+extension MyPageViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case Section.user.rawValue:
+            return 120
+        default:
+            return UITableView.automaticDimension
         }
     }
 }

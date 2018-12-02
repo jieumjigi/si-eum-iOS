@@ -103,7 +103,7 @@ class PoetsViewController: UIViewController, SideMenuUsable {
             .bind({ $0.backgroundColor }, to: tableView.rx.backgroundColor)
             .disposed(by: disposeBag)
         
-        Request.poets().subscribe(onNext: { [weak self] users in
+        DatabaseService().poets().subscribe(onNext: { [weak self] users in
             self?.updateUsersAndSelectFirst(users: users)
         }).disposed(by: disposeBag)
         
@@ -118,7 +118,7 @@ class PoetsViewController: UIViewController, SideMenuUsable {
             .map { $0?.identifier }
             .unwrappedOptional()
             .flatMap({ userID -> Observable<[Poem]> in
-                return Request.poems(of: userID)
+                return DatabaseService().poems(of: userID)
             }).subscribe(onNext: { [weak self] poems in
                 self?.poems = poems
                 self?.tableView.reloadSections(IndexSet(integer: PoetsSection.poems.rawValue), with: .automatic)
