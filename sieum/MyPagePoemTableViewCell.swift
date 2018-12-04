@@ -39,6 +39,6 @@ class MyPagePoemTableViewCell: UITableViewCell {
     
     func configure(_ model: Poem?) {
         textLabel?.text = model?.title
-        detailTextLabel?.text = model?.content
+        detailTextLabel?.text = (model?.publishedDate?.toString(components: [.date]) ?? "") + " " + (model?.content ?? "")
     }
 }

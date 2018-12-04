@@ -34,7 +34,7 @@ class Poem: Mappable {
         book <- map["book"]
         publisher <- map["publisher"]
 
-        reservationDate <- (map["reservation_date"], FirebaseDateFormatterTrasnform())
-        publishedDate <- (map["published_date"], FirebaseDateFormatterTrasnform())
+        reservationDate <- (map["register_date"], FirebaseDateFormatterTrasnform(components: [.date, .time]))
+        publishedDate <- (map["reservation_date"], FirebaseDateFormatterTrasnform(components: [.date]))
     }
 }

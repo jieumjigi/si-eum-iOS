@@ -10,9 +10,8 @@ import Foundation
 import ObjectMapper
 
 final class FirebaseDateFormatterTrasnform: DateFormatterTransform {
-    
-    init() {
-        super.init(dateFormatter: DateFormatter(withFormat: "yyyy-MM-dd HH:mm:ss", locale: "ko-KR"))
+    init(components: Set<KRDateFormatter.Component> = Set<KRDateFormatter.Component>(KRDateFormatter.Component.allCases)) {
+        super.init(dateFormatter: KRDateFormatter(components: components))
     }
 }
 

@@ -33,16 +33,28 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
         tableView.dataSource = self
         tableView.register(MyPageUserTableViewCell.self)
         tableView.register(MyPagePoemTableViewCell.self)
+        tableView.tableFooterView = UIView()
         return tableView
+    }()
+    
+    private lazy var writingButton: UIButton = {
+        let writingButton = UIButton(for: .write) { [weak self] in
+            self?.present(UINavigationController(rootViewController: WriteViewController()), animated: true)
+        }
+        writingButton.tintColor = .white
+        writingButton.backgroundColor = #colorLiteral(red: 0.1697136164, green: 0.1262311339, blue: 0.05355303735, alpha: 1)
+        writingButton.layer.cornerRadius = 25
+        return writingButton
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        view.addSubview(writingButton)
         makeNavigationBar()
         bind()
-        view.setNeedsUpdateConstraints()
         requestAPIs()
+        view.setNeedsUpdateConstraints()
     }
     
     // MARK: - UI
@@ -51,14 +63,31 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
         if !didUpdateConstraints {
             didUpdateConstraints = true
             tableView.snp.makeConstraints { make in
+                make.edges.equalTo(view.snp.edges)
+            }
+            
+            writingButton.snp.makeConstraints { make in
+                make.width.height.equalTo(50)
                 if #available(iOS 11.0, *) {
-                    make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
+                    make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-15)
+                    make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-15)
                 } else {
-                    make.edges.equalTo(view.snp.edges)
+                    make.trailing.equalTo(view.snp.trailing).offset(15)
+                    make.bottom.equalTo(view.snp.bottom).offset(15)
                 }
             }
         }
         super.updateViewConstraints()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        if #available(iOS 11.0, *) {
+            let safeInsets = UIEdgeInsets(top: 0, left: 0, bottom: view.safeAreaInsets.bottom, right: 0)
+            tableView.contentInset = safeInsets
+            tableView.scrollIndicatorInsets = safeInsets
+        }
     }
     
     private func bind() {
@@ -71,9 +100,6 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
         navigationController?.makeClearBar()
         navigationItem.leftBarButtonItem = UIBarButtonItem(for: .menu) { [weak self] in
             self?.sideMenuAction.onNext(.open)
-        }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(for: .write) { [weak self] in
-            self?.present(UINavigationController(rootViewController: WriteViewController()), animated: true)
         }
     }
     

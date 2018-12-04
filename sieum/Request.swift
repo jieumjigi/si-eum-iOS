@@ -14,6 +14,7 @@ import FBSDKLoginKit
 
 enum APIError: Error {
     case emptyResponse
+    case invalidRequestParameter
 }
 
 class DatabaseService {
@@ -149,5 +150,27 @@ extension DatabaseService {
             .removeValue { error, databaseReference in
                 completion?(error, databaseReference)
             }
+    }
+    
+    func uploadPoem(model: PoemWriteModel, userID: String, completion: ((Error?, DatabaseReference?) -> Void)? = nil) {
+        
+        guard let title = model.title,
+            let content = model.content,
+            let abbrev = model.abbrev else {
+                return
+        }
+        
+        reference.child("poems")
+            .childByAutoId()
+            .setValue(
+                [
+                    "uid": userID,
+                    "title": title,
+                    "content": content,
+                    "abbrev": abbrev,
+                    "register_date": model.registerDate.toString(components: [.date, .time]),
+                    "reservation_date": model.reservationDate.toString(components: [.date])
+                ]
+            )
     }
 }
