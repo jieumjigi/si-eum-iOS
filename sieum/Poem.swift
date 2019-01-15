@@ -16,7 +16,7 @@ class Poem: Mappable {
     var authorID: String?
     var title: String?
     var content: String?
-    var question: String?
+    var abbrev: String?
     var book: String?
     var publisher: String?
     var publishedDate: Date?
@@ -30,11 +30,11 @@ class Poem: Mappable {
         authorID <- map["author"]
         title <- map["title"]
         content <- (map["content"], UnescapingNewLineStringTrasnform())
-        question <- map["question"]
+        abbrev <- map["abbrev"]
         book <- map["book"]
         publisher <- map["publisher"]
 
         reservationDate <- (map["register_date"], FirebaseDateFormatterTrasnform(components: [.date, .time]))
-        publishedDate <- (map["reservation_date"], FirebaseDateFormatterTrasnform(components: [.date]))
+        publishedDate <- (map["reservation_date"], FirebaseDateFormatterTrasnform(components: [.date,. time]))
     }
 }

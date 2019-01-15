@@ -15,6 +15,7 @@ import FBSDKLoginKit
 enum APIError: Error {
     case emptyResponse
     case invalidRequestParameter
+    case mappingFail
 }
 
 class DatabaseService {
@@ -56,7 +57,10 @@ class DatabaseService {
     }
     
     func poems() -> Observable<Result<[Poem]>> {
-        return reference.child("poems")
+        return reference
+            .child("poems")
+            .queryOrdered(byChild: "reservation_date")
+            .queryLimited(toLast: 10)
             .rx
             .observeSingleEvent(of: .value)
             .map(Mapper<Poem>().mapArray)
@@ -78,38 +82,39 @@ class DatabaseService {
         return Observable.just([]) // TODO
     }
     
-    var todayPoem: Observable<Poem> {
-//        return reference.child("poems")
-//            .queryOrdered(byChild: "reservation_date")
-//            .queryEnding(atValue: Date().today?.formattedText, childKey: "reservation_date")
-//            .queryLimited(toLast: 1)
-//            .rx
-//            .observeSingleEvent(of: .value)
-//            .map(Mapper<Poem>().mapArray)
-//            .map{
-//                if $0.isNotEmpty {
-//                    return $0[0]
-//                }
-//                return nil
-//            }.unwrap()
-        return Observable.just(nil).unwrap() // TODO
+    var todayPoem: Observable<Result<Poem>> {
+        return reference.child("poems")
+            .queryOrdered(byChild: "reservation_date")
+            .queryStarting(atValue: Date.yesterday?.formatted, childKey: "reservation_date")
+            .queryLimited(toFirst: 1)
+            .rx
+            .observeSingleEvent(of: .value)
+            .map(Mapper<Poem>().mapArray)
+            .map {
+                if $0.count > 0 {
+                    return Result.success($0[0])
+                } else {
+                    return Result.failure(APIError.emptyResponse)
+                }
+            }.catchError({ error in
+                Observable.just(Result.failure(error))
+            })
     }
     
     func isPoet(userID: String) -> Observable<Bool> {
-//        return Observable.create { observer in
-//            self.reference.child("users")
-//                .child(userID)
-//                .observeSingleEvent(of: .value, with: { snapshot in
-//                    if let user = User(snapshot: snapshot) {
-//                        observer.onNext(user.level < 9)
-//                    } else {
-//                        observer.onNext(false)
-//                    }
-//                    observer.onCompleted()
-//                })
-//            return Disposables.create()
-//        }
-        return Observable.just(nil).unwrap() // TODO
+        return Observable.create { observer in
+            self.reference.child("users")
+                .child(userID)
+                .observeSingleEvent(of: .value, with: { snapshot in
+                    if let user = User(snapshot: snapshot) {
+                        observer.onNext(user.level < 9)
+                    } else {
+                        observer.onNext(false)
+                    }
+                    observer.onCompleted()
+                })
+            return Disposables.create()
+        }
     }
 }
 
@@ -137,11 +142,18 @@ extension DatabaseService {
     func register(profile: FBSDKProfile, completion: ((Error?, DatabaseReference) -> Void)? = nil) {
         reference.child("users")
             .child(profile.userID)
-            .setValue(["name": profile.name,
-                       "level": Constants.defulatUserLevel,
-                       "profile_img": profile.imageURL(for: .normal, size: CGSize(width: 100, height: 100)).absoluteString]) { error, databaseReference in
-                        completion?(error, databaseReference)
-        }
+            .setValue(
+                [
+                    "name": profile.name,
+                    "level": Constants.defulatUserLevel,
+                    "profile_img": profile.imageURL(
+                        for: .normal,
+                        size: CGSize(width: 100, height: 100)
+                        ).absoluteString
+                ],
+                withCompletionBlock: { error, databaseReference in
+                    completion?(error, databaseReference)
+            })
     }
     
     func unregister(userID: String, completion: ((Error?, DatabaseReference) -> Void)? = nil) {
@@ -152,7 +164,7 @@ extension DatabaseService {
             }
     }
     
-    func uploadPoem(model: PoemWriteModel, userID: String, completion: ((Error?, DatabaseReference?) -> Void)? = nil) {
+    func uploadPoem(model: PoemWriteModel, userID: String, completion: @escaping (Error?, DatabaseReference?) -> Void) {
         
         guard let title = model.title,
             let content = model.content,
@@ -170,7 +182,7 @@ extension DatabaseService {
                     "abbrev": abbrev,
                     "register_date": model.registerDate.toString(components: [.date, .time]),
                     "reservation_date": model.reservationDate.toString(components: [.date])
-                ]
-            )
+                ],
+                withCompletionBlock: completion)
     }
 }

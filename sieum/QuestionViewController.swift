@@ -23,23 +23,25 @@ class QuestionViewController: UIViewController, PageViewModelUsable {
     }
     
     private func bind() {
-        
         view.backgroundColor = themeService.theme.associatedObject.backgroundColor
         
         themeService.rx
             .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
             .disposed(by: disposeBag)
-        
+    }
+    
+    func bind(_ viewModel: PageViewModel) {
         pageViewModel?.poem.subscribe(onNext: { [weak self] model in
             guard let model = model else {
                 return
             }
+            self?.loadViewIfNeeded()
             self?.configure(model: model)
         }).disposed(by: disposeBag)
     }
     
     func configure(model: PoemPageModel){
-        guard let question = model.question else {
+        guard let abbrev = model.abbrev else {
             return
         }
         
@@ -47,7 +49,7 @@ class QuestionViewController: UIViewController, PageViewModelUsable {
         paragraphStyle.lineSpacing = 6
         paragraphStyle.alignment = .center
         
-        let attrString = NSMutableAttributedString(string: question)
+        let attrString = NSMutableAttributedString(string: abbrev)
         attrString.addAttribute(.paragraphStyle, value:paragraphStyle, range: NSMakeRange(0, attrString.length))
         questionLabel.attributedText = attrString
     }

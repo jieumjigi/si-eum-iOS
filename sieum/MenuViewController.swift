@@ -40,7 +40,7 @@ class MenuViewController: UIViewController, ContentViewChangable {
                 return
             }
             strongSelf.menuHeaderPopup.present(for: strongSelf, onEditorHandler: { [weak self] in
-                self?.viewTransition.onNext(UINavigationController(rootViewController: MyPageViewController()))
+//                self?.viewTransition.onNext(UINavigationController(rootViewController: MyPageViewController()))
             })
         }
         return headerView
@@ -74,7 +74,11 @@ class MenuViewController: UIViewController, ContentViewChangable {
             didUpdateViewConstraints = true
             
             tableView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
+                if #available(iOS 11.0, *) {
+                    make.edges.equalTo(view.safeAreaLayoutGuide)
+                } else {
+                    make.edges.equalToSuperview()
+                }
             }
             
             versionLabel.snp.makeConstraints { make in
@@ -110,10 +114,13 @@ class MenuViewController: UIViewController, ContentViewChangable {
         
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
             self?.tableView.deselectRow(at: indexPath, animated: true)
-            guard let menu = Menu(rawValue: indexPath.row) else {
+            guard let strongSelf = self,
+                let menu = Menu(rawValue: indexPath.row) else {
                 return
             }
             switch menu {
+            case .write:
+                self?.viewTransition.onNext(UINavigationController(rootViewController: MyPageViewController()))
             case .today:
                 let viewController = UINavigationController(rootViewController: PageViewController())
                 self?.viewTransition.onNext(viewController)
@@ -123,6 +130,11 @@ class MenuViewController: UIViewController, ContentViewChangable {
             case .setting:
                 let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController")
                 self?.viewTransition.onNext(UINavigationController(rootViewController: viewController))
+            case .logout:
+                strongSelf.present(
+                    MenuHeaderPopup.makeLogoutPopup(for: strongSelf),
+                    animated: true
+                )
             }
         }).disposed(by: disposeBag)
         

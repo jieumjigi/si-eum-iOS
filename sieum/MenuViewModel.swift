@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 import RxDataSources
 
 struct MenuSection: SectionModelType {
@@ -15,8 +16,8 @@ struct MenuSection: SectionModelType {
 
     var items: [Menu]
     
-    init() {
-        items = Menu.allCases
+    init(items: [Menu] = Menu.allCases) {
+        self.items = items
     }
     
     init(original: MenuSection, items: [Menu]) {
@@ -26,21 +27,52 @@ struct MenuSection: SectionModelType {
 }
 
 enum Menu: Int, CaseIterable {
-    case today = 0
+    case write = 0
+    case today
     case past
     case setting
+    case logout
     
     var title: String {
         switch self {
+        case .write: return "글쓰기"
         case .today: return "오늘의 시"
         case .past: return "지나간 시"
         case .setting: return "설정"
+        case .logout: return "로그아웃"
         }
     }
 }
 
 class MenuViewModel {
-    var sections: Observable<[MenuSection]> {
-        return Observable.just([MenuSection()])
+    
+    let disposeBag = DisposeBag()
+    let sections: Observable<[MenuSection]>
+    private let sectionRelay: PublishRelay<[MenuSection]>
+
+    init() {
+        sectionRelay = PublishRelay<[MenuSection]>()
+        sections = sectionRelay.asObservable().startWith([MenuSection()])
+
+        LoginKit
+            .didProfileChanged()
+            .flatMapLatest { profile in
+                return LoginKit
+                    .isPoet()
+                    .map { isPoet in
+                        return (profile, isPoet)
+                }
+            }
+            .subscribe(onNext: { [weak self] profile, isPoet in
+                var menus: [Menu] = []
+                if isPoet {
+                    menus.append(.write)
+                }
+                menus.append(contentsOf: [.today, .past, .setting])
+                if profile != nil {
+                    menus.append(.logout)
+                }
+                self?.sectionRelay.accept([MenuSection(items: menus)])
+            }).disposed(by: disposeBag)
     }
 }

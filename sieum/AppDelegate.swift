@@ -15,6 +15,7 @@ import PopupDialog
 import RxSwift
 import SwiftyBeaver
 import SHSideMenu
+import Toaster
 
 let log = SwiftyBeaver.self
 
@@ -39,6 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setAlertView()
         setNotiDelegate()
         LoginKit().syncUserIDWithFirebaseDB().subscribe().disposed(by: disposeBag)
+        
+//        ToastView.appearance().backgroundColor = .clear
+//        ToastView.appearance().tintColor = .black
+//        ToastView.appearance().font = .mainFont(ofSize: .small)
         
         UNUserNotificationCenter.current()
             .getPendingNotificationRequests(completionHandler: { [weak self] requestList in

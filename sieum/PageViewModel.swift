@@ -13,8 +13,8 @@ import SwiftyJSON
 
 class PageViewModel {
     
-    private lazy var poemSubject: BehaviorSubject<PoemPageModel?> = BehaviorSubject<PoemPageModel?>(value: nil)
-    lazy var poem: Observable<PoemPageModel?> = poemSubject.asObserver()
+    private lazy var poemSubject: PublishSubject<PoemPageModel?> = PublishSubject<PoemPageModel?>()
+    lazy var poem: Observable<PoemPageModel?> = poemSubject.asObservable()
     
     let disposeBag = DisposeBag()
     
@@ -23,18 +23,13 @@ class PageViewModel {
     }
     
     func loadToadyPoem(){
-// TODO
-//        Request.todayPoem.flatMapLatest { poem -> Observable<(Poem, User)> in
-//            if let authorID = poem.authorID {
-//                return Request.user(id: authorID).map { (poem, $0) }
-//            }
-//            return Observable.empty()
-//            }.map { poem, user -> PoemPageModel in
-//                PoemPageModel(poem: poem, user: user)
-//            }.subscribe(onNext: { [weak self] poemPageModel in
-//                self?.poemSubject.onNext(poemPageModel)
-//                }, onError: { error in
-//                    print("error: \(error)")
-//            }).disposed(by: disposeBag)
+        DatabaseService().todayPoem.subscribe(onNext: { [weak self] result in
+            switch result {
+            case .success(let response):
+                self?.poemSubject.onNext(PoemPageModel(poem: response, user: nil))
+            case .failure(let error):
+                break
+            }
+        }).disposed(by: disposeBag)
     }
 }

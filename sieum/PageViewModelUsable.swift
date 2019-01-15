@@ -10,4 +10,5 @@ import Foundation
 
 protocol PageViewModelUsable {
     var pageViewModel: PageViewModel? { get set }
+    func bind(_ viewModel: PageViewModel)
 }

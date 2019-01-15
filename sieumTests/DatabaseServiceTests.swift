@@ -15,23 +15,29 @@ import RxBlocking
 @testable import FirebaseDatabase
 
 class DatabaseServiceTests: XCTestCase {
+    private var databaseService: DatabaseService!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        databaseService = DatabaseService()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testRegisterUser() {
+    func testRegisterUserID() {
+        let userID = "000000000000000"
+        let result = try! databaseService.user(id: userID)
+            .toBlocking()
+            .first()!
         
+        XCTAssertTrue(result.isSuccess)
+        XCTAssertTrue(result.value??.identifier == userID)
     }
 
     func testRequestUser_wrongID() {
-        DatabaseService(reference: DatabaseReference())
         
-        let result: Result<User?> = try! Request.user(id: "1232131232")
+        let result: Result<User?> = try! databaseService.user(id: "1232131232")
             .toBlocking()
             .toArray()
             .first!
@@ -41,13 +47,30 @@ class DatabaseServiceTests: XCTestCase {
     
     func testRequestUser_registeredID() {
         // when
-        let result = try! Request.user(id: "000000000000000")
+        let result = try! databaseService.user(id: "000000000000000")
             .toBlocking()
             .first()!
         
         // then
         XCTAssertTrue(result.isSuccess)
-        XCTAssertTrue(result.value??.level == 9)
-        XCTAssertTrue(result.value??.name == "name")
+    }
+    
+    func testIsPoet() {
+        let isNotPoet = try! databaseService.isPoet(userID: "000000000000000")
+            .toBlocking()
+            .first()!
+        
+        XCTAssertFalse(isNotPoet)
+        
+        let notExistUser = try! databaseService.isPoet(userID: "000000000000001")
+            .toBlocking()
+            .first()!
+        
+        XCTAssertFalse(notExistUser)
+    }
+    
+    func testTodayPoem() {
+        let todayPoem = try! databaseService.todayPoem.toBlocking().first()
+        XCTAssertTrue(todayPoem?.isSuccess ?? false)
     }
 }

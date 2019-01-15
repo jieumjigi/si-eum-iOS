@@ -248,7 +248,7 @@ class PoemCardCell: UICollectionViewCell {
     func configure(_ poem: Poem) {
 //        dateLabel.text = poem.reservationDate
         titleLabel.text = poem.title
-        questionLabel.text = poem.question
+        questionLabel.text = poem.abbrev
     }
 }
 

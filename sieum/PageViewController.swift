@@ -29,6 +29,7 @@ class PageViewController: UIPageViewController, SideMenuUsable {
         
         if var pageViewModelUsable = viewController as? PageViewModelUsable {
             pageViewModelUsable.pageViewModel = pageViewModel
+            pageViewModelUsable.bind(pageViewModel)
         }
         
         return viewController

@@ -13,20 +13,15 @@ import RxSwift
 
 class PoetViewController: UIViewController, PageViewModelUsable {
     
-    var pageViewModel: PageViewModel?
-    let disposeBag: DisposeBag = DisposeBag()
-    
     @IBOutlet weak var profileImage: UIImageView!
-    
     @IBOutlet weak var lbPoet: UILabel!
     @IBOutlet weak var lbIntroPoet: UILabel!
     @IBOutlet weak var poetLinkButton: UIButton!
     
+    let disposeBag: DisposeBag = DisposeBag()
+    var pageViewModel: PageViewModel?
     var linkToBook = ""
-    
     var accessDate : String?
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +37,14 @@ class PoetViewController: UIViewController, PageViewModelUsable {
         themeService.rx
             .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
             .disposed(by: disposeBag)
-        
+    }
+    
+    func bind(_ viewModel: PageViewModel) {
         pageViewModel?.poem.subscribe(onNext: { [weak self] model in
             guard let model = model else {
                 return
             }
+            self?.loadViewIfNeeded()
             self?.configure(model: model)
         }).disposed(by: disposeBag)
     }

@@ -27,6 +27,8 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     private var user: User?
     private var poems: [Poem]?
     
+    private lazy var refreshControl: UIRefreshControl = UIRefreshControl()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -34,6 +36,7 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
         tableView.register(MyPageUserTableViewCell.self)
         tableView.register(MyPagePoemTableViewCell.self)
         tableView.tableFooterView = UIView()
+        tableView.refreshControl = refreshControl
         return tableView
     }()
     
@@ -52,6 +55,12 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
         view.addSubview(tableView)
         view.addSubview(writingButton)
         makeNavigationBar()
+        refreshControl.addTarget(for: .valueChanged) { [weak self] in
+            guard let strongSelf = self, strongSelf.tableView.contentOffset.y < 0 else {
+                return
+            }
+            strongSelf.requestAPIs()
+        }
         bind()
         requestAPIs()
         view.setNeedsUpdateConstraints()
@@ -60,7 +69,7 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     // MARK: - UI
     
     override func updateViewConstraints() {
-        if !didUpdateConstraints {
+        if didUpdateConstraints == false {
             didUpdateConstraints = true
             tableView.snp.makeConstraints { make in
                 make.edges.equalTo(view.snp.edges)
@@ -78,16 +87,6 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
             }
         }
         super.updateViewConstraints()
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        if #available(iOS 11.0, *) {
-            let safeInsets = UIEdgeInsets(top: 0, left: 0, bottom: view.safeAreaInsets.bottom, right: 0)
-            tableView.contentInset = safeInsets
-            tableView.scrollIndicatorInsets = safeInsets
-        }
     }
     
     private func bind() {
@@ -134,11 +133,17 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
             .subscribe(onNext: { [weak self] poemsResult in
                 switch poemsResult {
                 case .success(let poems):
-                    self?.poems = poems
+                    self?.poems = poems.sorted(by: {
+                        guard let firstDate = $0.reservationDate, let secondDate = $1.reservationDate else {
+                            return false
+                        }
+                        return firstDate > secondDate
+                    })
                 case .failure(let error):
                     print("\(error)")
                 }
                 self?.tableView.reloadData()
+                self?.refreshControl.endRefreshing()
             }).disposed(by: disposeBag)
     }
 }

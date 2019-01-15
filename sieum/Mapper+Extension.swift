@@ -22,7 +22,7 @@ extension BaseMappable {
             return nil
         }
         json[Self.firebaseIdKey] = snapshot.key as Any
-        
+
         self.init(JSON: json)
     }
 }

@@ -89,8 +89,6 @@
 		C1A7698B1E48998100B5E216 /* sieumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A7698A1E48998100B5E216 /* sieumTests.swift */; };
 		C1A769961E48998100B5E216 /* sieumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769951E48998100B5E216 /* sieumUITests.swift */; };
 		C1A769A91E48C45400B5E216 /* IropkeBatangM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */; };
-		C1BCA6B421B3C9B1001B6B9F /* DatabaseReferenceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCA6B321B3C9B1001B6B9F /* DatabaseReferenceStub.swift */; };
-		C1BCA6B721B3C9FD001B6B9F /* DatabaseReferenceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCA6B621B3C9FD001B6B9F /* DatabaseReferenceProtocol.swift */; };
 		C1BCA6B921B3CFE1001B6B9F /* MyPageUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCA6B821B3CFE1001B6B9F /* MyPageUserTableViewCell.swift */; };
 		C1BCA6BB21B3D3BF001B6B9F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCA6BA21B3D3BF001B6B9F /* BaseViewController.swift */; };
 		C1BCA6BD21B3F2EC001B6B9F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCA6BC21B3F2EC001B6B9F /* Date+Extension.swift */; };
@@ -260,8 +258,6 @@
 		C1A769951E48998100B5E216 /* sieumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sieumUITests.swift; sourceTree = "<group>"; };
 		C1A769971E48998100B5E216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IropkeBatangM.otf; sourceTree = "<group>"; };
-		C1BCA6B321B3C9B1001B6B9F /* DatabaseReferenceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseReferenceStub.swift; sourceTree = "<group>"; };
-		C1BCA6B621B3C9FD001B6B9F /* DatabaseReferenceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseReferenceProtocol.swift; sourceTree = "<group>"; };
 		C1BCA6B821B3CFE1001B6B9F /* MyPageUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageUserTableViewCell.swift; sourceTree = "<group>"; };
 		C1BCA6BA21B3D3BF001B6B9F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C1BCA6BC21B3F2EC001B6B9F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -395,7 +391,6 @@
 		C14A0436212C3D2D00292D42 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				C1BCA6B521B3C9EE001B6B9F /* Protocols */,
 				C14A0437212C3D3600292D42 /* Request.swift */,
 				C14A0439212C578600292D42 /* User.swift */,
 				C14A0443212EB34600292D42 /* Poem.swift */,
@@ -541,7 +536,6 @@
 		C1A769891E48998100B5E216 /* sieumTests */ = {
 			isa = PBXGroup;
 			children = (
-				C1BCA6B221B3C904001B6B9F /* Stubs */,
 				C1A7698A1E48998100B5E216 /* sieumTests.swift */,
 				C1A7698C1E48998100B5E216 /* Info.plist */,
 				C1FA0FF4211B32640066A22C /* EmptiableTests.swift */,
@@ -604,22 +598,6 @@
 				C14A0447212F9B2A00292D42 /* WriteViewController.swift */,
 			);
 			name = MyPage;
-			sourceTree = "<group>";
-		};
-		C1BCA6B221B3C904001B6B9F /* Stubs */ = {
-			isa = PBXGroup;
-			children = (
-				C1BCA6B321B3C9B1001B6B9F /* DatabaseReferenceStub.swift */,
-			);
-			path = Stubs;
-			sourceTree = "<group>";
-		};
-		C1BCA6B521B3C9EE001B6B9F /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				C1BCA6B621B3C9FD001B6B9F /* DatabaseReferenceProtocol.swift */,
-			);
-			name = Protocols;
 			sourceTree = "<group>";
 		};
 		C1FA10062123043E0066A22C /* Poets */ = {
@@ -1105,6 +1083,7 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
+				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -1134,6 +1113,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -1199,7 +1179,6 @@
 				C14A0432212AF1F000292D42 /* MyPageViewController.swift in Sources */,
 				C14A0440212C6F1000292D42 /* DatabaseReference+Extension.swift in Sources */,
 				C14A043E212C6B8800292D42 /* DatabaseReference+Rx.swift in Sources */,
-				C1BCA6B721B3C9FD001B6B9F /* DatabaseReferenceProtocol.swift in Sources */,
 				C1A769781E48998100B5E216 /* PoemViewController.swift in Sources */,
 				C14A0430212AF07900292D42 /* Bundle+Extension.swift in Sources */,
 				C17F52291E5DA79E006AD57A /* PoetViewController.swift in Sources */,
@@ -1239,7 +1218,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1BCA6B421B3C9B1001B6B9F /* DatabaseReferenceStub.swift in Sources */,
 				C151C6DA21B165D7001A2808 /* DatabaseServiceTests.swift in Sources */,
 				C1A7698B1E48998100B5E216 /* sieumTests.swift in Sources */,
 				C1FA0FF5211B32640066A22C /* EmptiableTests.swift in Sources */,

@@ -11,6 +11,7 @@ import RxSwift
 import RxTheme
 import UIKit
 import Eureka
+import Toaster
 
 struct PoemWriteModel {
     var registerDate: Date
@@ -21,6 +22,19 @@ struct PoemWriteModel {
     
     var isUploadable: Bool {
         return title != nil && content != nil && abbrev != nil
+    }
+    
+    var unableUploadMessageIfNeeded: String? {
+        if title == nil {
+            return "제목을 적어주세요"
+        }
+        if abbrev == nil {
+            return "한마디를 적어주세요"
+        }
+        if content == nil {
+            return "본문을 적어주세요"
+        }
+        return nil
     }
 }
 
@@ -36,6 +50,13 @@ class WriteViewController: FormViewController {
         content: nil,
         abbrev: nil
     )
+    
+    private lazy var confirmBarButtonItem = UIBarButtonItem(title: "확인", style: .done, target: self, action: #selector(onDoneButton))
+    private lazy var loadingBarItem: UIBarButtonItem = {
+        let loadingIndicator = UIActivityIndicatorView(style: .gray)
+        loadingIndicator.startAnimating()
+        return UIBarButtonItem(customView: loadingIndicator)
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +75,7 @@ class WriteViewController: FormViewController {
             }
             .onChange({ [weak self] in
                 if let date = $0.value {
-                    self?.poemWriteModel.registerDate = date
+                    self?.poemWriteModel.reservationDate = date
                 }
             })
             +++ Section("시")
@@ -107,7 +128,7 @@ class WriteViewController: FormViewController {
     private func makeNavigationBar() {
         title = "시 쓰기"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(onCancelButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인", style: .done, target: self, action: #selector(onDoneButton))
+        navigationItem.rightBarButtonItem = confirmBarButtonItem
     }
     
     @objc
@@ -117,17 +138,36 @@ class WriteViewController: FormViewController {
     
     @objc
     private func onDoneButton() {
-        guard poemWriteModel.isUploadable, let userID = LoginKit.userID else {
+        guard let userID = LoginKit.userID else {
+            Toast(text: "로그인 오류입니다. 다시 로그인 하거나, 앱을 재실행 해주세요.").show()
+            dismiss(animated: true)
             return
         }
+        
+        guard poemWriteModel.isUploadable else {
+            Toast(text: poemWriteModel.unableUploadMessageIfNeeded).show()
+            return
+        }
+        
+        updateRightBarButtonItem(uploading: true)
         poemWriteModel.registerDate = Date()
         DatabaseService().uploadPoem(
             model: poemWriteModel,
             userID: userID,
-            completion: { error, response in
-                if error == nil {
-                    print("업로드 성공")
+            completion: { [weak self] error, response in
+                self?.updateRightBarButtonItem(uploading: false)
+
+                guard error == nil else {
+                    Toast(text: "시를 등록하는데 실패했습니다").show()
+                    return
                 }
+                
+                Toast(text: "시를 성공적으로 등록했습니다").show()
+                self?.dismiss(animated: true)
         })
+    }
+    
+    private func updateRightBarButtonItem(uploading: Bool) {
+        navigationItem.rightBarButtonItem = uploading ? loadingBarItem : confirmBarButtonItem
     }
 }

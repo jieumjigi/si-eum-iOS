@@ -43,7 +43,7 @@ class MenuHeaderPopup {
         return popup
     }
     
-    private func makeLogoutPopup(for viewController: UIViewController) -> PopupDialog {
+    static func makeLogoutPopup(for viewController: UIViewController) -> PopupDialog {
         let popup = PopupDialog(title: "로그아웃", message: "로그아웃 하시겠습니까?", buttonAlignment: .horizontal, transitionStyle: .fadeIn)
         popup.addButton(DefaultButton(title: "확인") {
             LoginKit.logout()

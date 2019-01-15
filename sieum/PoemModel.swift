@@ -17,22 +17,23 @@ struct PoemPageModel {
     var title: String?
     var authorName: String?
     var content: String?
-    var question: String?
+    var abbrev: String?
     
     var introduction: String?
     var imageURLString: String?
     var snsURLString: String?
     
-    init(poem: Poem, user: User) {
+    init(poem: Poem, user: User?) {
         poemID = poem.identifier
         reservationDate = poem.reservationDate
         title = poem.title
-        authorName = user.name
         content = poem.content
-        question = poem.question
-        introduction = user.introduce
-        imageURLString = user.profileImageURLString
-        snsURLString = user.snsURLString
+        abbrev = poem.abbrev
+        
+        authorName = user?.name
+        introduction = user?.introduce
+        imageURLString = user?.profileImageURLString
+        snsURLString = user?.snsURLString
     }
 }
 
