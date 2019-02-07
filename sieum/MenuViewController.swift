@@ -19,29 +19,31 @@ class MenuViewController: UIViewController, ContentViewChangable {
     
     private let viewModel: MenuViewModel = MenuViewModel()
     private let disposeBag: DisposeBag = DisposeBag()
-    private lazy var menuHeaderPopup = MenuHeaderPopup()
+    private let loginService: LoginService = LoginService()
     
     private lazy var didUpdateViewConstraints: Bool = false
     
     var dataSource: RxTableViewSectionedReloadDataSource<MenuSection>?
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView: UITableView = UITableView()
         tableView.tableHeaderView = headerView
-        tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: MenuTableViewCell.reuseIdentifier)
+        tableView.register(MenuTableViewCell.self)
         tableView.separatorInset = .zero
         return tableView
     }()
     
     private lazy var headerView: MenuHeaderView = {
-        let headerView = MenuHeaderView()
-        headerView.onTouch { [weak self] in
-            guard let strongSelf = self else {
-                return
+        let headerView: MenuHeaderView = MenuHeaderView()
+        headerView.onTouchImage { [weak self] in
+            print("isLoggedIn: \(LoginService.isLoggedIn)")
+            if LoginService.isLoggedIn {
+                
+            } else {
+                LoginService.loginViewController.flatMap {
+                    self?.view.superview?.parentViewController?.present($0, animated: true)
+                }
             }
-            strongSelf.menuHeaderPopup.present(for: strongSelf, onEditorHandler: { [weak self] in
-//                self?.viewTransition.onNext(UINavigationController(rootViewController: MyPageViewController()))
-            })
         }
         return headerView
     }()
@@ -49,6 +51,9 @@ class MenuViewController: UIViewController, ContentViewChangable {
     private lazy var versionLabel: UILabel = {
         let versionLabel = UILabel()
         versionLabel.font = UIFont.mainFont(ofSize: .small)
+        if let version = Bundle.version {
+            versionLabel.text = "ver \(version)"
+        }
         return versionLabel
     }()
     
@@ -57,20 +62,13 @@ class MenuViewController: UIViewController, ContentViewChangable {
         
         view.addSubview(tableView)
         view.addSubview(versionLabel)
+        setImageListenerForHeaderView()
         bind()
         view.setNeedsUpdateConstraints()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let version = Bundle.version {
-            versionLabel.text = "ver \(version)"
-        }
-    }
-    
     override func updateViewConstraints() {
-        if !didUpdateViewConstraints {
+        if didUpdateViewConstraints == false {
             didUpdateViewConstraints = true
             
             tableView.snp.makeConstraints { make in
@@ -89,9 +87,8 @@ class MenuViewController: UIViewController, ContentViewChangable {
                     make.bottom.equalToSuperview().inset(10)
                 }
             }
-            
-            super.updateViewConstraints()
         }
+        super.updateViewConstraints()
     }
     
     private func bind() {
@@ -131,10 +128,17 @@ class MenuViewController: UIViewController, ContentViewChangable {
                 let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController")
                 self?.viewTransition.onNext(UINavigationController(rootViewController: viewController))
             case .logout:
-                strongSelf.present(
-                    MenuHeaderPopup.makeLogoutPopup(for: strongSelf),
-                    animated: true
+                let logoutPopUp = MenuHeaderPopup.makePopUp(
+                    title: "로그아웃",
+                    message: "로그아웃 하시겠습니까?",
+                    actions: [
+                        PopUpAction(title: "확인", style: .default) { [weak self] in
+                            self?.loginService.logout()
+                        },
+                        PopUpAction(title: "취소", style: .cancel)
+                    ]
                 )
+                strongSelf.present(logoutPopUp, animated: true)
             }
         }).disposed(by: disposeBag)
         
@@ -144,6 +148,12 @@ class MenuViewController: UIViewController, ContentViewChangable {
         
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
+    }
+    
+    private func setImageListenerForHeaderView() {
+        loginService.didChangeUser { [weak self] authUser in
+            self?.headerView.setProfileImage(authUser?.imageURL)
+        }
     }
 }
 

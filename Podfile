@@ -25,6 +25,7 @@ end
 target 'sieum' do
   # Pods for sieum
   shared_pods
+  pod 'FirebaseUI'
   pod 'FBSDKCoreKit'
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'

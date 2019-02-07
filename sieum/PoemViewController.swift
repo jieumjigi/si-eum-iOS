@@ -144,16 +144,10 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
             return
         }
         
-        let poemImage = self.getPoemImage()
+        let poemImage = getPoemImage()
         
         KLKImageStorage().upload(with: poemImage, success: { (original) in
-            
             let imageUrl = original.url
-            
-            log.verbose("imageUrl: \(imageUrl)")
-            
-            
-            // Feed 타입 템플릿 오브젝트 생성
             let template = KLKFeedTemplate.init { (feedTemplateBuilder) in
                 
                 // 컨텐츠
@@ -180,8 +174,6 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
                     contentBuilder.imageWidth = poemImage.size.width as NSNumber
                     contentBuilder.imageHeight = poemImage.size.height as NSNumber
                     contentBuilder.link = KLKLinkObject.init(builderBlock: { (linkBuilder) in
-                        //                        linkBuilder.mobileWebURL = URL.init(string: "https://itunes.apple.com/app/id1209933766")
-                        
                         linkBuilder.iosExecutionParams = "param1=value1&param2=value2"
                         linkBuilder.androidExecutionParams = "param1=value1&param2=value2"
                         linkBuilder.mobileWebURL = imageUrl
@@ -192,7 +184,6 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
                 feedTemplateBuilder.addButton(KLKButtonObject.init(builderBlock: { (buttonBuilder) in
                     buttonBuilder.title = "웹으로 보기"
                     buttonBuilder.link = KLKLinkObject.init(builderBlock: { (linkBuilder) in
-                        //                        linkBuilder.mobileWebURL = URL.init(string: "https://developers.kakao.com")
                         linkBuilder.mobileWebURL = imageUrl
                     })
                 }))
@@ -209,7 +200,6 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
             KLKTalkLinkCenter.shared().sendDefault(with: template, success: { _, _ in
                 
             }, failure: { error in
-                print("error \(error)")
                 self.showSimpleAlert(title: "문제가 발생하여 공유하지 못했습니다", message: nil, buttonTitle: "확인")
             })
         }) { error in
@@ -226,7 +216,7 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
             dialog.mode = .native
             dialog.shareContent = makeNaviteFacebookPhotoContent()
             dialog.show()
-        }else{
+        } else {
             dialog.mode = .browser
             makeWebFacebookPhotoContent(completion: { (content) in
                 dialog.shareContent = content
@@ -235,8 +225,8 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
         }
     }
     
-    fileprivate func makeWebFacebookPhotoContent(completion: @escaping(_ content: FBSDKShareLinkContent) -> Void) {
-        let poemImage = self.getPoemImage()
+    private func makeWebFacebookPhotoContent(completion: @escaping(_ content: FBSDKShareLinkContent) -> Void) {
+        let poemImage = getPoemImage()
         KLKImageStorage().upload(with: poemImage, success: { (original) in
             let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
             content.contentURL = original.url
@@ -244,9 +234,9 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
         })
     }
     
-    fileprivate func makeNaviteFacebookPhotoContent() -> FBSDKSharePhotoContent {
+    private func makeNaviteFacebookPhotoContent() -> FBSDKSharePhotoContent {
         let photo = FBSDKSharePhoto.init()
-        photo.image = self.getPoemImage()
+        photo.image = getPoemImage()
         photo.isUserGenerated = true
         let content = FBSDKSharePhotoContent.init()
         content.photos = [photo]
@@ -255,7 +245,7 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
         return content
     }
     
-    fileprivate func existFacebookApp() -> Bool {
+    private func existFacebookApp() -> Bool {
         if let facebookAppUrl = URL.init(string: "fb://"),
             UIApplication.shared.canOpenURL(facebookAppUrl) {
             return true
@@ -264,7 +254,7 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
         }
     }
     
-    func getPoemImage() -> UIImage{
+    private func getPoemImage() -> UIImage{
         let tempViewRect = self.view.frame
         let adjustedHeight = self.scrollView.contentSize.height + 150
         self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: adjustedHeight)

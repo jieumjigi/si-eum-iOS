@@ -13,21 +13,9 @@ import UserNotifications
 
 class FloatingMenuViewController: UIViewController {
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        log.verbose("menu viewDidAppear")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     @IBAction func onShareButton(_ sender: Any) {
         let eventName = "onShareButton"
         FBSDKAppEvents.logEvent(eventName)
-        log.verbose(eventName)
       
         NotificationCenter.default.post(name: GlobalConstants.observer.requestShare, object: nil)
     }
@@ -42,7 +30,6 @@ class FloatingMenuViewController: UIViewController {
         
         // Customize the container view appearance
         let pcv = PopupDialogContainerView.appearance()
-//        pcv.backgroundColor = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
         pcv.backgroundColor = UIColor.alertBackground()
         pcv.cornerRadius    = 2
         pcv.shadowEnabled   = true
@@ -69,26 +56,14 @@ class FloatingMenuViewController: UIViewController {
         cb.buttonColor    = UIColor.alertBackground()
         cb.separatorColor = UIColor.defaultBackground()
 
-        
-        // Prepare the popup assets
         let title = "THIS IS THE DIALOG TITLE"
         let message = "This is the message section of the popup dialog default view"
         let image = UIImage(named: "pexels-photo-103290")
-        
-    
-        // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: image, buttonAlignment: .horizontal, transitionStyle: .fadeIn) {
-            
-        }
-        
-        // Create buttons
+        let popup = PopupDialog(title: title, message: message, image: image, buttonAlignment: .horizontal, transitionStyle: .fadeIn)
         let buttonOne = CancelButton(title: "취소") {
             print("You canceled the car dialog.")
         }
-        
         popup.addButton(buttonOne)
-        
-        // Present dialog
         self.present(popup, animated: true, completion: nil)
     }
     
@@ -182,73 +157,41 @@ class FloatingMenuViewController: UIViewController {
         
     }
     
-    
     func presentEditTimerAlert(){
-        
-        self.setNotiAuth()
-        
-        // Prepare the popup assets
-        let title = "이미 설정된 알림이 있습니다"
-        let message = "삭제하거나 변경하겠습니까?"
-        
-        // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn) {
-            
+        setNotiAuth()
+        let popup = PopupDialog(
+            title: "이미 설정된 알림이 있습니다",
+            message: "삭제하거나 변경하겠습니까?",
+            image: nil,
+            buttonAlignment: .horizontal,
+            transitionStyle: .fadeIn
+        )
+        let confirmButton = DefaultButton(title: "변경") { [weak self] in
+            self?.presentTimerAlert()
         }
-        
-        // Create buttons
-        let confirmButton = DefaultButton(title: "변경") {
-            
-            self.presentTimerAlert()
-            
-        }
-        
         let cancelButton = CancelButton(title: "삭제") {
-            
-            let center = UNUserNotificationCenter.current()
-            center.removeAllPendingNotificationRequests()
-            
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         }
-        
         popup.addButton(cancelButton)
         popup.addButton(confirmButton)
-        
-        // Present dialog
-        self.present(popup, animated: true, completion: nil)
-        
+        present(popup, animated: true, completion: nil)
     }
-    
     
     @IBAction func onSaveButton(_ sender: Any) {
         let eventName = "onSaveButton"
         FBSDKAppEvents.logEvent(eventName)
-        log.verbose(eventName)
-        
         NotificationCenter.default.post(name: GlobalConstants.observer.requestSave, object: nil)
     }
     
     @IBAction func onTimerButton(_ sender: Any) {
         let eventName = "onTimerButton"
         FBSDKAppEvents.logEvent(eventName)
-        log.verbose(eventName)
-        
-//        NotificationCenter.default.post(name: Constants.observer.requestTimer, object: nil)
-        
-//        if(){ // 이미 설정한 알림이 있는 경우
-//            self.presentEditTimerAlert()
-//        }else{
-//            self.presentTimerSwitchAlert()
-//        }
-        
         self.checkExistNoti()
-        
     }
     
     @IBAction func onInfoButton(_ sender: Any) {
-        
         let eventName = "onInfoButton"
         FBSDKAppEvents.logEvent(eventName)
-        log.verbose(eventName)
         
         let infoViewController = self.storyboard!.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
         let navController = UINavigationController(rootViewController: infoViewController) // Creating a navigation controller with VC1 at the root of the navigation stack.
@@ -258,95 +201,35 @@ class FloatingMenuViewController: UIViewController {
     
     
     @IBAction func onMenuPopButton(_ sender: Any) {
-        
         let eventName = "onMenuPopButton"
         FBSDKAppEvents.logEvent(eventName)
-        log.verbose(eventName)
         NotificationCenter.default.post(name: GlobalConstants.observer.requestMenuPop, object: nil)
-        
     }
     
+    // MARK: - Noti
     
-    
-    
-    
-    
-//    // MARK: - Observer
-//    
-//    func handleMenuOpen(){
-//        
-//        UIView.animate(withDuration: 0.7) {
-//            
-//            self.openButton.alpha = 0.0
-//            
-//        }
-//        
-//    }
-//    
-//    func handleMenuClose(){
-//        
-//        UIView.animate(withDuration: 0.7) {
-//            
-//            self.openButton.alpha = 1.0
-//
-//            
-//        }
-//        
-//    }
-//    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-    // MARK :- Noti
-    func setNotiAuth(){
-        
+    private func setNotiAuth(){
         let center = UNUserNotificationCenter.current()
-        
-        center.getNotificationSettings { (settings) in
-            
-            if settings.authorizationStatus != .authorized {
-                
-                // Notifications not allowed
-                
-                let options: UNAuthorizationOptions = [.alert, .sound]
-                center.requestAuthorization(options: options) { (granted, error) in
-                    
-                    if !granted {
-                        print("인증되지 않았습니다")
-                        
-                    }
-                    
+        center.getNotificationSettings { settings in
+            guard settings.authorizationStatus != .authorized else {
+                return
+            }
+            center.requestAuthorization(options: [.alert, .sound]) { granted, error in
+                if granted == false || error != nil {
+                    print("인증되지 않았습니다")
                 }
-                
             }
-            
         }
-        
-
-        
     }
     
-    func checkExistNoti(){
-        
+    private func checkExistNoti() {
         let center = UNUserNotificationCenter.current()
-        center.getPendingNotificationRequests { (notiRequestList) in
-            
-            if(notiRequestList.count > 0){
-                self.presentEditTimerAlert()
-
-            }else{
-                self.presentTimerSwitchAlert()
+        center.getPendingNotificationRequests { [weak self] notiRequestList in
+            if notiRequestList.isNotEmpty {
+                self?.presentEditTimerAlert()
+            } else {
+                self?.presentTimerSwitchAlert()
             }
-            
         }
     }
 }

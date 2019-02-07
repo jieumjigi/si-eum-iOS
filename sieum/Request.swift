@@ -30,13 +30,13 @@ class DatabaseService {
         self.reference = reference
     }
     
-    func user(id: String) -> Observable<Result<User?>> {
+    func user(id: String) -> Observable<Result<UserModel?>> {
         return reference.child("users")
             .child(id)
             .rx
             .observeSingleEvent(of: .value)
             .map{
-                if let user = User(snapshot: $0) {
+                if let user = UserModel(snapshot: $0) {
                     return .success(user)
                 } else {
                     return .failure(APIError.emptyResponse)
@@ -46,7 +46,7 @@ class DatabaseService {
             })
     }
 
-    func poets() -> Observable<[User]> {
+    func poets() -> Observable<[UserModel]> {
 //        return reference.child("users")
 //            .queryOrdered(byChild: "level")
 //            .queryRange(in: 1...7, childKey: "level")
@@ -106,7 +106,7 @@ class DatabaseService {
             self.reference.child("users")
                 .child(userID)
                 .observeSingleEvent(of: .value, with: { snapshot in
-                    if let user = User(snapshot: snapshot) {
+                    if let user = UserModel(snapshot: snapshot) {
                         observer.onNext(user.level < 9)
                     } else {
                         observer.onNext(false)

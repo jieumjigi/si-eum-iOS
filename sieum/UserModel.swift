@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct User: ImmutableMappable {
+struct UserModel: ImmutableMappable {
     let identifier: String
     let name: String
     let level: Int
@@ -18,7 +18,7 @@ struct User: ImmutableMappable {
     let snsURLString: String?
     
     init(map: Map) throws {
-        identifier = try map.value(User.firebaseIdKey)
+        identifier = try map.value(UserModel.firebaseIdKey)
         name = try map.value("name")
         level = try map.value("level")
         introduce = try? map.value("introduce")

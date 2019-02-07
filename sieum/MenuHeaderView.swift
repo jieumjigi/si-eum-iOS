@@ -13,9 +13,10 @@ import Kingfisher
 
 class MenuHeaderView: UIView {
     
-    var didUpdateConstraints: Bool = false
-    var onTouch: (() -> Void)?
-    let disposeBag = DisposeBag()
+    typealias OnTouchImageHandler = () -> Void
+    
+    private var didUpdateConstraints: Bool = false
+    private var onTouchImageHandler: OnTouchImageHandler?
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 90))
@@ -24,29 +25,17 @@ class MenuHeaderView: UIView {
         imageView.clipsToBounds = true
         imageView.image = #imageLiteral(resourceName: "profile_default")
         imageView.kf.indicatorType = .activity
+        imageView.addGesture(type: .tap, { [weak self] in
+            self?.onTouchImageHandler?()
+        })
         return imageView
-    }()
-    
-    private var snsImageView: UIImageView = {
-        let snsImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 22, height: 22))
-        snsImageView.contentMode = .scaleAspectFit
-        snsImageView.layer.cornerRadius = 3
-        snsImageView.clipsToBounds = true
-        snsImageView.image = #imageLiteral(resourceName: "facebook_logo")
-        return snsImageView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: CGRect(x: 0, y: 0, width: 150, height: 170))
         
-        imageView.addGesture(type: .tap, { [weak self] in
-            self?.onTouch?()
-        })
-        
         addSubview(imageView)
-        addSubview(snsImageView)
         setNeedsUpdateConstraints()
-        bind()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,25 +51,15 @@ class MenuHeaderView: UIView {
                 make.centerX.equalToSuperview()
                 make.width.height.equalTo(90)
             }
-            
-            snsImageView.snp.makeConstraints { make in
-                make.top.equalToSuperview().inset(50)
-                make.leading.equalTo(imageView)
-                make.height.width.equalTo(22)
-            }
         }
         super.updateConstraints()
     }
-    
-    private func bind() {
-        LoginKit.imageURL(size: CGSize(width: 90, height: 90))
-            .subscribe(onNext: { [weak self] url in
-                self?.imageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "profile_default"))
-            })
-            .disposed(by: disposeBag)
+        
+    func setProfileImage(_ url: URL?) {
+        imageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "profile_default"))
     }
     
-    func onTouch(_ onTouch: @escaping () -> Void) {
-        self.onTouch = onTouch
+    func onTouchImage(_ onTouchImageHandler: @escaping OnTouchImageHandler) {
+        self.onTouchImageHandler = onTouchImageHandler
     }
 }

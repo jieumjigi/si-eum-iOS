@@ -40,8 +40,8 @@ class PoetsViewController: UIViewController, SideMenuUsable {
     private var didupdateViewConstraints: Bool = false
     fileprivate var cellHeightsDictionary: [String: CGFloat] = [:]
     
-    var users: [User] = []
-    var selectedUser: BehaviorSubject<User?> = BehaviorSubject<User?>(value: nil)
+    var users: [UserModel] = []
+    var selectedUser: BehaviorSubject<UserModel?> = BehaviorSubject<UserModel?>(value: nil)
     var poems: [Poem] = []
     
     private lazy var refreshControl: UIRefreshControl = {
@@ -125,7 +125,7 @@ class PoetsViewController: UIViewController, SideMenuUsable {
             }).disposed(by: disposeBag)
     }
     
-    private func updateUsersAndSelectFirst(users: [User]) {
+    private func updateUsersAndSelectFirst(users: [UserModel]) {
         self.users = users
         if let firstUser = users.first {
             selectedUser.onNext(firstUser)

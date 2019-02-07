@@ -24,7 +24,7 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     let disposeBag = DisposeBag()
     var sideMenuAction: PublishSubject<SideMenuAction> = PublishSubject<SideMenuAction>()
     
-    private var user: User?
+    private var user: UserModel?
     private var poems: [Poem]?
     
     private lazy var refreshControl: UIRefreshControl = UIRefreshControl()
@@ -110,21 +110,23 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     }
     
     private func requestUser() {
-        guard let userID = LoginKit.userID else {
-            return
-        }
+        // TODO: - User ID 가져오기
         
-        DatabaseService()
-            .user(id: userID)
-            .subscribe(onNext: { [weak self] userResult in
-                switch userResult {
-                case .success(let user):
-                    self?.user = user
-                case .failure(let error):
-                    print("\(error)")
-                }
-                self?.tableView.reloadData()
-            }).disposed(by: disposeBag)
+//        guard let userID = LoginKit.userID else {
+//            return
+//        }
+//
+//        DatabaseService()
+//            .user(id: userID)
+//            .subscribe(onNext: { [weak self] userResult in
+//                switch userResult {
+//                case .success(let user):
+//                    self?.user = user
+//                case .failure(let error):
+//                    print("\(error)")
+//                }
+//                self?.tableView.reloadData()
+//            }).disposed(by: disposeBag)
     }
     
     private func requestPoems() {

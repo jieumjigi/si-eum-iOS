@@ -11,11 +11,8 @@ import UIKit
 
 enum GlobalConstants {
     
-    enum url {
-        static let base = "http://seongho.pythonanywhere.com/api/"
-        static let today = base + "today/"
+    enum URL {
         static let blog = "https://www.facebook.com/tasteapoem/"
-        static let webSite = "https://jieumjigi.github.io/si-eum-web/"
     }
     
     enum observer {

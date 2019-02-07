@@ -54,25 +54,27 @@ class MenuViewModel {
         sectionRelay = PublishRelay<[MenuSection]>()
         sections = sectionRelay.asObservable().startWith([MenuSection()])
 
-        LoginKit
-            .didProfileChanged()
-            .flatMapLatest { profile in
-                return LoginKit
-                    .isPoet()
-                    .map { isPoet in
-                        return (profile, isPoet)
-                }
-            }
-            .subscribe(onNext: { [weak self] profile, isPoet in
-                var menus: [Menu] = []
-                if isPoet {
-                    menus.append(.write)
-                }
-                menus.append(contentsOf: [.today, .past, .setting])
-                if profile != nil {
-                    menus.append(.logout)
-                }
-                self?.sectionRelay.accept([MenuSection(items: menus)])
-            }).disposed(by: disposeBag)
+        // TODO: - Profile 정보 변경 시 감지하기
+        
+//        LoginKit
+//            .didProfileChanged()
+//            .flatMapLatest { profile in
+//                return LoginKit
+//                    .isPoet()
+//                    .map { isPoet in
+//                        return (profile, isPoet)
+//                }
+//            }
+//            .subscribe(onNext: { [weak self] profile, isPoet in
+//                var menus: [Menu] = []
+//                if isPoet {
+//                    menus.append(.write)
+//                }
+//                menus.append(contentsOf: [.today, .past, .setting])
+//                if profile != nil {
+//                    menus.append(.logout)
+//                }
+//                self?.sectionRelay.accept([MenuSection(items: menus)])
+//            }).disposed(by: disposeBag)
     }
 }

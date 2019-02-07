@@ -11,13 +11,10 @@ import UserNotifications
 
 import FBSDKCoreKit
 import Firebase
+import FirebaseUI
 import PopupDialog
 import RxSwift
-import SwiftyBeaver
 import SHSideMenu
-import Toaster
-
-let log = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,22 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        FirebaseApp.configure()
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         let initialViewController = SideMenuViewController(left: MenuViewController())
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
         
-        FirebaseApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        setLogger()
         setAlertView()
         setNotiDelegate()
-        LoginKit().syncUserIDWithFirebaseDB().subscribe().disposed(by: disposeBag)
-        
-//        ToastView.appearance().backgroundColor = .clear
-//        ToastView.appearance().tintColor = .black
-//        ToastView.appearance().font = .mainFont(ofSize: .small)
         
         UNUserNotificationCenter.current()
             .getPendingNotificationRequests(completionHandler: { [weak self] requestList in
@@ -78,30 +70,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-    // MARK: - Logger
-    
-    func setLogger(){
-        let console = ConsoleDestination()  // log to Xcode Console
-        
-        if("$L" == "VERBOSE"){
-            console.format = "$DHH:mm:ss$d 💜 $L $M"
-        }else if("$L" == "DEBUG"){
-            console.format = "$DHH:mm:ss$d 💚 $L $M"
-        }else if("$L" == "INFO"){
-            console.format = "$DHH:mm:ss$d 💙 $L $M"
-        }else if("$L" == "WARNING"){
-            console.format = "$DHH:mm:ss$d 💛 $L $M"
-        }else if("$L" == "ERROR"){
-            console.format = "$DHH:mm:ss$d ❤️ $L $M"
-        }
-        
-        log.addDestination(console)
-    }
     
     // MARK: - Facebook
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+        guard let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String else {
+            return false
+        }
+        
+        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+            return true
+        }
+
+        return false
     }
     
     // MARK: - Alert Appearance
@@ -145,7 +125,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         cb.separatorColor = UIColor.defaultBackground()
         
     }
-    
     
     // MARK: - Noti
     func setNotiDelegate(){

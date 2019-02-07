@@ -103,7 +103,7 @@ class SettingViewController: UITableViewController, SideMenuUsable {
     func presentBlog(){
         let webViewRect = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: self.view.frame.size.height - CGFloat(60))
         let webView = UIWebView.init(frame: webViewRect)
-        webView.loadRequest(URLRequest.init(url: URL.init(string: GlobalConstants.url.blog)!))
+        webView.loadRequest(URLRequest.init(url: URL.init(string: GlobalConstants.URL.blog)!))
         self.view.addSubview(webView)
     }
     

@@ -55,7 +55,7 @@ class MyPageUserTableViewCell: UITableViewCell {
         super.updateConstraints()
     }
     
-    func configure(_ user: User?) {
+    func configure(_ user: UserModel?) {
         nameLabel.text = user?.name
         if let profileImageURLString = user?.profileImageURLString {
             profileImageView.kf.setImage(with: URL(string: profileImageURLString), placeholder: #imageLiteral(resourceName: "profile0.png"))

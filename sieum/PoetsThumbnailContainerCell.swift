@@ -93,7 +93,7 @@ class PoetsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(_ poet: User) {
+    func configure(_ poet: UserModel) {
         if let imageUrlString = poet.profileImageURLString, let imageUrl = URL(string: imageUrlString) {
             imageView.kf.setImage(with: imageUrl, placeholder: #imageLiteral(resourceName: "profile_default"))
         } else {
@@ -106,9 +106,9 @@ class PoetsCollectionViewCell: UICollectionViewCell {
 
 class PoetsThumbnailContainerCell: UITableViewCell {
     
-    private(set) var selectedUser: PublishSubject<User> = PublishSubject<User>()
+    private(set) var selectedUser: PublishSubject<UserModel> = PublishSubject<UserModel>()
     private var disposeBag = DisposeBag()
-    private var poets: [User] = []
+    private var poets: [UserModel] = []
     
     private lazy var poetsCollectionView: PoetsCollectionView = {
         let poetsCollectionView = PoetsCollectionView()
@@ -139,7 +139,7 @@ class PoetsThumbnailContainerCell: UITableViewCell {
         disposeBag = DisposeBag()
     }
     
-    func configure(_ poets: [User]) {
+    func configure(_ poets: [UserModel]) {
         
         self.poets = poets
         

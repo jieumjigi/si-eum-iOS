@@ -92,7 +92,7 @@ class PoetProfileCell: UITableViewCell {
         super.updateConstraints()
     }
     
-    func configure(model: User?) {
+    func configure(model: UserModel?) {
         guard let model = model else {
             return
         }
@@ -124,7 +124,7 @@ class PoetProfileCell: UITableViewCell {
 class PoetDescriptionCell: UITableViewCell {
     
     private var isExpanded: Bool = false
-    private var model: User?
+    private var model: UserModel?
     private var disposeBag = DisposeBag()
     private var didUpdateConstraints: Bool = false
     
@@ -158,7 +158,7 @@ class PoetDescriptionCell: UITableViewCell {
         super.updateConstraints()
     }
     
-    func configure(model: User?) {
+    func configure(model: UserModel?) {
         guard let model = model else {
             return
         }

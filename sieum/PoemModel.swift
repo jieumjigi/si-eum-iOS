@@ -23,7 +23,7 @@ struct PoemPageModel {
     var imageURLString: String?
     var snsURLString: String?
     
-    init(poem: Poem, user: User?) {
+    init(poem: Poem, user: UserModel?) {
         poemID = poem.identifier
         reservationDate = poem.reservationDate
         title = poem.title

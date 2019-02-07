@@ -138,33 +138,36 @@ class WriteViewController: FormViewController {
     
     @objc
     private func onDoneButton() {
-        guard let userID = LoginKit.userID else {
-            Toast(text: "로그인 오류입니다. 다시 로그인 하거나, 앱을 재실행 해주세요.").show()
-            dismiss(animated: true)
-            return
-        }
         
-        guard poemWriteModel.isUploadable else {
-            Toast(text: poemWriteModel.unableUploadMessageIfNeeded).show()
-            return
-        }
+        // TODO: - User ID 가져오기
         
-        updateRightBarButtonItem(uploading: true)
-        poemWriteModel.registerDate = Date()
-        DatabaseService().uploadPoem(
-            model: poemWriteModel,
-            userID: userID,
-            completion: { [weak self] error, response in
-                self?.updateRightBarButtonItem(uploading: false)
-
-                guard error == nil else {
-                    Toast(text: "시를 등록하는데 실패했습니다").show()
-                    return
-                }
-                
-                Toast(text: "시를 성공적으로 등록했습니다").show()
-                self?.dismiss(animated: true)
-        })
+//        guard let userID = LoginKit.userID else {
+//            Toast(text: "로그인 오류입니다. 다시 로그인 하거나, 앱을 재실행 해주세요.").show()
+//            dismiss(animated: true)
+//            return
+//        }
+//        
+//        guard poemWriteModel.isUploadable else {
+//            Toast(text: poemWriteModel.unableUploadMessageIfNeeded).show()
+//            return
+//        }
+//        
+//        updateRightBarButtonItem(uploading: true)
+//        poemWriteModel.registerDate = Date()
+//        DatabaseService().uploadPoem(
+//            model: poemWriteModel,
+//            userID: userID,
+//            completion: { [weak self] error, response in
+//                self?.updateRightBarButtonItem(uploading: false)
+//
+//                guard error == nil else {
+//                    Toast(text: "시를 등록하는데 실패했습니다").show()
+//                    return
+//                }
+//                
+//                Toast(text: "시를 성공적으로 등록했습니다").show()
+//                self?.dismiss(animated: true)
+//        })
     }
     
     private func updateRightBarButtonItem(uploading: Bool) {
