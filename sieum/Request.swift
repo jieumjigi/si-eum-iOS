@@ -30,21 +30,21 @@ class DatabaseService {
         self.reference = reference
     }
     
-    func user(id: String) -> Observable<Result<UserModel?>> {
-        return reference.child("users")
-            .child(id)
-            .rx
-            .observeSingleEvent(of: .value)
-            .map{
-                if let user = UserModel(snapshot: $0) {
-                    return .success(user)
-                } else {
-                    return .failure(APIError.emptyResponse)
-                }
-            }.catchError({ error in
-                Observable.just(.failure(error))
-            })
-    }
+//    func user(id: String) -> Observable<Result<UserModel?>> {
+//        return reference.child("users")
+//            .child(id)
+//            .rx
+//            .observeSingleEvent(of: .value)
+//            .map{
+//                if let user = UserModel(snapshot: $0) {
+//                    return .success(user)
+//                } else {
+//                    return .failure(APIError.emptyResponse)
+//                }
+//            }.catchError({ error in
+//                Observable.just(.failure(error))
+//            })
+//    }
 
     func poets() -> Observable<[UserModel]> {
 //        return reference.child("users")
@@ -56,9 +56,10 @@ class DatabaseService {
         return Observable.just([]) // TODO
     }
     
-    func poems() -> Observable<Result<[Poem]>> {
+    func poems(lastPoem: Poem?) -> Observable<Result<[Poem]>> {
         return reference
             .child("poems")
+            .queryStarting(atValue: lastPoem?.reservationDate)
             .queryOrdered(byChild: "reservation_date")
             .queryLimited(toLast: 10)
             .rx

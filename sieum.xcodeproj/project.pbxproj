@@ -29,6 +29,7 @@
 		C12D6F8E2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F8D2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift */; };
 		C12D6F9221265212006DA57D /* PoetProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F9121265212006DA57D /* PoetProfileCell.swift */; };
 		C12D6F9421271891006DA57D /* PoemsOfPoetContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F9321271891006DA57D /* PoemsOfPoetContainerCell.swift */; };
+		C12E3519221327C8003656AC /* PageCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E3518221327C8003656AC /* PageCursor.swift */; };
 		C13236BC1EBAFBCC00C54E9A /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13236BB1EBAFBCC00C54E9A /* GlobalConstants.swift */; };
 		C13236BD1EBB110500C54E9A /* IropkeBatangM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */; };
 		C1377E1720234CCA008FB68D /* UIImageViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1377E1620234CCA008FB68D /* UIImageViewUtil.swift */; };
@@ -195,6 +196,7 @@
 		C12D6F8D2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetsThumbnailContainerCell.swift; sourceTree = "<group>"; };
 		C12D6F9121265212006DA57D /* PoetProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetProfileCell.swift; sourceTree = "<group>"; };
 		C12D6F9321271891006DA57D /* PoemsOfPoetContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemsOfPoetContainerCell.swift; sourceTree = "<group>"; };
+		C12E3518221327C8003656AC /* PageCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCursor.swift; sourceTree = "<group>"; };
 		C13236BB1EBAFBCC00C54E9A /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		C1377E1620234CCA008FB68D /* UIImageViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewUtil.swift; sourceTree = "<group>"; };
 		C14A042F212AF07900292D42 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				C14A0431212AF1F000292D42 /* MyPageViewController.swift */,
+				C12E3518221327C8003656AC /* PageCursor.swift */,
 				C1BCA6B821B3CFE1001B6B9F /* MyPageUserTableViewCell.swift */,
 				C1724B93219EFF4100F60A2E /* MyPagePoemTableViewCell.swift */,
 				C14A0447212F9B2A00292D42 /* WriteViewController.swift */,
@@ -1001,6 +1004,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-sieum/Pods-sieum-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAnonymousAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseEmailAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
@@ -1014,6 +1018,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAnonymousAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseEmailAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
@@ -1261,6 +1266,7 @@
 				C17F523A1E5DC2EB006AD57A /* PoemCoverViewController.swift in Sources */,
 				C14F9687214BF41B00744F24 /* FormatTransform.swift in Sources */,
 				C1FA0FF3211B2E7A0066A22C /* Emptiable+Extension.swift in Sources */,
+				C12E3519221327C8003656AC /* PageCursor.swift in Sources */,
 				C1BCA6BD21B3F2EC001B6B9F /* Date+Extension.swift in Sources */,
 				C1C209231E606A0B000C76B7 /* ImageUtil.swift in Sources */,
 				C19AC43A1EC5DAA700068A21 /* DateUtil.swift in Sources */,

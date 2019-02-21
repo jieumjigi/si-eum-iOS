@@ -112,12 +112,12 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     private func requestUser() {
         // TODO: - User ID 가져오기
         
-//        guard let userID = LoginKit.userID else {
-//            return
-//        }
-//
+        guard let uid = LoginService().currentUID else {
+            return
+        }
+                
 //        DatabaseService()
-//            .user(id: userID)
+//            .user(id: uid)
 //            .subscribe(onNext: { [weak self] userResult in
 //                switch userResult {
 //                case .success(let user):
@@ -131,7 +131,7 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     
     private func requestPoems() {
         DatabaseService()
-            .poems()
+            .poems(lastPoem: nil)
             .subscribe(onNext: { [weak self] poemsResult in
                 switch poemsResult {
                 case .success(let poems):

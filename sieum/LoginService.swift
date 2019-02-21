@@ -30,6 +30,10 @@ class LoginService {
         return authUI?.authViewController()
     }
     
+    var currentUID: String? {
+        return auth.currentUser?.uid
+    }
+    
     func didChangeUser(_ authUserHandler: @escaping (AuthUser?) -> Void) {
         auth.addStateDidChangeListener { auth, user in
             authUserHandler(AuthUser(user: user))

@@ -36,14 +36,7 @@ class MenuViewController: UIViewController, ContentViewChangable {
     private lazy var headerView: MenuHeaderView = {
         let headerView: MenuHeaderView = MenuHeaderView()
         headerView.onTouchImage { [weak self] in
-            print("isLoggedIn: \(LoginService.isLoggedIn)")
-            if LoginService.isLoggedIn {
-                
-            } else {
-                LoginService.loginViewController.flatMap {
-                    self?.view.superview?.parentViewController?.present($0, animated: true)
-                }
-            }
+            self?.onTouchHeaderView()
         }
         return headerView
     }()
@@ -128,17 +121,17 @@ class MenuViewController: UIViewController, ContentViewChangable {
                 let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController")
                 self?.viewTransition.onNext(UINavigationController(rootViewController: viewController))
             case .logout:
-                let logoutPopUp = MenuHeaderPopup.makePopUp(
+                let popupController = PopupDialog(
                     title: "로그아웃",
                     message: "로그아웃 하시겠습니까?",
                     actions: [
-                        PopUpAction(title: "확인", style: .default) { [weak self] in
-                            self?.loginService.logout()
-                        },
-                        PopUpAction(title: "취소", style: .cancel)
+                        PopupAction(title: "예", style: .default, onTouch: {
+                            LoginService().logout()
+                        }),
+                        PopupAction(title: "아니오", style: .cancel)
                     ]
                 )
-                strongSelf.present(logoutPopUp, animated: true)
+                strongSelf.parentMenuViewController?.present(popupController, animated: false)
             }
         }).disposed(by: disposeBag)
         
@@ -160,5 +153,30 @@ class MenuViewController: UIViewController, ContentViewChangable {
 extension MenuViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
+    }
+}
+
+// MARK: - Button Handler
+
+extension MenuViewController {
+    func onTouchHeaderView() {
+        if LoginService.isLoggedIn {
+            
+        } else {
+            let popupController = PopupDialog(
+                title: "로그인이 되지 않았습니다.",
+                message: "로그인 하시겠습니까?",
+                actions: [
+                    PopupAction(title: "예", style: .default, onTouch: { [weak self] in
+                        guard let loginViewController = LoginService.loginViewController else {
+                            return
+                        }
+                        self?.parentMenuViewController?.present(loginViewController, animated: true)
+                    }),
+                    PopupAction(title: "아니오", style: .cancel)
+                ]
+            )
+            parentMenuViewController?.present(popupController, animated: false)
+        }
     }
 }
