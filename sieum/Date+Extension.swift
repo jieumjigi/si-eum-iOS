@@ -12,6 +12,10 @@ extension Date {
     func toString(components: Set<KRDateFormatter.Component> = Set<KRDateFormatter.Component>(KRDateFormatter.Component.allCases)) -> String {
         return KRDateFormatter(components: components).string(from: self)
     }
+    
+    func timeRemoved() -> Date? {
+        return Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: self)
+    }
 }
 
 class KRDateFormatter: DateFormatter {

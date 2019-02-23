@@ -14,8 +14,7 @@ import Eureka
 import Toaster
 
 struct PoemWriteModel {
-    var registerDate: Date
-    var reservationDate: Date
+    var reservationDate: Date?
     var title: String?
     var content: String?
     var abbrev: String?
@@ -44,8 +43,7 @@ class WriteViewController: FormViewController {
     let disposeBag = DisposeBag()
     
     private lazy var poemWriteModel = PoemWriteModel(
-        registerDate: Date(),
-        reservationDate: Date(),
+        reservationDate: Date().timeRemoved(),
         title: nil,
         content: nil,
         abbrev: nil
@@ -74,9 +72,10 @@ class WriteViewController: FormViewController {
                 $0.baseCell.tintColor = themeService.theme.associatedObject.tintColor
             }
             .onChange({ [weak self] in
-                if let date = $0.value {
-                    self?.poemWriteModel.reservationDate = date
+                guard let date = $0.value?.timeRemoved() else {
+                    return
                 }
+                self?.poemWriteModel.reservationDate = date
             })
             +++ Section("시")
             <<< TextRow() {
@@ -141,33 +140,32 @@ class WriteViewController: FormViewController {
         
         // TODO: - User ID 가져오기
         
-//        guard let userID = LoginKit.userID else {
-//            Toast(text: "로그인 오류입니다. 다시 로그인 하거나, 앱을 재실행 해주세요.").show()
-//            dismiss(animated: true)
-//            return
-//        }
-//        
-//        guard poemWriteModel.isUploadable else {
-//            Toast(text: poemWriteModel.unableUploadMessageIfNeeded).show()
-//            return
-//        }
-//        
-//        updateRightBarButtonItem(uploading: true)
-//        poemWriteModel.registerDate = Date()
-//        DatabaseService().uploadPoem(
-//            model: poemWriteModel,
-//            userID: userID,
-//            completion: { [weak self] error, response in
-//                self?.updateRightBarButtonItem(uploading: false)
-//
-//                guard error == nil else {
-//                    Toast(text: "시를 등록하는데 실패했습니다").show()
-//                    return
-//                }
-//                
-//                Toast(text: "시를 성공적으로 등록했습니다").show()
-//                self?.dismiss(animated: true)
-//        })
+        guard let userID = LoginService.shared.currentUID else {
+            Toast(text: "로그인 오류입니다. 다시 로그인 하거나, 앱을 재실행 해주세요.").show()
+            dismiss(animated: true)
+            return
+        }
+        
+        guard poemWriteModel.isUploadable else {
+            Toast(text: poemWriteModel.unableUploadMessageIfNeeded).show()
+            return
+        }
+        
+        updateRightBarButtonItem(uploading: true)
+        DatabaseService.shared.uploadPoem(
+            model: poemWriteModel,
+            userID: userID,
+            completion: { [weak self] error in
+                self?.updateRightBarButtonItem(uploading: false)
+
+                guard error == nil else {
+                    Toast(text: "시를 등록하는데 실패했습니다").show()
+                    return
+                }
+                
+                Toast(text: "시를 성공적으로 등록했습니다").show()
+                self?.dismiss(animated: true)
+        })
     }
     
     private func updateRightBarButtonItem(uploading: Bool) {

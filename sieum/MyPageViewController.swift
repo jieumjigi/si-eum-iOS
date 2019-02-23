@@ -20,6 +20,10 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
         case poem
     }
     
+    private enum Constants {
+        static let poemPerPage: Int = 10
+    }
+    
     private var didUpdateConstraints: Bool = false
     let disposeBag = DisposeBag()
     var sideMenuAction: PublishSubject<SideMenuAction> = PublishSubject<SideMenuAction>()
@@ -27,6 +31,7 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     private var user: UserModel?
     private var poems: [Poem]?
     private var isLoadingData: Bool = false
+    private var isNoMoreData: Bool = false
     
     private lazy var refreshControl: UIRefreshControl = UIRefreshControl()
     
@@ -112,14 +117,20 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     // MARk: - Network
     
     private func pullToRefresh(completion: @escaping () -> Void) {
+        isNoMoreData = false
         requestUser()
-        requestPoems(lastPoem: nil) {
+        requestPoems(lastPoem: nil) { [weak self] newValue in
+            self?.isNoMoreData = newValue.count < Constants.poemPerPage
             completion()
         }
     }
     
     private func loadMore(completion: @escaping () -> Void) {
-        requestPoems(lastPoem: poems?.last) {
+        guard let lastPoem = poems?.last else {
+            return
+        }
+        requestPoems(lastPoem: lastPoem) { [weak self] newValue in
+            self?.isNoMoreData = newValue.count < Constants.poemPerPage
             completion()
         }
     }
@@ -144,28 +155,22 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
 //            }).disposed(by: disposeBag)
     }
     
-    private func requestPoems(lastPoem: Poem?, completion: @escaping () -> Void) {
+    private func requestPoems(lastPoem: Poem?, completion: @escaping (_ newValue: [Poem]) -> Void) {
         DatabaseService()
-            .poems(lastPoem: lastPoem)
-            .subscribe(onNext: { [weak self] poemsResult in
-                switch poemsResult {
-                case .success(let poems):
-                    let loadedPoems = poems.sorted(by: {
-                        guard let firstDate = $0.reservationDate, let secondDate = $1.reservationDate else {
-                            return false
-                        }
-                        return firstDate > secondDate
-                    })
+            .poems(lastPoem: lastPoem, limit: Constants.poemPerPage) { [weak self] result in
+                switch result {
+                case .success(let loadedPoems):
                     if lastPoem == nil {
                         self?.poems = loadedPoems
                     } else {
                         self?.poems?.append(contentsOf: loadedPoems)
                     }
+                    completion(loadedPoems)
                 case .failure(let error):
                     print("\(error)")
+                    completion([])
                 }
-                completion()
-            }).disposed(by: disposeBag)
+            }
     }
     
     private func removePoem(at index: Int) {
@@ -234,7 +239,7 @@ extension MyPageViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = (poems?.count ?? 0) - 1
-        if isLoadingData == false && indexPath.row == lastElement {
+        if isLoadingData == false && isNoMoreData == false && indexPath.row == lastElement {
             isLoadingData = true
             loadMore { [weak self] in
                 self?.isLoadingData = false

@@ -11,6 +11,7 @@ import FirebaseDatabase
 import ObjectMapper
 import RxSwift
 import FBSDKLoginKit
+import FirebaseFirestore
 
 enum APIError: Error {
     case emptyResponse
@@ -18,18 +19,85 @@ enum APIError: Error {
     case mappingFail
 }
 
+extension BaseMappable {
+    
+    static var firebaseIDKey : String {
+        return "firebaseIDKey"
+    }
+    
+    init?(snapshot: DocumentSnapshot?) {
+        guard let snapshot = snapshot,
+            var json = snapshot.data() else {
+                return nil
+        }
+        json[Self.firebaseIDKey] = snapshot.documentID as Any
+        self.init(JSON: json)
+    }
+}
+
+extension CollectionReference {
+    func addDocument(optionalData: [String: Any?], completion: ((Error?) -> Void)? = nil) {
+        let documentDataWithNullObject = optionalData.mapValues {
+            return $0 ?? NSNull()
+        }
+        addDocument(data: documentDataWithNullObject, completion: completion)
+    }
+}
+
+extension DocumentReference {
+    func setData(optionalData: [String: Any?], completion: @escaping (Error?) -> Void) {
+        let documentDataWithNullObject = optionalData.mapValues {
+            return $0 ?? NSNull()
+        }
+        self.setData(documentDataWithNullObject) { error in
+            completion(error)
+        }
+    }
+    
+    func getDocument<Response: BaseMappable>(completion: @escaping (Result<Response>) -> Void) {
+        self.getDocument { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let response = Response(snapshot: snapshot) else {
+                    assertionFailure("mapping failure: \(String(describing: snapshot))")
+                    return
+                }
+                completion(.success(response))
+            }
+        }
+    }
+}
+
 class DatabaseService {
     
-    private enum Constants {
-        static let defulatUserLevel: Int = 9
-    }
+    static let shared = DatabaseService()
     
     private let reference: DatabaseReference
-    
-    init(reference: DatabaseReference = Database.database().reference()) {
+    private let database: Firestore
+
+    init(reference: DatabaseReference = Database.database().reference(),
+         database: Firestore = Firestore.firestore()) {
         self.reference = reference
+        self.database = database
     }
     
+//    func user(id: String) -> Observable<Result<UserModel?>> {
+//        return reference.child("users")
+//            .child(id)
+//            .rx
+//            .observeSingleEvent(of: .value)
+//            .map{
+//                if let user = UserModel(snapshot: $0) {
+//                    return .success(user)
+//                } else {
+//                    return .failure(APIError.emptyResponse)
+//                }
+//            }.catchError({ error in
+//                Observable.just(.failure(error))
+//            })
+//    }
+
     func poets() -> Observable<[UserModel]> {
 //        return reference.child("users")
 //            .queryOrdered(byChild: "level")
@@ -40,20 +108,34 @@ class DatabaseService {
         return Observable.just([]) // TODO
     }
     
-    func poems(lastPoem: Poem?) -> Observable<Result<[Poem]>> {
-        return reference
-            .child("poems")
-            .queryStarting(atValue: lastPoem?.reservationDate?.toString(components: [.date]))
-            .queryOrdered(byChild: "reservation_date")
-            .queryLimited(toLast: 100)
-            .rx
-            .observeSingleEvent(of: .value)
-            .map(Mapper<Poem>().mapArray)
-            .map {
-                .success($0)
-            }.catchError({ error in
-                Observable.just(.failure(error))
-            })
+    func poems(lastPoem: Poem?, limit: Int, completion: @escaping (Result<[Poem]>) -> Void) {
+        
+        var reference = database
+            .collection("poems")
+            .limit(to: limit)
+
+        if let lastPoem = lastPoem {
+            if let reservationDate = lastPoem.reservationDate {
+                reference = reference.whereField("reservation_date", isLessThan: reservationDate)
+            } else {
+                completion(.success([]))
+            }
+        }
+
+        reference
+            .order(by: "reservation_date", descending: true)
+            .getDocuments { snapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    let poems = snapshot?.documents.compactMap { poem -> Poem? in
+                        var json = poem.data()
+                        json[Poem.firebaseIDKey] = poem.documentID
+                        return Poem(JSON: json)
+                        } ?? []
+                    completion(.success(poems))
+                }
+        }
     }
     
     func poems(of userID: String) -> Observable<[Poem]> {
@@ -66,79 +148,66 @@ class DatabaseService {
 //            .map(Mapper<Poem>().mapArray)
         return Observable.just([]) // TODO
     }
-    
-    var todayPoem: Observable<Result<Poem>> {
-        return reference.child("poems")
-            .queryOrdered(byChild: "reservation_date")
-            .queryStarting(atValue: Date.yesterday?.formatted, childKey: "reservation_date")
-            .queryLimited(toFirst: 1)
-            .rx
-            .observeSingleEvent(of: .value)
-            .map(Mapper<Poem>().mapArray)
-            .map {
-                if $0.count > 0 {
-                    return Result.success($0[0])
-                } else {
-                    return Result.failure(APIError.emptyResponse)
+        
+    func isPoet(userID: String, completion: @escaping (Result<Bool>) -> Void) {
+        database.collection("users")
+            .document(userID)
+            .getDocument { (result: Result<UserModel>) in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let user):
+                    completion(.success(user.isPoet))
                 }
-            }.catchError({ error in
-                Observable.just(Result.failure(error))
-            })
-    }
-    
-    func isPoet(userID: String) -> Observable<Bool> {
-        return Observable.create { observer in
-            self.reference.child("users")
-                .child(userID)
-                .observeSingleEvent(of: .value, with: { snapshot in
-                    if let user = UserModel(snapshot: snapshot) {
-                        observer.onNext(user.level < 9)
-                    } else {
-                        observer.onNext(false)
-                    }
-                    observer.onCompleted()
-                })
-            return Disposables.create()
-        }
+            }
     }
 }
 
 extension DatabaseService {
-    func isUserIDRegistred(_ userID: String) -> Observable<Bool> {
-        return reference.child("users")
-            .child(userID)
-            .rx
-            .observeSingleEvent(of: .value)
-            .debug()
-            .map { snapshot in
-                return snapshot.exists()
+    func isUserIDRegistered(userID: String, completion: @escaping (Result<Bool>) -> Void) {
+        database.collection("users")
+            .document(userID)
+            .getDocument { snapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    if snapshot?.exists ?? false {
+                        completion(.success(true))
+                    } else {
+                        completion(.success(false))
+                    }
+                }
             }
     }
     
-    func registerUserIfNeeded(profile: FBSDKProfile) -> Observable<Void> {
-        return isUserIDRegistred(profile.userID)
-            .filter { !$0 }
-            .map { _ in }
-            .do(onNext: { [weak self] in
-                self?.register(profile: profile)
-            })
+    func registerUserIfNeeded(with authUser: AuthUser?) {
+        guard let authUser = authUser else {
+            return
+        }
+        isUserIDRegistered(userID: authUser.identifier) { [weak self] result in
+            switch result {
+            case .failure:
+                break
+            case .success(let isRegistered):
+                if isRegistered == false {
+                    self?.register(authUser: authUser)
+                }
+            }
+        }
     }
     
-    func register(profile: FBSDKProfile, completion: ((Error?, DatabaseReference) -> Void)? = nil) {
-        reference.child("users")
-            .child(profile.userID)
-            .setValue(
+    func register(authUser: AuthUser, completion: ((Error?) -> Void)? = nil) {
+        database.collection("users")
+            .document(authUser.identifier)
+            .setData(optionalData:
                 [
-                    "name": profile.name,
-                    "level": Constants.defulatUserLevel,
-                    "profile_img": profile.imageURL(
-                        for: .normal,
-                        size: CGSize(width: 100, height: 100)
-                        ).absoluteString
-                ],
-                withCompletionBlock: { error, databaseReference in
-                    completion?(error, databaseReference)
-            })
+                    "name": authUser.name,
+                    "profile_img": authUser.imageURL?.absoluteString,
+                    "level": UserModel.Constants.defulatUserLevel
+                ]
+            ) { error in
+                completion?(error)
+            }
     }
     
     func unregister(userID: String, completion: ((Error?, DatabaseReference) -> Void)? = nil) {
@@ -149,26 +218,25 @@ extension DatabaseService {
             }
     }
     
-    func uploadPoem(model: PoemWriteModel, userID: String, completion: @escaping (Error?, DatabaseReference?) -> Void) {
+    func uploadPoem(model: PoemWriteModel, userID: String, completion: @escaping (Error?) -> Void) {
         
-        guard let title = model.title,
-            let content = model.content,
-            let abbrev = model.abbrev else {
-                return
+        guard model.isUploadable else {
+            return
         }
         
-        reference.child("poems")
-            .childByAutoId()
-            .setValue(
+        database.collection("poems")
+            .addDocument(optionalData:
                 [
-                    "uid": userID,
-                    "title": title,
-                    "content": content,
-                    "abbrev": abbrev,
-                    "register_date": model.registerDate.toString(components: [.date, .time]),
-                    "reservation_date": model.reservationDate.toString(components: [.date])
-                ],
-                withCompletionBlock: completion)
+                    "user_id": userID,
+                    "title": model.title,
+                    "content": model.content,
+                    "abbrev": model.abbrev,
+                    "register_date": Date(),
+                    "reservation_date": model.reservationDate
+                ]
+            ) { error in
+                completion(error)
+            }
     }
     
     func removePoem(with id: String, completion: ((Error?) -> Void)? = nil) {

@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
         
-        window = UIWindow(frame: UIScreen.main.bounds)
         let initialViewController = SideMenuViewController(left: MenuViewController())
+        window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
         
@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         setAlertView()
         setNotiDelegate()
+        setupLoginListener()
         
         UNUserNotificationCenter.current()
             .getPendingNotificationRequests(completionHandler: { [weak self] requestList in
@@ -85,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: - Alert Appearance
-    func setAlertView(){
+    func setAlertView() {
         
         // Customize dialog appearance
         let pv = PopupDialogDefaultView.appearance()
@@ -127,28 +128,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: - Noti
-    func setNotiDelegate(){
+    private func setNotiDelegate(){
         let center = UNUserNotificationCenter.current()
         center.delegate = notificationDelegate
     }
 
-    func setNotiAuth(){
-        
+    private func setNotiAuth(){
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { (settings) in
-            
-            if settings.authorizationStatus != .authorized {
-                // Notifications not allowed
-                let options: UNAuthorizationOptions = [.alert, .sound]
-                center.requestAuthorization(options: options) { (granted, error) in
-                    
-                    if !granted {
-                        print("인증되지 않았습니다")
-                    }
+            guard settings.authorizationStatus != .authorized else {
+                return
+            }
+            // Notifications not allowed
+            let options: UNAuthorizationOptions = [.alert, .sound]
+            center.requestAuthorization(options: options) { (granted, error) in
+                if granted == false {
+                    print("인증되지 않았습니다")
                 }
             }
         }
     }
+}
 
+// MARK: - Login Service
+
+extension AppDelegate {
+    private func setupLoginListener() {
+        LoginService.shared.didChangeUser { authUser in
+            DatabaseService.shared.registerUserIfNeeded(with: authUser)
+        }
+    }
 }
 

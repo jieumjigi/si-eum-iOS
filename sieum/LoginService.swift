@@ -11,6 +11,8 @@ import FirebaseUI
 
 class LoginService {
     
+    static let shared = LoginService()
+    
     private let auth: Auth
     
     init() {
@@ -50,14 +52,17 @@ class LoginService {
 }
 
 struct AuthUser {
-    let uid: String
+    
+    let identifier: String
+    let name: String?
     let imageURL: URL?
     
     init?(user: User?) {
         guard let user = user else {
             return nil
         }
-        uid = user.uid
+        identifier = user.uid
+        name = user.displayName
         imageURL = user.photoURL
     }
 }
