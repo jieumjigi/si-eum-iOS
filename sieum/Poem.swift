@@ -9,32 +9,26 @@
 import Foundation
 import ObjectMapper
 
-class Poem: Mappable {
-
-    var identifier: Int?
-    var reservationDate: Date?
-    var authorID: String?
-    var title: String?
-    var content: String?
-    var abbrev: String?
-    var book: String?
-    var publisher: String?
-    var publishedDate: Date?
+struct Poem: ImmutableMappable {
+    let identifier: String
+    let reservationDate: Date?
+    let authorID: String?
+    let title: String?
+    let content: String?
+    let abbrev: String?
+    let book: String?
+    let publisher: String?
+    let publishedDate: Date?
     
-    required init?(map: Map) {
-        
-    }
-    
-    func mapping(map: Map) {
-        identifier <- map["id"]
-        authorID <- map["author"]
-        title <- map["title"]
-        content <- (map["content"], UnescapingNewLineStringTrasnform())
-        abbrev <- map["abbrev"]
-        book <- map["book"]
-        publisher <- map["publisher"]
-
-        reservationDate <- (map["register_date"], FirebaseDateFormatterTrasnform(components: [.date, .time]))
-        publishedDate <- (map["reservation_date"], FirebaseDateFormatterTrasnform(components: [.date,. time]))
+    init(map: Map) throws {
+        self.identifier = try map.value(Poem.firebaseIdKey)
+        self.authorID = try? map.value("author")
+        self.title = try? map.value("title")
+        self.content = try? map.value("content", using: UnescapingNewLineStringTrasnform())
+        self.abbrev = try? map.value("abbrev")
+        self.book = try? map.value("book")
+        self.publisher = try? map.value("publisher")
+        self.reservationDate = try? map.value("register_date", using: FirebaseDateFormatterTrasnform(components: [.date, .time]))
+        self.publishedDate = try? map.value("reservation_date", using: FirebaseDateFormatterTrasnform(components: [.date,. time]))
     }
 }

@@ -30,22 +30,6 @@ class DatabaseService {
         self.reference = reference
     }
     
-//    func user(id: String) -> Observable<Result<UserModel?>> {
-//        return reference.child("users")
-//            .child(id)
-//            .rx
-//            .observeSingleEvent(of: .value)
-//            .map{
-//                if let user = UserModel(snapshot: $0) {
-//                    return .success(user)
-//                } else {
-//                    return .failure(APIError.emptyResponse)
-//                }
-//            }.catchError({ error in
-//                Observable.just(.failure(error))
-//            })
-//    }
-
     func poets() -> Observable<[UserModel]> {
 //        return reference.child("users")
 //            .queryOrdered(byChild: "level")
@@ -59,9 +43,9 @@ class DatabaseService {
     func poems(lastPoem: Poem?) -> Observable<Result<[Poem]>> {
         return reference
             .child("poems")
-            .queryStarting(atValue: lastPoem?.reservationDate)
+            .queryStarting(atValue: lastPoem?.reservationDate?.toString(components: [.date]))
             .queryOrdered(byChild: "reservation_date")
-            .queryLimited(toLast: 10)
+            .queryLimited(toLast: 100)
             .rx
             .observeSingleEvent(of: .value)
             .map(Mapper<Poem>().mapArray)
@@ -185,5 +169,13 @@ extension DatabaseService {
                     "reservation_date": model.reservationDate.toString(components: [.date])
                 ],
                 withCompletionBlock: completion)
+    }
+    
+    func removePoem(with id: String, completion: ((Error?) -> Void)? = nil) {
+        reference.child("poems")
+            .child(id)
+            .removeValue { error, _ in
+                completion?(error)
+        }
     }
 }

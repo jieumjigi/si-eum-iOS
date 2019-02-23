@@ -26,6 +26,7 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     
     private var user: UserModel?
     private var poems: [Poem]?
+    private var isLoadingData: Bool = false
     
     private lazy var refreshControl: UIRefreshControl = UIRefreshControl()
     
@@ -59,10 +60,16 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
             guard let strongSelf = self, strongSelf.tableView.contentOffset.y < 0 else {
                 return
             }
-            strongSelf.requestAPIs()
+            strongSelf.pullToRefresh() {
+                self?.tableView.reloadData()
+                self?.refreshControl.endRefreshing()
+            }
         }
         bind()
-        requestAPIs()
+        pullToRefresh() { [weak self] in
+            self?.tableView.reloadData()
+            self?.refreshControl.endRefreshing()
+        }
         view.setNeedsUpdateConstraints()
     }
     
@@ -104,9 +111,17 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     
     // MARk: - Network
     
-    private func requestAPIs() {
+    private func pullToRefresh(completion: @escaping () -> Void) {
         requestUser()
-        requestPoems()
+        requestPoems(lastPoem: nil) {
+            completion()
+        }
+    }
+    
+    private func loadMore(completion: @escaping () -> Void) {
+        requestPoems(lastPoem: poems?.last) {
+            completion()
+        }
     }
     
     private func requestUser() {
@@ -129,24 +144,43 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
 //            }).disposed(by: disposeBag)
     }
     
-    private func requestPoems() {
+    private func requestPoems(lastPoem: Poem?, completion: @escaping () -> Void) {
         DatabaseService()
-            .poems(lastPoem: nil)
+            .poems(lastPoem: lastPoem)
             .subscribe(onNext: { [weak self] poemsResult in
                 switch poemsResult {
                 case .success(let poems):
-                    self?.poems = poems.sorted(by: {
+                    let loadedPoems = poems.sorted(by: {
                         guard let firstDate = $0.reservationDate, let secondDate = $1.reservationDate else {
                             return false
                         }
                         return firstDate > secondDate
                     })
+                    if lastPoem == nil {
+                        self?.poems = loadedPoems
+                    } else {
+                        self?.poems?.append(contentsOf: loadedPoems)
+                    }
                 case .failure(let error):
                     print("\(error)")
                 }
-                self?.tableView.reloadData()
-                self?.refreshControl.endRefreshing()
+                completion()
             }).disposed(by: disposeBag)
+    }
+    
+    private func removePoem(at index: Int) {
+        guard let poem = poems?[index] else {
+            return
+        }
+        
+        DatabaseService()
+            .removePoem(with: poem.identifier) { [weak self] error in
+                guard error == nil else {
+                    return
+                }
+                self?.poems = self?.poems?.filter { $0.identifier != poem.identifier }
+                self?.tableView.reloadData()
+        }
     }
 }
 
@@ -194,7 +228,27 @@ extension MyPageViewController: UITableViewDelegate {
         case Section.user.rawValue:
             return 120
         default:
-            return UITableView.automaticDimension
+            return 50
         }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = (poems?.count ?? 0) - 1
+        if isLoadingData == false && indexPath.row == lastElement {
+            isLoadingData = true
+            loadMore { [weak self] in
+                self?.isLoadingData = false
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        return [UITableViewRowAction(
+            style: .destructive,
+            title: "삭제",
+            handler: { [weak self] _, indexPath in
+                self?.removePoem(at: indexPath.row)
+        })]
     }
 }

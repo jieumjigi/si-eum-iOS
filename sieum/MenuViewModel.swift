@@ -54,27 +54,21 @@ class MenuViewModel {
         sectionRelay = PublishRelay<[MenuSection]>()
         sections = sectionRelay.asObservable().startWith([MenuSection()])
 
-        // TODO: - Profile 정보 변경 시 감지하기
-        
-//        LoginKit
-//            .didProfileChanged()
-//            .flatMapLatest { profile in
-//                return LoginKit
-//                    .isPoet()
-//                    .map { isPoet in
-//                        return (profile, isPoet)
-//                }
-//            }
-//            .subscribe(onNext: { [weak self] profile, isPoet in
-//                var menus: [Menu] = []
-//                if isPoet {
-//                    menus.append(.write)
-//                }
-//                menus.append(contentsOf: [.today, .past, .setting])
-//                if profile != nil {
-//                    menus.append(.logout)
-//                }
-//                self?.sectionRelay.accept([MenuSection(items: menus)])
-//            }).disposed(by: disposeBag)
+        // TODO: - 시인 인지 여부 판별하기
+
+        LoginService().didChangeUser { [weak self] authUser in
+            let isLoggedIn = authUser != nil
+            let isPoet: Bool = true
+            
+            var menus: [Menu] = []
+            if isPoet {
+                menus.append(.write)
+            }
+            menus.append(contentsOf: [.today, .past, .setting])
+            if isLoggedIn {
+                menus.append(.logout)
+            }
+            self?.sectionRelay.accept([MenuSection(items: menus)])
+        }
     }
 }

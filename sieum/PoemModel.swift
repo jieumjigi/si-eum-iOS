@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 struct PoemPageModel {
-    var poemID: Int?
+    var poemID: String?
     var reservationDate: Date?
     
     var title: String?

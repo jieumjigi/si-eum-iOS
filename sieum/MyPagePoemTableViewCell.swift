@@ -13,7 +13,6 @@ import FBSDKLoginKit
 class MyPagePoemTableViewCell: UITableViewCell {
     
     private lazy var didUpdateConstraints: Bool = false
-    private lazy var disposeBag: DisposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
@@ -25,7 +24,7 @@ class MyPagePoemTableViewCell: UITableViewCell {
     }
     
     override func updateConstraints() {
-        if !didUpdateConstraints {
+        if didUpdateConstraints == false {
             didUpdateConstraints = true
             
         }
@@ -34,11 +33,12 @@ class MyPagePoemTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        disposeBag = DisposeBag()
+        textLabel?.text = nil
+        detailTextLabel?.text = nil
     }
     
     func configure(_ model: Poem?) {
         textLabel?.text = model?.title
-        detailTextLabel?.text = (model?.publishedDate?.toString(components: [.date]) ?? "") + " " + (model?.content ?? "")
+        detailTextLabel?.text = (model?.reservationDate?.toString(components: [.date]) ?? "") + " " + (model?.content ?? "")
     }
 }
