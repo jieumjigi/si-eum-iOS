@@ -11,12 +11,18 @@ import RxSwift
 import RxCocoa
 import SHSideMenu
 
+enum PageViewType {
+    case today
+    case specific(poemID: String)
+}
+
 class PageViewController: UIPageViewController, SideMenuUsable {
     
+    private let viewType: PageViewType
     private let disposeBag: DisposeBag = DisposeBag()
     
     var sideMenuAction: PublishSubject<SideMenuAction> = PublishSubject<SideMenuAction>()
-    lazy var pageViewModel: PageViewModel = PageViewModel()
+    lazy var pageViewModel: PageViewModel = PageViewModel(viewType: viewType)
     
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.newViewController(type: PoemViewController.self),
@@ -35,11 +41,9 @@ class PageViewController: UIPageViewController, SideMenuUsable {
         return viewController
     }
     
-    override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
-// Local variable inserted by Swift 4.2 migrator.
-let options = convertFromOptionalUIPageViewControllerOptionsKeyDictionary(options)
-
-        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: convertToOptionalUIPageViewControllerOptionsKeyDictionary(options))
+    init(type: PageViewType) {
+        self.viewType = type
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -50,15 +54,27 @@ let options = convertFromOptionalUIPageViewControllerOptionsKeyDictionary(option
         super.viewDidLoad()
         
         dataSource = self
-        navigationItem.leftBarButtonItem = UIBarButtonItem(for: .menu) { [weak self] in
-            self?.sideMenuAction.onNext(.open)
+        
+        switch viewType {
+        case .today:
+            navigationItem.leftBarButtonItem = UIBarButtonItem(for: .menu) { [weak self] in
+                self?.sideMenuAction.onNext(.open)
+            }
+        case .specific:
+            navigationItem.leftBarButtonItem = UIBarButtonItem(for: .back) { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }
         }
-    
         navigationController?.makeClearBar()
 
         setFirstViewController()
         setupPageControl()
         bind()
+    }
+    
+    private func setupPageControl() {
+        UIPageControl.appearance().pageIndicatorTintColor = UIColor.lightBrown()
+        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.darkBrown()
     }
 
     // MARK: - Bind
@@ -67,11 +83,6 @@ let options = convertFromOptionalUIPageViewControllerOptionsKeyDictionary(option
         themeService.rx
             .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
             .disposed(by: disposeBag)
-    }
-    
-    private func setupPageControl() {
-        UIPageControl.appearance().pageIndicatorTintColor = UIColor.lightBrown()
-        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.darkBrown()
     }
 }
 

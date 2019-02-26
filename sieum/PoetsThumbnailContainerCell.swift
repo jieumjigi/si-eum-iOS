@@ -106,7 +106,7 @@ class PoetsCollectionViewCell: UICollectionViewCell {
 
 class PoetsThumbnailContainerCell: UITableViewCell {
     
-    private(set) var selectedUser: PublishSubject<UserModel> = PublishSubject<UserModel>()
+    private(set) var selectedUser: PublishRelay<UserModel> = PublishRelay<UserModel>()
     private var disposeBag = DisposeBag()
     private var poets: [UserModel] = []
     
@@ -168,6 +168,6 @@ extension PoetsThumbnailContainerCell: UICollectionViewDelegate, UICollectionVie
             return
         }
         
-        selectedUser.onNext(poets[indexPath.item])
+        selectedUser.accept(poets[indexPath.item])
     }
 }

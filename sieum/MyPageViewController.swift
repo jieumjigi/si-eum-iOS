@@ -117,6 +117,7 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     // MARk: - Network
     
     private func pullToRefresh(completion: @escaping () -> Void) {
+
         isNoMoreData = false
         requestUser()
         requestPoems(lastPoem: nil) { [weak self] newValue in
@@ -129,6 +130,7 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
         guard let lastPoem = poems?.last else {
             return
         }
+        
         requestPoems(lastPoem: lastPoem) { [weak self] newValue in
             self?.isNoMoreData = newValue.count < Constants.poemPerPage
             completion()
@@ -156,8 +158,12 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     }
     
     private func requestPoems(lastPoem: Poem?, completion: @escaping (_ newValue: [Poem]) -> Void) {
+        guard let userID = LoginService.shared.currentUID else {
+            return
+        }
+        
         DatabaseService()
-            .poems(lastPoem: lastPoem, limit: Constants.poemPerPage) { [weak self] result in
+            .poems(userID: userID, lastPoem: lastPoem, limit: Constants.poemPerPage) { [weak self] result in
                 switch result {
                 case .success(let loadedPoems):
                     if lastPoem == nil {
@@ -179,7 +185,7 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
         }
         
         DatabaseService()
-            .removePoem(with: poem.identifier) { [weak self] error in
+            .deletePoem(poem) { [weak self] error in
                 guard error == nil else {
                     return
                 }

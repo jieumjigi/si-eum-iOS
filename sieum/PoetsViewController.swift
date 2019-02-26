@@ -41,7 +41,7 @@ class PoetsViewController: UIViewController, SideMenuUsable {
     fileprivate var cellHeightsDictionary: [String: CGFloat] = [:]
     
     var users: [UserModel] = []
-    var selectedUser: BehaviorSubject<UserModel?> = BehaviorSubject<UserModel?>(value: nil)
+    var selectedUser: BehaviorRelay<UserModel?> = BehaviorRelay<UserModel?>(value: nil)
     var poems: [Poem] = []
     
     private lazy var refreshControl: UIRefreshControl = {
@@ -76,7 +76,7 @@ class PoetsViewController: UIViewController, SideMenuUsable {
     }
     
     override func updateViewConstraints() {
-        if !didupdateViewConstraints {
+        if didupdateViewConstraints == false {
             didupdateViewConstraints = true
             
             tableView.snp.makeConstraints { make in
@@ -103,32 +103,36 @@ class PoetsViewController: UIViewController, SideMenuUsable {
             .bind({ $0.backgroundColor }, to: tableView.rx.backgroundColor)
             .disposed(by: disposeBag)
         
-        DatabaseService().poets().subscribe(onNext: { [weak self] users in
-            self?.updateUsersAndSelectFirst(users: users)
-        }).disposed(by: disposeBag)
-        
-//        selectedUser.asObserver().subscribe(onNext: { user in
-//            guard let user = user else {
-//                return
-//            }
-//        }).disposed(by: disposeBag)
+        DatabaseService.shared.poets { [weak self] result in
+            switch result {
+            case .failure:
+                break
+            case .success(let users):
+                self?.updateUsersAndSelectFirst(users: users)
+            }
+        }
         
         selectedUser
-            .asObserver()
+            .asObservable()
             .map { $0?.identifier }
             .unwrappedOptional()
-            .flatMap({ userID -> Observable<[Poem]> in
-                return DatabaseService().poems(of: userID)
-            }).subscribe(onNext: { [weak self] poems in
-                self?.poems = poems
-                self?.tableView.reloadSections(IndexSet(integer: PoetsSection.poems.rawValue), with: .automatic)
+            .subscribe(onNext: { userID in
+                DatabaseService.shared.poems(userID: userID, lastPoem: nil, limit: 10, completion: { [weak self] result in
+                    switch result {
+                    case .failure:
+                        break
+                    case .success(let poems):
+                        self?.poems = poems
+                        self?.tableView.reloadSections(IndexSet(integer: PoetsSection.poems.rawValue), with: .automatic)
+                    }
+                })
             }).disposed(by: disposeBag)
     }
     
     private func updateUsersAndSelectFirst(users: [UserModel]) {
         self.users = users
         if let firstUser = users.first {
-            selectedUser.onNext(firstUser)
+            selectedUser.accept(firstUser)
         }
         tableView.reloadData(with: .automatic)
     }
@@ -166,9 +170,9 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
         case PoetsSection.thumnail.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as PoetsThumbnailContainerCell
             cell.configure(users)
-            cell.selectedUser.asObserver()
+            cell.selectedUser.asObservable()
                 .subscribe(onNext: { [weak self] user in
-                    self?.selectedUser.onNext(user)
+                    self?.selectedUser.accept(user)
                     self?.tableView.reloadSections(IndexSet(integer: PoetsSection.profile.rawValue), with: .fade)
                 }).disposed(by: disposeBag)
             return cell
@@ -176,24 +180,24 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
             switch indexPath.row {
             case ProfileRow.main.rawValue:
                 let cell = tableView.dequeueReusableCell(for: indexPath) as PoetProfileCell
-                do {
-                    cell.configure(model: try selectedUser.value())
-                } catch {
-                    
-                }
+                cell.configure(model: selectedUser.value)
                 return cell
             default:
                 let cell = tableView.dequeueReusableCell(for: indexPath) as PoetDescriptionCell
-                do {
-                    cell.configure(model: try selectedUser.value())
-                } catch {
-                    
-                }
+                cell.configure(model: selectedUser.value)
                 return cell
             }
         case PoetsSection.poems.rawValue:
             let cell = tableView.dequeueReusableCell(for: indexPath) as PoemsOfPoetContainerCell
             cell.configure(poems: poems)
+            cell.didSelectItem { [weak self] indexPath in
+                guard let poems = self?.poems, poems.count > indexPath.item else {
+                    return
+                }
+                let poem = poems[indexPath.item]
+                let controller = PageViewController(type: .specific(poemID: poem.identifier))
+                self?.navigationController?.pushViewController(controller, animated: true)
+            }
             return cell
         default:
             let cell = UITableViewCell()

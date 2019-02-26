@@ -13,7 +13,8 @@ class QuestionViewController: UIViewController, PageViewModelUsable {
     
     var pageViewModel: PageViewModel?
     let disposeBag: DisposeBag = DisposeBag()
-
+    private var model: PoemPageModel?
+    
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet var quotations: [UIImageView]!
     
@@ -31,16 +32,18 @@ class QuestionViewController: UIViewController, PageViewModelUsable {
     }
     
     func bind(_ viewModel: PageViewModel) {
-        pageViewModel?.poem.subscribe(onNext: { [weak self] model in
-            guard let model = model else {
-                return
+        pageViewModel?.poemPageModel.asObservable().subscribe(onNext: { [weak self] result in
+            switch result {
+            case .failure:
+                break
+            case .success(let poemPageModel):
+                self?.loadViewIfNeeded()
+                self?.configure(model: poemPageModel)
             }
-            self?.loadViewIfNeeded()
-            self?.configure(model: model)
         }).disposed(by: disposeBag)
     }
     
-    func configure(model: PoemPageModel){
+    func configure(model: PoemPageModel) {
         guard let abbrev = model.abbrev else {
             return
         }
@@ -50,7 +53,7 @@ class QuestionViewController: UIViewController, PageViewModelUsable {
         paragraphStyle.alignment = .center
         
         let attrString = NSMutableAttributedString(string: abbrev)
-        attrString.addAttribute(.paragraphStyle, value:paragraphStyle, range: NSMakeRange(0, attrString.length))
+        attrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: abbrev.count))
         questionLabel.attributedText = attrString
     }
 }

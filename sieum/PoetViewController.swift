@@ -40,12 +40,14 @@ class PoetViewController: UIViewController, PageViewModelUsable {
     }
     
     func bind(_ viewModel: PageViewModel) {
-        pageViewModel?.poem.subscribe(onNext: { [weak self] model in
-            guard let model = model else {
-                return
+        pageViewModel?.poemPageModel.asObservable().subscribe(onNext: { [weak self] result in
+            switch result {
+            case .failure:
+                break
+            case .success(let poemPageModel):
+                self?.loadViewIfNeeded()
+                self?.configure(model: poemPageModel)
             }
-            self?.loadViewIfNeeded()
-            self?.configure(model: model)
         }).disposed(by: disposeBag)
     }
 
@@ -58,7 +60,7 @@ class PoetViewController: UIViewController, PageViewModelUsable {
             paragraphStyle.lineSpacing = 5
             paragraphStyle.alignment = .left
             let attrString = NSMutableAttributedString(string: introduciton)
-            attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedString.Key, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+            attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedString.Key, value:paragraphStyle, range:NSMakeRange(0, introduciton.count))
             lbIntroPoet.attributedText = attrString
             lbIntroPoet.textAlignment = .left
         }

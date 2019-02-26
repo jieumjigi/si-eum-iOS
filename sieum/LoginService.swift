@@ -51,6 +51,10 @@ class LoginService {
     }
 }
 
+extension LoginService {
+    
+}
+
 struct AuthUser {
     
     let identifier: String

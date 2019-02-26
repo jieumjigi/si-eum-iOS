@@ -56,6 +56,15 @@ class WriteViewController: FormViewController {
         return UIBarButtonItem(customView: loadingIndicator)
     }()
     
+    init() {
+        super.init(style: .grouped)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -152,7 +161,7 @@ class WriteViewController: FormViewController {
         }
         
         updateRightBarButtonItem(uploading: true)
-        DatabaseService.shared.uploadPoem(
+        DatabaseService.shared.addPoem(
             model: poemWriteModel,
             userID: userID,
             completion: { [weak self] error in

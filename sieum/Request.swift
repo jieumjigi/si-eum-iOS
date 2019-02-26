@@ -69,6 +69,33 @@ extension DocumentReference {
     }
 }
 
+protocol ArrayResultProtocol {
+    associatedtype Element: BaseMappable
+}
+extension Array: ArrayResultProtocol where Element: BaseMappable { }
+
+
+extension Query {
+    func getDocuments<Response: ArrayResultProtocol>(completion: @escaping (Result<Response>) -> Void) {
+        
+        self.getDocuments { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                if let poems = snapshot?.documents.compactMap({ poem -> Response.Element? in
+                    var json = poem.data()
+                    json[Response.Element.firebaseIDKey] = poem.documentID
+                    return Response.Element(JSON: json)
+                }) as? Response {
+                    completion(.success(poems))
+                } else{
+                    completion(.failure(APIError.mappingFail))
+                }
+            }
+        }
+    }
+}
+
 class DatabaseService {
     
     static let shared = DatabaseService()
@@ -82,36 +109,59 @@ class DatabaseService {
         self.database = database
     }
     
-//    func user(id: String) -> Observable<Result<UserModel?>> {
-//        return reference.child("users")
-//            .child(id)
-//            .rx
-//            .observeSingleEvent(of: .value)
-//            .map{
-//                if let user = UserModel(snapshot: $0) {
-//                    return .success(user)
-//                } else {
-//                    return .failure(APIError.emptyResponse)
-//                }
-//            }.catchError({ error in
-//                Observable.just(.failure(error))
-//            })
-//    }
-
-    func poets() -> Observable<[UserModel]> {
-//        return reference.child("users")
-//            .queryOrdered(byChild: "level")
-//            .queryRange(in: 1...7, childKey: "level")
-//            .rx
-//            .observeSingleEvent(of: .value)
-//            .map(Mapper<User>().mapArray)
-        return Observable.just([]) // TODO
+    func poets(completion: @escaping (Result<[UserModel]>) -> Void) {
+        database.collection("users")
+            .order(by: "level")
+            .end(at: [7])
+            .getDocuments { (result: Result<[UserModel]>) in
+                completion(result)
+        }
     }
     
-    func poems(lastPoem: Poem?, limit: Int, completion: @escaping (Result<[Poem]>) -> Void) {
+    func user(identifier: String, completion: @escaping (Result<UserModel>) -> Void) {
+        database.collection("users")
+            .document(identifier)
+            .getDocument { (result: Result<UserModel>) in
+                completion(result)
+        }
+    }
+    
+    func todayPoem(completion: @escaping (Result<Poem>) -> Void) {
+        database.collection("poems")
+            .order(by: "reservation_date", descending: true)
+            .whereField("reservation_date", isLessThanOrEqualTo: Date().timeRemoved() ?? Date())
+            .getDocuments { snapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    if let poem = snapshot?.documents.compactMap({ poem -> Poem? in
+                        var json = poem.data()
+                        json[Poem.firebaseIDKey] = poem.documentID
+                        return Poem(JSON: json)
+                    }).first {
+                        completion(.success(poem))
+                    }
+                }
+        }
+    }
+    
+    func poem(identifier: String, completion: @escaping (Result<Poem>) -> Void) {
+        database.collection("poems")
+            .document(identifier)
+            .getDocument { (result: Result<Poem>) in
+                completion(result)
+        }
+    }
+    
+    func poems(
+        userID: String,
+        lastPoem: Poem?,
+        limit: Int,
+        completion: @escaping (Result<[Poem]>) -> Void) {
         
         var reference = database
             .collection("poems")
+            .whereField("user_id", isEqualTo: userID)
             .limit(to: limit)
 
         if let lastPoem = lastPoem {
@@ -138,17 +188,6 @@ class DatabaseService {
         }
     }
     
-    func poems(of userID: String) -> Observable<[Poem]> {
-//        return reference.child("poems")
-//            .queryOrdered(byChild: "author")
-//            .queryStarting(atValue: userID - 1, childKey: "author")
-//            .queryEnding(atValue: userID, childKey: "author")
-//            .rx
-//            .observeSingleEvent(of: .value)
-//            .map(Mapper<Poem>().mapArray)
-        return Observable.just([]) // TODO
-    }
-        
     func isPoet(userID: String, completion: @escaping (Result<Bool>) -> Void) {
         database.collection("users")
             .document(userID)
@@ -218,7 +257,7 @@ extension DatabaseService {
             }
     }
     
-    func uploadPoem(model: PoemWriteModel, userID: String, completion: @escaping (Error?) -> Void) {
+    func addPoem(model: PoemWriteModel, userID: String, completion: @escaping (Error?) -> Void) {
         
         guard model.isUploadable else {
             return
@@ -239,11 +278,11 @@ extension DatabaseService {
             }
     }
     
-    func removePoem(with id: String, completion: ((Error?) -> Void)? = nil) {
-        reference.child("poems")
-            .child(id)
-            .removeValue { error, _ in
+    func deletePoem(_ poem: Poem, completion: ((Error?) -> Void)? = nil) {
+        database.collection("poems")
+            .document(poem.identifier)
+            .delete { error in
                 completion?(error)
-        }
+            }
     }
 }

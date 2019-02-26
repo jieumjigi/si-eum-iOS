@@ -15,11 +15,10 @@ import PopupDialog
 
 class MenuViewController: UIViewController, ContentViewChangable {
     
-    var viewTransition: BehaviorSubject<UIViewController> = BehaviorSubject<UIViewController>(value: UINavigationController(rootViewController: PageViewController()))
+    var viewTransition: BehaviorSubject<UIViewController> = BehaviorSubject<UIViewController>(value: UINavigationController(rootViewController: PageViewController(type: .today)))
     
     private let viewModel: MenuViewModel = MenuViewModel()
     private let disposeBag: DisposeBag = DisposeBag()
-    private let loginService: LoginService = LoginService()
     
     private lazy var didUpdateViewConstraints: Bool = false
     
@@ -112,7 +111,7 @@ class MenuViewController: UIViewController, ContentViewChangable {
             case .write:
                 self?.viewTransition.onNext(UINavigationController(rootViewController: MyPageViewController()))
             case .today:
-                let viewController = UINavigationController(rootViewController: PageViewController())
+                let viewController = UINavigationController(rootViewController: PageViewController(type: .today))
                 self?.viewTransition.onNext(viewController)
             case .past:
                 let viewController = UINavigationController(rootViewController: PoetsViewController())
@@ -126,7 +125,7 @@ class MenuViewController: UIViewController, ContentViewChangable {
                     message: "로그아웃 하시겠습니까?",
                     actions: [
                         PopupAction(title: "예", style: .default, onTouch: {
-                            LoginService().logout()
+                            LoginService.shared.logout()
                         }),
                         PopupAction(title: "아니오", style: .cancel)
                     ]
@@ -144,7 +143,7 @@ class MenuViewController: UIViewController, ContentViewChangable {
     }
     
     private func setImageListenerForHeaderView() {
-        loginService.didChangeUser { [weak self] authUser in
+        LoginService.shared.didChangeUser { [weak self] authUser in
             self?.headerView.setProfileImage(authUser?.imageURL)
         }
     }

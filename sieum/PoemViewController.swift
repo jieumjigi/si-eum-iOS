@@ -48,12 +48,14 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
     }
     
     func bind(_ viewModel: PageViewModel) {
-        pageViewModel?.poem.subscribe(onNext: { [weak self] poem in
-            guard let poem = poem else {
-                return
+        pageViewModel?.poemPageModel.asObservable().subscribe(onNext: { [weak self] result in
+            switch result {
+            case .failure:
+                break
+            case .success(let poemPageModel):
+                self?.loadViewIfNeeded()
+                self?.configure(model: poemPageModel)
             }
-            self?.loadViewIfNeeded()
-            self?.configure(model: poem)
         }).disposed(by: disposeBag)
     }
     
@@ -85,7 +87,7 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
                 paragraphStyle.alignment = .left
                 
                 let attrString = NSMutableAttributedString(string: contents)
-                attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedString.Key, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+                attrString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedString.Key, value:paragraphStyle, range: NSRange(location: 0, length: contents.count))
                 self?.lbBody.attributedText = attrString
             }
             
@@ -156,17 +158,19 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
                     var titleString = ""
                     var descString = ""
                     
-                    if let title = PoemModel.shared.title{
-                        titleString = titleString + title
-                    }
+                    // TODO: 싱글톤으로 사용되던 PoemModel은 데이터 공유를 위해 쓰이고 있었으므로 잘못된 사용법이라서 삭제됨
                     
-                    if let poetName = PoemModel.shared.authorName{
-                        titleString = titleString + " / " + poetName
-                    }
-                    
-                    if let poemContent = PoemModel.shared.contents{
-                        descString = poemContent
-                    }
+//                    if let title = PoemModel.shared.title{
+//                        titleString = titleString + title
+//                    }
+//
+//                    if let poetName = PoemModel.shared.authorName{
+//                        titleString = titleString + " / " + poetName
+//                    }
+//
+//                    if let poemContent = PoemModel.shared.contents{
+//                        descString = poemContent
+//                    }
                     
                     contentBuilder.title = titleString
                     contentBuilder.desc = descString

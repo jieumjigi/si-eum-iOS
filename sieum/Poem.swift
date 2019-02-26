@@ -12,7 +12,7 @@ import FirebaseFirestore
 
 struct Poem: ImmutableMappable {
     let identifier: String
-    let authorID: String?
+    let userID: String
     let title: String?
     let content: String?
     let abbrev: String?
@@ -23,7 +23,7 @@ struct Poem: ImmutableMappable {
     
     init(map: Map) throws {
         self.identifier = try map.value(Poem.firebaseIDKey)
-        self.authorID = try? map.value("author")
+        self.userID = try map.value("user_id")
         self.title = try? map.value("title")
         self.content = try? map.value("content", using: UnescapingNewLineStringTrasnform())
         self.abbrev = try? map.value("abbrev")

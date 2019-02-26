@@ -51,11 +51,14 @@ class PoemsOfPoetCollectionView: UICollectionView {
 
 class PoemsOfPoetContainerCell: UITableViewCell {
     
+    typealias DidSelectItemHandler = (IndexPath) -> Void
+    
     var poems: [Poem] = []
     var didUpdateConstraints: Bool = false
     
     private var disposeBag: DisposeBag = DisposeBag()
-    
+    private var didSelectItemHandler: DidSelectItemHandler?
+
     private let collectionView = PoemsOfPoetCollectionView().then {
         $0.isScrollEnabled = false
         $0.register(PoemCardCell.self)
@@ -113,6 +116,10 @@ class PoemsOfPoetContainerCell: UITableViewCell {
         
         contentView.layoutIfNeeded()
     }
+    
+    func didSelectItem(_ didSelectItemHandler: @escaping DidSelectItemHandler) {
+        self.didSelectItemHandler = didSelectItemHandler
+    }
    
     private func bind() {
         themeService.rx
@@ -133,7 +140,7 @@ extension PoemsOfPoetContainerCell: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        didSelectItemHandler?(indexPath)
     }
 }
 
