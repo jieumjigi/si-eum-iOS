@@ -104,6 +104,7 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     private func bind() {
         themeService.rx
             .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
+            .bind({ $0.backgroundColor }, to: tableView.rx.backgroundColor)
             .disposed(by: disposeBag)
     }
 
@@ -232,6 +233,20 @@ extension MyPageViewController: UITableViewDataSource {
 extension MyPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        switch indexPath.section {
+        case Section.user.rawValue:
+            break
+        case Section.poem.rawValue:
+            guard let poems = poems, poems.count > indexPath.row else {
+                return
+            }
+            let controller = WriteViewController(poem: poems[indexPath.row])
+            let navigationController = UINavigationController(rootViewController: controller)
+            present(navigationController, animated: true)
+        default:
+            break
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

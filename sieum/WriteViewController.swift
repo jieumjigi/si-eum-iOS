@@ -14,6 +14,7 @@ import Eureka
 import Toaster
 
 struct PoemWriteModel {
+    var identifier: String?
     var reservationDate: Date?
     var title: String?
     var content: String?
@@ -21,6 +22,10 @@ struct PoemWriteModel {
     
     var isUploadable: Bool {
         return title != nil && content != nil && abbrev != nil
+    }
+    
+    var isExistedPoem: Bool {
+        return identifier != nil
     }
     
     var unableUploadMessageIfNeeded: String? {
@@ -34,6 +39,27 @@ struct PoemWriteModel {
             return "본문을 적어주세요"
         }
         return nil
+    }
+    
+    init(reservationDate: Date? = Date().timeRemoved(),
+         title: String? = nil,
+         content: String? = nil,
+         abbrev: String? = nil) {
+     
+        self.reservationDate = reservationDate
+        self.title = title
+        self.content = content
+        self.abbrev = abbrev
+    }
+    
+    init(poem: Poem) {
+        self.init(
+            reservationDate: poem.reservationDate,
+            title: poem.title,
+            content: poem.content,
+            abbrev: poem.abbrev
+        )
+        self.identifier = poem.identifier
     }
 }
 
@@ -56,9 +82,12 @@ class WriteViewController: FormViewController {
         return UIBarButtonItem(customView: loadingIndicator)
     }()
     
-    init() {
+    init(poem: Poem? = nil) {
         super.init(style: .grouped)
         
+        if let poem = poem {
+            poemWriteModel = PoemWriteModel(poem: poem)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,7 +105,7 @@ class WriteViewController: FormViewController {
         form +++ Section("정보")
             <<< DateRow() {
                 $0.title = "게시할 날짜"
-                $0.value = Date()
+                $0.value = poemWriteModel.reservationDate ?? Date()
                 $0.dateFormatter = KRDateFormatter(components: [.date])
                 $0.baseCell.tintColor = themeService.theme.associatedObject.tintColor
             }
@@ -89,6 +118,7 @@ class WriteViewController: FormViewController {
             +++ Section("시")
             <<< TextRow() {
                 $0.placeholder = "제목"
+                $0.value = poemWriteModel.title
                 $0.baseCell.tintColor = themeService.theme.associatedObject.tintColor
             }
             .onChange({ [weak self] in
@@ -96,6 +126,7 @@ class WriteViewController: FormViewController {
             })
             <<< TextRow() {
                 $0.placeholder = "한마디"
+                $0.value = poemWriteModel.abbrev
                 $0.baseCell.tintColor = themeService.theme.associatedObject.tintColor
             }
             .onChange({ [weak self] in
@@ -103,6 +134,7 @@ class WriteViewController: FormViewController {
             })
             <<< TextAreaRow() {
                 $0.placeholder = "본문"
+                $0.value = poemWriteModel.content
                 $0.textAreaHeight = .fixed(cellHeight: 250)
                 $0.baseCell.tintColor = themeService.theme.associatedObject.tintColor
             }
@@ -161,20 +193,33 @@ class WriteViewController: FormViewController {
         }
         
         updateRightBarButtonItem(uploading: true)
-        DatabaseService.shared.addPoem(
-            model: poemWriteModel,
-            userID: userID,
-            completion: { [weak self] error in
-                self?.updateRightBarButtonItem(uploading: false)
-
-                guard error == nil else {
-                    Toast(text: "시를 등록하는데 실패했습니다").show()
-                    return
-                }
-                
-                Toast(text: "시를 성공적으로 등록했습니다").show()
-                self?.dismiss(animated: true)
-        })
+        
+        if poemWriteModel.isExistedPoem {
+            DatabaseService.shared.editPoem(
+                model: poemWriteModel,
+                userID: userID) { [weak self] error in
+                    self?.handleCompletionUploadPoem(with: error)
+            }
+        } else {
+            DatabaseService.shared.addPoem(
+                model: poemWriteModel,
+                userID: userID,
+                completion: { [weak self] error in
+                    self?.handleCompletionUploadPoem(with: error)
+            })
+        }
+    }
+    
+    private func handleCompletionUploadPoem(with error: Error?) {
+        updateRightBarButtonItem(uploading: false)
+        
+        guard error == nil else {
+            Toast(text: "시를 등록하는데 실패했습니다").show()
+            return
+        }
+        
+        Toast(text: "시를 성공적으로 등록했습니다").show()
+        dismiss(animated: true)
     }
     
     private func updateRightBarButtonItem(uploading: Bool) {

@@ -8,15 +8,26 @@
 
 import UIKit
 import RxSwift
-import FBSDKLoginKit
+import RxTheme
 
 class MyPagePoemTableViewCell: UITableViewCell {
     
+    private lazy var disposeBag: DisposeBag = DisposeBag()
     private lazy var didUpdateConstraints: Bool = false
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         accessoryType = .disclosureIndicator
+        
+        themeService.rx
+            .bind({ $0.backgroundColor }, to: rx.backgroundColor, contentView.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
+        if let textLabel = textLabel, let detailTextLabel = detailTextLabel {
+            themeService.rx
+                .bind({ $0.textColor }, to: textLabel.rx.textColor, detailTextLabel.rx.textColor)
+                .disposed(by: disposeBag)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -54,6 +54,13 @@ extension DocumentReference {
         }
     }
     
+    func updateData(optionalData: [String: Any?], completion: @escaping (Error?) -> Void) {
+        let documentDataWithNullObject = optionalData.mapValues {
+            return $0 ?? NSNull()
+        }
+        updateData(documentDataWithNullObject, completion: completion)
+    }
+    
     func getDocument<Response: BaseMappable>(completion: @escaping (Result<Response>) -> Void) {
         self.getDocument { snapshot, error in
             if let error = error {
@@ -282,6 +289,27 @@ extension DatabaseService {
                 completion(error)
             }
     }
+    
+    func editPoem(model: PoemWriteModel, userID: String, completion: @escaping (Error?) -> Void) {
+        
+        guard model.isUploadable, let poemID = model.identifier else {
+            return
+        }
+        
+        database.collection("poems")
+            .document(poemID)
+            .updateData(optionalData:
+                [
+                    "title": model.title,
+                    "content": model.content,
+                    "abbrev": model.abbrev,
+                    "register_date": Date(),
+                    "reservation_date": model.reservationDate
+            ]) { error in
+                completion(error)
+        }
+    }
+
     
     func deletePoem(_ poem: Poem, completion: ((Error?) -> Void)? = nil) {
         database.collection("poems")

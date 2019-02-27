@@ -8,9 +8,12 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxTheme
 
 class MyPageUserTableViewCell: UITableViewCell {
     
+    private lazy var disposeBag = DisposeBag()
     private lazy var didUpdateConstraints: Bool = false
     
     private lazy var profileImageView: UIImageView = {
@@ -32,6 +35,11 @@ class MyPageUserTableViewCell: UITableViewCell {
         contentView.addSubview(profileImageView)
         contentView.addSubview(nameLabel)
         setNeedsUpdateConstraints()
+        
+        themeService.rx
+            .bind({ $0.backgroundColor }, to: rx.backgroundColor, contentView.rx.backgroundColor)
+            .bind({ $0.textColor }, to: nameLabel.rx.textColor)
+            .disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {
