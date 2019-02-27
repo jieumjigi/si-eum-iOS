@@ -54,11 +54,13 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>25</string>
+	<string>28</string>
 	<key>FacebookAppID</key>
 	<string>424383144577452</string>
 	<key>FacebookDisplayName</key>
 	<string>시음</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>KAKAO_APP_KEY</key>
 	<string>dee922889cd0851ea85bb52415640e09</string>
 	<key>LSApplicationQueriesSchemes</key>

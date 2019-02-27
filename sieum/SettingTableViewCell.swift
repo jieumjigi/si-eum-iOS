@@ -64,7 +64,9 @@ class SettingTableViewCell: UITableViewCell {
             .disposed(by: disposeBag)
             
             switcher.rx.isOn.asObservable().subscribe(onNext: { isOn in
-                themeService.set(isOn ? .dark : .light)
+                let theme: ThemeType = isOn ? .dark : .light
+                themeService.set(theme)
+                ThemeWorker().save(theme: theme)
             }).disposed(by: disposeBag)
         }
     }

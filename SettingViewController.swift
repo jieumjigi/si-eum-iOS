@@ -51,9 +51,14 @@ class SettingViewController: UITableViewController, SideMenuUsable {
     }
     
     private func bind() {
+        
+        
+        
         themeService.rx
-            .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
-            .bind({ $0.backgroundColor }, to: tableView.rx.backgroundColor)
+            .bind(
+                { $0.backgroundColor },
+                to: view.rx.backgroundColor, tableView.rx.backgroundColor
+            )
             .disposed(by: disposeBag)
     }
 

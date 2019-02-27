@@ -47,7 +47,21 @@ enum ThemeType: ThemeProvider {
     }
 }
 
-let themeService = ThemeType.service(initial: .light)
+struct ThemeWorker {
+    var savedTheme: ThemeType {
+        if UserDefaults.standard.bool(forKey: "themeIsDark") {
+            return .dark
+        } else {
+            return .light
+        }
+    }
+    
+    func save(theme: ThemeType) {
+        UserDefaults.standard.set(theme == .dark, forKey: "themeIsDark")
+    }
+}
+
+let themeService = ThemeType.service(initial: ThemeWorker().savedTheme)
 
 public extension Reactive where Base: UIButton {
     public func titleColor(for state: UIControl.State) -> Binder<UIColor?> {

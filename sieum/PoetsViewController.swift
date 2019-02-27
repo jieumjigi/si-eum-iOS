@@ -117,7 +117,7 @@ class PoetsViewController: UIViewController, SideMenuUsable {
             .map { $0?.identifier }
             .unwrappedOptional()
             .subscribe(onNext: { userID in
-                DatabaseService.shared.poems(userID: userID, lastPoem: nil, limit: 10, completion: { [weak self] result in
+                DatabaseService.shared.poems(userID: userID, lastPoem: nil, limit: 10, after: Date().timeRemoved(), completion: { [weak self] result in
                     switch result {
                     case .failure:
                         break

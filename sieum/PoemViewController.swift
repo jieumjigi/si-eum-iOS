@@ -44,6 +44,9 @@ class PoemViewController: UIViewController, PageViewModelUsable, FBSDKSharingDel
         
         themeService.rx
             .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
+            .bind({ $0.backgroundColor }, to: scrollView.rx.backgroundColor)
+            .bind({ $0.tintColor }, to: lbPoet.rx.textColor)
+            .bind({ $0.textColor }, to: lbBody.rx.textColor)
             .disposed(by: disposeBag)
     }
     

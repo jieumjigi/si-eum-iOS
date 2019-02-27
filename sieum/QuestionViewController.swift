@@ -28,6 +28,7 @@ class QuestionViewController: UIViewController, PageViewModelUsable {
         
         themeService.rx
             .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
+            .bind({ $0.textColor }, to: questionLabel.rx.textColor)
             .disposed(by: disposeBag)
     }
     

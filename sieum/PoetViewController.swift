@@ -36,6 +36,9 @@ class PoetViewController: UIViewController, PageViewModelUsable {
         
         themeService.rx
             .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
+            .bind({ $0.textColor }, to: lbPoet.rx.textColor)
+            .bind({ $0.textColor }, to: lbIntroPoet.rx.textColor)
+            .bind({ $0.tintColor }, to: poetLinkButton.rx.titleColor(for: .normal))
             .disposed(by: disposeBag)
     }
     

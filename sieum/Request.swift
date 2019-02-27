@@ -129,7 +129,7 @@ class DatabaseService {
     func todayPoem(completion: @escaping (Result<Poem>) -> Void) {
         database.collection("poems")
             .order(by: "reservation_date", descending: true)
-            .whereField("reservation_date", isLessThanOrEqualTo: Date().timeRemoved() ?? Date())
+            .whereField("reservation_date", isLessThanOrEqualTo: Date().timeRemoved())
             .getDocuments { snapshot, error in
                 if let error = error {
                     completion(.failure(error))
@@ -157,12 +157,17 @@ class DatabaseService {
         userID: String,
         lastPoem: Poem?,
         limit: Int,
+        after afterDate: Date? = nil,
         completion: @escaping (Result<[Poem]>) -> Void) {
         
         var reference = database
             .collection("poems")
             .whereField("user_id", isEqualTo: userID)
             .limit(to: limit)
+        
+        if let afterDate = afterDate {
+            reference = reference.whereField("reservation_date", isLessThan: afterDate)
+        }
 
         if let lastPoem = lastPoem {
             if let reservationDate = lastPoem.reservationDate {

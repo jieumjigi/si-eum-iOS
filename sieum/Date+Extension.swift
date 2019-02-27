@@ -13,8 +13,8 @@ extension Date {
         return KRDateFormatter(components: components).string(from: self)
     }
     
-    func timeRemoved() -> Date? {
-        return Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: self)
+    func timeRemoved() -> Date {
+        return Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: self) ?? self
     }
 }
 
