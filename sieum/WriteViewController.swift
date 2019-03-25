@@ -107,7 +107,6 @@ class WriteViewController: FormViewController {
                 $0.title = "게시할 날짜"
                 $0.value = poemWriteModel.reservationDate ?? Date()
                 $0.dateFormatter = KRDateFormatter(components: [.date])
-                $0.baseCell.tintColor = themeService.theme.associatedObject.tintColor
             }
             .onChange({ [weak self] in
                 guard let date = $0.value?.timeRemoved() else {
@@ -119,7 +118,6 @@ class WriteViewController: FormViewController {
             <<< TextRow() {
                 $0.placeholder = "제목"
                 $0.value = poemWriteModel.title
-                $0.baseCell.tintColor = themeService.theme.associatedObject.tintColor
             }
             .onChange({ [weak self] in
                 self?.poemWriteModel.title = $0.value
@@ -127,7 +125,6 @@ class WriteViewController: FormViewController {
             <<< TextRow() {
                 $0.placeholder = "한마디"
                 $0.value = poemWriteModel.abbrev
-                $0.baseCell.tintColor = themeService.theme.associatedObject.tintColor
             }
             .onChange({ [weak self] in
                 self?.poemWriteModel.abbrev = $0.value
@@ -136,7 +133,6 @@ class WriteViewController: FormViewController {
                 $0.placeholder = "본문"
                 $0.value = poemWriteModel.content
                 $0.textAreaHeight = .fixed(cellHeight: 250)
-                $0.baseCell.tintColor = themeService.theme.associatedObject.tintColor
             }
             .onChange({ [weak self] in
                 self?.poemWriteModel.content = $0.value

@@ -31,8 +31,6 @@ class PoetsCollectionView: UICollectionView {
         super.init(frame: .zero, collectionViewLayout: flowLayout)
         contentInset = UIEdgeInsets(top: 0, left: Consts.padding, bottom: 0, right: Consts.padding)
         showsHorizontalScrollIndicator = false
-        
-        backgroundColor = themeService.theme.associatedObject.backgroundColor
 
         themeService.rx
             .bind({ $0.backgroundColor }, to: rx.backgroundColor)

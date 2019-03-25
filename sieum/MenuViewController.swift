@@ -12,6 +12,7 @@ import RxCocoa
 import RxDataSources
 import SHSideMenu
 import PopupDialog
+import FirebaseUI
 
 class MenuViewController: UIViewController, ContentViewChangable {
     
@@ -47,6 +48,11 @@ class MenuViewController: UIViewController, ContentViewChangable {
             versionLabel.text = "ver \(version)"
         }
         return versionLabel
+    }()
+    
+    private lazy var loginViewController: UIViewController? = {
+        let loginViewController = LoginService.loginViewController
+        return loginViewController
     }()
     
     override func viewDidLoad() {
@@ -167,7 +173,7 @@ extension MenuViewController {
                 message: "로그인 하시겠습니까?",
                 actions: [
                     PopupAction(title: "예", style: .default, onTouch: { [weak self] in
-                        guard let loginViewController = LoginService.loginViewController else {
+                        guard let loginViewController = self?.loginViewController else {
                             return
                         }
                         self?.parentMenuViewController?.present(loginViewController, animated: true)

@@ -31,9 +31,6 @@ class PoetViewController: UIViewController, PageViewModelUsable {
     }
     
     private func bind() {
-        
-        view.backgroundColor = themeService.theme.associatedObject.backgroundColor
-        
         themeService.rx
             .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
             .bind({ $0.textColor }, to: lbPoet.rx.textColor)

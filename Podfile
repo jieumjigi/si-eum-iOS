@@ -16,7 +16,7 @@ def shared_pods
   pod 'Kingfisher', '~> 4.0'
   pod 'SHSideMenu', '~> 0.0.4' 
   pod 'RxDataSources', '~> 3.0'
-  pod 'RxTheme', '2.0'
+  pod 'RxTheme'
   pod 'Then'
   pod 'ObjectMapper', '~> 3.3'
   pod 'RxSwiftExt'

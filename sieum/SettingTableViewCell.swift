@@ -58,14 +58,11 @@ class SettingTableViewCell: UITableViewCell {
             .disposed(by: disposeBag)
         
         if let switcher = accessoryView as? UISwitch {
-            themeService.relay.map({
-                $0 == .dark
-            }).bind(to: switcher.rx.isOn)
-            .disposed(by: disposeBag)
+            themeService.typeStream.map { $0 == .dark }.bind(to: switcher.rx.isOn).disposed(by: disposeBag)
             
             switcher.rx.isOn.asObservable().subscribe(onNext: { isOn in
                 let theme: ThemeType = isOn ? .dark : .light
-                themeService.set(theme)
+                themeService.switch(theme)
                 ThemeWorker().save(theme: theme)
             }).disposed(by: disposeBag)
         }
