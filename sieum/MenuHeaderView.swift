@@ -13,10 +13,7 @@ import Kingfisher
 
 class MenuHeaderView: UIView {
     
-    typealias OnTouchImageHandler = () -> Void
-    
     private var didUpdateConstraints: Bool = false
-    private var onTouchImageHandler: OnTouchImageHandler?
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 90))
@@ -25,9 +22,6 @@ class MenuHeaderView: UIView {
         imageView.clipsToBounds = true
         imageView.image = #imageLiteral(resourceName: "profile_default")
         imageView.kf.indicatorType = .activity
-        imageView.addGesture(type: .tap, { [weak self] in
-            self?.onTouchImageHandler?()
-        })
         return imageView
     }()
     
@@ -57,9 +51,5 @@ class MenuHeaderView: UIView {
         
     func setProfileImage(_ url: URL?) {
         imageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "profile_default"))
-    }
-    
-    func onTouchImage(_ onTouchImageHandler: @escaping OnTouchImageHandler) {
-        self.onTouchImageHandler = onTouchImageHandler
     }
 }

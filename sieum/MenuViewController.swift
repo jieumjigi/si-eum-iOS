@@ -33,13 +33,7 @@ class MenuViewController: UIViewController, ContentViewChangable {
         return tableView
     }()
     
-    private lazy var headerView: MenuHeaderView = {
-        let headerView: MenuHeaderView = MenuHeaderView()
-        headerView.onTouchImage { [weak self] in
-            self?.onTouchHeaderView()
-        }
-        return headerView
-    }()
+    private lazy var headerView: MenuHeaderView = MenuHeaderView()
     
     private lazy var versionLabel: UILabel = {
         let versionLabel = UILabel()
@@ -107,38 +101,45 @@ class MenuViewController: UIViewController, ContentViewChangable {
         
         self.dataSource = dataSource
         
-        tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
-            self?.tableView.deselectRow(at: indexPath, animated: true)
-            guard let strongSelf = self,
-                let menu = Menu(rawValue: indexPath.row) else {
-                return
-            }
-            switch menu {
-            case .write:
-                self?.viewTransition.onNext(UINavigationController(rootViewController: MyPageViewController()))
-            case .today:
-                let viewController = UINavigationController(rootViewController: PageViewController(type: .today))
-                self?.viewTransition.onNext(viewController)
-            case .past:
-                let viewController = UINavigationController(rootViewController: PoetsViewController())
-                self?.viewTransition.onNext(viewController)
-            case .setting:
-                let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController")
-                self?.viewTransition.onNext(UINavigationController(rootViewController: viewController))
-            case .logout:
-                let popupController = PopupDialog(
-                    title: "로그아웃",
-                    message: "로그아웃 하시겠습니까?",
-                    actions: [
-                        PopupAction(title: "예", style: .default, onTouch: {
-                            LoginService.shared.logout()
-                        }),
-                        PopupAction(title: "아니오", style: .cancel)
-                    ]
-                )
-                strongSelf.parentMenuViewController?.present(popupController, animated: false)
-            }
-        }).disposed(by: disposeBag)
+        tableView.rx.itemSelected
+            .withLatestFrom(viewModel.sections) { return ($0, $1) }
+            .subscribe(onNext: { [weak self] indexPath, sections in
+                self?.tableView.deselectRow(at: indexPath, animated: true)
+                guard let strongSelf = self,
+                    let menu = sections.first?.items[indexPath.row] else {
+                        return
+                }
+                switch menu {
+                case .write:
+                    self?.viewTransition.onNext(UINavigationController(rootViewController: MyPageViewController()))
+                case .today:
+                    let viewController = UINavigationController(rootViewController: PageViewController(type: .today))
+                    self?.viewTransition.onNext(viewController)
+                case .past:
+                    let viewController = UINavigationController(rootViewController: PoetsViewController())
+                    self?.viewTransition.onNext(viewController)
+                case .setting:
+                    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController")
+                    self?.viewTransition.onNext(UINavigationController(rootViewController: viewController))
+                case .login:
+                    guard let loginViewController = self?.loginViewController else {
+                        return
+                    }
+                    self?.parentMenuViewController?.present(loginViewController, animated: true)
+                case .logout:
+                    let popupController = PopupDialog(
+                        title: "로그아웃",
+                        message: "로그아웃 하시겠습니까?",
+                        actions: [
+                            PopupAction(title: "예", style: .default, onTouch: {
+                                LoginService.shared.logout()
+                            }),
+                            PopupAction(title: "아니오", style: .cancel)
+                        ]
+                    )
+                    strongSelf.parentMenuViewController?.present(popupController, animated: false)
+                }
+            }).disposed(by: disposeBag)
         
         viewModel.sections
             .bind(to: tableView.rx.items(dataSource: dataSource))
@@ -158,30 +159,5 @@ class MenuViewController: UIViewController, ContentViewChangable {
 extension MenuViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
-    }
-}
-
-// MARK: - Button Handler
-
-extension MenuViewController {
-    func onTouchHeaderView() {
-        if LoginService.isLoggedIn {
-            
-        } else {
-            let popupController = PopupDialog(
-                title: "로그인이 되지 않았습니다.",
-                message: "로그인 하시겠습니까?",
-                actions: [
-                    PopupAction(title: "예", style: .default, onTouch: { [weak self] in
-                        guard let loginViewController = self?.loginViewController else {
-                            return
-                        }
-                        self?.parentMenuViewController?.present(loginViewController, animated: true)
-                    }),
-                    PopupAction(title: "아니오", style: .cancel)
-                ]
-            )
-            parentMenuViewController?.present(popupController, animated: false)
-        }
     }
 }

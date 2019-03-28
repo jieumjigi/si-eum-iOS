@@ -100,18 +100,6 @@ class PoemsOfPoetContainerCell: UITableViewCell {
     func configure(poems: [Poem]) {
         self.poems = poems
         collectionView.reloadData()
-//        var testPoems: [Poem] = []
-//
-//        for _ in 0...10 {
-//            let poem = PoemModel()
-//            poem.reservation_date = "20180628"
-//            poem.title = "나의 노을에게"
-//            poem.question = "당신의 노을은\n어떤 의미인가요?"
-//            testPoems.append(poem)
-//        }
-//
-//        self.poems = testPoems
-        
         contentView.layoutIfNeeded()
     }
     
@@ -251,7 +239,6 @@ class PoemCardCell: UICollectionViewCell {
     }
     
     func configure(_ poem: Poem) {
-//        dateLabel.text = poem.reservationDate
         titleLabel.text = poem.title
         questionLabel.text = poem.abbrev
     }

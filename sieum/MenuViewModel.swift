@@ -31,6 +31,7 @@ enum Menu: Int, CaseIterable {
     case today
     case past
     case setting
+    case login
     case logout
     
     var title: String {
@@ -39,6 +40,7 @@ enum Menu: Int, CaseIterable {
         case .today: return "오늘의 시"
         case .past: return "지나간 시"
         case .setting: return "설정"
+        case .login: return "로그인"
         case .logout: return "로그아웃"
         }
     }
@@ -54,15 +56,14 @@ class MenuViewModel {
         sectionRelay = PublishRelay<[MenuSection]>()
         sections = sectionRelay.asObservable().startWith([MenuSection()])
 
-        // TODO: - 시인 인지 여부 판별하기
-
         LoginService().didChangeUser { [weak self] authUser in
             let isLoggedIn = authUser != nil
-            let isPoet: Bool = true
             
             var menus: [Menu] = []
-            if isPoet {
+            if isLoggedIn {
                 menus.append(.write)
+            } else {
+                menus.append(.login)
             }
             menus.append(contentsOf: [.today, .past, .setting])
             if isLoggedIn {
