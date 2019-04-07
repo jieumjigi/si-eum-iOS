@@ -10,6 +10,4 @@ import Foundation
 
 class PageCursor<Item> {
     var last: Item?
-    
-    
 }

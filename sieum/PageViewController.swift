@@ -54,6 +54,7 @@ class PageViewController: UIPageViewController, SideMenuUsable {
         super.viewDidLoad()
         
         dataSource = self
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         switch viewType {
         case .today:
@@ -140,4 +141,10 @@ fileprivate func convertFromOptionalUIPageViewControllerOptionsKeyDictionary(_ i
 fileprivate func convertToOptionalUIPageViewControllerOptionsKeyDictionary(_ input: [String: Any]?) -> [UIPageViewController.OptionsKey: Any]? {
 	guard let input = input else { return nil }
 	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIPageViewController.OptionsKey(rawValue: key), value)})
+}
+
+extension PageViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }

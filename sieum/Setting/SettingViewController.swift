@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxTheme
 import SHSideMenu
+import WebKit
 
 enum SettingMenu: Int, CaseIterable {
     case homepage = 0
@@ -51,9 +52,6 @@ class SettingViewController: UITableViewController, SideMenuUsable {
     }
     
     private func bind() {
-        
-        
-        
         themeService.rx
             .bind(
                 { $0.backgroundColor },
@@ -93,7 +91,7 @@ class SettingViewController: UITableViewController, SideMenuUsable {
         
         switch indexPath.row {
         case SettingMenu.homepage.rawValue:
-            presentBlog()
+            presentFacebookPage()
         case SettingMenu.email.rawValue:
             sendEmail()
         case SettingMenu.review.rawValue:
@@ -105,11 +103,8 @@ class SettingViewController: UITableViewController, SideMenuUsable {
         }
     }
     
-    func presentBlog(){
-        let webViewRect = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: self.view.frame.size.height - CGFloat(60))
-        let webView = UIWebView.init(frame: webViewRect)
-        webView.loadRequest(URLRequest.init(url: URL.init(string: GlobalConstants.URL.blog)!))
-        self.view.addSubview(webView)
+    func presentFacebookPage() {
+        presentPanModal(WebViewController(url: URL.init(string: GlobalConstants.URL.blog)!))
     }
     
     // MARK : - Email

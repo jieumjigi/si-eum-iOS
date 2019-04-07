@@ -31,6 +31,7 @@ target 'sieum' do
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
   pod 'Toaster', :git => 'https://github.com/devxoul/Toaster.git', :branch => 'master'
+  pod 'PanModal'
 end
 
 target 'sieumTests' do
