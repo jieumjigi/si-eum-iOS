@@ -9,11 +9,6 @@
 /* Begin PBXBuildFile section */
 		32699330DF0D454AB99B1752 /* Pods_sieumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AFCBAC42CE60A3B39B4E956 /* Pods_sieumUITests.framework */; };
 		4A18B9366A519982809F87F9 /* Pods_sieum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F09FAE3434EBD7F50C6438B /* Pods_sieum.framework */; };
-		C02A9779C1087DEDA156F143 /* Pods_SieumWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A926E6F7CB0843884B3B801 /* Pods_SieumWidget.framework */; };
-		C105D4661EA1187300631D41 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105D4651EA1187300631D41 /* NotificationCenter.framework */; };
-		C105D4691EA1187300631D41 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105D4681EA1187300631D41 /* TodayViewController.swift */; };
-		C105D46C1EA1187300631D41 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C105D46A1EA1187300631D41 /* MainInterface.storyboard */; };
-		C105D4701EA1187300631D41 /* SieumWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C105D4641EA1187300631D41 /* SieumWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C10A4A55212AE4C4005B65B4 /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A4A54212AE4C4005B65B4 /* MenuHeaderView.swift */; };
 		C10A4A57212AE5BA005B65B4 /* MenuHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A4A56212AE5BA005B65B4 /* MenuHeaderViewModel.swift */; };
 		C11634C12022066600543070 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C11634C02022066600543070 /* Assets.xcassets */; };
@@ -28,16 +23,17 @@
 		C12D6F8E2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F8D2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift */; };
 		C12D6F9221265212006DA57D /* PoetProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F9121265212006DA57D /* PoetProfileCell.swift */; };
 		C12D6F9421271891006DA57D /* PoemsOfPoetContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12D6F9321271891006DA57D /* PoemsOfPoetContainerCell.swift */; };
-		C12E3519221327C8003656AC /* PageCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E3518221327C8003656AC /* PageCursor.swift */; };
-		C13236BC1EBAFBCC00C54E9A /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13236BB1EBAFBCC00C54E9A /* GlobalConstants.swift */; };
-		C13236BD1EBB110500C54E9A /* IropkeBatangM.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A769A71E48C37600B5E216 /* IropkeBatangM.otf */; };
 		C134D6FA225A46C800F6F26B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D6F7225A46C700F6F26B /* SettingViewController.swift */; };
 		C134D6FB225A46C800F6F26B /* HelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D6F8225A46C700F6F26B /* HelloViewController.swift */; };
 		C134D6FC225A46C800F6F26B /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D6F9225A46C700F6F26B /* SettingTableViewCell.swift */; };
 		C134D6FE225A46D900F6F26B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D6FD225A46D900F6F26B /* WebViewController.swift */; };
+		C134D7072265FBD900F6F26B /* MyPagePoemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D7022265FBD900F6F26B /* MyPagePoemTableViewCell.swift */; };
+		C134D7082265FBD900F6F26B /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D7032265FBD900F6F26B /* WriteViewController.swift */; };
+		C134D7092265FBD900F6F26B /* PageCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D7042265FBD900F6F26B /* PageCursor.swift */; };
+		C134D70A2265FBD900F6F26B /* MyPageEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D7052265FBD900F6F26B /* MyPageEmptyView.swift */; };
+		C134D70B2265FBD900F6F26B /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D7062265FBD900F6F26B /* MyPageViewController.swift */; };
 		C1377E1720234CCA008FB68D /* UIImageViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1377E1620234CCA008FB68D /* UIImageViewUtil.swift */; };
 		C14A0430212AF07900292D42 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A042F212AF07900292D42 /* Bundle+Extension.swift */; };
-		C14A0432212AF1F000292D42 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A0431212AF1F000292D42 /* MyPageViewController.swift */; };
 		C14A0438212C3D3600292D42 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A0437212C3D3600292D42 /* Request.swift */; };
 		C14A043A212C578600292D42 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A0439212C578600292D42 /* UserModel.swift */; };
 		C14A043C212C67DF00292D42 /* Mapper+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A043B212C67DF00292D42 /* Mapper+Extension.swift */; };
@@ -45,7 +41,6 @@
 		C14A0440212C6F1000292D42 /* DatabaseReference+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A043F212C6F1000292D42 /* DatabaseReference+Extension.swift */; };
 		C14A0444212EB34600292D42 /* Poem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A0443212EB34600292D42 /* Poem.swift */; };
 		C14A0446212EBE5600292D42 /* Optional+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A0445212EBE5600292D42 /* Optional+Rx.swift */; };
-		C14A0448212F9B2A00292D42 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A0447212F9B2A00292D42 /* WriteViewController.swift */; };
 		C14AFAEF1F641AEC00283D9E /* launchImage4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14AFAEE1F641AEC00283D9E /* launchImage4.jpg */; };
 		C14B055F1E67032900EE2A58 /* launchImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14B055E1E67032900EE2A58 /* launchImage.jpg */; };
 		C14B05611E6703F400EE2A58 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C14B05601E6703F400EE2A58 /* Images.xcassets */; };
@@ -73,8 +68,6 @@
 		C16CA9E11ECECECF009C2227 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C16CA9DE1ECECECF009C2227 /* KakaoOpenSDK.framework */; };
 		C16CA9E21ECECECF009C2227 /* KakaoLink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C16CA9DF1ECECECF009C2227 /* KakaoLink.framework */; };
 		C16CA9E31ECECECF009C2227 /* KakaoS2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C16CA9E01ECECECF009C2227 /* KakaoS2.framework */; };
-		C1724B94219EFF4100F60A2E /* MyPagePoemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1724B93219EFF4100F60A2E /* MyPagePoemTableViewCell.swift */; };
-		C1752EBA1EC0216A0042C24E /* launchImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14B055E1E67032900EE2A58 /* launchImage.jpg */; };
 		C1752EBB1EC0216B0042C24E /* launchImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14B055E1E67032900EE2A58 /* launchImage.jpg */; };
 		C1752EBC1EC0216B0042C24E /* launchImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C14B055E1E67032900EE2A58 /* launchImage.jpg */; };
 		C1752EBE1EC034200042C24E /* UYLNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1752EBD1EC034200042C24E /* UYLNotificationDelegate.swift */; };
@@ -84,8 +77,6 @@
 		C17F523A1E5DC2EB006AD57A /* PoemCoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17F52391E5DC2EB006AD57A /* PoemCoverViewController.swift */; };
 		C17F523E1E5DE4EF006AD57A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C17F523D1E5DE4EF006AD57A /* Main.storyboard */; };
 		C195482F220C635400905200 /* UIResponder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C195482E220C635400905200 /* UIResponder+Extension.swift */; };
-		C19803791FF5277100F7EDF3 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C19803781FF5277100F7EDF3 /* keys.plist */; };
-		C198037A1FF5277100F7EDF3 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C19803781FF5277100F7EDF3 /* keys.plist */; };
 		C19AC43A1EC5DAA700068A21 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19AC4391EC5DAA700068A21 /* DateUtil.swift */; };
 		C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769751E48998100B5E216 /* AppDelegate.swift */; };
 		C1A769781E48998100B5E216 /* PoemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A769771E48998100B5E216 /* PoemViewController.swift */; };
@@ -126,13 +117,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C105D46E1EA1187300631D41 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1A7696A1E48998100B5E216 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C105D4631EA1187300631D41;
-			remoteInfo = SieumWidget;
-		};
 		C1A769871E48998100B5E216 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C1A7696A1E48998100B5E216 /* Project object */;
@@ -156,7 +140,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C105D4701EA1187300631D41 /* SieumWidget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -174,13 +157,8 @@
 		4090484F470BE9C3AE75E98C /* Pods-sieum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sieum/Pods-sieum.debug.xcconfig"; sourceTree = "<group>"; };
 		4AFCBAC42CE60A3B39B4E956 /* Pods_sieumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sieumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		713883869EA0B7CF9E02CD28 /* Pods-sieumUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sieumUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sieumUITests/Pods-sieumUITests.release.xcconfig"; sourceTree = "<group>"; };
-		C105D4641EA1187300631D41 /* SieumWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SieumWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C105D4651EA1187300631D41 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		C105D4681EA1187300631D41 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		C105D46B1EA1187300631D41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		C105D46D1EA1187300631D41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C105D4751EA118B900631D41 /* sieum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sieum.entitlements; sourceTree = "<group>"; };
-		C105D4761EA1198400631D41 /* SieumWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SieumWidget.entitlements; sourceTree = "<group>"; };
 		C10A4A54212AE4C4005B65B4 /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
 		C10A4A56212AE5BA005B65B4 /* MenuHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderViewModel.swift; sourceTree = "<group>"; };
 		C11634C02022066600543070 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -195,15 +173,17 @@
 		C12D6F8D2125E5CB006DA57D /* PoetsThumbnailContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetsThumbnailContainerCell.swift; sourceTree = "<group>"; };
 		C12D6F9121265212006DA57D /* PoetProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetProfileCell.swift; sourceTree = "<group>"; };
 		C12D6F9321271891006DA57D /* PoemsOfPoetContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemsOfPoetContainerCell.swift; sourceTree = "<group>"; };
-		C12E3518221327C8003656AC /* PageCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCursor.swift; sourceTree = "<group>"; };
-		C13236BB1EBAFBCC00C54E9A /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		C134D6F7225A46C700F6F26B /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C134D6F8225A46C700F6F26B /* HelloViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloViewController.swift; sourceTree = "<group>"; };
 		C134D6F9225A46C700F6F26B /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		C134D6FD225A46D900F6F26B /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		C134D7022265FBD900F6F26B /* MyPagePoemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPagePoemTableViewCell.swift; sourceTree = "<group>"; };
+		C134D7032265FBD900F6F26B /* WriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		C134D7042265FBD900F6F26B /* PageCursor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCursor.swift; sourceTree = "<group>"; };
+		C134D7052265FBD900F6F26B /* MyPageEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageEmptyView.swift; sourceTree = "<group>"; };
+		C134D7062265FBD900F6F26B /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		C1377E1620234CCA008FB68D /* UIImageViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewUtil.swift; sourceTree = "<group>"; };
 		C14A042F212AF07900292D42 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
-		C14A0431212AF1F000292D42 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		C14A0437212C3D3600292D42 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		C14A0439212C578600292D42 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C14A043B212C67DF00292D42 /* Mapper+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mapper+Extension.swift"; sourceTree = "<group>"; };
@@ -211,7 +191,6 @@
 		C14A043F212C6F1000292D42 /* DatabaseReference+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseReference+Extension.swift"; sourceTree = "<group>"; };
 		C14A0443212EB34600292D42 /* Poem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poem.swift; sourceTree = "<group>"; };
 		C14A0445212EBE5600292D42 /* Optional+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Rx.swift"; sourceTree = "<group>"; };
-		C14A0447212F9B2A00292D42 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		C14AFAEE1F641AEC00283D9E /* launchImage4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage4.jpg; sourceTree = "<group>"; };
 		C14B055E1E67032900EE2A58 /* launchImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage.jpg; sourceTree = "<group>"; };
 		C14B05601E6703F400EE2A58 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -239,7 +218,6 @@
 		C16CA9DE1ECECECF009C2227 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
 		C16CA9DF1ECECECF009C2227 /* KakaoLink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoLink.framework; sourceTree = "<group>"; };
 		C16CA9E01ECECECF009C2227 /* KakaoS2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoS2.framework; sourceTree = "<group>"; };
-		C1724B93219EFF4100F60A2E /* MyPagePoemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePoemTableViewCell.swift; sourceTree = "<group>"; };
 		C1752EBD1EC034200042C24E /* UYLNotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UYLNotificationDelegate.swift; sourceTree = "<group>"; };
 		C17F52281E5DA79E006AD57A /* PoetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoetViewController.swift; sourceTree = "<group>"; };
 		C17F522B1E5DA80D006AD57A /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
@@ -248,7 +226,6 @@
 		C17F52391E5DC2EB006AD57A /* PoemCoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoemCoverViewController.swift; sourceTree = "<group>"; };
 		C17F523D1E5DE4EF006AD57A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C195482E220C635400905200 /* UIResponder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Extension.swift"; sourceTree = "<group>"; };
-		C19803781FF5277100F7EDF3 /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		C19AC4391EC5DAA700068A21 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		C1A769721E48998100B5E216 /* sieum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sieum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A769751E48998100B5E216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -298,15 +275,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C105D4611EA1187300631D41 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C105D4661EA1187300631D41 /* NotificationCenter.framework in Frameworks */,
-				C02A9779C1087DEDA156F143 /* Pods_SieumWidget.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C1A7696F1E48998100B5E216 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -352,19 +320,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C105D4671EA1187300631D41 /* SieumWidget */ = {
-			isa = PBXGroup;
-			children = (
-				C105D4761EA1198400631D41 /* SieumWidget.entitlements */,
-				C13236BB1EBAFBCC00C54E9A /* GlobalConstants.swift */,
-				C105D4681EA1187300631D41 /* TodayViewController.swift */,
-				C105D46A1EA1187300631D41 /* MainInterface.storyboard */,
-				C105D46D1EA1187300631D41 /* Info.plist */,
-				C19803781FF5277100F7EDF3 /* keys.plist */,
-			);
-			path = SieumWidget;
-			sourceTree = "<group>";
-		};
 		C12469482118B5A60066F554 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +342,18 @@
 				C134D6FD225A46D900F6F26B /* WebViewController.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		C134D7012265FBD900F6F26B /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				C134D7022265FBD900F6F26B /* MyPagePoemTableViewCell.swift */,
+				C134D7032265FBD900F6F26B /* WriteViewController.swift */,
+				C134D7042265FBD900F6F26B /* PageCursor.swift */,
+				C134D7052265FBD900F6F26B /* MyPageEmptyView.swift */,
+				C134D7062265FBD900F6F26B /* MyPageViewController.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		C14A0436212C3D2D00292D42 /* Network */ = {
@@ -492,7 +459,6 @@
 				C1A769741E48998100B5E216 /* sieum */,
 				C1A769891E48998100B5E216 /* sieumTests */,
 				C1A769941E48998100B5E216 /* sieumUITests */,
-				C105D4671EA1187300631D41 /* SieumWidget */,
 				C1A769731E48998100B5E216 /* Products */,
 				C1A769A81E48C44100B5E216 /* supporting files */,
 				C568A2F628C33D4F9218C6B4 /* Pods */,
@@ -506,7 +472,6 @@
 				C1A769721E48998100B5E216 /* sieum.app */,
 				C1A769861E48998100B5E216 /* sieumTests.xctest */,
 				C1A769911E48998100B5E216 /* sieumUITests.xctest */,
-				C105D4641EA1187300631D41 /* SieumWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -521,7 +486,7 @@
 				C15BEE351ECD9BBA00F006C0 /* Page */,
 				C1FA10062123043E0066A22C /* Poets */,
 				C134D6F6225A46C700F6F26B /* Setting */,
-				C1AC0702212AED8900AAD894 /* MyPage */,
+				C134D7012265FBD900F6F26B /* MyPage */,
 				C11634C02022066600543070 /* Assets.xcassets */,
 				C14B05601E6703F400EE2A58 /* Images.xcassets */,
 				C17F523D1E5DE4EF006AD57A /* Main.storyboard */,
@@ -589,17 +554,6 @@
 			name = "supporting files";
 			sourceTree = "<group>";
 		};
-		C1AC0702212AED8900AAD894 /* MyPage */ = {
-			isa = PBXGroup;
-			children = (
-				C14A0431212AF1F000292D42 /* MyPageViewController.swift */,
-				C12E3518221327C8003656AC /* PageCursor.swift */,
-				C1724B93219EFF4100F60A2E /* MyPagePoemTableViewCell.swift */,
-				C14A0447212F9B2A00292D42 /* WriteViewController.swift */,
-			);
-			name = MyPage;
-			sourceTree = "<group>";
-		};
 		C1FA10062123043E0066A22C /* Poets */ = {
 			isa = PBXGroup;
 			children = (
@@ -639,24 +593,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C105D4631EA1187300631D41 /* SieumWidget */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C105D4711EA1187300631D41 /* Build configuration list for PBXNativeTarget "SieumWidget" */;
-			buildPhases = (
-				90BDDA82D7E7CDBB88017395 /* [CP] Check Pods Manifest.lock */,
-				C105D4601EA1187300631D41 /* Sources */,
-				C105D4611EA1187300631D41 /* Frameworks */,
-				C105D4621EA1187300631D41 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SieumWidget;
-			productName = SieumWidget;
-			productReference = C105D4641EA1187300631D41 /* SieumWidget.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		C1A769711E48998100B5E216 /* sieum */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1A7699A1E48998100B5E216 /* Build configuration list for PBXNativeTarget "sieum" */;
@@ -672,7 +608,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				C105D46F1EA1187300631D41 /* PBXTargetDependency */,
 			);
 			name = sieum;
 			productName = sieum;
@@ -729,17 +664,6 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "홍성호";
 				TargetAttributes = {
-					C105D4631EA1187300631D41 = {
-						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = T5T6697UB7;
-						LastSwiftMigration = 1000;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-						};
-					};
 					C1A769711E48998100B5E216 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = T5T6697UB7;
@@ -787,23 +711,11 @@
 				C1A769711E48998100B5E216 /* sieum */,
 				C1A769851E48998100B5E216 /* sieumTests */,
 				C1A769901E48998100B5E216 /* sieumUITests */,
-				C105D4631EA1187300631D41 /* SieumWidget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C105D4621EA1187300631D41 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C198037A1FF5277100F7EDF3 /* keys.plist in Resources */,
-				C1752EBA1EC0216A0042C24E /* launchImage.jpg in Resources */,
-				C13236BD1EBB110500C54E9A /* IropkeBatangM.otf in Resources */,
-				C105D46C1EA1187300631D41 /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C1A769701E48998100B5E216 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -832,7 +744,6 @@
 				C17F523E1E5DE4EF006AD57A /* Main.storyboard in Resources */,
 				C15EDAF21E66FE830024C5C5 /* icon.png in Resources */,
 				C1FFE09B1EC3642100E5FFD0 /* peomCup.png in Resources */,
-				C19803791FF5277100F7EDF3 /* keys.plist in Resources */,
 				C1CDBF111ECB1DCC00C25A0C /* quotation1.png in Resources */,
 				C15EDAE61E66AB640024C5C5 /* save.png in Resources */,
 				C1CDBF1B1ECB1E2600C25A0C /* share.png.old.white in Resources */,
@@ -962,24 +873,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sieumTests/Pods-sieumTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		90BDDA82D7E7CDBB88017395 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SieumWidget-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9816E5DABBBB20EDB526F355 /* [CP] Check Pods Manifest.lock */ = {
@@ -1213,15 +1106,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C105D4601EA1187300631D41 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C105D4691EA1187300631D41 /* TodayViewController.swift in Sources */,
-				C13236BC1EBAFBCC00C54E9A /* GlobalConstants.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C1A7696E1E48998100B5E216 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1230,6 +1114,7 @@
 				C10A4A55212AE4C4005B65B4 /* MenuHeaderView.swift in Sources */,
 				C12D6F862123A299006DA57D /* UIControl+Extension.swift in Sources */,
 				C17F522C1E5DA80D006AD57A /* PageViewController.swift in Sources */,
+				C134D70A2265FBD900F6F26B /* MyPageEmptyView.swift in Sources */,
 				C1D5EFC52136E78E00B2DDA2 /* MenuHeaderPopup.swift in Sources */,
 				C10A4A57212AE5BA005B65B4 /* MenuHeaderViewModel.swift in Sources */,
 				C1FA0FFB211B46030066A22C /* MenuTableViewCell.swift in Sources */,
@@ -1246,12 +1131,14 @@
 				C14A0446212EBE5600292D42 /* Optional+Rx.swift in Sources */,
 				C12D6F8C2125DF6F006DA57D /* UITableView+Extension.swift in Sources */,
 				C134D6FE225A46D900F6F26B /* WebViewController.swift in Sources */,
-				C14A0432212AF1F000292D42 /* MyPageViewController.swift in Sources */,
 				C14A0440212C6F1000292D42 /* DatabaseReference+Extension.swift in Sources */,
 				C134D6FB225A46C800F6F26B /* HelloViewController.swift in Sources */,
+				C134D7092265FBD900F6F26B /* PageCursor.swift in Sources */,
 				C195482F220C635400905200 /* UIResponder+Extension.swift in Sources */,
+				C134D7082265FBD900F6F26B /* WriteViewController.swift in Sources */,
 				C14A043E212C6B8800292D42 /* DatabaseReference+Rx.swift in Sources */,
 				C134D6FA225A46C800F6F26B /* SettingViewController.swift in Sources */,
+				C134D7072265FBD900F6F26B /* MyPagePoemTableViewCell.swift in Sources */,
 				C1A769781E48998100B5E216 /* PoemViewController.swift in Sources */,
 				C14A0430212AF07900292D42 /* Bundle+Extension.swift in Sources */,
 				C17F52291E5DA79E006AD57A /* PoetViewController.swift in Sources */,
@@ -1260,7 +1147,6 @@
 				C134D6FC225A46C800F6F26B /* SettingTableViewCell.swift in Sources */,
 				C14A043C212C67DF00292D42 /* Mapper+Extension.swift in Sources */,
 				C1FA10012121C9090066A22C /* UIFont+Extension.swift in Sources */,
-				C14A0448212F9B2A00292D42 /* WriteViewController.swift in Sources */,
 				C1A769761E48998100B5E216 /* AppDelegate.swift in Sources */,
 				C1FA0FFF2121C6580066A22C /* Theme.swift in Sources */,
 				C1BCA6BB21B3D3BF001B6B9F /* BaseViewController.swift in Sources */,
@@ -1271,15 +1157,14 @@
 				C1752EBE1EC034200042C24E /* UYLNotificationDelegate.swift in Sources */,
 				C1C209251E607234000C76B7 /* GlobalConstants.swift in Sources */,
 				C1CDBF201ECB4AB600C25A0C /* QuestionViewController.swift in Sources */,
+				C134D70B2265FBD900F6F26B /* MyPageViewController.swift in Sources */,
 				C124694A2118B5BF0066F554 /* MenuViewController.swift in Sources */,
 				C1FA10052122660A0066A22C /* PageViewModelUsable.swift in Sources */,
 				C14F81F41ECC983C0070F833 /* PoemModel.swift in Sources */,
-				C1724B94219EFF4100F60A2E /* MyPagePoemTableViewCell.swift in Sources */,
 				C1D5EFC32136E2BF00B2DDA2 /* LoginService.swift in Sources */,
 				C17F523A1E5DC2EB006AD57A /* PoemCoverViewController.swift in Sources */,
 				C14F9687214BF41B00744F24 /* FormatTransform.swift in Sources */,
 				C1FA0FF3211B2E7A0066A22C /* Emptiable+Extension.swift in Sources */,
-				C12E3519221327C8003656AC /* PageCursor.swift in Sources */,
 				C1BCA6BD21B3F2EC001B6B9F /* Date+Extension.swift in Sources */,
 				C1C209231E606A0B000C76B7 /* ImageUtil.swift in Sources */,
 				C19AC43A1EC5DAA700068A21 /* DateUtil.swift in Sources */,
@@ -1305,11 +1190,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C105D46F1EA1187300631D41 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C105D4631EA1187300631D41 /* SieumWidget */;
-			targetProxy = C105D46E1EA1187300631D41 /* PBXContainerItemProxy */;
-		};
 		C1A769881E48998100B5E216 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C1A769711E48998100B5E216 /* sieum */;
@@ -1323,14 +1203,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C105D46A1EA1187300631D41 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C105D46B1EA1187300631D41 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		C127B5CE1E67019000275D21 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1342,40 +1214,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		C105D4721EA1187300631D41 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CFB8F45CEFBB69FDEEA3F3F4 /* Pods-SieumWidget.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = SieumWidget/SieumWidget.entitlements;
-				DEVELOPMENT_TEAM = T5T6697UB7;
-				INFOPLIST_FILE = SieumWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum.ios.SieumWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
-			};
-			name = Debug;
-		};
-		C105D4731EA1187300631D41 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4022B05F99605DD1B2877EB /* Pods-SieumWidget.release.xcconfig */;
-			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = SieumWidget/SieumWidget.entitlements;
-				DEVELOPMENT_TEAM = T5T6697UB7;
-				INFOPLIST_FILE = SieumWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jieum.sieum.ios.SieumWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
-			};
-			name = Release;
-		};
 		C1A769981E48998100B5E216 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1489,7 +1327,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4090484F470BE9C3AE75E98C /* Pods-sieum.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = sieum/sieum.entitlements;
@@ -1529,7 +1366,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2645917B1628DD4F13D99538 /* Pods-sieum.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = sieum/sieum.entitlements;
@@ -1629,15 +1465,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C105D4711EA1187300631D41 /* Build configuration list for PBXNativeTarget "SieumWidget" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C105D4721EA1187300631D41 /* Debug */,
-				C105D4731EA1187300631D41 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C1A7696D1E48998100B5E216 /* Build configuration list for PBXProject "sieum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

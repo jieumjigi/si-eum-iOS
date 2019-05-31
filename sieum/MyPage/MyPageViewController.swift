@@ -28,7 +28,11 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
     var sideMenuAction: PublishSubject<SideMenuAction> = PublishSubject<SideMenuAction>()
     
     private var user: UserModel?
-    private var poems: [Poem]?
+    private var poems: [Poem]? {
+        didSet {
+            emptyView.isHidden = (poems?.count ?? 0) > 0
+        }
+    }
     private var isLoadingData: Bool = false
     private var isNoMoreData: Bool = false
     
@@ -44,11 +48,22 @@ class MyPageViewController: BaseViewController, SideMenuUsable {
         return tableView
     }()
     
+    private lazy var emptyView: EmptyView = {
+        let emptyView: EmptyView = EmptyView()
+        emptyView.configure(text: "작성한 시가 없습니다.")
+        emptyView.isHidden = true
+        return emptyView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        view.addSubview(emptyView)
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view.snp.edges)
+        }
+        emptyView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         makeNavigationBar()
         refreshControl.addTarget(for: .valueChanged) { [weak self] in

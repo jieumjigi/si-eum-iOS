@@ -20,6 +20,10 @@ class ProfileImageView: UIImageView {
 
 class PoetProfileCell: UITableViewCell {
     
+    typealias LinkButtonHandler = () -> Void
+    
+    private var linkButtonHandler: LinkButtonHandler?
+    
     private var disposeBag = DisposeBag()
     
     private var didUpdateConstraints: Bool = false
@@ -46,10 +50,15 @@ class PoetProfileCell: UITableViewCell {
         return nameLabel
     }()
     
-    private lazy var urlButton = UIButton().then {
-        $0.titleLabel?.numberOfLines = 0
-        $0.titleLabel?.font = .mainFont(ofSize: .small)
-    }
+    private lazy var urlButton: UIButton = {
+        let urlButton: UIButton = UIButton()
+        urlButton.titleLabel?.numberOfLines = 0
+        urlButton.titleLabel?.font = .mainFont(ofSize: .small)
+        urlButton.addTarget(for: .touchUpInside, { [weak self] in
+            self?.linkButtonHandler?()
+        })
+        return urlButton
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
@@ -106,6 +115,10 @@ class PoetProfileCell: UITableViewCell {
         nameLabel.text = model.name
         urlButton.setTitle(model.snsURLString, for: .normal)
         setNeedsUpdateConstraints()
+    }
+    
+    func onTouchURLButton(_ linkButtonHandler: @escaping LinkButtonHandler) {
+        self.linkButtonHandler = linkButtonHandler
     }
     
     private func bind() {

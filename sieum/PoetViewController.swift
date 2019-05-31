@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import Kingfisher
 import RxSwift
+import PanModal
 
 class PoetViewController: UIViewController, PageViewModelUsable {
     
@@ -94,13 +95,7 @@ class PoetViewController: UIViewController, PageViewModelUsable {
             return
         }
         let bookUrl = URL.init(string: self.linkToBook)!
-        
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(bookUrl, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (isSucess) in
-            })
-        } else {
-            UIApplication.shared.openURL(bookUrl)
-        }
+        presentPanModal(WebViewController(url: bookUrl))
     }
 }
 

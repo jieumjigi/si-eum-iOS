@@ -133,6 +133,14 @@ class PoetsViewController: UIViewController, SideMenuUsable {
         }
         tableView.reloadData(with: .automatic)
     }
+    
+    private func presentSNSWebView() {
+        guard let snsURLString = selectedUser.value?.snsURLString,
+            let snsURL = URL.init(string: snsURLString) else {
+            return
+        }
+        presentPanModal(WebViewController(url: snsURL))
+    }
 }
 
 extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -178,6 +186,9 @@ extension PoetsViewController: UITableViewDelegate, UITableViewDataSource {
             case ProfileRow.main.rawValue:
                 let cell = tableView.dequeueReusableCell(for: indexPath) as PoetProfileCell
                 cell.configure(model: selectedUser.value)
+                cell.onTouchURLButton { [weak self] in
+                    self?.presentSNSWebView()
+                }
                 return cell
             default:
                 let cell = tableView.dequeueReusableCell(for: indexPath) as PoetDescriptionCell

@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>사용자가 앱을 사용할 때만 &apos;시음&apos;에 위치정보를 공유합니다.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -56,7 +54,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>31</string>
+	<string>33</string>
 	<key>FacebookAppID</key>
 	<string>424383144577452</string>
 	<key>FacebookDisplayName</key>
@@ -108,6 +106,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>사용자가 앱을 사용할 때만 '시음'에 위치정보를 공유합니다.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>시를 앨범에 저장합니다</string>
 	<key>NSPhotoLibraryUsageDescription</key>
