@@ -7,74 +7,52 @@
 //
 
 import UIKit
+import RxSwift
 
-class QuestionViewController: UIViewController {
-
+class QuestionViewController: UIViewController, PageViewModelUsable {
+    
+    var pageViewModel: PageViewModel?
+    let disposeBag: DisposeBag = DisposeBag()
+    private var model: PoemPageModel?
+    
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet var quotations: [UIImageView]!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        self.setContent()
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        
-        super.didReceiveMemoryWarning()
-
+        bind()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        super.viewDidAppear(animated)
-        self.setContent()
-
+    private func bind() {
+        themeService.rx
+            .bind({ $0.backgroundColor }, to: view.rx.backgroundColor)
+            .bind({ $0.textColor }, to: questionLabel.rx.textColor)
+            .disposed(by: disposeBag)
     }
     
-    func setContent(){
-        
-        if( PoemModel.shared.question == nil ||  PoemModel.shared.question == "" ){
+    func bind(_ viewModel: PageViewModel) {
+        pageViewModel?.poemPageModel.asObservable().subscribe(onNext: { [weak self] result in
+            switch result {
+            case .failure:
+                break
+            case .success(let poemPageModel):
+                self?.loadViewIfNeeded()
+                self?.configure(model: poemPageModel)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    func configure(model: PoemPageModel) {
+        guard let abbrev = model.abbrev else {
             return
         }
-        
-//        self.questionLabel.alpha = 0.0
-//        
-//        for quotation in self.quotations{
-//            quotation.alpha = 0.0
-//        }
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6
         paragraphStyle.alignment = .center
         
-        let attrString = NSMutableAttributedString(string: PoemModel.shared.question!)
-        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-        self.questionLabel.attributedText = attrString
-        
-//        // Fade in
-//        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-//            
-//            self.questionLabel.alpha = 1.0
-//
-//            for quotation in self.quotations{
-//                quotation.alpha = 1.0
-//            }
-//            
-//        }, completion: nil)
-
+        let attrString = NSMutableAttributedString(string: abbrev)
+        attrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: abbrev.count))
+        questionLabel.attributedText = attrString
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

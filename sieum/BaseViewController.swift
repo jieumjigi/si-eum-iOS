@@ -2,17 +2,29 @@
 //  BaseViewController.swift
 //  sieum
 //
-//  Created by 홍성호 on 2017. 2. 22..
-//  Copyright © 2017년 홍성호. All rights reserved.
+//  Created by seongho on 02/12/2018.
+//  Copyright © 2018 홍성호. All rights reserved.
 //
 
 import UIKit
 
 class BaseViewController: UIViewController {
-
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = UIColor.defaultBackground()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+}
+
+extension BaseViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

@@ -42,7 +42,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcb-6d-t8D">
                                         <rect key="frame" x="-1.5" y="68.5" width="263" height="0.0"/>
                                         <fontDescription key="fontDescription" name="IropkeBatangOTFM" family="Iropke Batang OTF" pointSize="13"/>
-                                        <color key="textColor" red="0.82036119699478149" green="0.59896218776702881" blue="0.59676283597946167" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.81960784313725488" green="0.59999999999999998" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -54,17 +54,12 @@
                                     <constraint firstItem="vcb-6d-t8D" firstAttribute="top" secondItem="80S-0q-WBQ" secondAttribute="bottom" constant="50" id="yJb-5B-qtx"/>
                                 </constraints>
                             </scrollView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="22F-ZE-7LO">
-                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843137254903" green="1" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="80S-0q-WBQ" secondAttribute="trailing" constant="41.5" id="4Tz-rc-dx9"/>
                             <constraint firstItem="80S-0q-WBQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="41.5" id="7gQ-Ir-OKr"/>
                             <constraint firstAttribute="trailing" secondItem="i7M-Qg-30Y" secondAttribute="trailing" id="95W-wc-xrh"/>
-                            <constraint firstItem="22F-ZE-7LO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="COT-Uy-PQa"/>
-                            <constraint firstItem="22F-ZE-7LO" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Wny-Ur-vDd"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i7M-Qg-30Y" secondAttribute="bottom" id="Yzc-Rw-aL4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="W2t-Np-Wcb" secondAttribute="trailing" constant="41.5" id="avs-RR-K6P"/>
                             <constraint firstItem="W2t-Np-Wcb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="bmX-mI-kwT"/>
@@ -84,7 +79,6 @@
                         <outlet property="contentTopConstraint" destination="qW2-kd-HO2" id="OMI-Hd-L1Z"/>
                         <outlet property="lbBody" destination="80S-0q-WBQ" id="U3a-o5-nx3"/>
                         <outlet property="lbPoet" destination="vcb-6d-t8D" id="Shg-yd-Eyk"/>
-                        <outlet property="loadingIndicator" destination="22F-ZE-7LO" id="nrt-Zt-nNy"/>
                         <outlet property="scrollView" destination="W2t-Np-Wcb" id="hQT-FT-Gbf"/>
                     </connections>
                 </viewController>
@@ -156,10 +150,10 @@
             </objects>
             <point key="canvasLocation" x="-681" y="492"/>
         </scene>
-        <!--Info View Controller-->
+        <!--Setting View Controller-->
         <scene sceneID="ksx-0F-bk7">
             <objects>
-                <tableViewController storyboardIdentifier="InfoViewController" id="Wlu-fG-1he" customClass="InfoViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingViewController" id="Wlu-fG-1he" customClass="SettingViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="kAa-oW-bBY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -184,10 +178,10 @@
             </objects>
             <point key="canvasLocation" x="-682" y="1286"/>
         </scene>
-        <!--Menu View Controller-->
+        <!--Floating Menu View Controller-->
         <scene sceneID="1yZ-iN-Cgf">
             <objects>
-                <viewController storyboardIdentifier="MenuViewController" id="jvo-dj-hC6" customClass="MenuViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FloatingMenuViewController" id="jvo-dj-hC6" customClass="FloatingMenuViewController" customModule="sieum" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E6Z-ky-RSl"/>
                         <viewControllerLayoutGuide type="bottom" id="dyY-Vk-njE"/>

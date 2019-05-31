@@ -2,352 +2,162 @@
 //  MenuViewController.swift
 //  sieum
 //
-//  Created by 홍성호 on 2017. 2. 22..
-//  Copyright © 2017년 홍성호. All rights reserved.
+//  Created by 홍성호 on 2018. 8. 7..
+//  Copyright © 2018년 홍성호. All rights reserved.
 //
 
 import UIKit
-import FBSDKCoreKit
+import RxSwift
+import RxCocoa
+import RxDataSources
+import SHSideMenu
 import PopupDialog
-import UserNotifications
+import FirebaseUI
 
-class MenuViewController: UIViewController {
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        log.verbose("menu viewDidAppear")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    @IBAction func onShareButton(_ sender: Any) {
-        let eventName = "onShareButton"
-        FBSDKAppEvents.logEvent(eventName)
-        log.verbose(eventName)
-      
-        NotificationCenter.default.post(name: GlobalConstants.observer.requestShare, object: nil)
-    }
+class MenuViewController: UIViewController, ContentViewChangable {
     
-    func presentShareAlert(){
-        // Customize dialog appearance
-        let pv = PopupDialogDefaultView.appearance()
-        pv.titleFont    = UIFont(name: "IropkeBatangOTFM", size: 16)!
-        pv.titleColor   = UIColor.white
-        pv.messageFont  = UIFont(name: "IropkeBatangOTFM", size: 14)!
-        pv.messageColor = UIColor(white: 0.8, alpha: 1)
-        
-        // Customize the container view appearance
-        let pcv = PopupDialogContainerView.appearance()
-//        pcv.backgroundColor = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
-        pcv.backgroundColor = UIColor.alertBackground()
-        pcv.cornerRadius    = 2
-        pcv.shadowEnabled   = true
-        pcv.shadowColor     = UIColor.black
-        
-        // Customize overlay appearance
-        let ov = PopupDialogOverlayView.appearance()
-        ov.blurEnabled = true
-        ov.blurRadius  = 30
-        ov.liveBlur    = true
-        ov.opacity     = 0.7
-        ov.color       = UIColor.black
-        
-        // Customize default button appearance
-        let db = DefaultButton.appearance()
-        db.titleFont      = UIFont(name: "IropkeBatangOTFM", size: 14)!
-        db.titleColor     = UIColor.white
-        db.buttonColor    = UIColor.alertBackground()
-        db.separatorColor = UIColor.defaultBackground()
-        
-        // Customize cancel button appearance
-        let cb = CancelButton.appearance()
-        cb.titleFont      = UIFont(name: "IropkeBatangOTFM", size: 14)!
-        cb.titleColor     = UIColor(white: 0.6, alpha: 1)
-        cb.buttonColor    = UIColor.alertBackground()
-        cb.separatorColor = UIColor.defaultBackground()
-
-        
-        // Prepare the popup assets
-        let title = "THIS IS THE DIALOG TITLE"
-        let message = "This is the message section of the popup dialog default view"
-        let image = UIImage(named: "pexels-photo-103290")
-        
+    var viewTransition: BehaviorSubject<UIViewController> = BehaviorSubject<UIViewController>(value: UINavigationController(rootViewController: PageViewController(type: .today)))
     
-        // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: image, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
-            
+    private let viewModel: MenuViewModel = MenuViewModel()
+    private let disposeBag: DisposeBag = DisposeBag()
+    
+    private lazy var didUpdateViewConstraints: Bool = false
+    
+    var dataSource: RxTableViewSectionedReloadDataSource<MenuSection>?
+    
+    private lazy var tableView: UITableView = {
+        let tableView: UITableView = UITableView()
+        tableView.tableHeaderView = headerView
+        tableView.register(MenuTableViewCell.self)
+        tableView.separatorInset = .zero
+        return tableView
+    }()
+    
+    private lazy var headerView: MenuHeaderView = MenuHeaderView()
+    
+    private lazy var versionLabel: UILabel = {
+        let versionLabel = UILabel()
+        versionLabel.font = UIFont.mainFont(ofSize: .small)
+        if let version = Bundle.version {
+            versionLabel.text = "ver \(version)"
         }
+        return versionLabel
+    }()
+    
+    private lazy var loginViewController: UIViewController? = {
+        let loginViewController = LoginService.loginViewController
+        return loginViewController
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        // Create buttons
-        let buttonOne = CancelButton(title: "취소") {
-            print("You canceled the car dialog.")
-        }
-        
-        popup.addButton(buttonOne)
-        
-        // Present dialog
-        self.present(popup, animated: true, completion: nil)
+        view.addSubview(tableView)
+        view.addSubview(versionLabel)
+        setImageListenerForHeaderView()
+        bind()
+        view.setNeedsUpdateConstraints()
     }
     
-    
-    func presentTimerAlert(){
-        
-        let myDatePicker: UIDatePicker = UIDatePicker()
-        
-        // setting properties of the datePicker
-        myDatePicker.datePickerMode = UIDatePickerMode.time
-        myDatePicker.timeZone = NSTimeZone.local
-        myDatePicker.frame = CGRect.init(x: 0, y: 30, width: 270, height: 150)
-        let alertController = UIAlertController(title: "" , message: "\n\n\n\n\n\n\n\n", preferredStyle: .alert)
-        
-        alertController.view.addSubview(myDatePicker)
-        alertController.view.tintColor = UIColor.alertBackground()
-        
-        
-        let confirmAction = UIAlertAction.init(title: "확인", style: .default) { (action) in
+    override func updateViewConstraints() {
+        if didUpdateViewConstraints == false {
+            didUpdateViewConstraints = true
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH"
-            let selectedHour = Int(dateFormatter.string(from: myDatePicker.date))
-            
-            dateFormatter.dateFormat = "mm"
-            let selectedMinute = Int(dateFormatter.string(from: myDatePicker.date))
-            
-            print("selectedHours : \(String(describing: selectedHour))")
-            print("selectedHours : \(String(describing: selectedMinute))")
-            
-            
-            
-            // 반복되는 노티 만들기
-            
-            var dateComponents = DateComponents()
-            dateComponents.hour = selectedHour
-            dateComponents.minute = selectedMinute
-            let trigger = UNCalendarNotificationTrigger.init(dateMatching: dateComponents, repeats: true)
-
-            let content = UNMutableNotificationContent()
-            content.body = "오늘의 시가 도착했습니다"
-            content.sound = UNNotificationSound.default()
-            
-            
-            // 설정
-            let center = UNUserNotificationCenter.current()
-            
-            let request = UNNotificationRequest.init(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-            center.removeAllPendingNotificationRequests()
-            center.add(request, withCompletionHandler: { (error) in
-
-                
-            })
-            
-        }
-        
-        let cancelAction = UIAlertAction(title: "취소", style: UIAlertActionStyle.default, handler: nil)
-        alertController.addAction(cancelAction)
-        alertController.addAction(confirmAction)
-        self.present(alertController, animated: true, completion:{})
-        
-    }
-    
-    func presentTimerSwitchAlert(){
-        
-        // Prepare the popup assets
-        let title = "알림을 설정하겠습니까?"
-        let message = "시간을 정해두고 매일 시를 만나보세요"
-        
-        // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
-            
-        }
-        
-        // Create buttons
-        let confirmButton = DefaultButton(title: "확인") {
-            self.setNotiAuth()
-            self.presentTimerAlert()
-        }
-        
-        let cancelButton = CancelButton(title: "취소") {
-            
-        }
-        
-        popup.addButton(cancelButton)
-        popup.addButton(confirmButton)
-
-        // Present dialog
-        self.present(popup, animated: true, completion: nil)
-        
-    }
-    
-    
-    func presentEditTimerAlert(){
-        
-        self.setNotiAuth()
-        
-        // Prepare the popup assets
-        let title = "이미 설정된 알림이 있습니다"
-        let message = "삭제하거나 변경하겠습니까?"
-        
-        // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .horizontal, transitionStyle: .fadeIn, gestureDismissal: true) {
-            
-        }
-        
-        // Create buttons
-        let confirmButton = DefaultButton(title: "변경") {
-            
-            self.presentTimerAlert()
-            
-        }
-        
-        let cancelButton = CancelButton(title: "삭제") {
-            
-            let center = UNUserNotificationCenter.current()
-            center.removeAllPendingNotificationRequests()
-            
-        }
-        
-        popup.addButton(cancelButton)
-        popup.addButton(confirmButton)
-        
-        // Present dialog
-        self.present(popup, animated: true, completion: nil)
-        
-    }
-    
-    
-    @IBAction func onSaveButton(_ sender: Any) {
-        let eventName = "onSaveButton"
-        FBSDKAppEvents.logEvent(eventName)
-        log.verbose(eventName)
-        
-        NotificationCenter.default.post(name: GlobalConstants.observer.requestSave, object: nil)
-    }
-    
-    @IBAction func onTimerButton(_ sender: Any) {
-        let eventName = "onTimerButton"
-        FBSDKAppEvents.logEvent(eventName)
-        log.verbose(eventName)
-        
-//        NotificationCenter.default.post(name: Constants.observer.requestTimer, object: nil)
-        
-//        if(){ // 이미 설정한 알림이 있는 경우
-//            self.presentEditTimerAlert()
-//        }else{
-//            self.presentTimerSwitchAlert()
-//        }
-        
-        self.checkExistNoti()
-        
-    }
-    
-    @IBAction func onInfoButton(_ sender: Any) {
-        
-        let eventName = "onInfoButton"
-        FBSDKAppEvents.logEvent(eventName)
-        log.verbose(eventName)
-        
-        let infoViewController = self.storyboard!.instantiateViewController(withIdentifier: "InfoViewController") as! InfoViewController
-        let navController = UINavigationController(rootViewController: infoViewController) // Creating a navigation controller with VC1 at the root of the navigation stack.
-        self.present(navController, animated:true, completion: nil)
-        
-    }
-    
-    
-    @IBAction func onMenuPopButton(_ sender: Any) {
-        
-        let eventName = "onMenuPopButton"
-        FBSDKAppEvents.logEvent(eventName)
-        log.verbose(eventName)
-        NotificationCenter.default.post(name: GlobalConstants.observer.requestMenuPop, object: nil)
-        
-    }
-    
-    
-    
-    
-    
-    
-//    // MARK: - Observer
-//    
-//    func handleMenuOpen(){
-//        
-//        UIView.animate(withDuration: 0.7) {
-//            
-//            self.openButton.alpha = 0.0
-//            
-//        }
-//        
-//    }
-//    
-//    func handleMenuClose(){
-//        
-//        UIView.animate(withDuration: 0.7) {
-//            
-//            self.openButton.alpha = 1.0
-//
-//            
-//        }
-//        
-//    }
-//    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-    // MARK :- Noti
-    func setNotiAuth(){
-        
-        let center = UNUserNotificationCenter.current()
-        
-        center.getNotificationSettings { (settings) in
-            
-            if settings.authorizationStatus != .authorized {
-                
-                // Notifications not allowed
-                
-                let options: UNAuthorizationOptions = [.alert, .sound]
-                center.requestAuthorization(options: options) { (granted, error) in
-                    
-                    if !granted {
-                        print("인증되지 않았습니다")
-                        
-                    }
-                    
+            tableView.snp.makeConstraints { make in
+                if #available(iOS 11.0, *) {
+                    make.edges.equalTo(view.safeAreaLayoutGuide)
+                } else {
+                    make.edges.equalToSuperview()
                 }
-                
             }
             
+            versionLabel.snp.makeConstraints { make in
+                make.trailing.equalToSuperview().inset(10)
+                if #available(iOS 11.0, *) {
+                    make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
+                } else {
+                    make.bottom.equalToSuperview().inset(10)
+                }
+            }
         }
-        
-
-        
+        super.updateViewConstraints()
     }
     
-    func checkExistNoti(){
+    private func bind() {
         
-        let center = UNUserNotificationCenter.current()
-        center.getPendingNotificationRequests { (notiRequestList) in
-            
-            if(notiRequestList.count > 0){
-                self.presentEditTimerAlert()
-
-            }else{
-                self.presentTimerSwitchAlert()
-            }
-            
+        themeService.rx
+            .bind({ $0.contentBackgroundColor }, to: view.rx.backgroundColor)
+            .bind({ $0.contentBackgroundColor }, to: tableView.rx.backgroundColor)
+            .bind({ $0.contentBackgroundColor }, to: tableView.rx.separatorColor)
+            .bind({ $0.textColor }, to: versionLabel.rx.textColor)
+            .disposed(by: disposeBag)
+        
+        let dataSource = RxTableViewSectionedReloadDataSource<MenuSection>(
+            configureCell: { ds, tv, ip, item in
+                let cell = tv.dequeueReusableCell(withIdentifier: MenuTableViewCell.reuseIdentifier) as? MenuTableViewCell
+                cell?.configure(model: item)
+                return cell ?? UITableViewCell()
+        })
+        
+        self.dataSource = dataSource
+        
+        tableView.rx.itemSelected
+            .withLatestFrom(viewModel.sections) { return ($0, $1) }
+            .subscribe(onNext: { [weak self] indexPath, sections in
+                self?.tableView.deselectRow(at: indexPath, animated: true)
+                guard let strongSelf = self,
+                    let menu = sections.first?.items[indexPath.row] else {
+                        return
+                }
+                switch menu {
+                case .write:
+                    self?.viewTransition.onNext(UINavigationController(rootViewController: MyPageViewController()))
+                case .today:
+                    let viewController = UINavigationController(rootViewController: PageViewController(type: .today))
+                    self?.viewTransition.onNext(viewController)
+                case .past:
+                    let viewController = UINavigationController(rootViewController: PoetsViewController())
+                    self?.viewTransition.onNext(viewController)
+                case .setting:
+                    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController")
+                    self?.viewTransition.onNext(UINavigationController(rootViewController: viewController))
+                case .login:
+                    guard let loginViewController = self?.loginViewController else {
+                        return
+                    }
+                    self?.parentMenuViewController?.present(loginViewController, animated: true)
+                case .logout:
+                    let popupController = PopupDialog(
+                        title: "로그아웃",
+                        message: "로그아웃 하시겠습니까?",
+                        actions: [
+                            PopupAction(title: "예", style: .default, onTouch: {
+                                LoginService.shared.logout()
+                            }),
+                            PopupAction(title: "아니오", style: .cancel)
+                        ]
+                    )
+                    strongSelf.parentMenuViewController?.present(popupController, animated: false)
+                }
+            }).disposed(by: disposeBag)
+        
+        viewModel.sections
+            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+    }
+    
+    private func setImageListenerForHeaderView() {
+        LoginService.shared.didChangeUser { [weak self] authUser in
+            self?.headerView.setProfileImage(authUser?.imageURL)
         }
+    }
+}
+
+extension MenuViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
     }
 }

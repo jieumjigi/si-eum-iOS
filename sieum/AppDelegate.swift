@@ -7,37 +7,44 @@
 //
 
 import UIKit
-import SwiftyBeaver
-import FBSDKCoreKit
-import PopupDialog
 import UserNotifications
 
-let log = SwiftyBeaver.self
+import FBSDKCoreKit
+import Firebase
+import FirebaseUI
+import PopupDialog
+import RxSwift
+import SHSideMenu
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let notificationDelegate = UYLNotificationDelegate()
+    let disposeBag: DisposeBag = DisposeBag()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        FirebaseApp.configure()
+        
+        let initialViewController = SideMenuViewController(left: MenuViewController())
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = initialViewController
+        window?.makeKeyAndVisible()
+        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        self.setLogger()
-        self.setAlertView()
-        self.setNotiDelegate()
+        setAlertView()
+        setNotiDelegate()
+        setupLoginListener()
         
-        let center = UNUserNotificationCenter.current()
-        
-        center.getPendingNotificationRequests(completionHandler: { (requestList) in
-            
-            if(requestList.count > 0){
-                
-                self.setNotiAuth()
-                
-            }
-        })
+        UNUserNotificationCenter.current()
+            .getPendingNotificationRequests(completionHandler: { [weak self] requestList in
+                guard requestList.count > 0 else {
+                    return
+                }
+                self?.setNotiAuth()
+            })
         
         return true
     }
@@ -64,49 +71,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-    // MARK:- Logger
     
-    func setLogger(){
-        // add log destinations. at least one is needed!
-        let console = ConsoleDestination()  // log to Xcode Console
-//        let file = FileDestination()  // log to default swiftybeaver.log file
-//        let cloud = SBPlatformDestination(appID: "foo", appSecret: "bar", encryptionKey: "123") // to cloud
-        
-        // use custom format and set console output to short time, log level & message
-        //        console.format = "$DHH:mm:ss$d $L $M"
-        
-        if("$L" == "VERBOSE"){
-            console.format = "$DHH:mm:ss$d 💜 $L $M"
-        }else if("$L" == "DEBUG"){
-            console.format = "$DHH:mm:ss$d 💚 $L $M"
-        }else if("$L" == "INFO"){
-            console.format = "$DHH:mm:ss$d 💙 $L $M"
-        }else if("$L" == "WARNING"){
-            console.format = "$DHH:mm:ss$d 💛 $L $M"
-        }else if("$L" == "ERROR"){
-            console.format = "$DHH:mm:ss$d ❤️ $L $M"
+    // MARK: - Facebook
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
+        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+            return true
         }
-        
-        // or use this for JSON output: console.format = "$J"
-        
-        // add the destinations to SwiftyBeaver
-        log.addDestination(console)
-//        log.addDestination(file)
-//        log.addDestination(cloud)
-    }
-    
-    // MARK :- Facebook
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
-        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
-        
-        return handled
-    }
 
+        return false
+    }
     
-    // MARK :- Alert Appearance
-    func setAlertView(){
+    // MARK: - Alert Appearance
+    func setAlertView() {
         
         // Customize dialog appearance
         let pv = PopupDialogDefaultView.appearance()
@@ -128,7 +105,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let ov = PopupDialogOverlayView.appearance()
         ov.blurEnabled = false
         ov.blurRadius  = 30
-        ov.liveBlur    = false
         ov.opacity     = 0.0
         ov.color       = UIColor.clear
         
@@ -148,62 +124,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    
-    // MARK :- Noti
-    func setNotiDelegate(){
-        
+    // MARK: - Noti
+    private func setNotiDelegate(){
         let center = UNUserNotificationCenter.current()
         center.delegate = notificationDelegate
     }
-    
-    
-    
-    
-    
-//    func setNotiAuth(){
-//        
-//        let center = UNUserNotificationCenter.current()
-//        let options: UNAuthorizationOptions = [.alert, .sound]
-//        
-//        center.requestAuthorization(options: options) { (granted, error) in
-//            
-//            if !granted {
-//                print("Something went wrong")
-//            }
-//
-//        }
-//        
-//    }
-    
-    
-    // MARK :- Noti
-    func setNotiAuth(){
-        
-        let center = UNUserNotificationCenter.current()
-        
-        center.getNotificationSettings { (settings) in
-            
-            if settings.authorizationStatus != .authorized {
-                
-                // Notifications not allowed
-                
-                let options: UNAuthorizationOptions = [.alert, .sound]
-                center.requestAuthorization(options: options) { (granted, error) in
-                    
-                    if !granted {
-                        print("인증되지 않았습니다")
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        }
-        
-        
-        
-    }
 
+    private func setNotiAuth(){
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { (settings) in
+            guard settings.authorizationStatus != .authorized else {
+                return
+            }
+            // Notifications not allowed
+            let options: UNAuthorizationOptions = [.alert, .sound]
+            center.requestAuthorization(options: options) { (granted, error) in
+                if granted == false {
+                    print("인증되지 않았습니다")
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Login Service
+
+extension AppDelegate {
+    private func setupLoginListener() {
+        LoginService.shared.didChangeUser { authUser in
+            DatabaseService.shared.registerUserIfNeeded(with: authUser)
+        }
+    }
 }
 

@@ -8,17 +8,32 @@
 
 import UIKit
 
-class DateUtil: NSObject {
-    
-    public func getDate() -> String{
-    
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        let result = formatter.string(from: date)
-        
-        return result
-    
+extension String {
+    var date: Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        return dateFormatter.date(from: self)
     }
+}
 
+extension Date {
+    static var today: Date? {
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+        return Calendar.current.date(from: components)
+    }
+    
+    static var yesterday: Date? {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+        if let day = components.day {
+            components.day = day - 1
+        }
+        return Calendar.current.date(from: components)
+    }
+    
+    var formatted: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let result = formatter.string(from: self)
+        return result
+    }
 }
